@@ -19,6 +19,7 @@ namespace QLTK_Nro_Pro
 
         public static string nro244 = Path.Combine(Application.StartupPath, "Nro_244.exe");
         private int indexSTT = 0;
+        private int delaySocket = 150;
         private void Form1_Load(object sender, EventArgs e)
         {
             gbSize.Enabled = false;
@@ -35,6 +36,10 @@ namespace QLTK_Nro_Pro
                 if (!File.Exists(info.string_1))
                 {
                     File.Create(info.string_1).Close();
+                }
+                if (!File.Exists(info.string_2))
+                {
+                    File.Create(info.string_2).Close();
                 }
             }
             CheckForUpdates();
@@ -423,6 +428,7 @@ namespace QLTK_Nro_Pro
                 txt_password.Password = true;
             }
         }
+
 
         private void btnupdateSize_Click(object sender, EventArgs e)
         {
@@ -1119,8 +1125,7 @@ namespace QLTK_Nro_Pro
             });
 
         }
-
-        private void materialSwitch1_CheckedChanged_1(object sender, EventArgs e)
+        public void switchSocket()
         {
             bool switch1 = checkOnSocket.Checked;
             if (switch1)
@@ -1128,23 +1133,187 @@ namespace QLTK_Nro_Pro
                 gbSkill.Enabled = true;
                 gbZone.Enabled = true;
                 gbItem.Enabled = true;
+                gbChatGame.Enabled = true;
             }
             else
             {
                 gbSkill.Enabled = false;
                 gbZone.Enabled = false;
                 gbItem.Enabled = false;
+                gbChatGame.Enabled = false;
+            }
+        }
+        private void materialSwitch1_CheckedChanged_1(object sender, EventArgs e)
+        {
+            switchSocket();
+            if (checkOnSocket.Checked)
+            {
+                TCPSocket.startServer();
+                Task.Run(() =>
+                {
+                    while (true)
+                    {
+                        string count = TCPSocket.GetCountClientConnect().ToString();
+
+                        btnCountClient.Invoke(new Action(() =>
+                        {
+                            btnCountClient.Text = count;
+                        }));
+
+                        Thread.Sleep(1000);
+                    }
+                });
+
+            }
+            else
+            {
+                TCPSocket.stopServer();
             }
         }
 
         private void btnBongTai_Click(object sender, EventArgs e)
         {
-
+            TCPSocket.send("bongtai");
+            Thread.Sleep(delaySocket);
         }
 
         private void btnCsBay_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void materialButton73_Click(object sender, EventArgs e)
+        {
+            TCPSocket.send("skill|0");
+            Thread.Sleep(delaySocket);
+        }
+
+        private void materialButton74_Click(object sender, EventArgs e)
+        {
+            TCPSocket.send("skill|1");
+            Thread.Sleep(delaySocket);
+        }
+
+        private void materialButton75_Click(object sender, EventArgs e)
+        {
+            TCPSocket.send("skill|2");
+            Thread.Sleep(delaySocket);
+        }
+
+        private void materialButton76_Click(object sender, EventArgs e)
+        {
+            TCPSocket.send("skill|3");
+            Thread.Sleep(delaySocket);
+        }
+
+        private void materialButton77_Click(object sender, EventArgs e)
+        {
+            TCPSocket.send("skill|4");
+            Thread.Sleep(delaySocket);
+        }
+
+        private void materialButton78_Click(object sender, EventArgs e)
+        {
+            TCPSocket.send("skill|5");
+            Thread.Sleep(delaySocket);
+        }
+
+        private void materialButton79_Click(object sender, EventArgs e)
+        {
+            TCPSocket.send("skill|6");
+            Thread.Sleep(delaySocket);
+        }
+
+        private void materialButton80_Click(object sender, EventArgs e)
+        {
+            TCPSocket.send("skill|7");
+            Thread.Sleep(delaySocket);
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            TCPSocket.send("item|381");
+            Thread.Sleep(delaySocket);
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            TCPSocket.send("item|1150");
+            Thread.Sleep(delaySocket);
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            TCPSocket.send("item|384");
+            Thread.Sleep(delaySocket);
+        }
+
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+            TCPSocket.send("item|1153");
+            Thread.Sleep(delaySocket);
+        }
+
+        private void pictureBox5_Click(object sender, EventArgs e)
+        {
+            TCPSocket.send("item|382");
+            Thread.Sleep(delaySocket);
+        }
+
+        private void pictureBox6_Click(object sender, EventArgs e)
+        {
+            TCPSocket.send("item|1152");
+            Thread.Sleep(delaySocket);
+        }
+
+        private void pictureBox7_Click(object sender, EventArgs e)
+        {
+            TCPSocket.send("item|383");
+            Thread.Sleep(delaySocket);
+        }
+
+        private void pictureBox8_Click(object sender, EventArgs e)
+        {
+            TCPSocket.send("item|1151");
+            Thread.Sleep(delaySocket);
+        }
+
+        private void pictureBox9_Click(object sender, EventArgs e)
+        {
+            TCPSocket.send("item|385");
+            Thread.Sleep(delaySocket);
+        }
+
+        private void pictureBox14_Click(object sender, EventArgs e)
+        {
+            TCPSocket.send("item|395");
+            Thread.Sleep(delaySocket);
+        }
+
+        private void btnChat_Click(object sender, EventArgs e)
+        {
+            TCPSocket.send("chat|" + txtChatGame.Text);
+            Thread.Sleep(delaySocket);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            TCPSocket.send("khu|" + txtKHU.Text);
+            Thread.Sleep(delaySocket);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (int.TryParse(txtIdItem.Text, out int id))
+            {
+                TCPSocket.send("item|" + id.ToString());
+                Thread.Sleep(delaySocket);
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng nhập đúng dạng id Item", "Thông báo");
+            }
+            
         }
     }
 }

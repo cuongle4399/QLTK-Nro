@@ -180,13 +180,18 @@
             materialButton20 = new MaterialSkin.Controls.MaterialButton();
             materialButton16 = new MaterialSkin.Controls.MaterialButton();
             tabPage1 = new TabPage();
+            gbChatGame = new GroupBox();
+            btnChat = new MaterialSkin.Controls.MaterialButton();
+            txtChatGame = new MaterialSkin.Controls.MaterialTextBox();
+            btnCountClient = new MaterialSkin.Controls.MaterialButton();
+            lblCountConnectClient = new MaterialSkin.Controls.MaterialLabel();
             gbZone = new GroupBox();
             button1 = new Button();
-            numericUpDown1 = new NumericUpDown();
+            txtKHU = new NumericUpDown();
             gbItem = new GroupBox();
             btnBongTai = new MaterialSkin.Controls.MaterialButton();
             button2 = new Button();
-            textBox1 = new TextBox();
+            txtIdItem = new TextBox();
             pictureBox14 = new PictureBox();
             pictureBox9 = new PictureBox();
             pictureBox8 = new PictureBox();
@@ -204,7 +209,6 @@
             materialButton80 = new MaterialSkin.Controls.MaterialButton();
             materialButton76 = new MaterialSkin.Controls.MaterialButton();
             materialButton79 = new MaterialSkin.Controls.MaterialButton();
-            materialButton91 = new MaterialSkin.Controls.MaterialButton();
             materialButton77 = new MaterialSkin.Controls.MaterialButton();
             materialButton75 = new MaterialSkin.Controls.MaterialButton();
             checkOnSocket = new MaterialSkin.Controls.MaterialSwitch();
@@ -228,8 +232,9 @@
             MapOther.SuspendLayout();
             Home.SuspendLayout();
             tabPage1.SuspendLayout();
+            gbChatGame.SuspendLayout();
             gbZone.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)txtKHU).BeginInit();
             gbItem.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox14).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
@@ -3172,6 +3177,9 @@
             // tabPage1
             // 
             tabPage1.BackColor = SystemColors.ScrollBar;
+            tabPage1.Controls.Add(gbChatGame);
+            tabPage1.Controls.Add(btnCountClient);
+            tabPage1.Controls.Add(lblCountConnectClient);
             tabPage1.Controls.Add(gbZone);
             tabPage1.Controls.Add(gbItem);
             tabPage1.Controls.Add(gbSkill);
@@ -3183,18 +3191,99 @@
             tabPage1.TabIndex = 2;
             tabPage1.Text = "Chức năng";
             // 
+            // gbChatGame
+            // 
+            gbChatGame.Controls.Add(btnChat);
+            gbChatGame.Controls.Add(txtChatGame);
+            gbChatGame.Enabled = false;
+            gbChatGame.Location = new Point(11, 258);
+            gbChatGame.Name = "gbChatGame";
+            gbChatGame.Size = new Size(610, 96);
+            gbChatGame.TabIndex = 16;
+            gbChatGame.TabStop = false;
+            gbChatGame.Text = "Chat đa Client";
+            // 
+            // btnChat
+            // 
+            btnChat.AutoSize = false;
+            btnChat.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnChat.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnChat.Depth = 0;
+            btnChat.HighEmphasis = true;
+            btnChat.Icon = null;
+            btnChat.Location = new Point(12, 29);
+            btnChat.Margin = new Padding(4, 6, 4, 6);
+            btnChat.MouseState = MaterialSkin.MouseState.HOVER;
+            btnChat.Name = "btnChat";
+            btnChat.NoAccentTextColor = Color.Empty;
+            btnChat.Size = new Size(64, 47);
+            btnChat.TabIndex = 1;
+            btnChat.Text = "Chat";
+            btnChat.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnChat.UseAccentColor = false;
+            btnChat.UseVisualStyleBackColor = true;
+            btnChat.Click += btnChat_Click;
+            // 
+            // txtChatGame
+            // 
+            txtChatGame.AnimateReadOnly = false;
+            txtChatGame.BorderStyle = BorderStyle.None;
+            txtChatGame.Depth = 0;
+            txtChatGame.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            txtChatGame.LeadingIcon = null;
+            txtChatGame.Location = new Point(92, 26);
+            txtChatGame.MaxLength = 50;
+            txtChatGame.MouseState = MaterialSkin.MouseState.OUT;
+            txtChatGame.Multiline = false;
+            txtChatGame.Name = "txtChatGame";
+            txtChatGame.Size = new Size(498, 50);
+            txtChatGame.TabIndex = 0;
+            txtChatGame.Text = "";
+            txtChatGame.TrailingIcon = null;
+            // 
+            // btnCountClient
+            // 
+            btnCountClient.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnCountClient.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnCountClient.Depth = 0;
+            btnCountClient.HighEmphasis = true;
+            btnCountClient.Icon = null;
+            btnCountClient.Location = new Point(391, 6);
+            btnCountClient.Margin = new Padding(4, 6, 4, 6);
+            btnCountClient.MouseState = MaterialSkin.MouseState.HOVER;
+            btnCountClient.Name = "btnCountClient";
+            btnCountClient.NoAccentTextColor = Color.Empty;
+            btnCountClient.Size = new Size(64, 36);
+            btnCountClient.TabIndex = 15;
+            btnCountClient.Text = "0";
+            btnCountClient.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnCountClient.UseAccentColor = false;
+            btnCountClient.UseVisualStyleBackColor = true;
+            // 
+            // lblCountConnectClient
+            // 
+            lblCountConnectClient.AutoSize = true;
+            lblCountConnectClient.Depth = 0;
+            lblCountConnectClient.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            lblCountConnectClient.Location = new Point(220, 17);
+            lblCountConnectClient.MouseState = MaterialSkin.MouseState.HOVER;
+            lblCountConnectClient.Name = "lblCountConnectClient";
+            lblCountConnectClient.Size = new Size(164, 19);
+            lblCountConnectClient.TabIndex = 14;
+            lblCountConnectClient.Text = "Số Client đang kết nối: ";
+            // 
             // gbZone
             // 
             gbZone.BackColor = Color.Transparent;
             gbZone.Controls.Add(button1);
-            gbZone.Controls.Add(numericUpDown1);
+            gbZone.Controls.Add(txtKHU);
             gbZone.Enabled = false;
             gbZone.FlatStyle = FlatStyle.Popup;
             gbZone.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             gbZone.ForeColor = SystemColors.ActiveCaptionText;
-            gbZone.Location = new Point(717, 47);
+            gbZone.Location = new Point(677, 47);
             gbZone.Name = "gbZone";
-            gbZone.Size = new Size(243, 81);
+            gbZone.Size = new Size(283, 81);
             gbZone.TabIndex = 13;
             gbZone.TabStop = false;
             gbZone.Text = "Đổi khu";
@@ -3202,25 +3291,26 @@
             // button1
             // 
             button1.FlatStyle = FlatStyle.Popup;
-            button1.Location = new Point(0, 28);
+            button1.Location = new Point(23, 28);
             button1.Name = "button1";
             button1.Size = new Size(157, 37);
             button1.TabIndex = 1;
             button1.Text = "Đổi khu";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
-            // numericUpDown1
+            // txtKHU
             // 
-            numericUpDown1.Location = new Point(166, 33);
-            numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new Size(71, 27);
-            numericUpDown1.TabIndex = 0;
+            txtKHU.Location = new Point(189, 33);
+            txtKHU.Name = "txtKHU";
+            txtKHU.Size = new Size(71, 27);
+            txtKHU.TabIndex = 0;
             // 
             // gbItem
             // 
             gbItem.Controls.Add(btnBongTai);
             gbItem.Controls.Add(button2);
-            gbItem.Controls.Add(textBox1);
+            gbItem.Controls.Add(txtIdItem);
             gbItem.Controls.Add(pictureBox14);
             gbItem.Controls.Add(pictureBox9);
             gbItem.Controls.Add(pictureBox8);
@@ -3264,20 +3354,21 @@
             // 
             button2.FlatStyle = FlatStyle.Flat;
             button2.ForeColor = Color.DarkViolet;
-            button2.Location = new Point(708, 26);
+            button2.Location = new Point(691, 26);
             button2.Name = "button2";
             button2.Size = new Size(157, 39);
             button2.TabIndex = 13;
             button2.Text = "Dùng item theo id:";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
-            // textBox1
+            // txtIdItem
             // 
-            textBox1.Location = new Point(874, 26);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(71, 39);
-            textBox1.TabIndex = 12;
+            txtIdItem.Location = new Point(857, 26);
+            txtIdItem.Multiline = true;
+            txtIdItem.Name = "txtIdItem";
+            txtIdItem.Size = new Size(71, 39);
+            txtIdItem.TabIndex = 12;
             // 
             // pictureBox14
             // 
@@ -3289,6 +3380,7 @@
             pictureBox14.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox14.TabIndex = 9;
             pictureBox14.TabStop = false;
+            pictureBox14.Click += pictureBox14_Click;
             // 
             // pictureBox9
             // 
@@ -3300,6 +3392,7 @@
             pictureBox9.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox9.TabIndex = 8;
             pictureBox9.TabStop = false;
+            pictureBox9.Click += pictureBox9_Click;
             // 
             // pictureBox8
             // 
@@ -3311,6 +3404,7 @@
             pictureBox8.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox8.TabIndex = 7;
             pictureBox8.TabStop = false;
+            pictureBox8.Click += pictureBox8_Click;
             // 
             // pictureBox7
             // 
@@ -3322,6 +3416,7 @@
             pictureBox7.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox7.TabIndex = 6;
             pictureBox7.TabStop = false;
+            pictureBox7.Click += pictureBox7_Click;
             // 
             // pictureBox6
             // 
@@ -3333,6 +3428,7 @@
             pictureBox6.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox6.TabIndex = 5;
             pictureBox6.TabStop = false;
+            pictureBox6.Click += pictureBox6_Click;
             // 
             // pictureBox5
             // 
@@ -3344,6 +3440,7 @@
             pictureBox5.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox5.TabIndex = 4;
             pictureBox5.TabStop = false;
+            pictureBox5.Click += pictureBox5_Click;
             // 
             // pictureBox4
             // 
@@ -3355,6 +3452,7 @@
             pictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox4.TabIndex = 3;
             pictureBox4.TabStop = false;
+            pictureBox4.Click += pictureBox4_Click;
             // 
             // pictureBox3
             // 
@@ -3366,6 +3464,7 @@
             pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox3.TabIndex = 2;
             pictureBox3.TabStop = false;
+            pictureBox3.Click += pictureBox3_Click;
             // 
             // pictureBox2
             // 
@@ -3377,6 +3476,7 @@
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox2.TabIndex = 1;
             pictureBox2.TabStop = false;
+            pictureBox2.Click += pictureBox2_Click;
             // 
             // pictureBox1
             // 
@@ -3388,6 +3488,7 @@
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
             // 
             // gbSkill
             // 
@@ -3397,14 +3498,13 @@
             gbSkill.Controls.Add(materialButton80);
             gbSkill.Controls.Add(materialButton76);
             gbSkill.Controls.Add(materialButton79);
-            gbSkill.Controls.Add(materialButton91);
             gbSkill.Controls.Add(materialButton77);
             gbSkill.Controls.Add(materialButton75);
             gbSkill.Enabled = false;
             gbSkill.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             gbSkill.Location = new Point(8, 47);
             gbSkill.Name = "gbSkill";
-            gbSkill.Size = new Size(705, 81);
+            gbSkill.Size = new Size(626, 81);
             gbSkill.TabIndex = 11;
             gbSkill.TabStop = false;
             gbSkill.Text = "Điều khiển skill nhân vật";
@@ -3427,6 +3527,7 @@
             materialButton73.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             materialButton73.UseAccentColor = false;
             materialButton73.UseVisualStyleBackColor = true;
+            materialButton73.Click += materialButton73_Click;
             // 
             // materialButton74
             // 
@@ -3446,6 +3547,7 @@
             materialButton74.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             materialButton74.UseAccentColor = false;
             materialButton74.UseVisualStyleBackColor = true;
+            materialButton74.Click += materialButton74_Click;
             // 
             // materialButton78
             // 
@@ -3465,6 +3567,7 @@
             materialButton78.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             materialButton78.UseAccentColor = false;
             materialButton78.UseVisualStyleBackColor = true;
+            materialButton78.Click += materialButton78_Click;
             // 
             // materialButton80
             // 
@@ -3484,6 +3587,7 @@
             materialButton80.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             materialButton80.UseAccentColor = false;
             materialButton80.UseVisualStyleBackColor = true;
+            materialButton80.Click += materialButton80_Click;
             // 
             // materialButton76
             // 
@@ -3503,6 +3607,7 @@
             materialButton76.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             materialButton76.UseAccentColor = false;
             materialButton76.UseVisualStyleBackColor = true;
+            materialButton76.Click += materialButton76_Click;
             // 
             // materialButton79
             // 
@@ -3522,25 +3627,7 @@
             materialButton79.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             materialButton79.UseAccentColor = false;
             materialButton79.UseVisualStyleBackColor = true;
-            // 
-            // materialButton91
-            // 
-            materialButton91.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            materialButton91.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            materialButton91.Depth = 0;
-            materialButton91.HighEmphasis = true;
-            materialButton91.Icon = null;
-            materialButton91.Location = new Point(621, 29);
-            materialButton91.Margin = new Padding(4, 6, 4, 6);
-            materialButton91.MouseState = MaterialSkin.MouseState.HOVER;
-            materialButton91.Name = "materialButton91";
-            materialButton91.NoAccentTextColor = Color.Empty;
-            materialButton91.Size = new Size(68, 36);
-            materialButton91.TabIndex = 8;
-            materialButton91.Text = "skill9";
-            materialButton91.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            materialButton91.UseAccentColor = false;
-            materialButton91.UseVisualStyleBackColor = true;
+            materialButton79.Click += materialButton79_Click;
             // 
             // materialButton77
             // 
@@ -3560,6 +3647,7 @@
             materialButton77.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             materialButton77.UseAccentColor = false;
             materialButton77.UseVisualStyleBackColor = true;
+            materialButton77.Click += materialButton77_Click;
             // 
             // materialButton75
             // 
@@ -3579,6 +3667,7 @@
             materialButton75.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             materialButton75.UseAccentColor = false;
             materialButton75.UseVisualStyleBackColor = true;
+            materialButton75.Click += materialButton75_Click;
             // 
             // checkOnSocket
             // 
@@ -3649,8 +3738,9 @@
             Home.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             tabPage1.PerformLayout();
+            gbChatGame.ResumeLayout(false);
             gbZone.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)txtKHU).EndInit();
             gbItem.ResumeLayout(false);
             gbItem.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox14).EndInit();
@@ -3823,7 +3913,6 @@
         private TabPage tabPage1;
         private MaterialSkin.Controls.MaterialButton materialButton73;
         private MaterialSkin.Controls.MaterialButton materialButton76;
-        private MaterialSkin.Controls.MaterialButton materialButton91;
         private MaterialSkin.Controls.MaterialButton materialButton75;
         private MaterialSkin.Controls.MaterialButton materialButton77;
         private MaterialSkin.Controls.MaterialButton materialButton79;
@@ -3835,9 +3924,9 @@
         private GroupBox gbZone;
         private GroupBox gbItem;
         private Button button1;
-        private NumericUpDown numericUpDown1;
+        private NumericUpDown txtKHU;
         private Button button2;
-        private TextBox textBox1;
+        private TextBox txtIdItem;
         private PictureBox pictureBox9;
         private PictureBox pictureBox8;
         private PictureBox pictureBox7;
@@ -3849,5 +3938,10 @@
         private PictureBox pictureBox1;
         private PictureBox pictureBox14;
         private MaterialSkin.Controls.MaterialButton btnBongTai;
+        private MaterialSkin.Controls.MaterialLabel lblCountConnectClient;
+        private MaterialSkin.Controls.MaterialButton btnCountClient;
+        private GroupBox gbChatGame;
+        private MaterialSkin.Controls.MaterialButton btnChat;
+        private MaterialSkin.Controls.MaterialTextBox txtChatGame;
     }
 }
