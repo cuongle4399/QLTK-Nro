@@ -180,16 +180,34 @@
             materialButton20 = new MaterialSkin.Controls.MaterialButton();
             materialButton16 = new MaterialSkin.Controls.MaterialButton();
             tabPage1 = new TabPage();
-            materialExpansionPanel1 = new MaterialSkin.Controls.MaterialExpansionPanel();
-            materialButton91 = new MaterialSkin.Controls.MaterialButton();
-            materialButton80 = new MaterialSkin.Controls.MaterialButton();
+            gbZone = new GroupBox();
+            button1 = new Button();
+            numericUpDown1 = new NumericUpDown();
+            gbItem = new GroupBox();
+            btnBongTai = new MaterialSkin.Controls.MaterialButton();
+            button2 = new Button();
+            textBox1 = new TextBox();
+            pictureBox14 = new PictureBox();
+            pictureBox9 = new PictureBox();
+            pictureBox8 = new PictureBox();
+            pictureBox7 = new PictureBox();
+            pictureBox6 = new PictureBox();
+            pictureBox5 = new PictureBox();
+            pictureBox4 = new PictureBox();
+            pictureBox3 = new PictureBox();
+            pictureBox2 = new PictureBox();
+            pictureBox1 = new PictureBox();
+            gbSkill = new GroupBox();
             materialButton73 = new MaterialSkin.Controls.MaterialButton();
-            materialButton79 = new MaterialSkin.Controls.MaterialButton();
-            materialButton75 = new MaterialSkin.Controls.MaterialButton();
-            materialButton78 = new MaterialSkin.Controls.MaterialButton();
             materialButton74 = new MaterialSkin.Controls.MaterialButton();
-            materialButton77 = new MaterialSkin.Controls.MaterialButton();
+            materialButton78 = new MaterialSkin.Controls.MaterialButton();
+            materialButton80 = new MaterialSkin.Controls.MaterialButton();
             materialButton76 = new MaterialSkin.Controls.MaterialButton();
+            materialButton79 = new MaterialSkin.Controls.MaterialButton();
+            materialButton91 = new MaterialSkin.Controls.MaterialButton();
+            materialButton77 = new MaterialSkin.Controls.MaterialButton();
+            materialButton75 = new MaterialSkin.Controls.MaterialButton();
+            checkOnSocket = new MaterialSkin.Controls.MaterialSwitch();
             materialTabSelector1 = new MaterialSkin.Controls.MaterialTabSelector();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             gbChat.SuspendLayout();
@@ -210,7 +228,20 @@
             MapOther.SuspendLayout();
             Home.SuspendLayout();
             tabPage1.SuspendLayout();
-            materialExpansionPanel1.SuspendLayout();
+            gbZone.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
+            gbItem.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox14).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            gbSkill.SuspendLayout();
             SuspendLayout();
             // 
             // btnSort
@@ -3140,8 +3171,11 @@
             // 
             // tabPage1
             // 
-            tabPage1.BackColor = Color.Gainsboro;
-            tabPage1.Controls.Add(materialExpansionPanel1);
+            tabPage1.BackColor = SystemColors.ScrollBar;
+            tabPage1.Controls.Add(gbZone);
+            tabPage1.Controls.Add(gbItem);
+            tabPage1.Controls.Add(gbSkill);
+            tabPage1.Controls.Add(checkOnSocket);
             tabPage1.Location = new Point(4, 29);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
@@ -3149,75 +3183,231 @@
             tabPage1.TabIndex = 2;
             tabPage1.Text = "Chức năng";
             // 
-            // materialExpansionPanel1
+            // gbZone
             // 
-            materialExpansionPanel1.BackColor = Color.FromArgb(255, 255, 255);
-            materialExpansionPanel1.BorderStyle = BorderStyle.Fixed3D;
-            materialExpansionPanel1.CancelButtonText = "Thu gọn";
-            materialExpansionPanel1.Collapse = true;
-            materialExpansionPanel1.Controls.Add(materialButton91);
-            materialExpansionPanel1.Controls.Add(materialButton80);
-            materialExpansionPanel1.Controls.Add(materialButton73);
-            materialExpansionPanel1.Controls.Add(materialButton79);
-            materialExpansionPanel1.Controls.Add(materialButton75);
-            materialExpansionPanel1.Controls.Add(materialButton78);
-            materialExpansionPanel1.Controls.Add(materialButton74);
-            materialExpansionPanel1.Controls.Add(materialButton77);
-            materialExpansionPanel1.Controls.Add(materialButton76);
-            materialExpansionPanel1.Depth = 0;
-            materialExpansionPanel1.Description = "Ấn vào đây để mở ";
-            materialExpansionPanel1.DrawShadows = false;
-            materialExpansionPanel1.ExpandHeight = 200;
-            materialExpansionPanel1.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialExpansionPanel1.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialExpansionPanel1.ImeMode = ImeMode.NoControl;
-            materialExpansionPanel1.Location = new Point(3, 3);
-            materialExpansionPanel1.Margin = new Padding(16, 1, 16, 0);
-            materialExpansionPanel1.MouseState = MaterialSkin.MouseState.HOVER;
-            materialExpansionPanel1.Name = "materialExpansionPanel1";
-            materialExpansionPanel1.Padding = new Padding(24, 64, 24, 16);
-            materialExpansionPanel1.Size = new Size(965, 48);
-            materialExpansionPanel1.TabIndex = 9;
-            materialExpansionPanel1.Title = "Điều khiển Skill nhân vật";
-            materialExpansionPanel1.ValidationButtonText = "";
+            gbZone.BackColor = Color.Transparent;
+            gbZone.Controls.Add(button1);
+            gbZone.Controls.Add(numericUpDown1);
+            gbZone.Enabled = false;
+            gbZone.FlatStyle = FlatStyle.Popup;
+            gbZone.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            gbZone.ForeColor = SystemColors.ActiveCaptionText;
+            gbZone.Location = new Point(717, 47);
+            gbZone.Name = "gbZone";
+            gbZone.Size = new Size(243, 81);
+            gbZone.TabIndex = 13;
+            gbZone.TabStop = false;
+            gbZone.Text = "Đổi khu";
             // 
-            // materialButton91
+            // button1
             // 
-            materialButton91.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            materialButton91.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            materialButton91.Depth = 0;
-            materialButton91.HighEmphasis = true;
-            materialButton91.Icon = null;
-            materialButton91.Location = new Point(625, 58);
-            materialButton91.Margin = new Padding(4, 6, 4, 6);
-            materialButton91.MouseState = MaterialSkin.MouseState.HOVER;
-            materialButton91.Name = "materialButton91";
-            materialButton91.NoAccentTextColor = Color.Empty;
-            materialButton91.Size = new Size(68, 36);
-            materialButton91.TabIndex = 8;
-            materialButton91.Text = "skill9";
-            materialButton91.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            materialButton91.UseAccentColor = false;
-            materialButton91.UseVisualStyleBackColor = true;
+            button1.FlatStyle = FlatStyle.Popup;
+            button1.Location = new Point(0, 28);
+            button1.Name = "button1";
+            button1.Size = new Size(157, 37);
+            button1.TabIndex = 1;
+            button1.Text = "Đổi khu";
+            button1.UseVisualStyleBackColor = true;
             // 
-            // materialButton80
+            // numericUpDown1
             // 
-            materialButton80.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            materialButton80.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            materialButton80.Depth = 0;
-            materialButton80.HighEmphasis = true;
-            materialButton80.Icon = null;
-            materialButton80.Location = new Point(549, 58);
-            materialButton80.Margin = new Padding(4, 6, 4, 6);
-            materialButton80.MouseState = MaterialSkin.MouseState.HOVER;
-            materialButton80.Name = "materialButton80";
-            materialButton80.NoAccentTextColor = Color.Empty;
-            materialButton80.Size = new Size(68, 36);
-            materialButton80.TabIndex = 7;
-            materialButton80.Text = "skill8";
-            materialButton80.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            materialButton80.UseAccentColor = false;
-            materialButton80.UseVisualStyleBackColor = true;
+            numericUpDown1.Location = new Point(166, 33);
+            numericUpDown1.Name = "numericUpDown1";
+            numericUpDown1.Size = new Size(71, 27);
+            numericUpDown1.TabIndex = 0;
+            // 
+            // gbItem
+            // 
+            gbItem.Controls.Add(btnBongTai);
+            gbItem.Controls.Add(button2);
+            gbItem.Controls.Add(textBox1);
+            gbItem.Controls.Add(pictureBox14);
+            gbItem.Controls.Add(pictureBox9);
+            gbItem.Controls.Add(pictureBox8);
+            gbItem.Controls.Add(pictureBox7);
+            gbItem.Controls.Add(pictureBox6);
+            gbItem.Controls.Add(pictureBox5);
+            gbItem.Controls.Add(pictureBox4);
+            gbItem.Controls.Add(pictureBox3);
+            gbItem.Controls.Add(pictureBox2);
+            gbItem.Controls.Add(pictureBox1);
+            gbItem.Enabled = false;
+            gbItem.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            gbItem.Location = new Point(9, 130);
+            gbItem.Name = "gbItem";
+            gbItem.Size = new Size(951, 122);
+            gbItem.TabIndex = 12;
+            gbItem.TabStop = false;
+            gbItem.Text = "Dùng vật phẩm";
+            // 
+            // btnBongTai
+            // 
+            btnBongTai.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnBongTai.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnBongTai.Depth = 0;
+            btnBongTai.HighEmphasis = true;
+            btnBongTai.Icon = null;
+            btnBongTai.Location = new Point(17, 74);
+            btnBongTai.Margin = new Padding(4, 6, 4, 6);
+            btnBongTai.MouseState = MaterialSkin.MouseState.HOVER;
+            btnBongTai.Name = "btnBongTai";
+            btnBongTai.NoAccentTextColor = Color.Empty;
+            btnBongTai.Size = new Size(88, 36);
+            btnBongTai.TabIndex = 14;
+            btnBongTai.Text = "Bông Tai";
+            btnBongTai.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnBongTai.UseAccentColor = false;
+            btnBongTai.UseVisualStyleBackColor = true;
+            btnBongTai.Click += btnBongTai_Click;
+            // 
+            // button2
+            // 
+            button2.FlatStyle = FlatStyle.Flat;
+            button2.ForeColor = Color.DarkViolet;
+            button2.Location = new Point(708, 26);
+            button2.Name = "button2";
+            button2.Size = new Size(157, 39);
+            button2.TabIndex = 13;
+            button2.Text = "Dùng item theo id:";
+            button2.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(874, 26);
+            textBox1.Multiline = true;
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(71, 39);
+            textBox1.TabIndex = 12;
+            // 
+            // pictureBox14
+            // 
+            pictureBox14.BackColor = Color.Thistle;
+            pictureBox14.Image = Properties.Resources._10717;
+            pictureBox14.Location = new Point(616, 26);
+            pictureBox14.Name = "pictureBox14";
+            pictureBox14.Size = new Size(43, 39);
+            pictureBox14.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox14.TabIndex = 9;
+            pictureBox14.TabStop = false;
+            // 
+            // pictureBox9
+            // 
+            pictureBox9.BackColor = Color.Thistle;
+            pictureBox9.Image = Properties.Resources._2760;
+            pictureBox9.Location = new Point(549, 26);
+            pictureBox9.Name = "pictureBox9";
+            pictureBox9.Size = new Size(43, 39);
+            pictureBox9.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox9.TabIndex = 8;
+            pictureBox9.TabStop = false;
+            // 
+            // pictureBox8
+            // 
+            pictureBox8.BackColor = Color.Thistle;
+            pictureBox8.Image = Properties.Resources._10715;
+            pictureBox8.Location = new Point(474, 26);
+            pictureBox8.Name = "pictureBox8";
+            pictureBox8.Size = new Size(43, 39);
+            pictureBox8.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox8.TabIndex = 7;
+            pictureBox8.TabStop = false;
+            // 
+            // pictureBox7
+            // 
+            pictureBox7.BackColor = Color.Thistle;
+            pictureBox7.Image = Properties.Resources._2756;
+            pictureBox7.Location = new Point(397, 26);
+            pictureBox7.Name = "pictureBox7";
+            pictureBox7.Size = new Size(43, 39);
+            pictureBox7.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox7.TabIndex = 6;
+            pictureBox7.TabStop = false;
+            // 
+            // pictureBox6
+            // 
+            pictureBox6.BackColor = Color.Thistle;
+            pictureBox6.Image = Properties.Resources._10714;
+            pictureBox6.Location = new Point(324, 26);
+            pictureBox6.Name = "pictureBox6";
+            pictureBox6.Size = new Size(43, 39);
+            pictureBox6.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox6.TabIndex = 5;
+            pictureBox6.TabStop = false;
+            // 
+            // pictureBox5
+            // 
+            pictureBox5.BackColor = Color.Thistle;
+            pictureBox5.Image = Properties.Resources._2755;
+            pictureBox5.Location = new Point(258, 26);
+            pictureBox5.Name = "pictureBox5";
+            pictureBox5.Size = new Size(43, 39);
+            pictureBox5.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox5.TabIndex = 4;
+            pictureBox5.TabStop = false;
+            // 
+            // pictureBox4
+            // 
+            pictureBox4.BackColor = Color.Thistle;
+            pictureBox4.Image = Properties.Resources._10712;
+            pictureBox4.Location = new Point(193, 26);
+            pictureBox4.Name = "pictureBox4";
+            pictureBox4.Size = new Size(43, 39);
+            pictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox4.TabIndex = 3;
+            pictureBox4.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            pictureBox3.BackColor = Color.Thistle;
+            pictureBox3.Image = Properties.Resources._2757;
+            pictureBox3.Location = new Point(130, 26);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(43, 39);
+            pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox3.TabIndex = 2;
+            pictureBox3.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.BackColor = Color.Thistle;
+            pictureBox2.Image = Properties.Resources._10716;
+            pictureBox2.Location = new Point(76, 26);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(43, 39);
+            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox2.TabIndex = 1;
+            pictureBox2.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.BackColor = Color.Thistle;
+            pictureBox1.Image = Properties.Resources._2754;
+            pictureBox1.Location = new Point(17, 26);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(43, 39);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 0;
+            pictureBox1.TabStop = false;
+            // 
+            // gbSkill
+            // 
+            gbSkill.Controls.Add(materialButton73);
+            gbSkill.Controls.Add(materialButton74);
+            gbSkill.Controls.Add(materialButton78);
+            gbSkill.Controls.Add(materialButton80);
+            gbSkill.Controls.Add(materialButton76);
+            gbSkill.Controls.Add(materialButton79);
+            gbSkill.Controls.Add(materialButton91);
+            gbSkill.Controls.Add(materialButton77);
+            gbSkill.Controls.Add(materialButton75);
+            gbSkill.Enabled = false;
+            gbSkill.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            gbSkill.Location = new Point(8, 47);
+            gbSkill.Name = "gbSkill";
+            gbSkill.Size = new Size(705, 81);
+            gbSkill.TabIndex = 11;
+            gbSkill.TabStop = false;
+            gbSkill.Text = "Điều khiển skill nhân vật";
             // 
             // materialButton73
             // 
@@ -3226,7 +3416,7 @@
             materialButton73.Depth = 0;
             materialButton73.HighEmphasis = true;
             materialButton73.Icon = null;
-            materialButton73.Location = new Point(11, 58);
+            materialButton73.Location = new Point(7, 29);
             materialButton73.Margin = new Padding(4, 6, 4, 6);
             materialButton73.MouseState = MaterialSkin.MouseState.HOVER;
             materialButton73.Name = "materialButton73";
@@ -3238,63 +3428,6 @@
             materialButton73.UseAccentColor = false;
             materialButton73.UseVisualStyleBackColor = true;
             // 
-            // materialButton79
-            // 
-            materialButton79.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            materialButton79.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            materialButton79.Depth = 0;
-            materialButton79.HighEmphasis = true;
-            materialButton79.Icon = null;
-            materialButton79.Location = new Point(473, 58);
-            materialButton79.Margin = new Padding(4, 6, 4, 6);
-            materialButton79.MouseState = MaterialSkin.MouseState.HOVER;
-            materialButton79.Name = "materialButton79";
-            materialButton79.NoAccentTextColor = Color.Empty;
-            materialButton79.Size = new Size(68, 36);
-            materialButton79.TabIndex = 6;
-            materialButton79.Text = "skill7";
-            materialButton79.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            materialButton79.UseAccentColor = false;
-            materialButton79.UseVisualStyleBackColor = true;
-            // 
-            // materialButton75
-            // 
-            materialButton75.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            materialButton75.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            materialButton75.Depth = 0;
-            materialButton75.HighEmphasis = true;
-            materialButton75.Icon = null;
-            materialButton75.Location = new Point(167, 57);
-            materialButton75.Margin = new Padding(4, 6, 4, 6);
-            materialButton75.MouseState = MaterialSkin.MouseState.HOVER;
-            materialButton75.Name = "materialButton75";
-            materialButton75.NoAccentTextColor = Color.Empty;
-            materialButton75.Size = new Size(68, 36);
-            materialButton75.TabIndex = 2;
-            materialButton75.Text = "Skill3";
-            materialButton75.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            materialButton75.UseAccentColor = false;
-            materialButton75.UseVisualStyleBackColor = true;
-            // 
-            // materialButton78
-            // 
-            materialButton78.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            materialButton78.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            materialButton78.Depth = 0;
-            materialButton78.HighEmphasis = true;
-            materialButton78.Icon = null;
-            materialButton78.Location = new Point(395, 58);
-            materialButton78.Margin = new Padding(4, 6, 4, 6);
-            materialButton78.MouseState = MaterialSkin.MouseState.HOVER;
-            materialButton78.Name = "materialButton78";
-            materialButton78.NoAccentTextColor = Color.Empty;
-            materialButton78.Size = new Size(68, 36);
-            materialButton78.TabIndex = 5;
-            materialButton78.Text = "skill6";
-            materialButton78.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            materialButton78.UseAccentColor = false;
-            materialButton78.UseVisualStyleBackColor = true;
-            // 
             // materialButton74
             // 
             materialButton74.AutoSizeMode = AutoSizeMode.GrowAndShrink;
@@ -3302,7 +3435,7 @@
             materialButton74.Depth = 0;
             materialButton74.HighEmphasis = true;
             materialButton74.Icon = null;
-            materialButton74.Location = new Point(91, 57);
+            materialButton74.Location = new Point(87, 28);
             materialButton74.Margin = new Padding(4, 6, 4, 6);
             materialButton74.MouseState = MaterialSkin.MouseState.HOVER;
             materialButton74.Name = "materialButton74";
@@ -3314,6 +3447,101 @@
             materialButton74.UseAccentColor = false;
             materialButton74.UseVisualStyleBackColor = true;
             // 
+            // materialButton78
+            // 
+            materialButton78.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            materialButton78.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            materialButton78.Depth = 0;
+            materialButton78.HighEmphasis = true;
+            materialButton78.Icon = null;
+            materialButton78.Location = new Point(391, 29);
+            materialButton78.Margin = new Padding(4, 6, 4, 6);
+            materialButton78.MouseState = MaterialSkin.MouseState.HOVER;
+            materialButton78.Name = "materialButton78";
+            materialButton78.NoAccentTextColor = Color.Empty;
+            materialButton78.Size = new Size(68, 36);
+            materialButton78.TabIndex = 5;
+            materialButton78.Text = "skill6";
+            materialButton78.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            materialButton78.UseAccentColor = false;
+            materialButton78.UseVisualStyleBackColor = true;
+            // 
+            // materialButton80
+            // 
+            materialButton80.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            materialButton80.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            materialButton80.Depth = 0;
+            materialButton80.HighEmphasis = true;
+            materialButton80.Icon = null;
+            materialButton80.Location = new Point(545, 29);
+            materialButton80.Margin = new Padding(4, 6, 4, 6);
+            materialButton80.MouseState = MaterialSkin.MouseState.HOVER;
+            materialButton80.Name = "materialButton80";
+            materialButton80.NoAccentTextColor = Color.Empty;
+            materialButton80.Size = new Size(68, 36);
+            materialButton80.TabIndex = 7;
+            materialButton80.Text = "skill8";
+            materialButton80.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            materialButton80.UseAccentColor = false;
+            materialButton80.UseVisualStyleBackColor = true;
+            // 
+            // materialButton76
+            // 
+            materialButton76.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            materialButton76.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            materialButton76.Depth = 0;
+            materialButton76.HighEmphasis = true;
+            materialButton76.Icon = null;
+            materialButton76.Location = new Point(239, 28);
+            materialButton76.Margin = new Padding(4, 6, 4, 6);
+            materialButton76.MouseState = MaterialSkin.MouseState.HOVER;
+            materialButton76.Name = "materialButton76";
+            materialButton76.NoAccentTextColor = Color.Empty;
+            materialButton76.Size = new Size(68, 36);
+            materialButton76.TabIndex = 3;
+            materialButton76.Text = "Skill4";
+            materialButton76.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            materialButton76.UseAccentColor = false;
+            materialButton76.UseVisualStyleBackColor = true;
+            // 
+            // materialButton79
+            // 
+            materialButton79.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            materialButton79.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            materialButton79.Depth = 0;
+            materialButton79.HighEmphasis = true;
+            materialButton79.Icon = null;
+            materialButton79.Location = new Point(469, 29);
+            materialButton79.Margin = new Padding(4, 6, 4, 6);
+            materialButton79.MouseState = MaterialSkin.MouseState.HOVER;
+            materialButton79.Name = "materialButton79";
+            materialButton79.NoAccentTextColor = Color.Empty;
+            materialButton79.Size = new Size(68, 36);
+            materialButton79.TabIndex = 6;
+            materialButton79.Text = "skill7";
+            materialButton79.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            materialButton79.UseAccentColor = false;
+            materialButton79.UseVisualStyleBackColor = true;
+            // 
+            // materialButton91
+            // 
+            materialButton91.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            materialButton91.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            materialButton91.Depth = 0;
+            materialButton91.HighEmphasis = true;
+            materialButton91.Icon = null;
+            materialButton91.Location = new Point(621, 29);
+            materialButton91.Margin = new Padding(4, 6, 4, 6);
+            materialButton91.MouseState = MaterialSkin.MouseState.HOVER;
+            materialButton91.Name = "materialButton91";
+            materialButton91.NoAccentTextColor = Color.Empty;
+            materialButton91.Size = new Size(68, 36);
+            materialButton91.TabIndex = 8;
+            materialButton91.Text = "skill9";
+            materialButton91.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            materialButton91.UseAccentColor = false;
+            materialButton91.UseVisualStyleBackColor = true;
+            // 
             // materialButton77
             // 
             materialButton77.AutoSizeMode = AutoSizeMode.GrowAndShrink;
@@ -3321,7 +3549,7 @@
             materialButton77.Depth = 0;
             materialButton77.HighEmphasis = true;
             materialButton77.Icon = null;
-            materialButton77.Location = new Point(319, 56);
+            materialButton77.Location = new Point(315, 27);
             materialButton77.Margin = new Padding(4, 6, 4, 6);
             materialButton77.MouseState = MaterialSkin.MouseState.HOVER;
             materialButton77.Name = "materialButton77";
@@ -3333,24 +3561,40 @@
             materialButton77.UseAccentColor = false;
             materialButton77.UseVisualStyleBackColor = true;
             // 
-            // materialButton76
+            // materialButton75
             // 
-            materialButton76.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            materialButton76.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            materialButton76.Depth = 0;
-            materialButton76.HighEmphasis = true;
-            materialButton76.Icon = null;
-            materialButton76.Location = new Point(243, 57);
-            materialButton76.Margin = new Padding(4, 6, 4, 6);
-            materialButton76.MouseState = MaterialSkin.MouseState.HOVER;
-            materialButton76.Name = "materialButton76";
-            materialButton76.NoAccentTextColor = Color.Empty;
-            materialButton76.Size = new Size(68, 36);
-            materialButton76.TabIndex = 3;
-            materialButton76.Text = "Skill4";
-            materialButton76.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            materialButton76.UseAccentColor = false;
-            materialButton76.UseVisualStyleBackColor = true;
+            materialButton75.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            materialButton75.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            materialButton75.Depth = 0;
+            materialButton75.HighEmphasis = true;
+            materialButton75.Icon = null;
+            materialButton75.Location = new Point(163, 28);
+            materialButton75.Margin = new Padding(4, 6, 4, 6);
+            materialButton75.MouseState = MaterialSkin.MouseState.HOVER;
+            materialButton75.Name = "materialButton75";
+            materialButton75.NoAccentTextColor = Color.Empty;
+            materialButton75.Size = new Size(68, 36);
+            materialButton75.TabIndex = 2;
+            materialButton75.Text = "Skill3";
+            materialButton75.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            materialButton75.UseAccentColor = false;
+            materialButton75.UseVisualStyleBackColor = true;
+            // 
+            // checkOnSocket
+            // 
+            checkOnSocket.AutoSize = true;
+            checkOnSocket.Depth = 0;
+            checkOnSocket.Location = new Point(5, 7);
+            checkOnSocket.Margin = new Padding(0);
+            checkOnSocket.MouseLocation = new Point(-1, -1);
+            checkOnSocket.MouseState = MaterialSkin.MouseState.HOVER;
+            checkOnSocket.Name = "checkOnSocket";
+            checkOnSocket.Ripple = true;
+            checkOnSocket.Size = new Size(177, 37);
+            checkOnSocket.TabIndex = 10;
+            checkOnSocket.Text = "Kích hoạt Socket";
+            checkOnSocket.UseVisualStyleBackColor = true;
+            checkOnSocket.CheckedChanged += materialSwitch1_CheckedChanged_1;
             // 
             // materialTabSelector1
             // 
@@ -3404,8 +3648,23 @@
             MapOther.ResumeLayout(false);
             Home.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
-            materialExpansionPanel1.ResumeLayout(false);
-            materialExpansionPanel1.PerformLayout();
+            tabPage1.PerformLayout();
+            gbZone.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
+            gbItem.ResumeLayout(false);
+            gbItem.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox14).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox9).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            gbSkill.ResumeLayout(false);
+            gbSkill.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -3562,15 +3821,33 @@
         private MaterialSkin.Controls.MaterialButton btnReport;
         private MaterialSkin.Controls.MaterialButton materialButton38;
         private TabPage tabPage1;
-        private MaterialSkin.Controls.MaterialButton materialButton77;
-        private MaterialSkin.Controls.MaterialButton materialButton76;
-        private MaterialSkin.Controls.MaterialButton materialButton75;
-        private MaterialSkin.Controls.MaterialButton materialButton74;
         private MaterialSkin.Controls.MaterialButton materialButton73;
-        private MaterialSkin.Controls.MaterialExpansionPanel materialExpansionPanel1;
+        private MaterialSkin.Controls.MaterialButton materialButton76;
         private MaterialSkin.Controls.MaterialButton materialButton91;
-        private MaterialSkin.Controls.MaterialButton materialButton80;
+        private MaterialSkin.Controls.MaterialButton materialButton75;
+        private MaterialSkin.Controls.MaterialButton materialButton77;
         private MaterialSkin.Controls.MaterialButton materialButton79;
+        private MaterialSkin.Controls.MaterialButton materialButton80;
         private MaterialSkin.Controls.MaterialButton materialButton78;
+        private MaterialSkin.Controls.MaterialButton materialButton74;
+        private MaterialSkin.Controls.MaterialSwitch checkOnSocket;
+        private GroupBox gbSkill;
+        private GroupBox gbZone;
+        private GroupBox gbItem;
+        private Button button1;
+        private NumericUpDown numericUpDown1;
+        private Button button2;
+        private TextBox textBox1;
+        private PictureBox pictureBox9;
+        private PictureBox pictureBox8;
+        private PictureBox pictureBox7;
+        private PictureBox pictureBox6;
+        private PictureBox pictureBox5;
+        private PictureBox pictureBox4;
+        private PictureBox pictureBox3;
+        private PictureBox pictureBox2;
+        private PictureBox pictureBox1;
+        private PictureBox pictureBox14;
+        private MaterialSkin.Controls.MaterialButton btnBongTai;
     }
 }

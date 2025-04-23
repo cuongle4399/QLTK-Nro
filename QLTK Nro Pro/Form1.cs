@@ -1120,6 +1120,31 @@ namespace QLTK_Nro_Pro
 
         }
 
+        private void materialSwitch1_CheckedChanged_1(object sender, EventArgs e)
+        {
+            bool switch1 = checkOnSocket.Checked;
+            if (switch1)
+            {
+                gbSkill.Enabled = true;
+                gbZone.Enabled = true;
+                gbItem.Enabled = true;
+            }
+            else
+            {
+                gbSkill.Enabled = false;
+                gbZone.Enabled = false;
+                gbItem.Enabled = false;
+            }
+        }
 
+        private void btnBongTai_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnCsBay_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
