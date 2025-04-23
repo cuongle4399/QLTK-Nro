@@ -1,0 +1,28 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "MaterialSkin.2/2.3.1": {
+        "runtime": {
+          "lib/net5.0-windows7.0/MaterialSkin.dll": {
+            "assemblyVersion": "2.3.1.0",
+            "fileVersion": "2.3.1.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "MaterialSkin.2/2.3.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-w2vFxLNk4InCDU7pXDfBqPfv55HhBtuu8HRfEqQpeS3sNTS1pUzDs/hS0b5JW2/tKvt+P1of9OINP8a9omWDBg==",
+      "path": "materialskin.2/2.3.1",
+      "hashPath": "materialskin.2.2.3.1.nupkg.sha512"
+    }
+  }
+}
