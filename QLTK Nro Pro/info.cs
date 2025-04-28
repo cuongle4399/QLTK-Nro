@@ -11,9 +11,8 @@ namespace QLTK_Nro_Pro
     {
         public static string string_0 = Path.Combine(Path.GetTempPath(), "cuongle4399", "mod 244");
         public static string string_1 = Path.Combine(string_0, "data");
-        public static string string_2 = Path.Combine(string_0, "auto");
         public static bool bool_0;
-
+        public static string deleteDataGame = Path.Combine(string_0, "xoadata.CL");
         public static string filePath = "Data\\size.ini";
         public static string ChatPublic = "Data\\TextChatPublic.ini";
         public static string ChatGlobal = "Data\\TextChatGlobal.ini";

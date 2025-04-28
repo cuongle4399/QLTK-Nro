@@ -61,6 +61,7 @@
             switchSize = new MaterialSkin.Controls.MaterialSwitch();
             materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
             QLTK = new TabPage();
+            materialButton92 = new MaterialSkin.Controls.MaterialButton();
             btnReport = new MaterialSkin.Controls.MaterialButton();
             materialButton38 = new MaterialSkin.Controls.MaterialButton();
             groupBox1 = new GroupBox();
@@ -180,6 +181,25 @@
             materialButton20 = new MaterialSkin.Controls.MaterialButton();
             materialButton16 = new MaterialSkin.Controls.MaterialButton();
             tabPage1 = new TabPage();
+            gbMap = new GroupBox();
+            btnRight = new Button();
+            btnBetween = new Button();
+            btnLeft = new Button();
+            gbNpc = new GroupBox();
+            txtIdNpc = new NumericUpDown();
+            btnTeleNPC = new MaterialSkin.Controls.MaterialButton();
+            tabThapCam = new TabControl();
+            tabPage2 = new TabPage();
+            button9 = new Button();
+            button8 = new Button();
+            button3 = new Button();
+            button7 = new Button();
+            button4 = new Button();
+            button5 = new Button();
+            tabPage3 = new TabPage();
+            button10 = new Button();
+            button6 = new Button();
+            materialLabel6 = new MaterialSkin.Controls.MaterialLabel();
             gbChatGame = new GroupBox();
             btnChat = new MaterialSkin.Controls.MaterialButton();
             txtChatGame = new MaterialSkin.Controls.MaterialTextBox();
@@ -189,9 +209,12 @@
             button1 = new Button();
             txtKHU = new NumericUpDown();
             gbItem = new GroupBox();
-            btnBongTai = new MaterialSkin.Controls.MaterialButton();
+            txtIdItem = new NumericUpDown();
+            pictureBox11 = new PictureBox();
+            pictureBox15 = new PictureBox();
+            pictureBox13 = new PictureBox();
+            pictureBox10 = new PictureBox();
             button2 = new Button();
-            txtIdItem = new TextBox();
             pictureBox14 = new PictureBox();
             pictureBox9 = new PictureBox();
             pictureBox8 = new PictureBox();
@@ -203,6 +226,7 @@
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
             gbSkill = new GroupBox();
+            materialButton91 = new MaterialSkin.Controls.MaterialButton();
             materialButton73 = new MaterialSkin.Controls.MaterialButton();
             materialButton74 = new MaterialSkin.Controls.MaterialButton();
             materialButton78 = new MaterialSkin.Controls.MaterialButton();
@@ -232,10 +256,21 @@
             MapOther.SuspendLayout();
             Home.SuspendLayout();
             tabPage1.SuspendLayout();
+            gbMap.SuspendLayout();
+            gbNpc.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)txtIdNpc).BeginInit();
+            tabThapCam.SuspendLayout();
+            tabPage2.SuspendLayout();
+            tabPage3.SuspendLayout();
             gbChatGame.SuspendLayout();
             gbZone.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)txtKHU).BeginInit();
             gbItem.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)txtIdItem).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox11).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox15).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox13).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox10).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox14).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
@@ -707,6 +742,7 @@
             // QLTK
             // 
             QLTK.BackColor = Color.LightGray;
+            QLTK.Controls.Add(materialButton92);
             QLTK.Controls.Add(btnReport);
             QLTK.Controls.Add(materialButton38);
             QLTK.Controls.Add(switchSize);
@@ -738,6 +774,26 @@
             QLTK.TabIndex = 0;
             QLTK.Text = "QLTK";
             // 
+            // materialButton92
+            // 
+            materialButton92.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            materialButton92.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            materialButton92.Depth = 0;
+            materialButton92.HighEmphasis = true;
+            materialButton92.Icon = null;
+            materialButton92.Location = new Point(244, 394);
+            materialButton92.Margin = new Padding(4, 6, 4, 6);
+            materialButton92.MouseState = MaterialSkin.MouseState.HOVER;
+            materialButton92.Name = "materialButton92";
+            materialButton92.NoAccentTextColor = Color.Empty;
+            materialButton92.Size = new Size(153, 36);
+            materialButton92.TabIndex = 27;
+            materialButton92.Text = "Xóa dữ liệu game";
+            materialButton92.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            materialButton92.UseAccentColor = false;
+            materialButton92.UseVisualStyleBackColor = true;
+            materialButton92.Click += materialButton92_Click;
+            // 
             // btnReport
             // 
             btnReport.AutoSizeMode = AutoSizeMode.GrowAndShrink;
@@ -766,12 +822,12 @@
             materialButton38.Depth = 0;
             materialButton38.HighEmphasis = true;
             materialButton38.Icon = null;
-            materialButton38.Location = new Point(282, 394);
+            materialButton38.Location = new Point(148, 394);
             materialButton38.Margin = new Padding(4, 6, 4, 6);
             materialButton38.MouseState = MaterialSkin.MouseState.HOVER;
             materialButton38.Name = "materialButton38";
             materialButton38.NoAccentTextColor = Color.Empty;
-            materialButton38.Size = new Size(113, 36);
+            materialButton38.Size = new Size(68, 36);
             materialButton38.TabIndex = 21;
             materialButton38.Text = "HDSD";
             materialButton38.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -827,6 +883,7 @@
             // txtidEnd
             // 
             txtidEnd.Location = new Point(146, 32);
+            txtidEnd.Maximum = new decimal(new int[] { 500, 0, 0, 0 });
             txtidEnd.Name = "txtidEnd";
             txtidEnd.Size = new Size(85, 27);
             txtidEnd.TabIndex = 1;
@@ -3177,6 +3234,10 @@
             // tabPage1
             // 
             tabPage1.BackColor = SystemColors.ScrollBar;
+            tabPage1.Controls.Add(gbMap);
+            tabPage1.Controls.Add(gbNpc);
+            tabPage1.Controls.Add(tabThapCam);
+            tabPage1.Controls.Add(materialLabel6);
             tabPage1.Controls.Add(gbChatGame);
             tabPage1.Controls.Add(btnCountClient);
             tabPage1.Controls.Add(lblCountConnectClient);
@@ -3191,14 +3252,254 @@
             tabPage1.TabIndex = 2;
             tabPage1.Text = "Chức năng";
             // 
+            // gbMap
+            // 
+            gbMap.Controls.Add(btnRight);
+            gbMap.Controls.Add(btnBetween);
+            gbMap.Controls.Add(btnLeft);
+            gbMap.Enabled = false;
+            gbMap.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            gbMap.Location = new Point(272, 307);
+            gbMap.Name = "gbMap";
+            gbMap.Size = new Size(235, 71);
+            gbMap.TabIndex = 26;
+            gbMap.TabStop = false;
+            gbMap.Text = "Next Map";
+            // 
+            // btnRight
+            // 
+            btnRight.Location = new Point(162, 26);
+            btnRight.Name = "btnRight";
+            btnRight.Size = new Size(65, 40);
+            btnRight.TabIndex = 2;
+            btnRight.Text = "RIGHT";
+            btnRight.UseVisualStyleBackColor = true;
+            btnRight.Click += btnRight_Click;
+            // 
+            // btnBetween
+            // 
+            btnBetween.Location = new Point(69, 26);
+            btnBetween.Name = "btnBetween";
+            btnBetween.Size = new Size(93, 40);
+            btnBetween.TabIndex = 1;
+            btnBetween.Text = "BETWEEN";
+            btnBetween.UseVisualStyleBackColor = true;
+            btnBetween.Click += btnBetween_Click;
+            // 
+            // btnLeft
+            // 
+            btnLeft.Location = new Point(7, 26);
+            btnLeft.Name = "btnLeft";
+            btnLeft.Size = new Size(62, 40);
+            btnLeft.TabIndex = 0;
+            btnLeft.Text = "LEFT";
+            btnLeft.UseVisualStyleBackColor = true;
+            btnLeft.Click += btnLeft_Click;
+            // 
+            // gbNpc
+            // 
+            gbNpc.Controls.Add(txtIdNpc);
+            gbNpc.Controls.Add(btnTeleNPC);
+            gbNpc.Enabled = false;
+            gbNpc.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            gbNpc.Location = new Point(8, 302);
+            gbNpc.Name = "gbNpc";
+            gbNpc.Size = new Size(258, 76);
+            gbNpc.TabIndex = 25;
+            gbNpc.TabStop = false;
+            gbNpc.Text = "NPC";
+            // 
+            // txtIdNpc
+            // 
+            txtIdNpc.Location = new Point(170, 32);
+            txtIdNpc.Maximum = new decimal(new int[] { 99999, 0, 0, 0 });
+            txtIdNpc.Name = "txtIdNpc";
+            txtIdNpc.Size = new Size(76, 27);
+            txtIdNpc.TabIndex = 25;
+            // 
+            // btnTeleNPC
+            // 
+            btnTeleNPC.AutoSize = false;
+            btnTeleNPC.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnTeleNPC.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnTeleNPC.Depth = 0;
+            btnTeleNPC.HighEmphasis = true;
+            btnTeleNPC.Icon = null;
+            btnTeleNPC.Location = new Point(7, 23);
+            btnTeleNPC.Margin = new Padding(4, 6, 4, 6);
+            btnTeleNPC.MouseState = MaterialSkin.MouseState.HOVER;
+            btnTeleNPC.Name = "btnTeleNPC";
+            btnTeleNPC.NoAccentTextColor = Color.Empty;
+            btnTeleNPC.Size = new Size(156, 42);
+            btnTeleNPC.TabIndex = 24;
+            btnTeleNPC.Text = "Teleport to id npc";
+            btnTeleNPC.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnTeleNPC.UseAccentColor = false;
+            btnTeleNPC.UseVisualStyleBackColor = true;
+            btnTeleNPC.Click += btnTeleNPC_Click;
+            // 
+            // tabThapCam
+            // 
+            tabThapCam.Controls.Add(tabPage2);
+            tabThapCam.Controls.Add(tabPage3);
+            tabThapCam.Enabled = false;
+            tabThapCam.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            tabThapCam.Location = new Point(520, 214);
+            tabThapCam.Name = "tabThapCam";
+            tabThapCam.SelectedIndex = 0;
+            tabThapCam.Size = new Size(440, 223);
+            tabThapCam.TabIndex = 23;
+            // 
+            // tabPage2
+            // 
+            tabPage2.BackColor = SystemColors.ScrollBar;
+            tabPage2.Controls.Add(button9);
+            tabPage2.Controls.Add(button8);
+            tabPage2.Controls.Add(button3);
+            tabPage2.Controls.Add(button7);
+            tabPage2.Controls.Add(button4);
+            tabPage2.Controls.Add(button5);
+            tabPage2.Location = new Point(4, 29);
+            tabPage2.Name = "tabPage2";
+            tabPage2.Padding = new Padding(3);
+            tabPage2.Size = new Size(432, 190);
+            tabPage2.TabIndex = 0;
+            tabPage2.Text = "Boss";
+            // 
+            // button9
+            // 
+            button9.BackColor = Color.Transparent;
+            button9.FlatStyle = FlatStyle.Flat;
+            button9.ForeColor = Color.Crimson;
+            button9.Location = new Point(250, 59);
+            button9.Name = "button9";
+            button9.Size = new Size(176, 49);
+            button9.TabIndex = 6;
+            button9.Text = "Dò boss VIP: OFF";
+            button9.UseVisualStyleBackColor = false;
+            button9.Click += button9_Click;
+            // 
+            // button8
+            // 
+            button8.BackColor = Color.Transparent;
+            button8.FlatStyle = FlatStyle.Flat;
+            button8.ForeColor = Color.Crimson;
+            button8.Location = new Point(101, 61);
+            button8.Name = "button8";
+            button8.Size = new Size(143, 47);
+            button8.TabIndex = 5;
+            button8.Text = "Dò boss: OFF";
+            button8.UseVisualStyleBackColor = false;
+            button8.Click += button8_Click;
+            // 
+            // button3
+            // 
+            button3.BackColor = Color.Transparent;
+            button3.FlatStyle = FlatStyle.Flat;
+            button3.ForeColor = Color.Crimson;
+            button3.Location = new Point(6, 6);
+            button3.Name = "button3";
+            button3.Size = new Size(89, 49);
+            button3.TabIndex = 0;
+            button3.Text = "Boom";
+            button3.UseVisualStyleBackColor = false;
+            button3.Click += button3_Click;
+            // 
+            // button7
+            // 
+            button7.BackColor = Color.Transparent;
+            button7.FlatStyle = FlatStyle.Flat;
+            button7.ForeColor = Color.Crimson;
+            button7.Location = new Point(250, 6);
+            button7.Name = "button7";
+            button7.Size = new Size(176, 49);
+            button7.TabIndex = 4;
+            button7.Text = "Attack Boss: OFF";
+            button7.UseVisualStyleBackColor = false;
+            button7.Click += button7_Click;
+            // 
+            // button4
+            // 
+            button4.BackColor = Color.Transparent;
+            button4.FlatStyle = FlatStyle.Flat;
+            button4.ForeColor = Color.Crimson;
+            button4.Location = new Point(101, 6);
+            button4.Name = "button4";
+            button4.Size = new Size(143, 49);
+            button4.TabIndex = 1;
+            button4.Text = "Focus Boss:  OFF";
+            button4.UseVisualStyleBackColor = false;
+            button4.Click += button4_Click;
+            // 
+            // button5
+            // 
+            button5.BackColor = Color.Transparent;
+            button5.FlatStyle = FlatStyle.Flat;
+            button5.ForeColor = Color.Crimson;
+            button5.Location = new Point(6, 61);
+            button5.Name = "button5";
+            button5.Size = new Size(91, 47);
+            button5.TabIndex = 2;
+            button5.Text = "Tele Boss";
+            button5.UseVisualStyleBackColor = false;
+            button5.Click += button5_Click;
+            // 
+            // tabPage3
+            // 
+            tabPage3.BackColor = SystemColors.ScrollBar;
+            tabPage3.Controls.Add(button10);
+            tabPage3.Controls.Add(button6);
+            tabPage3.Location = new Point(4, 29);
+            tabPage3.Name = "tabPage3";
+            tabPage3.Padding = new Padding(3);
+            tabPage3.Size = new Size(432, 190);
+            tabPage3.TabIndex = 1;
+            tabPage3.Text = "Mob";
+            // 
+            // button10
+            // 
+            button10.FlatStyle = FlatStyle.Flat;
+            button10.ForeColor = Color.DarkViolet;
+            button10.Location = new Point(216, 6);
+            button10.Name = "button10";
+            button10.Size = new Size(210, 49);
+            button10.TabIndex = 4;
+            button10.Text = "Tắt train quái";
+            button10.UseVisualStyleBackColor = true;
+            button10.Click += button10_Click_1;
+            // 
+            // button6
+            // 
+            button6.FlatStyle = FlatStyle.Flat;
+            button6.ForeColor = Color.DarkViolet;
+            button6.Location = new Point(6, 6);
+            button6.Name = "button6";
+            button6.Size = new Size(204, 49);
+            button6.TabIndex = 3;
+            button6.Text = "Train all quái";
+            button6.UseVisualStyleBackColor = true;
+            button6.Click += button6_Click;
+            // 
+            // materialLabel6
+            // 
+            materialLabel6.Depth = 0;
+            materialLabel6.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel6.Location = new Point(497, 6);
+            materialLabel6.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel6.Name = "materialLabel6";
+            materialLabel6.Size = new Size(462, 41);
+            materialLabel6.TabIndex = 21;
+            materialLabel6.Text = "Ấn kích hoạt xok vào game ấn phím P để kết nối/ ngắt kết nối với phần mềm nhé ae";
+            // 
             // gbChatGame
             // 
             gbChatGame.Controls.Add(btnChat);
             gbChatGame.Controls.Add(txtChatGame);
             gbChatGame.Enabled = false;
-            gbChatGame.Location = new Point(11, 258);
+            gbChatGame.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            gbChatGame.Location = new Point(8, 214);
             gbChatGame.Name = "gbChatGame";
-            gbChatGame.Size = new Size(610, 96);
+            gbChatGame.Size = new Size(499, 87);
             gbChatGame.TabIndex = 16;
             gbChatGame.TabStop = false;
             gbChatGame.Text = "Chat đa Client";
@@ -3211,7 +3512,7 @@
             btnChat.Depth = 0;
             btnChat.HighEmphasis = true;
             btnChat.Icon = null;
-            btnChat.Location = new Point(12, 29);
+            btnChat.Location = new Point(15, 24);
             btnChat.Margin = new Padding(4, 6, 4, 6);
             btnChat.MouseState = MaterialSkin.MouseState.HOVER;
             btnChat.Name = "btnChat";
@@ -3231,12 +3532,12 @@
             txtChatGame.Depth = 0;
             txtChatGame.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtChatGame.LeadingIcon = null;
-            txtChatGame.Location = new Point(92, 26);
+            txtChatGame.Location = new Point(84, 24);
             txtChatGame.MaxLength = 50;
             txtChatGame.MouseState = MaterialSkin.MouseState.OUT;
             txtChatGame.Multiline = false;
             txtChatGame.Name = "txtChatGame";
-            txtChatGame.Size = new Size(498, 50);
+            txtChatGame.Size = new Size(405, 50);
             txtChatGame.TabIndex = 0;
             txtChatGame.Text = "";
             txtChatGame.TrailingIcon = null;
@@ -3281,9 +3582,9 @@
             gbZone.FlatStyle = FlatStyle.Popup;
             gbZone.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             gbZone.ForeColor = SystemColors.ActiveCaptionText;
-            gbZone.Location = new Point(677, 47);
+            gbZone.Location = new Point(752, 47);
             gbZone.Name = "gbZone";
-            gbZone.Size = new Size(283, 81);
+            gbZone.Size = new Size(208, 81);
             gbZone.TabIndex = 13;
             gbZone.TabStop = false;
             gbZone.Text = "Đổi khu";
@@ -3291,9 +3592,9 @@
             // button1
             // 
             button1.FlatStyle = FlatStyle.Popup;
-            button1.Location = new Point(23, 28);
+            button1.Location = new Point(6, 26);
             button1.Name = "button1";
-            button1.Size = new Size(157, 37);
+            button1.Size = new Size(113, 37);
             button1.TabIndex = 1;
             button1.Text = "Đổi khu";
             button1.UseVisualStyleBackColor = true;
@@ -3301,16 +3602,19 @@
             // 
             // txtKHU
             // 
-            txtKHU.Location = new Point(189, 33);
+            txtKHU.Location = new Point(128, 31);
             txtKHU.Name = "txtKHU";
             txtKHU.Size = new Size(71, 27);
             txtKHU.TabIndex = 0;
             // 
             // gbItem
             // 
-            gbItem.Controls.Add(btnBongTai);
-            gbItem.Controls.Add(button2);
             gbItem.Controls.Add(txtIdItem);
+            gbItem.Controls.Add(pictureBox11);
+            gbItem.Controls.Add(pictureBox15);
+            gbItem.Controls.Add(pictureBox13);
+            gbItem.Controls.Add(pictureBox10);
+            gbItem.Controls.Add(button2);
             gbItem.Controls.Add(pictureBox14);
             gbItem.Controls.Add(pictureBox9);
             gbItem.Controls.Add(pictureBox8);
@@ -3323,60 +3627,92 @@
             gbItem.Controls.Add(pictureBox1);
             gbItem.Enabled = false;
             gbItem.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            gbItem.Location = new Point(9, 130);
+            gbItem.Location = new Point(8, 121);
             gbItem.Name = "gbItem";
-            gbItem.Size = new Size(951, 122);
+            gbItem.Size = new Size(951, 87);
             gbItem.TabIndex = 12;
             gbItem.TabStop = false;
             gbItem.Text = "Dùng vật phẩm";
             // 
-            // btnBongTai
+            // txtIdItem
             // 
-            btnBongTai.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnBongTai.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            btnBongTai.Depth = 0;
-            btnBongTai.HighEmphasis = true;
-            btnBongTai.Icon = null;
-            btnBongTai.Location = new Point(17, 74);
-            btnBongTai.Margin = new Padding(4, 6, 4, 6);
-            btnBongTai.MouseState = MaterialSkin.MouseState.HOVER;
-            btnBongTai.Name = "btnBongTai";
-            btnBongTai.NoAccentTextColor = Color.Empty;
-            btnBongTai.Size = new Size(88, 36);
-            btnBongTai.TabIndex = 14;
-            btnBongTai.Text = "Bông Tai";
-            btnBongTai.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            btnBongTai.UseAccentColor = false;
-            btnBongTai.UseVisualStyleBackColor = true;
-            btnBongTai.Click += btnBongTai_Click;
+            txtIdItem.Location = new Point(870, 37);
+            txtIdItem.Maximum = new decimal(new int[] { 9999999, 0, 0, 0 });
+            txtIdItem.Name = "txtIdItem";
+            txtIdItem.Size = new Size(79, 27);
+            txtIdItem.TabIndex = 26;
+            // 
+            // pictureBox11
+            // 
+            pictureBox11.BackColor = Color.Thistle;
+            pictureBox11.BorderStyle = BorderStyle.Fixed3D;
+            pictureBox11.Image = (Image)resources.GetObject("pictureBox11.Image");
+            pictureBox11.Location = new Point(700, 26);
+            pictureBox11.Name = "pictureBox11";
+            pictureBox11.Size = new Size(49, 46);
+            pictureBox11.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox11.TabIndex = 19;
+            pictureBox11.TabStop = false;
+            pictureBox11.Click += pictureBox11_Click;
+            // 
+            // pictureBox15
+            // 
+            pictureBox15.BackColor = Color.Thistle;
+            pictureBox15.BorderStyle = BorderStyle.Fixed3D;
+            pictureBox15.Image = (Image)resources.GetObject("pictureBox15.Image");
+            pictureBox15.Location = new Point(645, 26);
+            pictureBox15.Name = "pictureBox15";
+            pictureBox15.Size = new Size(49, 46);
+            pictureBox15.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox15.TabIndex = 18;
+            pictureBox15.TabStop = false;
+            pictureBox15.Click += pictureBox15_Click;
+            // 
+            // pictureBox13
+            // 
+            pictureBox13.BackColor = Color.Thistle;
+            pictureBox13.BorderStyle = BorderStyle.Fixed3D;
+            pictureBox13.Image = (Image)resources.GetObject("pictureBox13.Image");
+            pictureBox13.Location = new Point(596, 26);
+            pictureBox13.Name = "pictureBox13";
+            pictureBox13.Size = new Size(49, 46);
+            pictureBox13.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox13.TabIndex = 17;
+            pictureBox13.TabStop = false;
+            pictureBox13.Click += pictureBox13_Click;
+            // 
+            // pictureBox10
+            // 
+            pictureBox10.BorderStyle = BorderStyle.Fixed3D;
+            pictureBox10.Image = Properties.Resources._3896;
+            pictureBox10.Location = new Point(539, 26);
+            pictureBox10.Name = "pictureBox10";
+            pictureBox10.Size = new Size(50, 46);
+            pictureBox10.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox10.TabIndex = 14;
+            pictureBox10.TabStop = false;
+            pictureBox10.Click += pictureBox10_Click;
             // 
             // button2
             // 
             button2.FlatStyle = FlatStyle.Flat;
             button2.ForeColor = Color.DarkViolet;
-            button2.Location = new Point(691, 26);
+            button2.Location = new Point(753, 26);
             button2.Name = "button2";
-            button2.Size = new Size(157, 39);
+            button2.Size = new Size(113, 46);
             button2.TabIndex = 13;
-            button2.Text = "Dùng item theo id:";
+            button2.Text = "Use id Item";
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
-            // 
-            // txtIdItem
-            // 
-            txtIdItem.Location = new Point(857, 26);
-            txtIdItem.Multiline = true;
-            txtIdItem.Name = "txtIdItem";
-            txtIdItem.Size = new Size(71, 39);
-            txtIdItem.TabIndex = 12;
             // 
             // pictureBox14
             // 
             pictureBox14.BackColor = Color.Thistle;
+            pictureBox14.BorderStyle = BorderStyle.Fixed3D;
             pictureBox14.Image = Properties.Resources._10717;
-            pictureBox14.Location = new Point(616, 26);
+            pictureBox14.Location = new Point(496, 26);
             pictureBox14.Name = "pictureBox14";
-            pictureBox14.Size = new Size(43, 39);
+            pictureBox14.Size = new Size(49, 46);
             pictureBox14.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox14.TabIndex = 9;
             pictureBox14.TabStop = false;
@@ -3385,10 +3721,11 @@
             // pictureBox9
             // 
             pictureBox9.BackColor = Color.Thistle;
+            pictureBox9.BorderStyle = BorderStyle.Fixed3D;
             pictureBox9.Image = Properties.Resources._2760;
-            pictureBox9.Location = new Point(549, 26);
+            pictureBox9.Location = new Point(438, 26);
             pictureBox9.Name = "pictureBox9";
-            pictureBox9.Size = new Size(43, 39);
+            pictureBox9.Size = new Size(49, 46);
             pictureBox9.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox9.TabIndex = 8;
             pictureBox9.TabStop = false;
@@ -3397,10 +3734,11 @@
             // pictureBox8
             // 
             pictureBox8.BackColor = Color.Thistle;
+            pictureBox8.BorderStyle = BorderStyle.Fixed3D;
             pictureBox8.Image = Properties.Resources._10715;
-            pictureBox8.Location = new Point(474, 26);
+            pictureBox8.Location = new Point(385, 26);
             pictureBox8.Name = "pictureBox8";
-            pictureBox8.Size = new Size(43, 39);
+            pictureBox8.Size = new Size(49, 46);
             pictureBox8.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox8.TabIndex = 7;
             pictureBox8.TabStop = false;
@@ -3409,10 +3747,11 @@
             // pictureBox7
             // 
             pictureBox7.BackColor = Color.Thistle;
+            pictureBox7.BorderStyle = BorderStyle.Fixed3D;
             pictureBox7.Image = Properties.Resources._2756;
-            pictureBox7.Location = new Point(397, 26);
+            pictureBox7.Location = new Point(335, 26);
             pictureBox7.Name = "pictureBox7";
-            pictureBox7.Size = new Size(43, 39);
+            pictureBox7.Size = new Size(49, 46);
             pictureBox7.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox7.TabIndex = 6;
             pictureBox7.TabStop = false;
@@ -3421,10 +3760,11 @@
             // pictureBox6
             // 
             pictureBox6.BackColor = Color.Thistle;
+            pictureBox6.BorderStyle = BorderStyle.Fixed3D;
             pictureBox6.Image = Properties.Resources._10714;
-            pictureBox6.Location = new Point(324, 26);
+            pictureBox6.Location = new Point(278, 26);
             pictureBox6.Name = "pictureBox6";
-            pictureBox6.Size = new Size(43, 39);
+            pictureBox6.Size = new Size(49, 46);
             pictureBox6.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox6.TabIndex = 5;
             pictureBox6.TabStop = false;
@@ -3433,10 +3773,11 @@
             // pictureBox5
             // 
             pictureBox5.BackColor = Color.Thistle;
+            pictureBox5.BorderStyle = BorderStyle.Fixed3D;
             pictureBox5.Image = Properties.Resources._2755;
-            pictureBox5.Location = new Point(258, 26);
+            pictureBox5.Location = new Point(220, 26);
             pictureBox5.Name = "pictureBox5";
-            pictureBox5.Size = new Size(43, 39);
+            pictureBox5.Size = new Size(49, 46);
             pictureBox5.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox5.TabIndex = 4;
             pictureBox5.TabStop = false;
@@ -3445,10 +3786,11 @@
             // pictureBox4
             // 
             pictureBox4.BackColor = Color.Thistle;
+            pictureBox4.BorderStyle = BorderStyle.Fixed3D;
             pictureBox4.Image = Properties.Resources._10712;
-            pictureBox4.Location = new Point(193, 26);
+            pictureBox4.Location = new Point(168, 26);
             pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(43, 39);
+            pictureBox4.Size = new Size(49, 46);
             pictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox4.TabIndex = 3;
             pictureBox4.TabStop = false;
@@ -3457,10 +3799,11 @@
             // pictureBox3
             // 
             pictureBox3.BackColor = Color.Thistle;
+            pictureBox3.BorderStyle = BorderStyle.Fixed3D;
             pictureBox3.Image = Properties.Resources._2757;
-            pictureBox3.Location = new Point(130, 26);
+            pictureBox3.Location = new Point(114, 26);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(43, 39);
+            pictureBox3.Size = new Size(49, 46);
             pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox3.TabIndex = 2;
             pictureBox3.TabStop = false;
@@ -3469,10 +3812,11 @@
             // pictureBox2
             // 
             pictureBox2.BackColor = Color.Thistle;
+            pictureBox2.BorderStyle = BorderStyle.Fixed3D;
             pictureBox2.Image = Properties.Resources._10716;
-            pictureBox2.Location = new Point(76, 26);
+            pictureBox2.Location = new Point(63, 26);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(43, 39);
+            pictureBox2.Size = new Size(49, 46);
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox2.TabIndex = 1;
             pictureBox2.TabStop = false;
@@ -3481,10 +3825,11 @@
             // pictureBox1
             // 
             pictureBox1.BackColor = Color.Thistle;
+            pictureBox1.BorderStyle = BorderStyle.Fixed3D;
             pictureBox1.Image = Properties.Resources._2754;
-            pictureBox1.Location = new Point(17, 26);
+            pictureBox1.Location = new Point(10, 26);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(43, 39);
+            pictureBox1.Size = new Size(49, 46);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
@@ -3492,6 +3837,7 @@
             // 
             // gbSkill
             // 
+            gbSkill.Controls.Add(materialButton91);
             gbSkill.Controls.Add(materialButton73);
             gbSkill.Controls.Add(materialButton74);
             gbSkill.Controls.Add(materialButton78);
@@ -3504,10 +3850,30 @@
             gbSkill.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             gbSkill.Location = new Point(8, 47);
             gbSkill.Name = "gbSkill";
-            gbSkill.Size = new Size(626, 81);
+            gbSkill.Size = new Size(738, 81);
             gbSkill.TabIndex = 11;
             gbSkill.TabStop = false;
             gbSkill.Text = "Điều khiển skill nhân vật";
+            // 
+            // materialButton91
+            // 
+            materialButton91.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            materialButton91.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            materialButton91.Depth = 0;
+            materialButton91.HighEmphasis = true;
+            materialButton91.Icon = null;
+            materialButton91.Location = new Point(622, 29);
+            materialButton91.Margin = new Padding(4, 6, 4, 6);
+            materialButton91.MouseState = MaterialSkin.MouseState.HOVER;
+            materialButton91.Name = "materialButton91";
+            materialButton91.NoAccentTextColor = Color.Empty;
+            materialButton91.Size = new Size(68, 36);
+            materialButton91.TabIndex = 8;
+            materialButton91.Text = "skill9";
+            materialButton91.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            materialButton91.UseAccentColor = false;
+            materialButton91.UseVisualStyleBackColor = true;
+            materialButton91.Click += materialButton91_Click;
             // 
             // materialButton73
             // 
@@ -3738,11 +4104,21 @@
             Home.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             tabPage1.PerformLayout();
+            gbMap.ResumeLayout(false);
+            gbNpc.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)txtIdNpc).EndInit();
+            tabThapCam.ResumeLayout(false);
+            tabPage2.ResumeLayout(false);
+            tabPage3.ResumeLayout(false);
             gbChatGame.ResumeLayout(false);
             gbZone.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)txtKHU).EndInit();
             gbItem.ResumeLayout(false);
-            gbItem.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)txtIdItem).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox11).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox15).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox13).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox10).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox14).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox9).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
@@ -3926,7 +4302,6 @@
         private Button button1;
         private NumericUpDown txtKHU;
         private Button button2;
-        private TextBox txtIdItem;
         private PictureBox pictureBox9;
         private PictureBox pictureBox8;
         private PictureBox pictureBox7;
@@ -3943,5 +4318,31 @@
         private GroupBox gbChatGame;
         private MaterialSkin.Controls.MaterialButton btnChat;
         private MaterialSkin.Controls.MaterialTextBox txtChatGame;
+        private MaterialSkin.Controls.MaterialLabel materialLabel6;
+        private Button button6;
+        private Button button5;
+        private Button button4;
+        private Button button3;
+        private Button button7;
+        private PictureBox pictureBox10;
+        private TabControl tabThapCam;
+        private TabPage tabPage2;
+        private TabPage tabPage3;
+        private Button button9;
+        private Button button8;
+        private MaterialSkin.Controls.MaterialButton materialButton91;
+        private PictureBox pictureBox15;
+        private PictureBox pictureBox13;
+        private PictureBox pictureBox11;
+        private MaterialSkin.Controls.MaterialButton btnTeleNPC;
+        private GroupBox gbNpc;
+        private NumericUpDown txtIdNpc;
+        private NumericUpDown txtIdItem;
+        private GroupBox gbMap;
+        private Button btnRight;
+        private Button btnBetween;
+        private Button btnLeft;
+        private Button button10;
+        private MaterialSkin.Controls.MaterialButton materialButton92;
     }
 }

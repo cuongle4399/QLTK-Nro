@@ -37,10 +37,6 @@ namespace QLTK_Nro_Pro
                 {
                     File.Create(info.string_1).Close();
                 }
-                if (!File.Exists(info.string_2))
-                {
-                    File.Create(info.string_2).Close();
-                }
             }
             CheckForUpdates();
 
@@ -1134,6 +1130,9 @@ namespace QLTK_Nro_Pro
                 gbZone.Enabled = true;
                 gbItem.Enabled = true;
                 gbChatGame.Enabled = true;
+                tabThapCam.Enabled = true;
+                gbNpc.Enabled = true;
+                gbMap.Enabled = true;
             }
             else
             {
@@ -1141,6 +1140,9 @@ namespace QLTK_Nro_Pro
                 gbZone.Enabled = false;
                 gbItem.Enabled = false;
                 gbChatGame.Enabled = false;
+                tabThapCam.Enabled = false;
+                gbNpc.Enabled = false;
+                gbMap.Enabled = false;
             }
         }
         private void materialSwitch1_CheckedChanged_1(object sender, EventArgs e)
@@ -1294,6 +1296,7 @@ namespace QLTK_Nro_Pro
         {
             TCPSocket.send("chat|" + txtChatGame.Text);
             Thread.Sleep(delaySocket);
+            txtChatGame.Text = "";
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -1313,7 +1316,176 @@ namespace QLTK_Nro_Pro
             {
                 MessageBox.Show("Vui lòng nhập đúng dạng id Item", "Thông báo");
             }
-            
+
         }
+        public void changeStatus(Button x)
+        {
+            if (x.Text.Contains("ON"))
+            {
+                x.Text = x.Text.Replace("ON", "OFF");
+            }
+            else
+            {
+                x.Text = x.Text.Replace("OFF", "ON");
+            }
+        }
+
+        private void pictureBox10_Click(object sender, EventArgs e)
+        {
+            TCPSocket.send("bongtai");
+            Thread.Sleep(delaySocket);
+        }
+
+        private void materialButton91_Click(object sender, EventArgs e)
+        {
+            TCPSocket.send("skill|8");
+            Thread.Sleep(delaySocket);
+        }
+
+        private void pictureBox13_Click(object sender, EventArgs e)
+        {
+            TCPSocket.send("BatCo93");
+            Thread.Sleep(delaySocket);
+        }
+
+        private void pictureBox15_Click(object sender, EventArgs e)
+        {
+            TCPSocket.send("TatCo93");
+            Thread.Sleep(delaySocket);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            TCPSocket.send("Boom97");
+            changeStatus((Button)sender);
+            Thread.Sleep(delaySocket);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            TCPSocket.send("fBoss97");
+            changeStatus((Button)sender);
+            Thread.Sleep(delaySocket);
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            TCPSocket.send("teleBoss97");
+            changeStatus((Button)sender);
+            Thread.Sleep(delaySocket);
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            TCPSocket.send("aBoss97");
+            changeStatus((Button)sender);
+            Thread.Sleep(delaySocket);
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            TCPSocket.send("doBoss97");
+            changeStatus((Button)sender);
+            Thread.Sleep(delaySocket);
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            TCPSocket.send("doBoss97VIP");
+            changeStatus((Button)sender);
+            Thread.Sleep(delaySocket);
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            TCPSocket.send("trainMob23");
+            Thread.Sleep(delaySocket);
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            if (int.TryParse(txtIdNpc.Text, out int id))
+            {
+                TCPSocket.send("teleIdNpc|" + id);
+                Thread.Sleep(delaySocket);
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng nhập đúng dạng id NPC", "Thông báo");
+            }
+
+        }
+
+        private void pictureBox11_Click(object sender, EventArgs e)
+        {
+            TCPSocket.send("item|521");
+            Thread.Sleep(delaySocket);
+        }
+
+        private void btnTeleNPC_Click(object sender, EventArgs e)
+        {
+            if (int.TryParse(txtIdNpc.Text, out int id))
+            {
+                TCPSocket.send("teleIdNpc|" + id);
+                Thread.Sleep(delaySocket);
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng nhập đúng dạng id NPC", "Thông báo");
+            }
+        }
+
+        private void btnLeft_Click(object sender, EventArgs e)
+        {
+            TCPSocket.send("NextMapLeft");
+            Thread.Sleep(delaySocket);
+        }
+
+        private void btnBetween_Click(object sender, EventArgs e)
+        {
+            TCPSocket.send("NextMapBetween");
+            Thread.Sleep(delaySocket);
+        }
+
+        private void btnRight_Click(object sender, EventArgs e)
+        {
+            TCPSocket.send("NextMapRight");
+            Thread.Sleep(delaySocket);
+        }
+
+        private void button10_Click_1(object sender, EventArgs e)
+        {
+            TCPSocket.send("trainMob231");
+            Thread.Sleep(delaySocket);
+        }
+
+        private void materialButton92_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string path = Path.Combine(
+                    Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
+                    "AppData", "LocalLow", "Team", "ragonboy244"
+                );
+
+                if (Directory.Exists(path))
+                {
+                    foreach (string file in Directory.GetFiles(path))
+                    {
+                        File.Delete(file);
+                    }
+                    MessageBox.Show("Đã xóa dữ liệu game\nMở game lại để tải dữ liệu game", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Đã xảy ra lỗi: ", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Đã xảy ra lỗi: ", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
     }
 }
