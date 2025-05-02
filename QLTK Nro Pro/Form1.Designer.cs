@@ -40,7 +40,6 @@
             btnFix = new MaterialSkin.Controls.MaterialButton();
             btnAdd = new MaterialSkin.Controls.MaterialButton();
             txt_user = new MaterialSkin.Controls.MaterialTextBox();
-            txt_password = new MaterialSkin.Controls.MaterialTextBox();
             txt_note = new MaterialSkin.Controls.MaterialTextBox();
             txt_server = new MaterialSkin.Controls.MaterialComboBox();
             lblAccount = new MaterialSkin.Controls.MaterialLabel();
@@ -61,6 +60,7 @@
             switchSize = new MaterialSkin.Controls.MaterialSwitch();
             materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
             QLTK = new TabPage();
+            pass = new MaterialSkin.Controls.MaterialTextBox2();
             materialButton92 = new MaterialSkin.Controls.MaterialButton();
             btnReport = new MaterialSkin.Controls.MaterialButton();
             materialButton38 = new MaterialSkin.Controls.MaterialButton();
@@ -439,25 +439,6 @@
             txt_user.Text = "";
             txt_user.TrailingIcon = null;
             // 
-            // txt_password
-            // 
-            txt_password.AnimateReadOnly = false;
-            txt_password.BorderStyle = BorderStyle.None;
-            txt_password.Cursor = Cursors.IBeam;
-            txt_password.Depth = 0;
-            txt_password.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            txt_password.LeadingIcon = null;
-            txt_password.Location = new Point(484, 65);
-            txt_password.MaxLength = 50;
-            txt_password.MouseState = MaterialSkin.MouseState.OUT;
-            txt_password.Multiline = false;
-            txt_password.Name = "txt_password";
-            txt_password.Password = true;
-            txt_password.Size = new Size(211, 50);
-            txt_password.TabIndex = 7;
-            txt_password.Text = "";
-            txt_password.TrailingIcon = null;
-            // 
             // txt_note
             // 
             txt_note.AnimateReadOnly = false;
@@ -742,6 +723,7 @@
             // QLTK
             // 
             QLTK.BackColor = Color.LightGray;
+            QLTK.Controls.Add(pass);
             QLTK.Controls.Add(materialButton92);
             QLTK.Controls.Add(btnReport);
             QLTK.Controls.Add(materialButton38);
@@ -757,7 +739,6 @@
             QLTK.Controls.Add(gbChat);
             QLTK.Controls.Add(btnAdd);
             QLTK.Controls.Add(check);
-            QLTK.Controls.Add(txt_password);
             QLTK.Controls.Add(materialLabel2);
             QLTK.Controls.Add(btnClose);
             QLTK.Controls.Add(btnFix);
@@ -773,6 +754,34 @@
             QLTK.Size = new Size(968, 440);
             QLTK.TabIndex = 0;
             QLTK.Text = "QLTK";
+            // 
+            // pass
+            // 
+            pass.AnimateReadOnly = false;
+            pass.BackgroundImageLayout = ImageLayout.None;
+            pass.CharacterCasing = CharacterCasing.Normal;
+            pass.Depth = 0;
+            pass.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            pass.HideSelection = true;
+            pass.LeadingIcon = null;
+            pass.Location = new Point(483, 66);
+            pass.MaxLength = 32767;
+            pass.MouseState = MaterialSkin.MouseState.OUT;
+            pass.Name = "pass";
+            pass.PasswordChar = '\0';
+            pass.PrefixSuffixText = null;
+            pass.ReadOnly = false;
+            pass.RightToLeft = RightToLeft.No;
+            pass.SelectedText = "";
+            pass.SelectionLength = 0;
+            pass.SelectionStart = 0;
+            pass.ShortcutsEnabled = true;
+            pass.Size = new Size(212, 48);
+            pass.TabIndex = 28;
+            pass.TabStop = false;
+            pass.TextAlign = HorizontalAlignment.Left;
+            pass.TrailingIcon = null;
+            pass.UseSystemPasswordChar = false;
             // 
             // materialButton92
             // 
@@ -4344,5 +4353,6 @@
         private Button btnLeft;
         private Button button10;
         private MaterialSkin.Controls.MaterialButton materialButton92;
+        private MaterialSkin.Controls.MaterialTextBox2 pass;
     }
 }

@@ -22,6 +22,7 @@ namespace QLTK_Nro_Pro
         private int delaySocket = 150;
         private void Form1_Load(object sender, EventArgs e)
         {
+            pass.UseSystemPasswordChar = true;
             gbSize.Enabled = false;
             gbChat.Enabled = false;
             this.MaximumSize = this.Size;
@@ -230,7 +231,7 @@ namespace QLTK_Nro_Pro
             try
             {
                 string versionInfo = await httpClient.GetStringAsync(info.CheckOfUpdate);
-                if (!versionInfo.Contains("1.6"))
+                if (!versionInfo.Contains("1.7"))
                 {
                     if (MessageBox.Show("Đã có phiên bản mới. Bạn có muốn cập nhật không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
@@ -389,7 +390,7 @@ namespace QLTK_Nro_Pro
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txt_user.Text) || string.IsNullOrEmpty(txt_server.Text) || string.IsNullOrEmpty(txt_password.Text))
+            if (string.IsNullOrEmpty(txt_user.Text) || string.IsNullOrEmpty(txt_server.Text) || string.IsNullOrEmpty(pass.Text))
             {
                 MessageBox.Show("Nhập đầy đủ vào rồi thêm cục cưng ", "Thông báo", MessageBoxButtons.OK);
                 txt_user.Focus();
@@ -400,7 +401,7 @@ namespace QLTK_Nro_Pro
                 indexSTT,
                     txt_user.Text,
                     server(txt_server.Text),
-                    smethod_1(txt_password.Text, "ud"),
+                    smethod_1(pass.Text, "ud"),
                     txt_note.Text,
 
                 });
@@ -415,13 +416,15 @@ namespace QLTK_Nro_Pro
         {
             if (check.Checked)
             {
-                txt_password.Focus();
-                txt_password.Password = false;
+                
+                pass.UseSystemPasswordChar = false;
+                pass.Focus();
             }
             else
             {
-                txt_password.Focus();
-                txt_password.Password = true;
+
+                pass.UseSystemPasswordChar = true;
+                pass.Focus();
             }
         }
 
@@ -461,14 +464,14 @@ namespace QLTK_Nro_Pro
 
         private void btnFix_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txt_user.Text) || string.IsNullOrEmpty(txt_server.Text) || string.IsNullOrEmpty(txt_password.Text))
+            if (string.IsNullOrEmpty(txt_user.Text) || string.IsNullOrEmpty(txt_server.Text) || string.IsNullOrEmpty(pass.Text))
             {
                 MessageBox.Show("Nhập đầy đủ vào rồi thêm cục cưng ", "Thông báo", MessageBoxButtons.OK);
                 return;
             }
 
             dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[1].Value = txt_user.Text;
-            dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[3].Value = smethod_1(txt_password.Text, "ud");
+            dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[3].Value = smethod_1(pass.Text, "ud");
             dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[2].Value = server(txt_server.Text);
             dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[4].Value = txt_note.Text;
             ghifile(dataGridView1);
@@ -520,7 +523,7 @@ namespace QLTK_Nro_Pro
             }
             txt_user.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
             txt_server.Text = Reserver(int.Parse(dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString()));
-            txt_password.Text = smethod_2(dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString(), "ud");
+            pass.Text = smethod_2(dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString(), "ud");
             txt_note.Text = dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString();
         }
 
