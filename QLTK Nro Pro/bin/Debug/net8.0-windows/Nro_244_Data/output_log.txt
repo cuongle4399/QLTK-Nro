@@ -15,21 +15,21 @@ Platform assembly: C:\Users\Cuong Le\Desktop\C# winform\QLTK Nro Pro\QLTK Nro Pr
 Loading C:\Users\Cuong Le\Desktop\C# winform\QLTK Nro Pro\QLTK Nro Pro\bin\Debug\net8.0-windows\Nro_244_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
 Platform assembly: C:\Users\Cuong Le\Desktop\C# winform\QLTK Nro Pro\QLTK Nro Pro\bin\Debug\net8.0-windows\Nro_244_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
 Loading C:\Users\Cuong Le\Desktop\C# winform\QLTK Nro Pro\QLTK Nro Pro\bin\Debug\net8.0-windows\Nro_244_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
-- Completed reload, in  0.017 seconds
+- Completed reload, in  0.016 seconds
 Platform assembly: C:\Users\Cuong Le\Desktop\C# winform\QLTK Nro Pro\QLTK Nro Pro\bin\Debug\net8.0-windows\Nro_244_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\Cuong Le\Desktop\C# winform\QLTK Nro Pro\QLTK Nro Pro\bin\Debug\net8.0-windows\Nro_244_Data\Managed\System.dll (this message is harmless)
 <RI> Initializing input.
 <RI> Input initialized.
 desktop: 1920x1080 144Hz; virtual: 1920x1080 at 0,0
 <RI> Initialized touch support.
-UnloadTime: 0.882100 ms
+UnloadTime: 0.850900 ms
 Setting up 6 worker threads for Enlighten.
-  Thread -> id: 2150 -> priority: 1 
-  Thread -> id: 6420 -> priority: 1 
-  Thread -> id: 5f24 -> priority: 1 
-  Thread -> id: 909c -> priority: 1 
-  Thread -> id: 8730 -> priority: 1 
-  Thread -> id: 54a4 -> priority: 1 
+  Thread -> id: 7ca8 -> priority: 1 
+  Thread -> id: 1ff8 -> priority: 1 
+  Thread -> id: 9380 -> priority: 1 
+  Thread -> id: 7bf8 -> priority: 1 
+  Thread -> id: 7e1c -> priority: 1 
+  Thread -> id: 9a3c -> priority: 1 
 init Session_ME
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
@@ -50,11 +50,11 @@ connecting...!
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-host: dragon3.teamobi.com
+host: dragonsuper.teamobi.com
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-port: 14445
+port: 17001
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
@@ -266,60 +266,6 @@ Function __thiscall SoundChannelStopList::~SoundChannelStopList(void) may only b
  
 (Filename:  Line: 21)
 
->>---read_cmdExtraBig-sub:0
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
-
-Unloading 173 unused Assets to reduce memory usage. Loaded Objects now: 737.
-Total: 1.168200 ms (FindLiveObjects: 0.032500 ms CreateObjectMapping: 0.019200 ms MarkObjects: 1.017100 ms  DeleteObjects: 0.098600 ms)
-
-Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
-
-Unloading 6 unused Assets to reduce memory usage. Loaded Objects now: 843.
-Total: 1.055400 ms (FindLiveObjects: 0.025100 ms CreateObjectMapping: 0.016400 ms MarkObjects: 1.000700 ms  DeleteObjects: 0.012800 ms)
-
-Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
-
-Unloading 0 unused Assets to reduce memory usage. Loaded Objects now: 743.
-Total: 1.011600 ms (FindLiveObjects: 0.022000 ms CreateObjectMapping: 0.016200 ms MarkObjects: 0.971800 ms  DeleteObjects: 0.001200 ms)
-
-Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
-
-Unloading 105 unused Assets to reduce memory usage. Loaded Objects now: 808.
-Total: 1.454400 ms (FindLiveObjects: 0.026000 ms CreateObjectMapping: 0.017100 ms MarkObjects: 1.346600 ms  DeleteObjects: 0.064500 ms)
-
-Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
-
-Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 860.
-Total: 1.471900 ms (FindLiveObjects: 0.025800 ms CreateObjectMapping: 0.017600 ms MarkObjects: 1.411700 ms  DeleteObjects: 0.016400 ms)
-
-Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
-
-Unloading 69 unused Assets to reduce memory usage. Loaded Objects now: 964.
-Total: 1.618400 ms (FindLiveObjects: 0.034900 ms CreateObjectMapping: 0.024800 ms MarkObjects: 1.505300 ms  DeleteObjects: 0.052900 ms)
-
-Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
-
-Unloading 6 unused Assets to reduce memory usage. Loaded Objects now: 928.
-Total: 1.518000 ms (FindLiveObjects: 0.066700 ms CreateObjectMapping: 0.018000 ms MarkObjects: 1.420600 ms  DeleteObjects: 0.012200 ms)
-
-Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
-
-Unloading 161 unused Assets to reduce memory usage. Loaded Objects now: 924.
-Total: 1.674400 ms (FindLiveObjects: 0.037600 ms CreateObjectMapping: 0.025700 ms MarkObjects: 1.509900 ms  DeleteObjects: 0.100700 ms)
-
-Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
-
-Unloading 0 unused Assets to reduce memory usage. Loaded Objects now: 930.
-Total: 1.462700 ms (FindLiveObjects: 0.030800 ms CreateObjectMapping: 0.017000 ms MarkObjects: 1.412600 ms  DeleteObjects: 0.001800 ms)
-
-Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
-
-Unloading 22 unused Assets to reduce memory usage. Loaded Objects now: 940.
-Total: 1.570700 ms (FindLiveObjects: 0.036500 ms CreateObjectMapping: 0.018600 ms MarkObjects: 1.490500 ms  DeleteObjects: 0.024900 ms)
-
 APP QUIT
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
@@ -333,14 +279,6 @@ APP QUIT
   at System.IO.BinaryReader.ReadByte () [0x00000] in <filename unknown>:0 
   at System.IO.BinaryReader.ReadSByte () [0x00000] in <filename unknown>:0 
   at Session_ME+MessageCollector.readMessage () [0x00000] in <filename unknown>:0 
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-error read message!
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-Thread was being aborted
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
