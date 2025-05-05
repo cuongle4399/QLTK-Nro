@@ -93,8 +93,6 @@
             materialButton10 = new MaterialSkin.Controls.MaterialButton();
             materialButton6 = new MaterialSkin.Controls.MaterialButton();
             Td = new TabPage();
-            materialButton21 = new MaterialSkin.Controls.MaterialButton();
-            materialButton22 = new MaterialSkin.Controls.MaterialButton();
             materialButton23 = new MaterialSkin.Controls.MaterialButton();
             materialButton24 = new MaterialSkin.Controls.MaterialButton();
             materialButton25 = new MaterialSkin.Controls.MaterialButton();
@@ -177,6 +175,26 @@
             materialButton124 = new MaterialSkin.Controls.MaterialButton();
             materialButton125 = new MaterialSkin.Controls.MaterialButton();
             materialButton126 = new MaterialSkin.Controls.MaterialButton();
+            tabPage4 = new TabPage();
+            materialButton97 = new MaterialSkin.Controls.MaterialButton();
+            materialButton96 = new MaterialSkin.Controls.MaterialButton();
+            materialButton95 = new MaterialSkin.Controls.MaterialButton();
+            materialButton94 = new MaterialSkin.Controls.MaterialButton();
+            materialButton93 = new MaterialSkin.Controls.MaterialButton();
+            materialButton22 = new MaterialSkin.Controls.MaterialButton();
+            materialButton21 = new MaterialSkin.Controls.MaterialButton();
+            tabPage5 = new TabPage();
+            materialButton98 = new MaterialSkin.Controls.MaterialButton();
+            materialButton99 = new MaterialSkin.Controls.MaterialButton();
+            materialButton100 = new MaterialSkin.Controls.MaterialButton();
+            materialButton101 = new MaterialSkin.Controls.MaterialButton();
+            materialButton102 = new MaterialSkin.Controls.MaterialButton();
+            tabPage6 = new TabPage();
+            materialButton109 = new MaterialSkin.Controls.MaterialButton();
+            materialButton110 = new MaterialSkin.Controls.MaterialButton();
+            materialButton111 = new MaterialSkin.Controls.MaterialButton();
+            materialButton112 = new MaterialSkin.Controls.MaterialButton();
+            materialButton127 = new MaterialSkin.Controls.MaterialButton();
             Home = new TabPage();
             materialButton20 = new MaterialSkin.Controls.MaterialButton();
             materialButton16 = new MaterialSkin.Controls.MaterialButton();
@@ -254,6 +272,9 @@
             TL.SuspendLayout();
             Coler.SuspendLayout();
             MapOther.SuspendLayout();
+            tabPage4.SuspendLayout();
+            tabPage5.SuspendLayout();
+            tabPage6.SuspendLayout();
             Home.SuspendLayout();
             tabPage1.SuspendLayout();
             gbMap.SuspendLayout();
@@ -982,6 +1003,9 @@
             tabControl1.Controls.Add(TL);
             tabControl1.Controls.Add(Coler);
             tabControl1.Controls.Add(MapOther);
+            tabControl1.Controls.Add(tabPage4);
+            tabControl1.Controls.Add(tabPage5);
+            tabControl1.Controls.Add(tabPage6);
             tabControl1.Controls.Add(Home);
             tabControl1.Dock = DockStyle.Fill;
             tabControl1.Location = new Point(3, 3);
@@ -1393,8 +1417,6 @@
             // 
             // Td
             // 
-            Td.Controls.Add(materialButton21);
-            Td.Controls.Add(materialButton22);
             Td.Controls.Add(materialButton23);
             Td.Controls.Add(materialButton24);
             Td.Controls.Add(materialButton25);
@@ -1417,48 +1439,6 @@
             Td.Text = "td";
             Td.UseVisualStyleBackColor = true;
             // 
-            // materialButton21
-            // 
-            materialButton21.AutoSize = false;
-            materialButton21.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            materialButton21.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            materialButton21.Depth = 0;
-            materialButton21.HighEmphasis = true;
-            materialButton21.Icon = null;
-            materialButton21.Location = new Point(763, 123);
-            materialButton21.Margin = new Padding(4, 6, 4, 6);
-            materialButton21.MouseState = MaterialSkin.MouseState.HOVER;
-            materialButton21.Name = "materialButton21";
-            materialButton21.NoAccentTextColor = Color.Empty;
-            materialButton21.Size = new Size(184, 45);
-            materialButton21.TabIndex = 33;
-            materialButton21.Text = "Thần Điện";
-            materialButton21.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            materialButton21.UseAccentColor = false;
-            materialButton21.UseVisualStyleBackColor = true;
-            materialButton21.Click += materialButton21_Click;
-            // 
-            // materialButton22
-            // 
-            materialButton22.AutoSize = false;
-            materialButton22.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            materialButton22.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            materialButton22.Depth = 0;
-            materialButton22.HighEmphasis = true;
-            materialButton22.Icon = null;
-            materialButton22.Location = new Point(371, 123);
-            materialButton22.Margin = new Padding(4, 6, 4, 6);
-            materialButton22.MouseState = MaterialSkin.MouseState.HOVER;
-            materialButton22.Name = "materialButton22";
-            materialButton22.NoAccentTextColor = Color.Empty;
-            materialButton22.Size = new Size(186, 45);
-            materialButton22.TabIndex = 32;
-            materialButton22.Text = "Tháp Karin";
-            materialButton22.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            materialButton22.UseAccentColor = false;
-            materialButton22.UseVisualStyleBackColor = true;
-            materialButton22.Click += materialButton22_Click;
-            // 
             // materialButton23
             // 
             materialButton23.AutoSize = false;
@@ -1467,12 +1447,12 @@
             materialButton23.Depth = 0;
             materialButton23.HighEmphasis = true;
             materialButton23.Icon = null;
-            materialButton23.Location = new Point(7, 180);
+            materialButton23.Location = new Point(565, 123);
             materialButton23.Margin = new Padding(4, 6, 4, 6);
             materialButton23.MouseState = MaterialSkin.MouseState.HOVER;
             materialButton23.Name = "materialButton23";
             materialButton23.NoAccentTextColor = Color.Empty;
-            materialButton23.Size = new Size(174, 45);
+            materialButton23.Size = new Size(190, 45);
             materialButton23.TabIndex = 31;
             materialButton23.Text = "Trạm tàu td";
             materialButton23.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -1488,12 +1468,12 @@
             materialButton24.Depth = 0;
             materialButton24.HighEmphasis = true;
             materialButton24.Icon = null;
-            materialButton24.Location = new Point(565, 123);
+            materialButton24.Location = new Point(371, 123);
             materialButton24.Margin = new Padding(4, 6, 4, 6);
             materialButton24.MouseState = MaterialSkin.MouseState.HOVER;
             materialButton24.Name = "materialButton24";
             materialButton24.NoAccentTextColor = Color.Empty;
-            materialButton24.Size = new Size(190, 45);
+            materialButton24.Size = new Size(186, 45);
             materialButton24.TabIndex = 30;
             materialButton24.Text = "Rừng Karin";
             materialButton24.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -3187,6 +3167,410 @@
             materialButton126.UseVisualStyleBackColor = true;
             materialButton126.Click += materialButton126_Click;
             // 
+            // tabPage4
+            // 
+            tabPage4.Controls.Add(materialButton97);
+            tabPage4.Controls.Add(materialButton96);
+            tabPage4.Controls.Add(materialButton95);
+            tabPage4.Controls.Add(materialButton94);
+            tabPage4.Controls.Add(materialButton93);
+            tabPage4.Controls.Add(materialButton22);
+            tabPage4.Controls.Add(materialButton21);
+            tabPage4.Location = new Point(4, 29);
+            tabPage4.Name = "tabPage4";
+            tabPage4.Padding = new Padding(3);
+            tabPage4.Size = new Size(954, 401);
+            tabPage4.TabIndex = 8;
+            tabPage4.Text = "Tháp leo";
+            tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // materialButton97
+            // 
+            materialButton97.AutoSize = false;
+            materialButton97.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            materialButton97.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            materialButton97.Depth = 0;
+            materialButton97.HighEmphasis = true;
+            materialButton97.Icon = null;
+            materialButton97.Location = new Point(19, 89);
+            materialButton97.Margin = new Padding(4, 6, 4, 6);
+            materialButton97.MouseState = MaterialSkin.MouseState.HOVER;
+            materialButton97.Name = "materialButton97";
+            materialButton97.NoAccentTextColor = Color.Empty;
+            materialButton97.Size = new Size(292, 50);
+            materialButton97.TabIndex = 6;
+            materialButton97.Text = "Thánh địa Kaio";
+            materialButton97.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            materialButton97.UseAccentColor = false;
+            materialButton97.UseVisualStyleBackColor = true;
+            materialButton97.Click += materialButton97_Click;
+            // 
+            // materialButton96
+            // 
+            materialButton96.AutoSize = false;
+            materialButton96.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            materialButton96.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            materialButton96.Depth = 0;
+            materialButton96.HighEmphasis = true;
+            materialButton96.Icon = null;
+            materialButton96.Location = new Point(19, 165);
+            materialButton96.Margin = new Padding(4, 6, 4, 6);
+            materialButton96.MouseState = MaterialSkin.MouseState.HOVER;
+            materialButton96.Name = "materialButton96";
+            materialButton96.NoAccentTextColor = Color.Empty;
+            materialButton96.Size = new Size(292, 50);
+            materialButton96.TabIndex = 5;
+            materialButton96.Text = "hành tinh ngục tù 2";
+            materialButton96.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            materialButton96.UseAccentColor = false;
+            materialButton96.UseVisualStyleBackColor = true;
+            materialButton96.Click += materialButton96_Click;
+            // 
+            // materialButton95
+            // 
+            materialButton95.AutoSize = false;
+            materialButton95.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            materialButton95.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            materialButton95.Depth = 0;
+            materialButton95.HighEmphasis = true;
+            materialButton95.Icon = null;
+            materialButton95.Location = new Point(659, 89);
+            materialButton95.Margin = new Padding(4, 6, 4, 6);
+            materialButton95.MouseState = MaterialSkin.MouseState.HOVER;
+            materialButton95.Name = "materialButton95";
+            materialButton95.NoAccentTextColor = Color.Empty;
+            materialButton95.Size = new Size(274, 50);
+            materialButton95.TabIndex = 4;
+            materialButton95.Text = "hành tinh ngục tù";
+            materialButton95.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            materialButton95.UseAccentColor = false;
+            materialButton95.UseVisualStyleBackColor = true;
+            materialButton95.Click += materialButton95_Click;
+            // 
+            // materialButton94
+            // 
+            materialButton94.AutoSize = false;
+            materialButton94.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            materialButton94.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            materialButton94.Depth = 0;
+            materialButton94.HighEmphasis = true;
+            materialButton94.Icon = null;
+            materialButton94.Location = new Point(348, 89);
+            materialButton94.Margin = new Padding(4, 6, 4, 6);
+            materialButton94.MouseState = MaterialSkin.MouseState.HOVER;
+            materialButton94.Name = "materialButton94";
+            materialButton94.NoAccentTextColor = Color.Empty;
+            materialButton94.Size = new Size(279, 50);
+            materialButton94.TabIndex = 3;
+            materialButton94.Text = "hành tinh bill";
+            materialButton94.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            materialButton94.UseAccentColor = false;
+            materialButton94.UseVisualStyleBackColor = true;
+            materialButton94.Click += materialButton94_Click;
+            // 
+            // materialButton93
+            // 
+            materialButton93.AutoSize = false;
+            materialButton93.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            materialButton93.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            materialButton93.Depth = 0;
+            materialButton93.HighEmphasis = true;
+            materialButton93.Icon = null;
+            materialButton93.Location = new Point(659, 9);
+            materialButton93.Margin = new Padding(4, 6, 4, 6);
+            materialButton93.MouseState = MaterialSkin.MouseState.HOVER;
+            materialButton93.Name = "materialButton93";
+            materialButton93.NoAccentTextColor = Color.Empty;
+            materialButton93.Size = new Size(274, 50);
+            materialButton93.TabIndex = 2;
+            materialButton93.Text = "hành tinh Kaio";
+            materialButton93.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            materialButton93.UseAccentColor = false;
+            materialButton93.UseVisualStyleBackColor = true;
+            materialButton93.Click += materialButton93_Click;
+            // 
+            // materialButton22
+            // 
+            materialButton22.AutoSize = false;
+            materialButton22.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            materialButton22.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            materialButton22.Depth = 0;
+            materialButton22.HighEmphasis = true;
+            materialButton22.Icon = null;
+            materialButton22.Location = new Point(348, 9);
+            materialButton22.Margin = new Padding(4, 6, 4, 6);
+            materialButton22.MouseState = MaterialSkin.MouseState.HOVER;
+            materialButton22.Name = "materialButton22";
+            materialButton22.NoAccentTextColor = Color.Empty;
+            materialButton22.Size = new Size(279, 50);
+            materialButton22.TabIndex = 1;
+            materialButton22.Text = "Thần điện";
+            materialButton22.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            materialButton22.UseAccentColor = false;
+            materialButton22.UseVisualStyleBackColor = true;
+            materialButton22.Click += materialButton22_Click_1;
+            // 
+            // materialButton21
+            // 
+            materialButton21.AutoSize = false;
+            materialButton21.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            materialButton21.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            materialButton21.Depth = 0;
+            materialButton21.HighEmphasis = true;
+            materialButton21.Icon = null;
+            materialButton21.Location = new Point(19, 9);
+            materialButton21.Margin = new Padding(4, 6, 4, 6);
+            materialButton21.MouseState = MaterialSkin.MouseState.HOVER;
+            materialButton21.Name = "materialButton21";
+            materialButton21.NoAccentTextColor = Color.Empty;
+            materialButton21.Size = new Size(292, 50);
+            materialButton21.TabIndex = 0;
+            materialButton21.Text = "Tháp Karin";
+            materialButton21.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            materialButton21.UseAccentColor = false;
+            materialButton21.UseVisualStyleBackColor = true;
+            materialButton21.Click += materialButton21_Click_2;
+            // 
+            // tabPage5
+            // 
+            tabPage5.Controls.Add(materialButton98);
+            tabPage5.Controls.Add(materialButton99);
+            tabPage5.Controls.Add(materialButton100);
+            tabPage5.Controls.Add(materialButton101);
+            tabPage5.Controls.Add(materialButton102);
+            tabPage5.Location = new Point(4, 29);
+            tabPage5.Name = "tabPage5";
+            tabPage5.Padding = new Padding(3);
+            tabPage5.Size = new Size(954, 401);
+            tabPage5.TabIndex = 9;
+            tabPage5.Text = "Khu vực bang";
+            tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // materialButton98
+            // 
+            materialButton98.AutoSize = false;
+            materialButton98.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            materialButton98.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            materialButton98.Depth = 0;
+            materialButton98.HighEmphasis = true;
+            materialButton98.Icon = null;
+            materialButton98.Location = new Point(326, 97);
+            materialButton98.Margin = new Padding(4, 6, 4, 6);
+            materialButton98.MouseState = MaterialSkin.MouseState.HOVER;
+            materialButton98.Name = "materialButton98";
+            materialButton98.NoAccentTextColor = Color.Empty;
+            materialButton98.Size = new Size(268, 50);
+            materialButton98.TabIndex = 10;
+            materialButton98.Text = "nam thánh địa";
+            materialButton98.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            materialButton98.UseAccentColor = false;
+            materialButton98.UseVisualStyleBackColor = true;
+            materialButton98.Click += materialButton98_Click;
+            // 
+            // materialButton99
+            // 
+            materialButton99.AutoSize = false;
+            materialButton99.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            materialButton99.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            materialButton99.Depth = 0;
+            materialButton99.HighEmphasis = true;
+            materialButton99.Icon = null;
+            materialButton99.Location = new Point(18, 97);
+            materialButton99.Margin = new Padding(4, 6, 4, 6);
+            materialButton99.MouseState = MaterialSkin.MouseState.HOVER;
+            materialButton99.Name = "materialButton99";
+            materialButton99.NoAccentTextColor = Color.Empty;
+            materialButton99.Size = new Size(275, 50);
+            materialButton99.TabIndex = 9;
+            materialButton99.Text = "Bắc thánh địa";
+            materialButton99.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            materialButton99.UseAccentColor = false;
+            materialButton99.UseVisualStyleBackColor = true;
+            materialButton99.Click += materialButton99_Click;
+            // 
+            // materialButton100
+            // 
+            materialButton100.AutoSize = false;
+            materialButton100.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            materialButton100.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            materialButton100.Depth = 0;
+            materialButton100.HighEmphasis = true;
+            materialButton100.Icon = null;
+            materialButton100.Location = new Point(634, 19);
+            materialButton100.Margin = new Padding(4, 6, 4, 6);
+            materialButton100.MouseState = MaterialSkin.MouseState.HOVER;
+            materialButton100.Name = "materialButton100";
+            materialButton100.NoAccentTextColor = Color.Empty;
+            materialButton100.Size = new Size(298, 50);
+            materialButton100.TabIndex = 8;
+            materialButton100.Text = "Đông thánh địa";
+            materialButton100.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            materialButton100.UseAccentColor = false;
+            materialButton100.UseVisualStyleBackColor = true;
+            materialButton100.Click += materialButton100_Click;
+            // 
+            // materialButton101
+            // 
+            materialButton101.AutoSize = false;
+            materialButton101.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            materialButton101.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            materialButton101.Depth = 0;
+            materialButton101.HighEmphasis = true;
+            materialButton101.Icon = null;
+            materialButton101.Location = new Point(326, 19);
+            materialButton101.Margin = new Padding(4, 6, 4, 6);
+            materialButton101.MouseState = MaterialSkin.MouseState.HOVER;
+            materialButton101.Name = "materialButton101";
+            materialButton101.NoAccentTextColor = Color.Empty;
+            materialButton101.Size = new Size(268, 50);
+            materialButton101.TabIndex = 7;
+            materialButton101.Text = "Tây thánh địa";
+            materialButton101.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            materialButton101.UseAccentColor = false;
+            materialButton101.UseVisualStyleBackColor = true;
+            materialButton101.Click += materialButton101_Click;
+            // 
+            // materialButton102
+            // 
+            materialButton102.AutoSize = false;
+            materialButton102.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            materialButton102.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            materialButton102.Depth = 0;
+            materialButton102.HighEmphasis = true;
+            materialButton102.Icon = null;
+            materialButton102.Location = new Point(18, 19);
+            materialButton102.Margin = new Padding(4, 6, 4, 6);
+            materialButton102.MouseState = MaterialSkin.MouseState.HOVER;
+            materialButton102.Name = "materialButton102";
+            materialButton102.NoAccentTextColor = Color.Empty;
+            materialButton102.Size = new Size(275, 50);
+            materialButton102.TabIndex = 6;
+            materialButton102.Text = "Lãnh địa ban hội";
+            materialButton102.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            materialButton102.UseAccentColor = false;
+            materialButton102.UseVisualStyleBackColor = true;
+            materialButton102.Click += materialButton102_Click_1;
+            // 
+            // tabPage6
+            // 
+            tabPage6.Controls.Add(materialButton109);
+            tabPage6.Controls.Add(materialButton110);
+            tabPage6.Controls.Add(materialButton111);
+            tabPage6.Controls.Add(materialButton112);
+            tabPage6.Controls.Add(materialButton127);
+            tabPage6.Location = new Point(4, 29);
+            tabPage6.Name = "tabPage6";
+            tabPage6.Padding = new Padding(3);
+            tabPage6.Size = new Size(954, 401);
+            tabPage6.TabIndex = 10;
+            tabPage6.Text = "Khi gas";
+            tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // materialButton109
+            // 
+            materialButton109.AutoSize = false;
+            materialButton109.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            materialButton109.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            materialButton109.Depth = 0;
+            materialButton109.HighEmphasis = true;
+            materialButton109.Icon = null;
+            materialButton109.Location = new Point(322, 99);
+            materialButton109.Margin = new Padding(4, 6, 4, 6);
+            materialButton109.MouseState = MaterialSkin.MouseState.HOVER;
+            materialButton109.Name = "materialButton109";
+            materialButton109.NoAccentTextColor = Color.Empty;
+            materialButton109.Size = new Size(268, 50);
+            materialButton109.TabIndex = 15;
+            materialButton109.Text = "Lâu đài lychee";
+            materialButton109.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            materialButton109.UseAccentColor = false;
+            materialButton109.UseVisualStyleBackColor = true;
+            materialButton109.Click += materialButton109_Click;
+            // 
+            // materialButton110
+            // 
+            materialButton110.AutoSize = false;
+            materialButton110.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            materialButton110.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            materialButton110.Depth = 0;
+            materialButton110.HighEmphasis = true;
+            materialButton110.Icon = null;
+            materialButton110.Location = new Point(14, 99);
+            materialButton110.Margin = new Padding(4, 6, 4, 6);
+            materialButton110.MouseState = MaterialSkin.MouseState.HOVER;
+            materialButton110.Name = "materialButton110";
+            materialButton110.NoAccentTextColor = Color.Empty;
+            materialButton110.Size = new Size(275, 50);
+            materialButton110.TabIndex = 14;
+            materialButton110.Text = "hành tinh bóng tối";
+            materialButton110.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            materialButton110.UseAccentColor = false;
+            materialButton110.UseVisualStyleBackColor = true;
+            materialButton110.Click += materialButton110_Click;
+            // 
+            // materialButton111
+            // 
+            materialButton111.AutoSize = false;
+            materialButton111.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            materialButton111.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            materialButton111.Depth = 0;
+            materialButton111.HighEmphasis = true;
+            materialButton111.Icon = null;
+            materialButton111.Location = new Point(630, 21);
+            materialButton111.Margin = new Padding(4, 6, 4, 6);
+            materialButton111.MouseState = MaterialSkin.MouseState.HOVER;
+            materialButton111.Name = "materialButton111";
+            materialButton111.NoAccentTextColor = Color.Empty;
+            materialButton111.Size = new Size(298, 50);
+            materialButton111.TabIndex = 13;
+            materialButton111.Text = "Vùng đất băng giá";
+            materialButton111.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            materialButton111.UseAccentColor = false;
+            materialButton111.UseVisualStyleBackColor = true;
+            materialButton111.Click += materialButton111_Click;
+            // 
+            // materialButton112
+            // 
+            materialButton112.AutoSize = false;
+            materialButton112.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            materialButton112.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            materialButton112.Depth = 0;
+            materialButton112.HighEmphasis = true;
+            materialButton112.Icon = null;
+            materialButton112.Location = new Point(322, 21);
+            materialButton112.Margin = new Padding(4, 6, 4, 6);
+            materialButton112.MouseState = MaterialSkin.MouseState.HOVER;
+            materialButton112.Name = "materialButton112";
+            materialButton112.NoAccentTextColor = Color.Empty;
+            materialButton112.Size = new Size(268, 50);
+            materialButton112.TabIndex = 12;
+            materialButton112.Text = "sa mạc";
+            materialButton112.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            materialButton112.UseAccentColor = false;
+            materialButton112.UseVisualStyleBackColor = true;
+            materialButton112.Click += materialButton112_Click;
+            // 
+            // materialButton127
+            // 
+            materialButton127.AutoSize = false;
+            materialButton127.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            materialButton127.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            materialButton127.Depth = 0;
+            materialButton127.HighEmphasis = true;
+            materialButton127.Icon = null;
+            materialButton127.Location = new Point(14, 21);
+            materialButton127.Margin = new Padding(4, 6, 4, 6);
+            materialButton127.MouseState = MaterialSkin.MouseState.HOVER;
+            materialButton127.Name = "materialButton127";
+            materialButton127.NoAccentTextColor = Color.Empty;
+            materialButton127.Size = new Size(275, 50);
+            materialButton127.TabIndex = 11;
+            materialButton127.Text = "Thành phố santa";
+            materialButton127.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            materialButton127.UseAccentColor = false;
+            materialButton127.UseVisualStyleBackColor = true;
+            materialButton127.Click += materialButton127_Click;
+            // 
             // Home
             // 
             Home.Controls.Add(materialButton20);
@@ -4110,6 +4494,9 @@
             TL.ResumeLayout(false);
             Coler.ResumeLayout(false);
             MapOther.ResumeLayout(false);
+            tabPage4.ResumeLayout(false);
+            tabPage5.ResumeLayout(false);
+            tabPage6.ResumeLayout(false);
             Home.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             tabPage1.PerformLayout();
@@ -4199,8 +4586,6 @@
         private MaterialSkin.Controls.MaterialButton materialButton6;
         private MaterialSkin.Controls.MaterialButton materialButton3;
         private MaterialSkin.Controls.MaterialButton materialButton2;
-        private MaterialSkin.Controls.MaterialButton materialButton21;
-        private MaterialSkin.Controls.MaterialButton materialButton22;
         private MaterialSkin.Controls.MaterialButton materialButton23;
         private MaterialSkin.Controls.MaterialButton materialButton24;
         private MaterialSkin.Controls.MaterialButton materialButton25;
@@ -4354,5 +4739,25 @@
         private Button button10;
         private MaterialSkin.Controls.MaterialButton materialButton92;
         private MaterialSkin.Controls.MaterialTextBox2 pass;
+        private TabPage tabPage4;
+        private TabPage tabPage5;
+        private MaterialSkin.Controls.MaterialButton materialButton21;
+        private MaterialSkin.Controls.MaterialButton materialButton96;
+        private MaterialSkin.Controls.MaterialButton materialButton95;
+        private MaterialSkin.Controls.MaterialButton materialButton94;
+        private MaterialSkin.Controls.MaterialButton materialButton93;
+        private MaterialSkin.Controls.MaterialButton materialButton22;
+        private MaterialSkin.Controls.MaterialButton materialButton98;
+        private MaterialSkin.Controls.MaterialButton materialButton99;
+        private MaterialSkin.Controls.MaterialButton materialButton100;
+        private MaterialSkin.Controls.MaterialButton materialButton101;
+        private MaterialSkin.Controls.MaterialButton materialButton102;
+        private MaterialSkin.Controls.MaterialButton materialButton97;
+        private TabPage tabPage6;
+        private MaterialSkin.Controls.MaterialButton materialButton109;
+        private MaterialSkin.Controls.MaterialButton materialButton110;
+        private MaterialSkin.Controls.MaterialButton materialButton111;
+        private MaterialSkin.Controls.MaterialButton materialButton112;
+        private MaterialSkin.Controls.MaterialButton materialButton127;
     }
 }

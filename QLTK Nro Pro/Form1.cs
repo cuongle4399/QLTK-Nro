@@ -416,7 +416,7 @@ namespace QLTK_Nro_Pro
         {
             if (check.Checked)
             {
-                
+
                 pass.UseSystemPasswordChar = false;
                 pass.Focus();
             }
@@ -1490,5 +1490,94 @@ namespace QLTK_Nro_Pro
             }
         }
 
+        private void materialButton21_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void materialButton102_Click_1(object sender, EventArgs e)
+        {
+            nextMap(153);
+        }
+
+        private void materialButton21_Click_2(object sender, EventArgs e)
+        {
+            nextMap(46);
+        }
+
+        private void materialButton22_Click_1(object sender, EventArgs e)
+        {
+            nextMap(45);
+        }
+
+        private void materialButton93_Click(object sender, EventArgs e)
+        {
+            nextMap(48);
+        }
+
+        private void materialButton94_Click(object sender, EventArgs e)
+        {
+            nextMap(154);
+        }
+
+        private void materialButton95_Click(object sender, EventArgs e)
+        {
+            nextMap(155);
+        }
+
+        private void materialButton97_Click(object sender, EventArgs e)
+        {
+            nextMap(50);
+        }
+
+        private void materialButton96_Click(object sender, EventArgs e)
+        {
+            nextMap(166);
+        }
+
+        private void materialButton101_Click(object sender, EventArgs e)
+        {
+            nextMap(156);
+        }
+
+        private void materialButton100_Click(object sender, EventArgs e)
+        {
+            nextMap(157);
+        }
+
+        private void materialButton99_Click(object sender, EventArgs e)
+        {
+            nextMap(158);
+        }
+
+        private void materialButton98_Click(object sender, EventArgs e)
+        {
+            nextMap(159);
+        }
+
+        private void materialButton127_Click(object sender, EventArgs e)
+        {
+            nextMap(149);
+        }
+
+        private void materialButton112_Click(object sender, EventArgs e)
+        {
+            nextMap(147);
+        }
+
+        private void materialButton111_Click(object sender, EventArgs e)
+        {
+            nextMap(152);
+        }
+
+        private void materialButton110_Click(object sender, EventArgs e)
+        {
+            nextMap(151);
+        }
+
+        private void materialButton109_Click(object sender, EventArgs e)
+        {
+            nextMap(148);
+        }
     }
 }
