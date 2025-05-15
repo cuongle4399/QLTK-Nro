@@ -1,0 +1,21 @@
+C:\Users\Cuong Le\Desktop\C# winform\QLTK Nro Pro\QLTK Nro Pro\bin\Release\net8.0-windows\QLTK Nro Pro.exe
+C:\Users\Cuong Le\Desktop\C# winform\QLTK Nro Pro\QLTK Nro Pro\bin\Release\net8.0-windows\QLTK Nro Pro.deps.json
+C:\Users\Cuong Le\Desktop\C# winform\QLTK Nro Pro\QLTK Nro Pro\bin\Release\net8.0-windows\QLTK Nro Pro.runtimeconfig.json
+C:\Users\Cuong Le\Desktop\C# winform\QLTK Nro Pro\QLTK Nro Pro\bin\Release\net8.0-windows\QLTK Nro Pro.dll
+C:\Users\Cuong Le\Desktop\C# winform\QLTK Nro Pro\QLTK Nro Pro\bin\Release\net8.0-windows\QLTK Nro Pro.pdb
+C:\Users\Cuong Le\Desktop\C# winform\QLTK Nro Pro\QLTK Nro Pro\bin\Release\net8.0-windows\MaterialSkin.dll
+C:\Users\Cuong Le\Desktop\C# winform\QLTK Nro Pro\QLTK Nro Pro\obj\Release\net8.0-windows\QLTK Nro Pro.csproj.AssemblyReference.cache
+C:\Users\Cuong Le\Desktop\C# winform\QLTK Nro Pro\QLTK Nro Pro\obj\Release\net8.0-windows\QLTK_Nro_Pro.Form1.resources
+C:\Users\Cuong Le\Desktop\C# winform\QLTK Nro Pro\QLTK Nro Pro\obj\Release\net8.0-windows\QLTK_Nro_Pro.Properties.Resources.resources
+C:\Users\Cuong Le\Desktop\C# winform\QLTK Nro Pro\QLTK Nro Pro\obj\Release\net8.0-windows\QLTK Nro Pro.csproj.GenerateResource.cache
+C:\Users\Cuong Le\Desktop\C# winform\QLTK Nro Pro\QLTK Nro Pro\obj\Release\net8.0-windows\QLTK Nro Pro.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Cuong Le\Desktop\C# winform\QLTK Nro Pro\QLTK Nro Pro\obj\Release\net8.0-windows\QLTK Nro Pro.AssemblyInfoInputs.cache
+C:\Users\Cuong Le\Desktop\C# winform\QLTK Nro Pro\QLTK Nro Pro\obj\Release\net8.0-windows\QLTK Nro Pro.AssemblyInfo.cs
+C:\Users\Cuong Le\Desktop\C# winform\QLTK Nro Pro\QLTK Nro Pro\obj\Release\net8.0-windows\QLTK Nro Pro.csproj.CoreCompileInputs.cache
+C:\Users\Cuong Le\Desktop\C# winform\QLTK Nro Pro\QLTK Nro Pro\obj\Release\net8.0-windows\QLTK Nro Pro.sourcelink.json
+C:\Users\Cuong Le\Desktop\C# winform\QLTK Nro Pro\QLTK Nro Pro\obj\Release\net8.0-windows\QLTK Nro.32249589.Up2Date
+C:\Users\Cuong Le\Desktop\C# winform\QLTK Nro Pro\QLTK Nro Pro\obj\Release\net8.0-windows\QLTK Nro Pro.dll
+C:\Users\Cuong Le\Desktop\C# winform\QLTK Nro Pro\QLTK Nro Pro\obj\Release\net8.0-windows\refint\QLTK Nro Pro.dll
+C:\Users\Cuong Le\Desktop\C# winform\QLTK Nro Pro\QLTK Nro Pro\obj\Release\net8.0-windows\QLTK Nro Pro.pdb
+C:\Users\Cuong Le\Desktop\C# winform\QLTK Nro Pro\QLTK Nro Pro\obj\Release\net8.0-windows\QLTK Nro Pro.genruntimeconfig.cache
+C:\Users\Cuong Le\Desktop\C# winform\QLTK Nro Pro\QLTK Nro Pro\obj\Release\net8.0-windows\ref\QLTK Nro Pro.dll

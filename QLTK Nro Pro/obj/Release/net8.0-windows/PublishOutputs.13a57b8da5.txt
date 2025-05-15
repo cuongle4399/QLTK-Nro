@@ -1,0 +1,6 @@
+C:\Users\Cuong Le\Desktop\C# winform\QLTK Nro Pro\QLTK Nro Pro\bin\Release\net8.0-windows\publish\QLTK Nro Pro.exe
+C:\Users\Cuong Le\Desktop\C# winform\QLTK Nro Pro\QLTK Nro Pro\bin\Release\net8.0-windows\publish\QLTK Nro Pro.dll
+C:\Users\Cuong Le\Desktop\C# winform\QLTK Nro Pro\QLTK Nro Pro\bin\Release\net8.0-windows\publish\QLTK Nro Pro.deps.json
+C:\Users\Cuong Le\Desktop\C# winform\QLTK Nro Pro\QLTK Nro Pro\bin\Release\net8.0-windows\publish\QLTK Nro Pro.runtimeconfig.json
+C:\Users\Cuong Le\Desktop\C# winform\QLTK Nro Pro\QLTK Nro Pro\bin\Release\net8.0-windows\publish\QLTK Nro Pro.pdb
+C:\Users\Cuong Le\Desktop\C# winform\QLTK Nro Pro\QLTK Nro Pro\bin\Release\net8.0-windows\publish\MaterialSkin.dll
