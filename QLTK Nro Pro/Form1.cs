@@ -231,7 +231,7 @@ namespace QLTK_Nro_Pro
             try
             {
                 string versionInfo = await httpClient.GetStringAsync(info.CheckOfUpdate);
-                if (!versionInfo.Contains("1.9"))
+                if (!versionInfo.Contains("2.0"))
                 {
                     if (MessageBox.Show("Đã có phiên bản mới. Bạn có muốn cập nhật không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {

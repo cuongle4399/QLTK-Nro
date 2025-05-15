@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Gh7CXz0x8SE=",
+  "dgSpecHash": "Ljs9FGmQR30=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK Nro Pro\\QLTK Nro Pro\\QLTK Nro Pro.csproj",
+  "projectFilePath": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\QLTK Nro Pro\\QLTK Nro Pro.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Cuong Le\\.nuget\\packages\\materialskin.2\\2.3.1\\materialskin.2.2.3.1.nupkg.sha512"
   ],

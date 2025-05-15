@@ -41,19 +41,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Cuong Le\\.nuget\\packages\\": {}
+    "C:\\Users\\Cuong Le\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK nro Pro\\QLTK Nro Pro\\QLTK Nro Pro.csproj",
+      "projectUniqueName": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\QLTK Nro Pro\\QLTK Nro Pro.csproj",
       "projectName": "QLTK Nro Pro",
-      "projectPath": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK nro Pro\\QLTK Nro Pro\\QLTK Nro Pro.csproj",
+      "projectPath": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\QLTK Nro Pro\\QLTK Nro Pro.csproj",
       "packagesPath": "C:\\Users\\Cuong Le\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK nro Pro\\QLTK Nro Pro\\obj\\",
+      "outputPath": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\QLTK Nro Pro\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
         "C:\\Users\\Cuong Le\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -78,7 +83,8 @@
         "enableAudit": "true",
         "auditLevel": "low",
         "auditMode": "direct"
-      }
+      },
+      "SdkAnalysisLevel": "9.0.300"
     },
     "frameworks": {
       "net8.0-windows7.0": {
@@ -108,7 +114,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
