@@ -47,7 +47,7 @@ namespace QLTK_Nro_Pro
             }
             catch
             {
-                // client rớt hoặc stream lỗi
+                
             }
             finally
             {

@@ -1,11 +1,13 @@
-﻿using System.Diagnostics;
+﻿using MaterialSkin;
+using MaterialSkin.Controls;
+using System.Diagnostics;
+using System.IO;
 using System.Net;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Text;
-using System.IO;
-using MaterialSkin;
-using MaterialSkin.Controls;
+using System.Windows.Forms;
+using static QLTK_Nro_Pro.ProxyChecker;
 
 namespace QLTK_Nro_Pro
 {
@@ -22,6 +24,7 @@ namespace QLTK_Nro_Pro
         private int delaySocket = 150;
         private void Form1_Load(object sender, EventArgs e)
         {
+            txtProxy.UseSystemPasswordChar = true;
             pass.UseSystemPasswordChar = true;
             gbSize.Enabled = false;
             gbChat.Enabled = false;
@@ -91,12 +94,29 @@ namespace QLTK_Nro_Pro
                    b[2],
                     b[3],
                     b[4],
+                    b[5],
+                    b[6],
                 });
                     indexSTT++;
 
                 }
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    row.Height = 40;
+                }
             }
-            catch { }
+            catch
+            {
+                if (MessageBox.Show("Dữ liệu của phần mềm bị xung đột.Bạn có muốn reset dữ liệu không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    File.Delete(info.string_1);
+                }
+                else
+                {
+                    Application.ExitThread();
+                    Environment.Exit(0);
+                }
+            }
         }
         public static string smethod_2(string str, string key)
         {
@@ -121,7 +141,9 @@ namespace QLTK_Nro_Pro
                             gridView.Rows[i].Cells[1].Value.ToString() + "|" +
                             gridView.Rows[i].Cells[2].Value.ToString() + "|" +
                             gridView.Rows[i].Cells[3].Value.ToString() + "|" +
-                            gridView.Rows[i].Cells[4].Value.ToString();
+                            gridView.Rows[i].Cells[4].Value.ToString() + "|" +
+                            gridView.Rows[i].Cells[5].Value.ToString() + "|" +
+                            gridView.Rows[i].Cells[6].Value.ToString();
                     if (i != gridView.Rows.Count - 1)
                     {
                         Text += '\n';
@@ -231,7 +253,7 @@ namespace QLTK_Nro_Pro
             try
             {
                 string versionInfo = await httpClient.GetStringAsync(info.CheckOfUpdate);
-                if (!versionInfo.Contains("2.0"))
+                if (!versionInfo.Contains("2.1"))
                 {
                     if (MessageBox.Show("Đã có phiên bản mới. Bạn có muốn cập nhật không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
@@ -429,10 +451,10 @@ namespace QLTK_Nro_Pro
             if (!info.bool_0)
             {
                 info.bool_0 = true;
-                Process.Start(arguments: File.ReadAllLines(info.string_1)[int_0 - 1], fileName: PathGame);
+                Process.Start(fileName: PathGame, arguments: $"\"{File.ReadAllLines(info.string_1)[int_0 - 1]}\"");
+
                 Thread.Sleep(700);
                 IntPtr hWnd = FindWindow(null, nameWindowGame);
-
 
                 if (hWnd != IntPtr.Zero)
                 {
@@ -444,7 +466,8 @@ namespace QLTK_Nro_Pro
         }
         private void btnSort_Click(object sender, EventArgs e)
         {
-            try {
+            try
+            {
                 if (int.Parse(txtX.Text) >= 450 && int.Parse(txtY.Text) >= 500)
                 {
                     SortWindows2();
@@ -454,11 +477,12 @@ namespace QLTK_Nro_Pro
                     SortWindows();
                 }
             }
-            catch {
+            catch
+            {
                 SortWindows2();
             }
-           
-            
+
+
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -469,6 +493,11 @@ namespace QLTK_Nro_Pro
                 txt_user.Focus();
                 return;
             }
+            string proxyType = "3";
+            if (rdoHTTP.Checked)
+                proxyType = "1";
+            else if (rdoSOCK5S.Checked)
+                proxyType = "2";
             dataGridView1.Rows.Add(new object[]
             {
                 indexSTT,
@@ -476,8 +505,11 @@ namespace QLTK_Nro_Pro
                     server(txt_server.Text),
                     smethod_1(pass.Text, "ud"),
                     txt_note.Text,
-
+                    txtProxy.Text,
+                    proxyType
                 });
+            dataGridView1.Rows[dataGridView1.RowCount - 1].Height = 40;
+
             indexSTT++;
             ghifile(dataGridView1);
             txt_user.Clear();
@@ -547,8 +579,18 @@ namespace QLTK_Nro_Pro
             dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[3].Value = smethod_1(pass.Text, "ud");
             dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[2].Value = server(txt_server.Text);
             dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[4].Value = txt_note.Text;
+            dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[5].Value = txtProxy.Text;
+            string typeProxy = "1";
+            if (rdoSOCK5S.Checked)
+            {
+                typeProxy = "2";
+            }
+            else if (rdoHTTPS.Checked)
+            {
+                typeProxy = "3";
+            }
+            dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[6].Value = typeProxy;
             ghifile(dataGridView1);
-
             MessageBox.Show("Sửa thành công!", "Thông báo", MessageBoxButtons.OK);
         }
 
@@ -598,6 +640,16 @@ namespace QLTK_Nro_Pro
             txt_server.Text = Reserver(int.Parse(dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString()));
             pass.Text = smethod_2(dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString(), "ud");
             txt_note.Text = dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString();
+            txtProxy.Text = dataGridView1.Rows[e.RowIndex].Cells[5].Value.ToString();
+            string value = dataGridView1.Rows[e.RowIndex].Cells[6].Value?.ToString();
+
+            if (value == "1")
+                rdoHTTP.Checked = true;
+            else if (value == "2")
+                rdoSOCK5S.Checked = true;
+            else
+                rdoHTTPS.Checked = true;
+            txt_server.Refresh();
         }
 
         private void materialButton16_Click(object sender, EventArgs e)
@@ -1152,19 +1204,6 @@ namespace QLTK_Nro_Pro
             }
         }
 
-        private void materialSwitch1_CheckedChanged(object sender, EventArgs e)
-        {
-            bool switch1 = switchChat.Checked;
-            if (switch1)
-            {
-                gbChat.Enabled = true;
-            }
-            else
-            {
-                gbChat.Enabled = false;
-            }
-        }
-
         private void materialButton41_Click(object sender, EventArgs e)
         {
             Task.Run(() =>
@@ -1209,6 +1248,7 @@ namespace QLTK_Nro_Pro
                 tabThapCam.Enabled = true;
                 gbNpc.Enabled = true;
                 gbMap.Enabled = true;
+                gbChat.Enabled = true;
             }
             else
             {
@@ -1219,6 +1259,7 @@ namespace QLTK_Nro_Pro
                 tabThapCam.Enabled = false;
                 gbNpc.Enabled = false;
                 gbMap.Enabled = false;
+                gbChat.Enabled = false;
             }
         }
         private void materialSwitch1_CheckedChanged_1(object sender, EventArgs e)
@@ -1651,6 +1692,180 @@ namespace QLTK_Nro_Pro
         private void materialButton109_Click(object sender, EventArgs e)
         {
             nextMap(148);
+        }
+
+        private void txtidBegin_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtY_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void gbSkill_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void QLTK_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+        private void dataGridView1_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            int buttonColumnIndex = 5;
+            int proxyColumnIndex = 5;
+
+            if (e.ColumnIndex == buttonColumnIndex && e.RowIndex >= 0)
+            {
+                e.Handled = true;
+
+                var proxyValue = dataGridView1.Rows[e.RowIndex].Cells[proxyColumnIndex].Value as string;
+                var typeProxy = dataGridView1.Rows[e.RowIndex].Cells[proxyColumnIndex + 1].Value as string;
+
+                Color backColor;
+                string buttonText;
+
+                if (string.IsNullOrEmpty(proxyValue))
+                {
+                    backColor = dataGridView1.DefaultCellStyle.BackColor;
+                    buttonText = "None";
+                }
+                else if (!ProxyValidator.IsValidProxy(proxyValue, typeProxy))
+                {
+                    backColor = System.Drawing.Color.LightCoral;
+                    buttonText = "Sai";
+                }
+                else
+                {
+                    backColor = System.Drawing.Color.MediumSeaGreen;
+                    buttonText = "OK";
+                }
+
+                using (var brush = new System.Drawing.SolidBrush(backColor))
+                {
+                    e.Graphics.FillRectangle(brush, e.CellBounds);
+                }
+
+                TextRenderer.DrawText(
+                    e.Graphics,
+                    buttonText,
+                    e.CellStyle.Font,
+                    e.CellBounds,
+                    System.Drawing.Color.Black,
+                    TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter
+                );
+
+                e.Graphics.DrawRectangle(Pens.Gray, e.CellBounds.Left, e.CellBounds.Top, e.CellBounds.Width - 1, e.CellBounds.Height - 1);
+            }
+        }
+
+        private void checkProxy_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkProxy.Checked)
+            {
+
+                txtProxy.UseSystemPasswordChar = false;
+                txtProxy.Focus();
+            }
+            else
+            {
+
+                txtProxy.UseSystemPasswordChar = true;
+                txtProxy.Focus();
+            }
+        }
+
+        private async void button11_Click(object sender, EventArgs e)
+        {
+            btnCheckProxy.Enabled = false;
+
+            try
+            {
+                string proxyString = txtStringProxy.Text.Trim().Replace(" ", "");
+                string proxyType;
+
+                if (string.IsNullOrEmpty(proxyString))
+                {
+                    txtThongBaoProxy.Text = "Vui lòng nhập proxy";
+                    txtThongBaoProxy.ForeColor = Color.Red;
+                    return;
+                }
+
+                switch (cbbTypeProxy1.SelectedIndex)
+                {
+                    case 0:
+                        proxyType = "http";
+                        break;
+                    case 1:
+                        proxyType = "socks5";
+                        break;
+                    case 2:
+                        proxyType = "https";
+                        break;
+                    default:
+                        txtThongBaoProxy.Text = "Vui lòng chọn loại proxy";
+                        txtThongBaoProxy.ForeColor = Color.Red;
+                        return;
+                }
+
+                if (!ProxyValidator.IsValidProxy(txtStringProxy.Text, (cbbTypeProxy1.SelectedIndex + 1).ToString()))
+                {
+                    txtThongBaoProxy.Text = "Proxy phải có định dạng: ip:port:user:pass";
+                    txtThongBaoProxy.ForeColor = Color.Red;
+                    return;
+                }
+
+                txtThongBaoProxy.Text = "Đang kiểm tra vui lòng đợi...";
+                txtThongBaoProxy.ForeColor = Color.Blue;
+
+                bool isAlive = await ProxyChecker.CheckProxy(proxyString, proxyType);
+
+                if (isAlive)
+                {
+                    txtThongBaoProxy.Text = "Proxy Alive";
+                    txtThongBaoProxy.ForeColor = Color.Green;
+                }
+                else
+                {
+                    txtThongBaoProxy.Text = "Proxy Dead";
+                    txtThongBaoProxy.ForeColor = Color.Red;
+                }
+            }
+            catch
+            {
+                txtThongBaoProxy.Text = "Lỗi kiểm tra proxy";
+                txtThongBaoProxy.ForeColor = Color.Red;
+            }
+            finally
+            {
+                btnCheckProxy.Enabled = true;
+            }
+        }
+
+        private void txtThongBaoProxy_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox3_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button11_Click_1(object sender, EventArgs e)
+        {
+            Form2 frm = new Form2();
+            frm.StartPosition = FormStartPosition.Manual;
+            frm.Location = new Point(
+                this.Location.X + (this.Width - frm.Width) / 2,
+                this.Location.Y + (this.Height - frm.Height) / 2
+            );
+            frm.ShowDialog();
         }
     }
 }

@@ -62,3 +62,4 @@ C:\Users\Cuong Le\Desktop\C# winform\QLTK-Nro Pro\QLTK Nro Pro\obj\Debug\net8.0-
 C:\Users\Cuong Le\Desktop\C# winform\QLTK-Nro Pro\QLTK Nro Pro\obj\Debug\net8.0-windows\QLTK Nro.32249589.Up2Date
 C:\Users\Cuong Le\Desktop\C# winform\QLTK-Nro Pro\QLTK Nro Pro\obj\Debug\net8.0-windows\QLTK Nro Pro.genruntimeconfig.cache
 C:\Users\Cuong Le\Desktop\C# winform\QLTK-Nro Pro\QLTK Nro Pro\obj\Debug\net8.0-windows\ref\QLTK Nro Pro.dll
+C:\Users\Cuong Le\Desktop\C# winform\QLTK-Nro Pro\QLTK Nro Pro\obj\Debug\net8.0-windows\QLTK_Nro_Pro.Form2.resources

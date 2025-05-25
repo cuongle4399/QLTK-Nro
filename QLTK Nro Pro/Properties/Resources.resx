@@ -145,10 +145,13 @@
   <data name="10712" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\10712.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="3896" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\3896.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="2760" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\2760.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="3896" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\3896.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="iconAdd" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\iconAdd.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
