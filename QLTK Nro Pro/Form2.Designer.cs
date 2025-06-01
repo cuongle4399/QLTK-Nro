@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form2));
             button1 = new Button();
             label1 = new Label();
             label2 = new Label();
@@ -99,17 +98,17 @@
             // label4
             // 
             label4.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label4.Location = new Point(15, 149);
+            label4.Location = new Point(12, 138);
             label4.Name = "label4";
-            label4.Size = new Size(466, 122);
+            label4.Size = new Size(466, 30);
             label4.TabIndex = 6;
-            label4.Text = resources.GetString("label4.Text");
+            label4.Text = "Định dạng proxy bắt buộc phải có dạng ip:port:user:pass ";
             // 
             // Form2
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(507, 278);
+            ClientSize = new Size(507, 174);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(button3);
