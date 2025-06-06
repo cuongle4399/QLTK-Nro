@@ -1,0 +1,64 @@
+﻿# Chứa các liên kết map không thể tìm kiếm tự động hoặc một chiều
+# Siêu thị -> Hành tinh tự động được thêm trong code (không cần trong đây)
+# Tpvgt -> Cold tự động được thêm trong code (không cần trong đây)
+
+# Trái Đất - Namec
+	24 25 1 10 0
+	25 24 1 11 0
+
+# Trái Đất - Xayda
+	24 26 1 10 1
+	26 24 1 12 0
+
+# Namec - Xayda
+	25 26 1 11 1
+	26 25 1 12 1
+
+# Hành tinh -> Siêu thị
+	24 84 1 10 2
+	25 84 1 11 2
+	26 84 1 12 2
+
+# Tpvgt - Nappa
+	19 68 1 12 1
+	68 19 1 12 0
+
+# Nappa -> Yadat
+	80 131 1 60 0
+	131 80 1 60 1
+
+# Trái Đất - Tương lai
+	27 102 1 38 1
+	28 102 1 38 1
+	29 102 1 38 1
+	102 24 1 38 1
+
+# Thành phố Vegeta - Thành phố Santa
+	19 126 1 53 0
+	126 19 1 53 0
+
+# Trái Đất - Hành tinh Potaufeu
+	24 139 1 63 0
+	139 24 1 63 0
+
+# Hành tinh Potaufeu - các hành tinh còn lại
+	139 25 1 63 1
+	139 26 1 63 2
+
+# Rừng Bamboo - Tường thành 1
+	27 53 1 25 0
+
+# Thần điện - Hành tinh Kaio
+	45 48 1 19 3
+	48 45 1 20 3 0
+
+#Thánh địa Kaio - Hành tinh Kaio
+	50 48 1 44 0
+	48 50 1 20 3 1
+	
+# Trái Đất - Khí Gas
+	0 149 1 67 3 0
+
+# 
+	45 46 3 570 576
+	46 47 3 570 576
