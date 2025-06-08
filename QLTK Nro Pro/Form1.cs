@@ -1175,8 +1175,8 @@ namespace QLTK_Nro_Pro
         {
             File.WriteAllText(info.filePath, 1050.ToString() + '|' + 591.ToString() + '|' + '0');
             gbSize.Enabled = true;
-            txtX.Text = "1050";
-            txtY.Text = "591";
+            txtX.Text = "1100";
+            txtY.Text = "619";
             gbSize.Enabled = false;
             MessageBox.Show("Đã cập nhập kích thước game thành công", "Thông báo");
         }

@@ -4682,7 +4682,7 @@
             MaximizeBox = false;
             Name = "Form1";
             StartPosition = FormStartPosition.Manual;
-            Text = "QLTK nro - Cường Lê 2.1";
+            Text = "QLTK nro - Cường Lê 2.2";
             Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             gbChat.ResumeLayout(false);
