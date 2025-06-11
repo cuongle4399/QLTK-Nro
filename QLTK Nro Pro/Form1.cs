@@ -7,7 +7,6 @@ using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Text;
 using System.Windows.Forms;
-using static QLTK_Nro_Pro.ProxyChecker;
 
 namespace QLTK_Nro_Pro
 {
@@ -253,7 +252,7 @@ namespace QLTK_Nro_Pro
             try
             {
                 string versionInfo = await httpClient.GetStringAsync(info.CheckOfUpdate);
-                if (!versionInfo.Contains("2.1"))
+                if (!versionInfo.Contains("2.2"))
                 {
                     if (MessageBox.Show("Đã có phiên bản mới. Bạn có muốn cập nhật không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
@@ -1173,7 +1172,7 @@ namespace QLTK_Nro_Pro
 
         private void materialButton39_Click(object sender, EventArgs e)
         {
-            File.WriteAllText(info.filePath, 1050.ToString() + '|' + 591.ToString() + '|' + '0');
+            File.WriteAllText(info.filePath, 1100.ToString() + '|' + 619.ToString() + '|' + '0');
             gbSize.Enabled = true;
             txtX.Text = "1100";
             txtY.Text = "619";

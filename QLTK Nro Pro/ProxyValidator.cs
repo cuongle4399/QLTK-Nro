@@ -29,8 +29,8 @@ namespace QLTK_Nro_Pro
             return proxyType switch
             {
                 "1" => IsValidHttpHost(host),
-                "2" => IsValidSocks5Host(host), 
-                "3" => IsValidHttpsHost(host), 
+                "2" => IsValidSocks5Host(host),
+                "3" => IsValidHttpsHost(host),
                 _ => false
             };
         }
