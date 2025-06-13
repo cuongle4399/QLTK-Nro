@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Cuong Le")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+981faeb28bd27e338017e0f8f04dc6db4ea3d6a3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c808aa65fe2cafd230ef06a02bfe61f83acd687a")]
 [assembly: System.Reflection.AssemblyProductAttribute("QLTK Nro Pro")]
 [assembly: System.Reflection.AssemblyTitleAttribute("QLTK Nro Pro")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
