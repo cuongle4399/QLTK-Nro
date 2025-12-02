@@ -1,0 +1,14 @@
+<linker>
+  <!-- Giữ toàn bộ WinForms và vẽ UI -->
+  <assembly fullname="System.Windows.Forms" preserve="all"/>
+  <assembly fullname="System.Drawing" preserve="all"/>
+
+  <!-- Giữ thư viện MaterialSkin -->
+  <assembly fullname="MaterialSkin" preserve="all"/>
+
+  <!-- Giữ thư viện Discord RPC -->
+  <assembly fullname="DiscordRichPresence" preserve="all"/>
+
+  <!-- Giữ code chính của project -->
+  <assembly fullname="QLTK_Nro_Pro" preserve="all"/>
+</linker>
