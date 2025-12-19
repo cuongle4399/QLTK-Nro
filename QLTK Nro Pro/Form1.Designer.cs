@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             materialDrawer1 = new MaterialSkin.Controls.MaterialDrawer();
             PageOther = new TabPage();
             groupBox3 = new GroupBox();
@@ -40,6 +40,11 @@
             btnCheckProxy = new Button();
             cbbTypeProxy1 = new ComboBox();
             groupBox4 = new GroupBox();
+            label6 = new Label();
+            label5 = new Label();
+            cbbServerAPI = new ComboBox();
+            txtServerAPI = new TextBox();
+            label4 = new Label();
             materialButton130 = new MaterialSkin.Controls.MaterialButton();
             materialButton129 = new MaterialSkin.Controls.MaterialButton();
             pBAPI = new PictureBox();
@@ -174,9 +179,6 @@
             materialButton107 = new MaterialSkin.Controls.MaterialButton();
             materialButton108 = new MaterialSkin.Controls.MaterialButton();
             MapOther = new TabPage();
-            materialButton75 = new MaterialSkin.Controls.MaterialButton();
-            materialButton74 = new MaterialSkin.Controls.MaterialButton();
-            materialButton73 = new MaterialSkin.Controls.MaterialButton();
             materialButton113 = new MaterialSkin.Controls.MaterialButton();
             materialButton114 = new MaterialSkin.Controls.MaterialButton();
             materialButton115 = new MaterialSkin.Controls.MaterialButton();
@@ -212,6 +214,10 @@
             materialButton112 = new MaterialSkin.Controls.MaterialButton();
             materialButton127 = new MaterialSkin.Controls.MaterialButton();
             Home = new TabPage();
+            materialButton75 = new MaterialSkin.Controls.MaterialButton();
+            materialButton74 = new MaterialSkin.Controls.MaterialButton();
+            materialButton73 = new MaterialSkin.Controls.MaterialButton();
+            materialButton76 = new MaterialSkin.Controls.MaterialButton();
             materialButton16 = new MaterialSkin.Controls.MaterialButton();
             PageBoss = new TabPage();
             groupBox9 = new GroupBox();
@@ -451,6 +457,11 @@
             // 
             // groupBox4
             // 
+            groupBox4.Controls.Add(label6);
+            groupBox4.Controls.Add(label5);
+            groupBox4.Controls.Add(cbbServerAPI);
+            groupBox4.Controls.Add(txtServerAPI);
+            groupBox4.Controls.Add(label4);
             groupBox4.Controls.Add(materialButton130);
             groupBox4.Controls.Add(materialButton129);
             groupBox4.Controls.Add(pBAPI);
@@ -462,6 +473,35 @@
             resources.ApplyResources(groupBox4, "groupBox4");
             groupBox4.Name = "groupBox4";
             groupBox4.TabStop = false;
+            // 
+            // label6
+            // 
+            resources.ApplyResources(label6, "label6");
+            label6.Name = "label6";
+            // 
+            // label5
+            // 
+            resources.ApplyResources(label5, "label5");
+            label5.Name = "label5";
+            // 
+            // cbbServerAPI
+            // 
+            cbbServerAPI.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbbServerAPI.FormattingEnabled = true;
+            cbbServerAPI.Items.AddRange(new object[] { resources.GetString("cbbServerAPI.Items"), resources.GetString("cbbServerAPI.Items1"), resources.GetString("cbbServerAPI.Items2") });
+            resources.ApplyResources(cbbServerAPI, "cbbServerAPI");
+            cbbServerAPI.Name = "cbbServerAPI";
+            cbbServerAPI.SelectedIndexChanged += cbbServerAPI_SelectedIndexChanged;
+            // 
+            // txtServerAPI
+            // 
+            resources.ApplyResources(txtServerAPI, "txtServerAPI");
+            txtServerAPI.Name = "txtServerAPI";
+            // 
+            // label4
+            // 
+            resources.ApplyResources(label4, "label4");
+            label4.Name = "label4";
             // 
             // materialButton130
             // 
@@ -2169,9 +2209,6 @@
             // MapOther
             // 
             MapOther.BackColor = Color.Transparent;
-            MapOther.Controls.Add(materialButton75);
-            MapOther.Controls.Add(materialButton74);
-            MapOther.Controls.Add(materialButton73);
             MapOther.Controls.Add(materialButton113);
             MapOther.Controls.Add(materialButton114);
             MapOther.Controls.Add(materialButton115);
@@ -2188,47 +2225,6 @@
             MapOther.Controls.Add(materialButton126);
             resources.ApplyResources(MapOther, "MapOther");
             MapOther.Name = "MapOther";
-            // 
-            // materialButton75
-            // 
-            resources.ApplyResources(materialButton75, "materialButton75");
-            materialButton75.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            materialButton75.Depth = 0;
-            materialButton75.HighEmphasis = true;
-            materialButton75.Icon = null;
-            materialButton75.MouseState = MaterialSkin.MouseState.HOVER;
-            materialButton75.Name = "materialButton75";
-            materialButton75.NoAccentTextColor = Color.Empty;
-            materialButton75.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            materialButton75.UseAccentColor = false;
-            materialButton75.UseVisualStyleBackColor = true;
-            // 
-            // materialButton74
-            // 
-            resources.ApplyResources(materialButton74, "materialButton74");
-            materialButton74.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            materialButton74.Depth = 0;
-            materialButton74.HighEmphasis = true;
-            materialButton74.Icon = null;
-            materialButton74.MouseState = MaterialSkin.MouseState.HOVER;
-            materialButton74.Name = "materialButton74";
-            materialButton74.NoAccentTextColor = Color.Empty;
-            materialButton74.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            materialButton74.UseAccentColor = false;
-            materialButton74.UseVisualStyleBackColor = true;
-            // 
-            // materialButton73
-            // 
-            resources.ApplyResources(materialButton73, "materialButton73");
-            materialButton73.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            materialButton73.Depth = 0;
-            materialButton73.HighEmphasis = true;
-            materialButton73.Icon = null;
-            materialButton73.MouseState = MaterialSkin.MouseState.HOVER;
-            materialButton73.Name = "materialButton73";
-            materialButton73.NoAccentTextColor = Color.Empty;
-            materialButton73.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            materialButton73.UseAccentColor = false;
             // 
             // materialButton113
             // 
@@ -2701,10 +2697,69 @@
             // 
             // Home
             // 
+            Home.Controls.Add(materialButton75);
+            Home.Controls.Add(materialButton74);
+            Home.Controls.Add(materialButton73);
+            Home.Controls.Add(materialButton76);
             Home.Controls.Add(materialButton16);
             resources.ApplyResources(Home, "Home");
             Home.Name = "Home";
             Home.UseVisualStyleBackColor = true;
+            // 
+            // materialButton75
+            // 
+            resources.ApplyResources(materialButton75, "materialButton75");
+            materialButton75.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            materialButton75.Depth = 0;
+            materialButton75.HighEmphasis = true;
+            materialButton75.Icon = null;
+            materialButton75.MouseState = MaterialSkin.MouseState.HOVER;
+            materialButton75.Name = "materialButton75";
+            materialButton75.NoAccentTextColor = Color.Empty;
+            materialButton75.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            materialButton75.UseAccentColor = false;
+            materialButton75.UseVisualStyleBackColor = true;
+            // 
+            // materialButton74
+            // 
+            resources.ApplyResources(materialButton74, "materialButton74");
+            materialButton74.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            materialButton74.Depth = 0;
+            materialButton74.HighEmphasis = true;
+            materialButton74.Icon = null;
+            materialButton74.MouseState = MaterialSkin.MouseState.HOVER;
+            materialButton74.Name = "materialButton74";
+            materialButton74.NoAccentTextColor = Color.Empty;
+            materialButton74.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            materialButton74.UseAccentColor = false;
+            materialButton74.UseVisualStyleBackColor = true;
+            // 
+            // materialButton73
+            // 
+            resources.ApplyResources(materialButton73, "materialButton73");
+            materialButton73.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            materialButton73.Depth = 0;
+            materialButton73.HighEmphasis = true;
+            materialButton73.Icon = null;
+            materialButton73.MouseState = MaterialSkin.MouseState.HOVER;
+            materialButton73.Name = "materialButton73";
+            materialButton73.NoAccentTextColor = Color.Empty;
+            materialButton73.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            materialButton73.UseAccentColor = false;
+            // 
+            // materialButton76
+            // 
+            resources.ApplyResources(materialButton76, "materialButton76");
+            materialButton76.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            materialButton76.Depth = 0;
+            materialButton76.HighEmphasis = true;
+            materialButton76.Icon = null;
+            materialButton76.MouseState = MaterialSkin.MouseState.HOVER;
+            materialButton76.Name = "materialButton76";
+            materialButton76.NoAccentTextColor = Color.Empty;
+            materialButton76.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            materialButton76.UseAccentColor = false;
+            materialButton76.UseVisualStyleBackColor = true;
             // 
             // materialButton16
             // 
@@ -3384,7 +3439,7 @@
             resources.ApplyResources(txt_server, "txt_server");
             txt_server.ForeColor = Color.FromArgb(222, 0, 0, 0);
             txt_server.FormattingEnabled = true;
-            txt_server.Items.AddRange(new object[] { resources.GetString("txt_server.Items"), resources.GetString("txt_server.Items1"), resources.GetString("txt_server.Items2"), resources.GetString("txt_server.Items3"), resources.GetString("txt_server.Items4"), resources.GetString("txt_server.Items5"), resources.GetString("txt_server.Items6"), resources.GetString("txt_server.Items7"), resources.GetString("txt_server.Items8"), resources.GetString("txt_server.Items9"), resources.GetString("txt_server.Items10"), resources.GetString("txt_server.Items11"), resources.GetString("txt_server.Items12"), resources.GetString("txt_server.Items13"), resources.GetString("txt_server.Items14"), resources.GetString("txt_server.Items15"), resources.GetString("txt_server.Items16"), resources.GetString("txt_server.Items17"), resources.GetString("txt_server.Items18"), resources.GetString("txt_server.Items19") });
+            txt_server.Items.AddRange(new object[] { resources.GetString("txt_server.Items"), resources.GetString("txt_server.Items1"), resources.GetString("txt_server.Items2"), resources.GetString("txt_server.Items3"), resources.GetString("txt_server.Items4"), resources.GetString("txt_server.Items5"), resources.GetString("txt_server.Items6"), resources.GetString("txt_server.Items7"), resources.GetString("txt_server.Items8"), resources.GetString("txt_server.Items9"), resources.GetString("txt_server.Items10"), resources.GetString("txt_server.Items11"), resources.GetString("txt_server.Items12"), resources.GetString("txt_server.Items13"), resources.GetString("txt_server.Items14"), resources.GetString("txt_server.Items15"), resources.GetString("txt_server.Items16"), resources.GetString("txt_server.Items17"), resources.GetString("txt_server.Items18"), resources.GetString("txt_server.Items19"), resources.GetString("txt_server.Items20") });
             txt_server.MouseState = MaterialSkin.MouseState.OUT;
             txt_server.Name = "txt_server";
             txt_server.StartIndex = 0;
@@ -3575,9 +3630,9 @@
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersVisible = false;
-            dataGridViewCellStyle7.BackColor = Color.White;
-            dataGridViewCellStyle7.Font = new Font("Microsoft Sans Serif", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.BackColor = Color.White;
+            dataGridViewCellStyle1.Font = new Font("Microsoft Sans Serif", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView1.CellClick += dataGridView1_CellClick;
             dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
             dataGridView1.CellPainting += dataGridView1_CellPainting;
@@ -4007,133 +4062,6 @@
         private TextBox txtChatGame;
         private MaterialSkin.Controls.MaterialButton btnChat;
         private TabPage PageMap;
-        private TabControl tabControl1;
-        private TabPage Xd;
-        private MaterialSkin.Controls.MaterialButton materialButton37;
-        private MaterialSkin.Controls.MaterialButton materialButton2;
-        private MaterialSkin.Controls.MaterialButton materialButton9;
-        private MaterialSkin.Controls.MaterialButton materialButton18;
-        private MaterialSkin.Controls.MaterialButton materialButton14;
-        private MaterialSkin.Controls.MaterialButton materialButton8;
-        private MaterialSkin.Controls.MaterialButton materialButton1;
-        private MaterialSkin.Controls.MaterialButton materialButton7;
-        private MaterialSkin.Controls.MaterialButton materialButton13;
-        private MaterialSkin.Controls.MaterialButton materialButton12;
-        private MaterialSkin.Controls.MaterialButton materialButton4;
-        private MaterialSkin.Controls.MaterialButton materialButton11;
-        private MaterialSkin.Controls.MaterialButton materialButton3;
-        private MaterialSkin.Controls.MaterialButton materialButton5;
-        private MaterialSkin.Controls.MaterialButton materialButton15;
-        private MaterialSkin.Controls.MaterialButton materialButton10;
-        private MaterialSkin.Controls.MaterialButton materialButton6;
-        private TabPage Td;
-        private MaterialSkin.Controls.MaterialButton materialButton23;
-        private MaterialSkin.Controls.MaterialButton materialButton24;
-        private MaterialSkin.Controls.MaterialButton materialButton25;
-        private MaterialSkin.Controls.MaterialButton materialButton26;
-        private MaterialSkin.Controls.MaterialButton materialButton27;
-        private MaterialSkin.Controls.MaterialButton materialButton28;
-        private MaterialSkin.Controls.MaterialButton materialButton29;
-        private MaterialSkin.Controls.MaterialButton materialButton30;
-        private MaterialSkin.Controls.MaterialButton materialButton31;
-        private MaterialSkin.Controls.MaterialButton materialButton32;
-        private MaterialSkin.Controls.MaterialButton materialButton33;
-        private MaterialSkin.Controls.MaterialButton materialButton34;
-        private MaterialSkin.Controls.MaterialButton materialButton35;
-        private MaterialSkin.Controls.MaterialButton materialButton36;
-        private TabPage Nm;
-        private MaterialSkin.Controls.MaterialButton materialButton42;
-        private MaterialSkin.Controls.MaterialButton materialButton43;
-        private MaterialSkin.Controls.MaterialButton materialButton44;
-        private MaterialSkin.Controls.MaterialButton materialButton45;
-        private MaterialSkin.Controls.MaterialButton materialButton46;
-        private MaterialSkin.Controls.MaterialButton materialButton47;
-        private MaterialSkin.Controls.MaterialButton materialButton48;
-        private MaterialSkin.Controls.MaterialButton materialButton49;
-        private MaterialSkin.Controls.MaterialButton materialButton50;
-        private MaterialSkin.Controls.MaterialButton materialButton51;
-        private MaterialSkin.Controls.MaterialButton materialButton52;
-        private MaterialSkin.Controls.MaterialButton materialButton53;
-        private MaterialSkin.Controls.MaterialButton materialButton54;
-        private TabPage nappa;
-        private MaterialSkin.Controls.MaterialButton materialButton17;
-        private MaterialSkin.Controls.MaterialButton materialButton19;
-        private MaterialSkin.Controls.MaterialButton materialButton55;
-        private MaterialSkin.Controls.MaterialButton materialButton56;
-        private MaterialSkin.Controls.MaterialButton materialButton57;
-        private MaterialSkin.Controls.MaterialButton materialButton58;
-        private MaterialSkin.Controls.MaterialButton materialButton59;
-        private MaterialSkin.Controls.MaterialButton materialButton60;
-        private MaterialSkin.Controls.MaterialButton materialButton61;
-        private MaterialSkin.Controls.MaterialButton materialButton62;
-        private MaterialSkin.Controls.MaterialButton materialButton63;
-        private MaterialSkin.Controls.MaterialButton materialButton64;
-        private MaterialSkin.Controls.MaterialButton materialButton65;
-        private MaterialSkin.Controls.MaterialButton materialButton66;
-        private MaterialSkin.Controls.MaterialButton materialButton67;
-        private MaterialSkin.Controls.MaterialButton materialButton68;
-        private MaterialSkin.Controls.MaterialButton materialButton69;
-        private MaterialSkin.Controls.MaterialButton materialButton70;
-        private MaterialSkin.Controls.MaterialButton materialButton71;
-        private MaterialSkin.Controls.MaterialButton materialButton72;
-        private TabPage TL;
-        private MaterialSkin.Controls.MaterialButton materialButton81;
-        private MaterialSkin.Controls.MaterialButton materialButton82;
-        private MaterialSkin.Controls.MaterialButton materialButton83;
-        private MaterialSkin.Controls.MaterialButton materialButton84;
-        private MaterialSkin.Controls.MaterialButton materialButton85;
-        private MaterialSkin.Controls.MaterialButton materialButton86;
-        private MaterialSkin.Controls.MaterialButton materialButton87;
-        private MaterialSkin.Controls.MaterialButton materialButton88;
-        private MaterialSkin.Controls.MaterialButton materialButton89;
-        private MaterialSkin.Controls.MaterialButton materialButton90;
-        private TabPage Coler;
-        private MaterialSkin.Controls.MaterialButton materialButton103;
-        private MaterialSkin.Controls.MaterialButton materialButton104;
-        private MaterialSkin.Controls.MaterialButton materialButton105;
-        private MaterialSkin.Controls.MaterialButton materialButton106;
-        private MaterialSkin.Controls.MaterialButton materialButton107;
-        private MaterialSkin.Controls.MaterialButton materialButton108;
-        private TabPage MapOther;
-        private MaterialSkin.Controls.MaterialButton materialButton75;
-        private MaterialSkin.Controls.MaterialButton materialButton74;
-        private MaterialSkin.Controls.MaterialButton materialButton73;
-        private MaterialSkin.Controls.MaterialButton materialButton113;
-        private MaterialSkin.Controls.MaterialButton materialButton114;
-        private MaterialSkin.Controls.MaterialButton materialButton115;
-        private MaterialSkin.Controls.MaterialButton materialButton116;
-        private MaterialSkin.Controls.MaterialButton materialButton117;
-        private MaterialSkin.Controls.MaterialButton materialButton118;
-        private MaterialSkin.Controls.MaterialButton materialButton119;
-        private MaterialSkin.Controls.MaterialButton materialButton120;
-        private MaterialSkin.Controls.MaterialButton materialButton121;
-        private MaterialSkin.Controls.MaterialButton materialButton122;
-        private MaterialSkin.Controls.MaterialButton materialButton123;
-        private MaterialSkin.Controls.MaterialButton materialButton124;
-        private MaterialSkin.Controls.MaterialButton materialButton125;
-        private MaterialSkin.Controls.MaterialButton materialButton126;
-        private TabPage tabPage4;
-        private MaterialSkin.Controls.MaterialButton materialButton97;
-        private MaterialSkin.Controls.MaterialButton materialButton96;
-        private MaterialSkin.Controls.MaterialButton materialButton95;
-        private MaterialSkin.Controls.MaterialButton materialButton94;
-        private MaterialSkin.Controls.MaterialButton materialButton93;
-        private MaterialSkin.Controls.MaterialButton materialButton22;
-        private MaterialSkin.Controls.MaterialButton materialButton21;
-        private TabPage tabPage5;
-        private MaterialSkin.Controls.MaterialButton materialButton98;
-        private MaterialSkin.Controls.MaterialButton materialButton99;
-        private MaterialSkin.Controls.MaterialButton materialButton100;
-        private MaterialSkin.Controls.MaterialButton materialButton101;
-        private MaterialSkin.Controls.MaterialButton materialButton102;
-        private TabPage tabPage6;
-        private MaterialSkin.Controls.MaterialButton materialButton109;
-        private MaterialSkin.Controls.MaterialButton materialButton110;
-        private MaterialSkin.Controls.MaterialButton materialButton111;
-        private MaterialSkin.Controls.MaterialButton materialButton112;
-        private MaterialSkin.Controls.MaterialButton materialButton127;
-        private TabPage Home;
-        private MaterialSkin.Controls.MaterialButton materialButton16;
         private TabPage PageBoss;
         private GroupBox groupBox9;
         private Button btnshow;
@@ -4233,5 +4161,138 @@
         private Button btnAutoHopThe;
         private Button btnSpamZoneIt;
         private Button btnAutoZoneIt;
+        private TabControl tabControl1;
+        private TabPage Xd;
+        private MaterialSkin.Controls.MaterialButton materialButton37;
+        private MaterialSkin.Controls.MaterialButton materialButton2;
+        private MaterialSkin.Controls.MaterialButton materialButton9;
+        private MaterialSkin.Controls.MaterialButton materialButton18;
+        private MaterialSkin.Controls.MaterialButton materialButton14;
+        private MaterialSkin.Controls.MaterialButton materialButton8;
+        private MaterialSkin.Controls.MaterialButton materialButton1;
+        private MaterialSkin.Controls.MaterialButton materialButton7;
+        private MaterialSkin.Controls.MaterialButton materialButton13;
+        private MaterialSkin.Controls.MaterialButton materialButton12;
+        private MaterialSkin.Controls.MaterialButton materialButton4;
+        private MaterialSkin.Controls.MaterialButton materialButton11;
+        private MaterialSkin.Controls.MaterialButton materialButton3;
+        private MaterialSkin.Controls.MaterialButton materialButton5;
+        private MaterialSkin.Controls.MaterialButton materialButton15;
+        private MaterialSkin.Controls.MaterialButton materialButton10;
+        private MaterialSkin.Controls.MaterialButton materialButton6;
+        private TabPage Td;
+        private MaterialSkin.Controls.MaterialButton materialButton23;
+        private MaterialSkin.Controls.MaterialButton materialButton24;
+        private MaterialSkin.Controls.MaterialButton materialButton25;
+        private MaterialSkin.Controls.MaterialButton materialButton26;
+        private MaterialSkin.Controls.MaterialButton materialButton27;
+        private MaterialSkin.Controls.MaterialButton materialButton28;
+        private MaterialSkin.Controls.MaterialButton materialButton29;
+        private MaterialSkin.Controls.MaterialButton materialButton30;
+        private MaterialSkin.Controls.MaterialButton materialButton31;
+        private MaterialSkin.Controls.MaterialButton materialButton32;
+        private MaterialSkin.Controls.MaterialButton materialButton33;
+        private MaterialSkin.Controls.MaterialButton materialButton34;
+        private MaterialSkin.Controls.MaterialButton materialButton35;
+        private MaterialSkin.Controls.MaterialButton materialButton36;
+        private TabPage Nm;
+        private MaterialSkin.Controls.MaterialButton materialButton42;
+        private MaterialSkin.Controls.MaterialButton materialButton43;
+        private MaterialSkin.Controls.MaterialButton materialButton44;
+        private MaterialSkin.Controls.MaterialButton materialButton45;
+        private MaterialSkin.Controls.MaterialButton materialButton46;
+        private MaterialSkin.Controls.MaterialButton materialButton47;
+        private MaterialSkin.Controls.MaterialButton materialButton48;
+        private MaterialSkin.Controls.MaterialButton materialButton49;
+        private MaterialSkin.Controls.MaterialButton materialButton50;
+        private MaterialSkin.Controls.MaterialButton materialButton51;
+        private MaterialSkin.Controls.MaterialButton materialButton52;
+        private MaterialSkin.Controls.MaterialButton materialButton53;
+        private MaterialSkin.Controls.MaterialButton materialButton54;
+        private TabPage nappa;
+        private MaterialSkin.Controls.MaterialButton materialButton17;
+        private MaterialSkin.Controls.MaterialButton materialButton19;
+        private MaterialSkin.Controls.MaterialButton materialButton55;
+        private MaterialSkin.Controls.MaterialButton materialButton56;
+        private MaterialSkin.Controls.MaterialButton materialButton57;
+        private MaterialSkin.Controls.MaterialButton materialButton58;
+        private MaterialSkin.Controls.MaterialButton materialButton59;
+        private MaterialSkin.Controls.MaterialButton materialButton60;
+        private MaterialSkin.Controls.MaterialButton materialButton61;
+        private MaterialSkin.Controls.MaterialButton materialButton62;
+        private MaterialSkin.Controls.MaterialButton materialButton63;
+        private MaterialSkin.Controls.MaterialButton materialButton64;
+        private MaterialSkin.Controls.MaterialButton materialButton65;
+        private MaterialSkin.Controls.MaterialButton materialButton66;
+        private MaterialSkin.Controls.MaterialButton materialButton67;
+        private MaterialSkin.Controls.MaterialButton materialButton68;
+        private MaterialSkin.Controls.MaterialButton materialButton69;
+        private MaterialSkin.Controls.MaterialButton materialButton70;
+        private MaterialSkin.Controls.MaterialButton materialButton71;
+        private MaterialSkin.Controls.MaterialButton materialButton72;
+        private TabPage TL;
+        private MaterialSkin.Controls.MaterialButton materialButton81;
+        private MaterialSkin.Controls.MaterialButton materialButton82;
+        private MaterialSkin.Controls.MaterialButton materialButton83;
+        private MaterialSkin.Controls.MaterialButton materialButton84;
+        private MaterialSkin.Controls.MaterialButton materialButton85;
+        private MaterialSkin.Controls.MaterialButton materialButton86;
+        private MaterialSkin.Controls.MaterialButton materialButton87;
+        private MaterialSkin.Controls.MaterialButton materialButton88;
+        private MaterialSkin.Controls.MaterialButton materialButton89;
+        private MaterialSkin.Controls.MaterialButton materialButton90;
+        private TabPage Coler;
+        private MaterialSkin.Controls.MaterialButton materialButton103;
+        private MaterialSkin.Controls.MaterialButton materialButton104;
+        private MaterialSkin.Controls.MaterialButton materialButton105;
+        private MaterialSkin.Controls.MaterialButton materialButton106;
+        private MaterialSkin.Controls.MaterialButton materialButton107;
+        private MaterialSkin.Controls.MaterialButton materialButton108;
+        private TabPage MapOther;
+        private MaterialSkin.Controls.MaterialButton materialButton113;
+        private MaterialSkin.Controls.MaterialButton materialButton114;
+        private MaterialSkin.Controls.MaterialButton materialButton115;
+        private MaterialSkin.Controls.MaterialButton materialButton116;
+        private MaterialSkin.Controls.MaterialButton materialButton117;
+        private MaterialSkin.Controls.MaterialButton materialButton118;
+        private MaterialSkin.Controls.MaterialButton materialButton119;
+        private MaterialSkin.Controls.MaterialButton materialButton120;
+        private MaterialSkin.Controls.MaterialButton materialButton121;
+        private MaterialSkin.Controls.MaterialButton materialButton122;
+        private MaterialSkin.Controls.MaterialButton materialButton123;
+        private MaterialSkin.Controls.MaterialButton materialButton124;
+        private MaterialSkin.Controls.MaterialButton materialButton125;
+        private MaterialSkin.Controls.MaterialButton materialButton126;
+        private TabPage tabPage4;
+        private MaterialSkin.Controls.MaterialButton materialButton97;
+        private MaterialSkin.Controls.MaterialButton materialButton96;
+        private MaterialSkin.Controls.MaterialButton materialButton95;
+        private MaterialSkin.Controls.MaterialButton materialButton94;
+        private MaterialSkin.Controls.MaterialButton materialButton93;
+        private MaterialSkin.Controls.MaterialButton materialButton22;
+        private MaterialSkin.Controls.MaterialButton materialButton21;
+        private TabPage tabPage5;
+        private MaterialSkin.Controls.MaterialButton materialButton98;
+        private MaterialSkin.Controls.MaterialButton materialButton99;
+        private MaterialSkin.Controls.MaterialButton materialButton100;
+        private MaterialSkin.Controls.MaterialButton materialButton101;
+        private MaterialSkin.Controls.MaterialButton materialButton102;
+        private TabPage tabPage6;
+        private MaterialSkin.Controls.MaterialButton materialButton109;
+        private MaterialSkin.Controls.MaterialButton materialButton110;
+        private MaterialSkin.Controls.MaterialButton materialButton111;
+        private MaterialSkin.Controls.MaterialButton materialButton112;
+        private MaterialSkin.Controls.MaterialButton materialButton127;
+        private TabPage Home;
+        private MaterialSkin.Controls.MaterialButton materialButton16;
+        private MaterialSkin.Controls.MaterialButton materialButton75;
+        private MaterialSkin.Controls.MaterialButton materialButton74;
+        private MaterialSkin.Controls.MaterialButton materialButton73;
+        private MaterialSkin.Controls.MaterialButton materialButton76;
+        private ComboBox cbbServerAPI;
+        private TextBox txtServerAPI;
+        private Label label4;
+        private Label label6;
+        private Label label5;
     }
 }

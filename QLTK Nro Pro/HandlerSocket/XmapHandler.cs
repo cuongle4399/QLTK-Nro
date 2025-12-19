@@ -153,6 +153,7 @@ namespace QLTK_Nro_Pro.Handlers
                 { "materialButton73", 181 },
                 { "materialButton74", 139 },
                 { "materialButton75", 140 },
+                { "materialButton76", 126 },
             };
 
             foreach (var kv in mapConfig)

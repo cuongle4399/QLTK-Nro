@@ -177,6 +177,10 @@ namespace QLTK_Nro_Pro.Presenter
             {
                 return "14 [20]";
             }
+            if (x == 21)
+            {
+                return "Super 3 [21]";
+            }
             return x.ToString();
         }
         public static int server(string x)
@@ -213,11 +217,16 @@ namespace QLTK_Nro_Pro.Presenter
             {
                 return 20;
             }
+            if (x.Equals("Super 3 [21]"))
+            {
+                return 21;
+            }
             return int.Parse(x);
         }
         #endregion
         #region createFolderData
         public static string PathAPI = Path.Combine("Data", "keyAPI.ini");
+        public static string PathServerAPI = Path.Combine("Data", "serverAPI.ini");
         public static void createFolderData()
         {
             if (!Directory.Exists(Path.Combine(Path.GetTempPath(), "cuongle4399", "mod 244")))
@@ -234,9 +243,19 @@ namespace QLTK_Nro_Pro.Presenter
                 Directory.CreateDirectory(folderPath);
             }
 
-            if (!File.Exists(PathAPI))
+            if (!File.Exists(PathServerAPI))
             {
                 File.WriteAllText(PathAPI, "");
+            }
+            string folderPathServerAPI = Path.GetDirectoryName(PathServerAPI);
+            if (!Directory.Exists(folderPathServerAPI))
+            {
+                Directory.CreateDirectory(folderPathServerAPI);
+            }
+
+            if (!File.Exists(PathServerAPI))
+            {
+                File.WriteAllText(PathServerAPI, "");
             }
         }
         #endregion

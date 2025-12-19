@@ -8,6 +8,8 @@ using System.Diagnostics;
 using System.Net.Sockets;
 using System.Runtime.InteropServices;
 using System.Text.Json;
+using static System.Net.WebRequestMethods;
+using File = System.IO.File;
 
 namespace QLTK_Nro_Pro
 {
@@ -98,6 +100,7 @@ namespace QLTK_Nro_Pro
                 }
             });
             #endregion
+            Load_API_CapCha();
 
         }
         protected override void OnFormClosing(FormClosingEventArgs e)
@@ -591,8 +594,14 @@ namespace QLTK_Nro_Pro
                 MessageBox.Show("Vui lòng nhập key API Capcha");
                 return;
             }
+            if (string.IsNullOrEmpty(txtServerAPI.Text.Trim()))
+            {
+                MessageBox.Show("Vui lòng nhập Server key API Capcha");
+                return;
+            }
             File.WriteAllText(LoadData.PathAPI, txtAPICapcha.Text.Trim());
-            MessageBox.Show("Đã Lưu key API thành công");
+            File.WriteAllText(LoadData.PathServerAPI, txtServerAPI.Text.Trim());
+            MessageBox.Show("Đã Lưu key và server API thành công");
         }
 
         private void materialButton128_Click(object sender, EventArgs e)
@@ -647,8 +656,35 @@ namespace QLTK_Nro_Pro
         {
             try
             {
+                // ===== 1. VALIDATE INPUT =====
+                if (string.IsNullOrWhiteSpace(txtServerAPI.Text))
+                {
+                    lblAPICapcha.Text = "❌ Chưa nhập Server API";
+                    lblAPICapcha.ForeColor = Color.Red;
+                    return;
+                }
+
+                if (string.IsNullOrWhiteSpace(apiKey))
+                {
+                    lblAPICapcha.Text = "❌ Chưa nhập API Key";
+                    lblAPICapcha.ForeColor = Color.Red;
+                    return;
+                }
+
+                string url = $"{txtServerAPI.Text}{apiKey}";
+
+                if (!Uri.IsWellFormedUriString(url, UriKind.Absolute))
+                {
+                    lblAPICapcha.Text =
+                        "❌ URL API không hợp lệ\n" +
+                        "Vui lòng kiểm tra Server API và API Key";
+                    lblAPICapcha.ForeColor = Color.Red;
+                    return;
+                }
+
+                // ===== 2. UI STATUS =====
                 var sw = Stopwatch.StartNew();
-                lblAPICapcha.Text = "📸 Đang xử lý ảnh...";
+                lblAPICapcha.Text = "📤 Đang gửi yêu cầu...";
                 lblAPICapcha.ForeColor = Color.Gray;
 
                 var content = new FormUrlEncodedContent(new Dictionary<string, string>
@@ -656,43 +692,91 @@ namespace QLTK_Nro_Pro
                     ["image"] = base64Image
                 });
 
-                lblAPICapcha.Text = "📤 Đang gửi...";
-                lblAPICapcha.ForeColor = Color.Gray;
+                // ===== 3. CALL API =====
+                var res = await _httpClient.PostAsync(url, content);
+                string responseText = await res.Content.ReadAsStringAsync();
 
-                var res = await _httpClient.PostAsync($"https://api.phamgiang.net/captcha/nro?token={apiKey}", content);
+                sw.Stop();
 
-                lblAPICapcha.Text = "📥 Đang phản hồi...";
-                lblAPICapcha.ForeColor = Color.Gray;
-
-                var json = await res.Content.ReadAsStringAsync();
-
+                // ===== 4. HTTP ERROR =====
                 if (!res.IsSuccessStatusCode)
                 {
-                    lblAPICapcha.Text = $"❌ HTTP {(int)res.StatusCode}";
+                    lblAPICapcha.Text =
+                        $"❌ Lỗi HTTP {(int)res.StatusCode}\n" +
+                        $"{responseText}";
                     lblAPICapcha.ForeColor = Color.Red;
                     return;
                 }
 
-                using var doc = JsonDocument.Parse(json);
-                var root = doc.RootElement;
+                // ===== 5. TRY PARSE JSON =====
+                try
+                {
+                    using var doc = JsonDocument.Parse(responseText);
+                    var root = doc.RootElement;
 
-                int status = root.GetProperty("status").GetInt32();
-                string captcha = root.GetProperty("captcha").GetString() ?? "Không có";
-                double confidence = root.GetProperty("confidence").GetDouble();
-                int time = root.GetProperty("time").GetInt32();
-                string message = root.TryGetProperty("message", out var msgProp) ? msgProp.GetString() ?? "" : "";
+                    int status = root.TryGetProperty("status", out var st)
+                        ? st.GetInt32()
+                        : -1;
 
-                sw.Stop();
+                    string captcha = root.TryGetProperty("captcha", out var cap)
+                        ? cap.GetString() ?? "Không có"
+                        : responseText; // fallback
 
-                lblAPICapcha.ForeColor = status == 0 ? Color.Green : Color.Red;
-                lblAPICapcha.Text = $"Captcha [OK]: {captcha}";
+                    double confidence = root.TryGetProperty("confidence", out var conf)
+                        ? conf.GetDouble()
+                        : 0;
+
+                    int time = root.TryGetProperty("time", out var t)
+                        ? t.GetInt32()
+                        : (int)sw.ElapsedMilliseconds;
+
+                    string message = root.TryGetProperty("message", out var msg)
+                        ? msg.GetString() ?? ""
+                        : "";
+
+                    if (status == 0)
+                    {
+                        lblAPICapcha.ForeColor = Color.Green;
+                        lblAPICapcha.Text =
+                            $"✅ Captcha: {captcha}\n" +
+                            $"⏱ Thời gian: {time} ms\n" +
+                            $"🎯 Độ tin cậy: {confidence:P1}";
+                    }
+                    else
+                    {
+                        lblAPICapcha.ForeColor = Color.Red;
+                        lblAPICapcha.Text =
+                            $"❌ API trả lỗi\n" +
+                            $"{message}";
+                    }
+                }
+                catch
+                {
+                    // ===== 6. NOT JSON → PRINT RAW =====
+                    lblAPICapcha.ForeColor = Color.Green;
+                    lblAPICapcha.Text =
+                        $"✅ Captcha: {responseText}\n" +
+                        $"⏱ Thời gian: {sw.ElapsedMilliseconds} ms";
+                }
+            }
+            catch (HttpRequestException)
+            {
+                lblAPICapcha.Text = "❌ Không thể kết nối tới server API";
+                lblAPICapcha.ForeColor = Color.Red;
+            }
+            catch (TaskCanceledException)
+            {
+                lblAPICapcha.Text = "❌ Kết nối API bị timeout";
+                lblAPICapcha.ForeColor = Color.Red;
             }
             catch (Exception ex)
             {
-                lblAPICapcha.Text = $"❌ Lỗi: {ex.Message}";
+                lblAPICapcha.Text = $"❌ Lỗi không xác định: {ex.Message}";
                 lblAPICapcha.ForeColor = Color.Red;
             }
         }
+
+
 
 
         private void materialButton129_Click(object sender, EventArgs e)
@@ -701,7 +785,7 @@ namespace QLTK_Nro_Pro
             {
                 var psi = new ProcessStartInfo
                 {
-                    FileName = "https://api.phamgiang.net/",
+                    FileName = (cbbServerAPI.SelectedIndex == 0) ? "https://api.phamgiang.net/" : "http://api.tooltvt.com/",
                     UseShellExecute = true
                 };
                 Process.Start(psi);
@@ -948,6 +1032,51 @@ namespace QLTK_Nro_Pro
         private void btnAutoHopThe_Click(object sender, EventArgs e) => SendCommand((Button)sender, "autoHopThe");
         private void btnSpamZoneIt_Click(object sender, EventArgs e) => SendCommand((Button)sender, "spamZoneIt");
         private void btnAutoZoneIt_Click(object sender, EventArgs e) => SendCommand((Button)sender, "autoZoneIt");
+
+
+        private void cbbServerAPI_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (isLoading) return;
+
+            switch (cbbServerAPI.SelectedIndex)
+            {
+                case 0:
+                    txtServerAPI.Text = "https://api.phamgiang.net/captcha/nro?token=";
+                    txtServerAPI.Enabled = false;
+                    break;
+
+                case 1:
+                    txtServerAPI.Text = "http://api.tooltvt.com/api?token=";
+                    txtServerAPI.Enabled = false;
+                    break;
+
+                default:
+                    txtServerAPI.Enabled = true;
+                    return;
+            }
+
+            File.WriteAllText(LoadData.PathServerAPI, txtServerAPI.Text);
+        }
+
+        bool isLoading = false;
+
+        public void Load_API_CapCha()
+        {
+            isLoading = true;
+
+            string serverAPI = File.ReadAllText(LoadData.PathServerAPI);
+            if (serverAPI.Contains("phamgiang"))
+                cbbServerAPI.SelectedIndex = 0;
+            else if (serverAPI.Contains("tooltvt"))
+                cbbServerAPI.SelectedIndex = 1;
+            else
+            {
+                cbbServerAPI.SelectedIndex = 2;
+            }
+            txtServerAPI.Text = serverAPI;
+            isLoading = false;
+        }
+
     }
 
 }

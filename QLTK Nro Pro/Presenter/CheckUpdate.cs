@@ -9,7 +9,7 @@ namespace QLTK_Nro_Pro.Presenter
 {
     internal class CheckUpdate
     {
-        public static string version = "3.4.1";
+        public static string version = "3.4.3";
         private static bool updating = false;
         private static readonly HttpClient httpClient = new HttpClient();
         public static string CheckOfUpdate = "https://www.dropbox.com/scl/fi/0iacu1ujg30nbl7suncea/checkVersionNro.txt?rlkey=7vcuj3zim83gvviimg8k26ns5&st=2g41ahjg&dl=1";
