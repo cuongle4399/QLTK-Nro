@@ -251,8 +251,8 @@ public class NextMap
     private void ProcessWaypointEntry(Waypoint wp, int tx, int ty, float now)
     {
         Char me = Char.myCharz();
-        int dx = Mathf.Abs(me.cx - tx);
-        int dy = Mathf.Abs(me.cy - ty);
+        int dx = Math.Abs(me.cx - tx);
+        int dy = Math.Abs(me.cy - ty);
 
         bool isWideGate = wp.maxX >= 60 && wp.minX <= TileMap.pxw - 60;
         me.cdir = me.cx < tx ? 1 : -1;

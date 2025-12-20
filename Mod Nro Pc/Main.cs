@@ -1,7 +1,8 @@
+﻿using main.Mod;
+using ModCak.main.Mod;
 using System.IO;
 using System.Net.NetworkInformation;
 using System.Threading;
-using main.Mod;
 using UnityEngine;
 
 public class Main : MonoBehaviour
@@ -221,7 +222,12 @@ public class Main : MonoBehaviour
 			Key.mapKeyPC();
 			SoundMn.gI().loadSound(TileMap.mapID);
 			g.CreateLineMaterial();
-		}
+			if (File.Exists("admin.ini"))
+			{
+                WinConsole.Init();
+                WinConsole.WriteLine("CHẾ ĐỘ NHÀ PHÁT TRIỂN");
+            }
+        }
 	}
 
 	public static void setBackupIcloud(string path)

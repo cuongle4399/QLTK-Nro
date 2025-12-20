@@ -100,7 +100,19 @@ namespace QLTK_Nro_Pro
                 }
             });
             #endregion
+            #region AdminDev
             Load_API_CapCha();
+            if (File.Exists("admin.ini"))
+            {
+                btnAdminDev.Text = "Chế độ nhà phát triển: ON";
+                btnAdminDev.BackColor = Color.CadetBlue;
+            }
+            else
+            {
+                btnAdminDev.Text = "Chế độ nhà phát triển: OFF";
+                btnAdminDev.BackColor = Color.White;
+            }
+            #endregion
 
         }
         protected override void OnFormClosing(FormClosingEventArgs e)
@@ -1075,6 +1087,22 @@ namespace QLTK_Nro_Pro
             }
             txtServerAPI.Text = serverAPI;
             isLoading = false;
+        }
+
+        private void btnAdminDev_Click(object sender, EventArgs e)
+        {
+            if (File.Exists("admin.ini"))
+            {
+                File.Delete("admin.ini");
+                btnAdminDev.Text = "Chế độ nhà phát triển: OFF";
+                btnAdminDev.BackColor = Color.White;
+            }
+            else
+            {
+                File.WriteAllText("admin.ini", "Cuong Le");
+                btnAdminDev.Text = "Chế độ nhà phát triển: ON";
+                btnAdminDev.BackColor = Color.CadetBlue;
+            }
         }
 
     }

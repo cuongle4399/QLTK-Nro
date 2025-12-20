@@ -56,6 +56,8 @@
             PageChucNang = new TabPage();
             tabThapCam = new TabControl();
             PageHome = new TabPage();
+            materialLabel7 = new MaterialSkin.Controls.MaterialLabel();
+            btnAdminDev = new Button();
             groupBox8 = new GroupBox();
             materialLabel11 = new MaterialSkin.Controls.MaterialLabel();
             txtFps = new NumericUpDown();
@@ -594,6 +596,8 @@
             // PageHome
             // 
             PageHome.BackColor = Color.Silver;
+            PageHome.Controls.Add(materialLabel7);
+            PageHome.Controls.Add(btnAdminDev);
             PageHome.Controls.Add(groupBox8);
             PageHome.Controls.Add(gbNpc);
             PageHome.Controls.Add(gbChat);
@@ -603,6 +607,20 @@
             PageHome.Controls.Add(gbChatGame);
             resources.ApplyResources(PageHome, "PageHome");
             PageHome.Name = "PageHome";
+            // 
+            // materialLabel7
+            // 
+            materialLabel7.Depth = 0;
+            resources.ApplyResources(materialLabel7, "materialLabel7");
+            materialLabel7.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel7.Name = "materialLabel7";
+            // 
+            // btnAdminDev
+            // 
+            resources.ApplyResources(btnAdminDev, "btnAdminDev");
+            btnAdminDev.Name = "btnAdminDev";
+            btnAdminDev.UseVisualStyleBackColor = true;
+            btnAdminDev.Click += btnAdminDev_Click;
             // 
             // groupBox8
             // 
@@ -4294,5 +4312,7 @@
         private Label label4;
         private Label label6;
         private Label label5;
+        private Button btnAdminDev;
+        private MaterialSkin.Controls.MaterialLabel materialLabel7;
     }
 }

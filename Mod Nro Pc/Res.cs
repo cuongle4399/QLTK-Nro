@@ -1,3 +1,4 @@
+using ModCak.main.Mod;
 using System.Globalization;
 using UnityEngine;
 
@@ -171,17 +172,15 @@ public class Res
 
 	public static void outz(string s)
 	{
-		if (mSystem.isTest)
-		{
-			Debug.Log(s);
-		}
-	}
+		WinConsole.WriteLine(s);
+
+    }
 
 	public static void outz(string s, int logIndex)
 	{
 		if (mSystem.isTest)
 		{
-			Debug.Log(LOG_CAT[logIndex] + s);
+            WinConsole.WriteLine(LOG_CAT[logIndex] + s);
 		}
 	}
 
@@ -189,7 +188,7 @@ public class Res
 	{
 		if (mSystem.isTest)
 		{
-			Debug.LogError(s);
+            WinConsole.WriteLine(s);
 		}
 	}
 
