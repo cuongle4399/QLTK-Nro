@@ -286,7 +286,9 @@ public class Session_ME : ISession
 
 	public bool useProxy;
 
-	public static MyVector recieveMsg = new MyVector();
+    public static string ConnectedIP = "";
+
+    public static MyVector recieveMsg = new MyVector();
 
 	public Session_ME()
 	{
@@ -356,7 +358,8 @@ public class Session_ME : ISession
 		try
 		{
 			doConnect(host, port);
-			messageHandler.onConnectOK(isMainSession);
+            ConnectedIP = GetConnectedIP();
+            messageHandler.onConnectOK(isMainSession);
 		}
 		catch (Exception)
 		{
@@ -768,7 +771,7 @@ public class Session_ME : ISession
 	public void close()
 	{
 		cleanNetwork();
-	}
+    }
 
 	private static void cleanNetwork()
 	{
@@ -830,11 +833,13 @@ public class Session_ME : ISession
 			}
 			Controller.isGet_CLIENT_INFO = false;
 			Debug.Log(">>>cleanNetwork completed successfully!");
-		}
+            ConnectedIP = "";
+        }
 		catch (Exception ex)
 		{
 			Debug.LogError("Lỗi khi cleanNetwork: " + ex.Message);
-		}
+            ConnectedIP = "";
+        }
 	}
 
 	public static int currentTimeMillis()
@@ -872,4 +877,23 @@ public class Session_ME : ISession
 	{
 		return true;
 	}
+    public string GetConnectedIP()
+    {
+        try
+        {
+            if (sc == null || !sc.Connected)
+                return "DISCONNECTED";
+
+            if (sc.Client.RemoteEndPoint is IPEndPoint remote)
+            {
+                // IP mà SERVER NHÌN THẤY của tab game này
+                return remote.Address.ToString();
+            }
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError("GetConnectedIP error: " + ex.Message);
+        }
+        return "UNKNOWN";
+    }
 }

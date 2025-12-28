@@ -1,45 +1,110 @@
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
-using Xmap;
+using System.Text.RegularExpressions;
 using UnityEngine;
+using Xmap;
 
 public class NextMap
 {
-    public int MapID;
-    public int NpcID;
+    #region Enums
+    public enum MoveType
+    {
+        Waypoint, NpcMenu, NpcIndex, Item, Walk
+    }
+    #endregion
 
-    public string NameIndex1;
-    public string NameIndex2;
-    public string NameIndex3;
+    #region Constants
+    private const float ENTER_DELAY = 0.05f;
+    private const float TELEPORT_DELAY = 0.05f;
+    private const float WALK_DELAY = 0.3f;
+    private const float ITEM_USE_DELAY = 0.5f;
+    private const int MAX_WALK_ATTEMPTS = 5;
+    private const int GATE_EDGE_THRESHOLD = 60;
+    private const int GATE_CENTER_OFFSET = 15;
+    private const int TELEPORT_THRESHOLD = 30;
+    private const int WALK_OFFSET = 15;
+    private const int WALK_THRESHOLD = 20;
+    private const int CONFIRM_TIMEOUT = 3500;
+    private const int STEP_DELAY = 500;
+    #endregion
 
-    public string NameIndex1Phu;
-    public string NameIndex2Phu;
-    public string NameIndex3Phu;
+    #region Static Fields - NPC Confirmation System
+    public static short idNpcService;
+    public static MenuOptions menuOptions;
+    public static bool confirming;
+    public static long delayConfirm;
+    public static bool runningopennpc;
+    public static int currentStep;
 
-    public string NameIndex1Phu2;
-    public string NameIndex2Phu2;
-    public string NameIndex3Phu2;
+    private static long confirmStartTime;
+    private static long lastStepTime;
+    private static bool NextInfoSuKien;
+    private static string InfoSuKien;
+    #endregion
 
-    public int indexNpc;
-    public int indexNpc2;
-    public int indexNpc3;
+    #region Static Fields - Special Events
+    private static readonly HashSet<string> NpcMenuText = new HashSet<string>();
+    public static bool nextSuKien;
+    public static string InfoTextMenuXmap;
+    #endregion
 
-    public bool walk;
-    public int x;
+    #region Static Fields - Item System
+    private static bool isUsingItem;
+    private static float lastItemUseTime;
+    private static int currentItemID;
+    #endregion
+
+    #region Instance Fields - Map Configuration
+    public int MapID { get; private set; }
+    public int NpcID { get; private set; }
+    public int ItemID { get; private set; }
+    public MenuOptions Options { get; private set; }
+    public MoveType Type { get; private set; }
+
+    [Obsolete("Use Type property instead")]
+    public bool walk; public int x;
     public int y;
+    #endregion
 
+    #region Instance Fields - Movement State
     private bool isEntering;
     private bool hasTeleported;
     private float enterDelayStart;
     private float teleportTime;
     private float walkDelayStart;
-
     private int teleportAttempts;
     private int walkAttempts;
+    #endregion
 
-    private static readonly HashSet<string> NpcDaTuChoiKeo = new HashSet<string>();
-    public static bool nextSuKienHalloween;
+    #region Structs
+    public struct MenuOptions
+    {
+        public string[] Names;
+        public string[] SubNames;
+        public string[] SubNames2;
+        public int[] IndexNpcs;
 
+        public MenuOptions(
+            string name1 = "", string name2 = "", string name3 = "",
+            string sub1 = "", string sub2 = "", string sub3 = "",
+            string sub1_2 = "", string sub2_2 = "", string sub3_2 = "",
+            int idx1 = -1, int idx2 = -1, int idx3 = -1)
+        {
+            Names = new[] { name1, name2, name3 };
+            SubNames = new[] { sub1, sub2, sub3 };
+            SubNames2 = new[] { sub1_2, sub2_2, sub3_2 };
+            IndexNpcs = new[] { idx1, idx2, idx3 };
+        }
+
+        public bool HasMenuOptions => !string.IsNullOrEmpty(Names[0]) || IndexNpcs[0] != -1;
+        public bool HasIndexOptions => IndexNpcs[0] != -1;
+        public bool HasNameOptions => !string.IsNullOrEmpty(Names[0]);
+    }
+    #endregion
+
+    #region Constructor
     public NextMap(
         int mapID,
         int npcID,
@@ -57,151 +122,201 @@ public class NextMap
         string selectIndexPhu3cua3 = "",
         int indexNpc = -1,
         int indexNpc2 = -1,
-        int indexNpc3 = -1)
+        int indexNpc3 = -1,
+        int itemID = -1)
     {
         MapID = mapID;
         NpcID = npcID;
-
-        NameIndex1 = selectName;
-        NameIndex2 = selectName2;
-        NameIndex3 = selectName3;
-
+        ItemID = itemID;
         this.walk = walk;
         this.x = x;
         this.y = y;
 
-        NameIndex1Phu = selectIndexPhu1;
-        NameIndex2Phu = selectIndexPhu2;
-        NameIndex3Phu = selectIndexPhu3;
+        Options = new MenuOptions(
+            selectName, selectName2, selectName3,
+            selectIndexPhu1, selectIndexPhu2, selectIndexPhu3,
+            selectIndexPhu1cua1, selectIndexPhu2cua2, selectIndexPhu3cua3,
+            indexNpc, indexNpc2, indexNpc3
+        );
 
-        NameIndex1Phu2 = selectIndexPhu1cua1;
-        NameIndex2Phu2 = selectIndexPhu2cua2;
-        NameIndex3Phu2 = selectIndexPhu3cua3;
-
-        this.indexNpc = indexNpc;
-        this.indexNpc2 = indexNpc2;
-        this.indexNpc3 = indexNpc3;
+        Type = DetermineMoveType();
     }
+    #endregion
 
-    // =========================
-    // ENTRY POINT
-    // =========================
+    #region Move Type Determination
+    private MoveType DetermineMoveType()
+    {
+        if (ItemID != -1) return MoveType.Item;
+        if (walk) return MoveType.Walk;
+        if (NpcID == -1) return MoveType.Waypoint;
+        if (Options.HasIndexOptions) return MoveType.NpcIndex;
+        if (Options.HasNameOptions) return MoveType.NpcMenu;
+        return MoveType.Waypoint;
+    }
+    #endregion
+
+    #region Main Entry Point
     public void GotoMap()
     {
-        if (walk)
+        switch (Type)
         {
-            if (x != -1 && y != -1 && Char.myCharz().currentMovePoint == null)
-            {
-                Char.myCharz().currentMovePoint = new MovePoint(x, y);
-            }
-            return;
-        }
+            case MoveType.Walk:
+                HandleWalkMove();
+                break;
 
-        if (NpcID == -1)
+            case MoveType.Waypoint:
+                HandleWaypointMove();
+                break;
+
+            case MoveType.NpcMenu:
+            case MoveType.NpcIndex:
+                HandleNpcMove();
+                break;
+
+            case MoveType.Item:
+                HandleItemMove();
+                break;
+        }
+    }
+    #endregion
+
+    #region Movement Type Handlers
+    private void HandleWalkMove()
+    {
+        if (x != -1 && y != -1 && Char.myCharz().currentMovePoint == null)
         {
-            Waypoint wp = GetWayPoint();
-            if (wp != null)
-            {
-                Enter(wp);
-            }
-            return;
+            Char.myCharz().currentMovePoint = new MovePoint(x, y);
         }
-
-        HandleNpcInteraction();
     }
 
-    // =========================
-    // NPC HANDLING
-    // =========================
-    private void HandleNpcInteraction()
+    private void HandleWaypointMove()
     {
-        if (ModProCL.confirming)
-            return;
+        Waypoint wp = GetWayPoint();
+        if (wp != null)
+            Enter(wp);
+    }
+
+    private void HandleNpcMove()
+    {
+        if (confirming) return;
 
         Npc npc = GetNPC(NpcID);
-        if (npc == null)
-            return;
+        if (npc == null) return;
 
-        if (nextSuKienHalloween && indexNpc != -1)
+        if (ShouldHandleHalloweenEvent())
         {
-            string key = MapID + "-" + NpcID;
-            if (!NpcDaTuChoiKeo.Contains(key))
+            HandleEvent();
+            return;
+        }
+
+        if (Type == MoveType.NpcIndex)
+            HandleNpcIndexInteraction();
+        else if (Type == MoveType.NpcMenu)
+            HandleNpcMenuInteraction();
+    }
+
+    private void HandleItemMove()
+    {
+        float now = Time.realtimeSinceStartup;
+
+        // Initialize item use
+        if (ItemID != -1 && !isUsingItem)
+        {
+            if (!ModProCL.ExistItemBag(ItemID))
             {
-                NpcDaTuChoiKeo.Add(key);
-                ModProCL.startComfirmNpc((short)NpcID);
+                MainXmapCL.xmapErrr = true;
                 return;
             }
-        }
 
-        if (indexNpc != -1)
-        {
-            Service service = Service.gI();
-            service.openMenu(NpcID);
-            service.confirmMenu((short)NpcID, (sbyte)indexNpc);
-
-            if (indexNpc2 != -1)
-            {
-                service.confirmMenu((short)NpcID, (sbyte)indexNpc2);
-                if (indexNpc3 != -1)
-                    service.confirmMenu((short)NpcID, (sbyte)indexNpc3);
-            }
+            isUsingItem = true;
+            currentItemID = ItemID;
+            lastItemUseTime = now;
+            ModProCL.useItem(ItemID);
             return;
         }
 
-        if (!string.IsNullOrEmpty(NameIndex1))
+        // Wait for item to be used
+        if (isUsingItem && now - lastItemUseTime < ITEM_USE_DELAY)
+            return;
+
+        // Item used, reset and proceed to next map
+        if (isUsingItem)
         {
-            ModProCL.startComfirmNpc(
-                (short)NpcID,
-                NameIndex1,
-                NameIndex2,
-                NameIndex3,
-                NameIndex1Phu,
-                NameIndex2Phu,
-                NameIndex3Phu,
-                NameIndex1Phu2,
-                NameIndex2Phu2,
-                NameIndex3Phu2
-            );
+            isUsingItem = false;
+            Waypoint wp = GetWayPoint();
+            if (wp != null)
+                Enter(wp);
+        }
+    }
+    #endregion
+
+    #region NPC Interaction
+    private void HandleNpcIndexInteraction()
+    {
+        Service service = Service.gI();
+        service.openMenu(NpcID);
+        ModProCL.teleNPC(NpcID);
+        service.confirmMenu((short)NpcID, (sbyte)Options.IndexNpcs[0]);
+
+        if (Options.IndexNpcs[1] != -1)
+        {
+            service.confirmMenu((short)NpcID, (sbyte)Options.IndexNpcs[1]);
+            if (Options.IndexNpcs[2] != -1)
+                service.confirmMenu((short)NpcID, (sbyte)Options.IndexNpcs[2]);
         }
     }
 
-    // =========================
-    // WAYPOINT
-    // =========================
-    public Waypoint GetWayPoint()
+    private void HandleNpcMenuInteraction()
     {
-        string targetName = GetMapName();
-        int size = TileMap.vGo.size();
+        startComfirmNpc(
+            (short)NpcID,
+            Options.Names[0], Options.Names[1], Options.Names[2],
+            Options.SubNames[0], Options.SubNames[1], Options.SubNames[2],
+            Options.SubNames2[0], Options.SubNames2[1], Options.SubNames2[2]
+        );
+    }
+    #endregion
 
-        for (int i = 0; i < size; i++)
+    #region Halloween Event
+    private bool ShouldHandleHalloweenEvent()
+    {
+        return nextSuKien && Options.IndexNpcs[0] != -1;
+    }
+
+    private void HandleEvent()
+    {
+        string key = $"{MapID}-{NpcID}";
+        if (!NpcMenuText.Contains(key))
         {
-            Waypoint wp = (Waypoint)TileMap.vGo.elementAt(i);
-            if (GetMapName(wp.popup) == targetName)
-                return wp;
+            NpcMenuText.Add(key);
+            startComfirmNpc((short)NpcID);
         }
-        return null;
     }
+    #endregion
 
-    public string GetMapName()
-    {
-        return TileMap.mapNames[MapID];
-    }
-
-    public string GetMapName(PopUp popup)
-    {
-        StringBuilder sb = new StringBuilder();
-        foreach (string s in popup.says)
-            sb.Append(s).Append(' ');
-        return sb.ToString().Trim();
-    }
-
-    // =========================
-    // ENTER MAP
-    // =========================
+    #region Waypoint Entry System
     public void Enter(Waypoint wp)
     {
         float now = Time.realtimeSinceStartup;
 
+        if (!InitializeEntryIfNeeded(now)) return;
+        if (!CanProceedWithEntry(now)) return;
+        if (HandleSpecialCases()) return;
+
+        int targetX = CalculateTargetX(wp);
+        int targetY = wp.maxY;
+
+        if (!IsValidTarget(targetX, targetY))
+        {
+            ResetEnterState();
+            return;
+        }
+
+        ProcessWaypointEntry(wp, targetX, targetY, now);
+    }
+
+    private bool InitializeEntryIfNeeded(float now)
+    {
         if (!isEntering)
         {
             isEntering = true;
@@ -211,40 +326,37 @@ public class NextMap
             teleportAttempts = 0;
             walkAttempts = 0;
             walkDelayStart = 0;
-            return;
+            return false;
         }
+        return true;
+    }
 
-        if (now - enterDelayStart < 0.05f)
-            return;
+    private bool CanProceedWithEntry(float now)
+    {
+        if (now - enterDelayStart < ENTER_DELAY) return false;
+        if (hasTeleported && now - teleportTime < TELEPORT_DELAY) return false;
+        return true;
+    }
 
-        if (hasTeleported && now - teleportTime < 0.05f)
-            return;
-
+    private bool HandleSpecialCases()
+    {
         if (TileMap.mapID == 166 && MapID == 155)
         {
             MainXmapCL.LoadMapLeft();
             ResetEnterState();
-            return;
+            return true;
         }
-
-        int targetX = CalculateTargetX(wp);
-        int targetY = wp.maxY;
-
-        if (targetX == -1 || targetY == -1)
-        {
-            ResetEnterState();
-            return;
-        }
-
-        ProcessWaypointEntry(wp, targetX, targetY, now);
+        return false;
     }
+
+    private bool IsValidTarget(int x, int y) => x != -1 && y != -1;
 
     private int CalculateTargetX(Waypoint wp)
     {
-        if (wp.maxX < 60)
-            return 15;
-        if (wp.minX > TileMap.pxw - 60)
-            return TileMap.pxw - 15;
+        if (wp.maxX < GATE_EDGE_THRESHOLD)
+            return GATE_CENTER_OFFSET;
+        if (wp.minX > TileMap.pxw - GATE_EDGE_THRESHOLD)
+            return TileMap.pxw - GATE_CENTER_OFFSET;
         return (wp.minX + wp.maxX) >> 1;
     }
 
@@ -253,80 +365,81 @@ public class NextMap
         Char me = Char.myCharz();
         int dx = Math.Abs(me.cx - tx);
         int dy = Math.Abs(me.cy - ty);
+        bool isWideGate = wp.maxX >= GATE_EDGE_THRESHOLD && wp.minX <= TileMap.pxw - GATE_EDGE_THRESHOLD;
 
-        bool isWideGate = wp.maxX >= 60 && wp.minX <= TileMap.pxw - 60;
         me.cdir = me.cx < tx ? 1 : -1;
 
         if (MainXmapCL.teleDirect)
-        {
-            if (dx > 5 || dy > 5)
-                Teleport(tx, ty, now);
-            else if (me.currentMovePoint == null)
-            {
-                RequestMapChange(wp);
-                ResetEnterState();
-            }
-            return;
-        }
+            ProcessDirectTeleport(tx, ty, dx, dy, wp, now);
+        else
+            ProcessWalkingMode(tx, ty, dx, dy, isWideGate, wp, now);
+    }
 
-        if (dx > 30 || dy > 30)
+    private void ProcessDirectTeleport(int tx, int ty, int dx, int dy, Waypoint wp, float now)
+    {
+        if (dx > 5 || dy > 5)
         {
-            int offset = isWideGate ? 0 : (me.cx < tx ? -20 : 20);
-            Teleport(tx + offset, ty, now);
-            return;
+            Teleport(tx, ty, now);
         }
-
-        if (!isWideGate)
-        {
-            HandleWalk(tx, ty, now);
-            return;
-        }
-
-        if (me.currentMovePoint == null)
+        else if (Char.myCharz().currentMovePoint == null)
         {
             RequestMapChange(wp);
             ResetEnterState();
         }
     }
 
-    private void HandleWalk(int tx, int ty, float now)
+    private void ProcessWalkingMode(int tx, int ty, int dx, int dy, bool isWideGate, Waypoint wp, float now)
+    {
+        if (dx > TELEPORT_THRESHOLD || dy > TELEPORT_THRESHOLD)
+        {
+            int offset = isWideGate ? 0 : (Char.myCharz().cx < tx ? -WALK_THRESHOLD : WALK_THRESHOLD);
+            Teleport(tx + offset, ty, now);
+            return;
+        }
+
+        if (!isWideGate)
+        {
+            ProcessWalkToGate(tx, ty, now);
+            return;
+        }
+
+        if (Char.myCharz().currentMovePoint == null)
+        {
+            RequestMapChange(wp);
+            ResetEnterState();
+        }
+    }
+
+    private void ProcessWalkToGate(int tx, int ty, float now)
     {
         Char me = Char.myCharz();
 
-        if (me.currentMovePoint == null && now - walkDelayStart >= 0.3f)
+        if (me.currentMovePoint == null && now - walkDelayStart >= WALK_DELAY)
         {
-            int offset = me.cx < tx ? -15 : 15;
+            int offset = me.cx < tx ? -WALK_OFFSET : WALK_OFFSET;
             me.currentMovePoint = new MovePoint(tx - offset, ty);
             walkAttempts++;
             walkDelayStart = now;
         }
-        else if (walkAttempts >= 5 && me.currentMovePoint == null)
+        else if (walkAttempts >= MAX_WALK_ATTEMPTS && me.currentMovePoint == null)
         {
-            ControlCharacter(me.cdir, true);
+            ControlCharacter(me.cdir, jump: true);
             walkAttempts = 0;
             walkDelayStart = now;
         }
     }
+    #endregion
 
-    private void RequestMapChange(Waypoint wp)
-    {
-        if (wp.isOffline)
-            Service.gI().getMapOffline();
-        else
-            Service.gI().requestChangeMap();
-    }
-
+    #region Character Control
     private void ControlCharacter(int dir, bool jump)
     {
         Char me = Char.myCharz();
-        if (me.isLockMove)
-            return;
+        if (me.isLockMove) return;
 
         if (jump)
         {
-            GameScr g = GameScr.gI();
             me.cdir = dir;
-            g.setCharJump(dir * 4);
+            GameScr.gI().setCharJump(dir * 4);
             return;
         }
 
@@ -348,15 +461,6 @@ public class NextMap
         teleportAttempts++;
     }
 
-    private void ResetEnterState()
-    {
-        isEntering = false;
-        hasTeleported = false;
-        teleportTime = 0;
-        teleportAttempts = 0;
-        walkAttempts = 0;
-    }
-
     public void TeleportTo(int x, int y)
     {
         Char me = Char.myCharz();
@@ -372,6 +476,51 @@ public class NextMap
             Service.gI().charMove();
         }
     }
+    #endregion
+
+    #region Map Transition
+    private void RequestMapChange(Waypoint wp)
+    {
+        if (wp.isOffline)
+            Service.gI().getMapOffline();
+        else
+            Service.gI().requestChangeMap();
+    }
+
+    private void ResetEnterState()
+    {
+        isEntering = false;
+        hasTeleported = false;
+        teleportTime = 0;
+        teleportAttempts = 0;
+        walkAttempts = 0;
+    }
+    #endregion
+
+    #region Waypoint & NPC Utilities
+    public Waypoint GetWayPoint()
+    {
+        string targetName = GetMapName();
+        int size = TileMap.vGo.size();
+
+        for (int i = 0; i < size; i++)
+        {
+            Waypoint wp = (Waypoint)TileMap.vGo.elementAt(i);
+            if (GetMapName(wp.popup) == targetName)
+                return wp;
+        }
+        return null;
+    }
+
+    public string GetMapName() => TileMap.mapNames[MapID];
+
+    public string GetMapName(PopUp popup)
+    {
+        StringBuilder sb = new StringBuilder();
+        foreach (string s in popup.says)
+            sb.Append(s).Append(' ');
+        return sb.ToString().Trim();
+    }
 
     public static Npc GetNPC(int id)
     {
@@ -384,4 +533,157 @@ public class NextMap
         }
         return null;
     }
+    #endregion
+
+    #region Static NPC Confirmation System
+    public static void startComfirmNpc(
+    short idnpc,
+    string s1 = "", string s2 = "", string s3 = "",
+    string s1Sub = "", string s2Sub = "", string s3Sub = "",
+    string s1Sub2 = "", string s2Sub2 = "", string s3Sub2 = "",
+    bool nextInfoSuKien = true,
+    string infoSuKien = "")
+    {
+        if (string.IsNullOrEmpty(infoSuKien))
+            infoSuKien = NextMap.InfoTextMenuXmap;
+
+        idNpcService = idnpc;
+        menuOptions = new MenuOptions(s1, s2, s3, s1Sub, s2Sub, s3Sub, s1Sub2, s2Sub2, s3Sub2);
+        confirming = true;
+        runningopennpc = false;
+        currentStep = 0;
+        confirmStartTime = Environment.TickCount;
+        lastStepTime = 0L;
+        NextInfoSuKien = nextInfoSuKien;
+        InfoSuKien = infoSuKien;
+    }
+
+    public static void UpdateConfirmNpc()
+    {
+        if (!confirming) return;
+
+        if (IsConfirmTimeout())
+        {
+            CancelConfirmation();
+            return;
+        }
+
+        if (!GameCanvas.menu.showMenu && !runningopennpc)
+        {
+            Service.gI().openMenu(idNpcService);
+            runningopennpc = true;
+        }
+
+        if (!CanProcessMenuStep()) return;
+
+        if (TryProcessEventStep()) return;
+
+        ProcessMenuSteps();
+
+        if (AreAllStepsCompleted())
+            confirming = false;
+    }
+
+    private static bool IsConfirmTimeout()
+    {
+        return Environment.TickCount - confirmStartTime > CONFIRM_TIMEOUT;
+    }
+
+    private static void CancelConfirmation()
+    {
+        confirming = false;
+        runningopennpc = false;
+        currentStep = 0;
+        GameCanvas.menu.doCloseMenu();
+    }
+
+    private static bool CanProcessMenuStep()
+    {
+        if (!GameCanvas.menu.showMenu) return false;
+        if (lastStepTime > 0 && Environment.TickCount - lastStepTime < STEP_DELAY) return false;
+        return true;
+    }
+
+    private static bool TryProcessEventStep()
+    {
+        if (!NextInfoSuKien || !nextSuKien) return false;
+
+        if (SelectMenuByName(InfoSuKien))
+        {
+            InfoSuKien = "";
+            runningopennpc = false;
+            lastStepTime = Environment.TickCount;
+            NextInfoSuKien = false;
+            return true;
+        }
+
+        NextInfoSuKien = false;
+        return false;
+    }
+
+    private static void ProcessMenuSteps()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            if (currentStep == i && !string.IsNullOrEmpty(menuOptions.Names[i]))
+            {
+                if (SelectMenuByName(menuOptions.Names[i], menuOptions.SubNames[i], menuOptions.SubNames2[i]))
+                {
+                    menuOptions.Names[i] = "";
+                    menuOptions.SubNames[i] = "";
+                    menuOptions.SubNames2[i] = "";
+                    currentStep++;
+                    lastStepTime = Environment.TickCount;
+                    break;
+                }
+            }
+        }
+    }
+
+    private static bool AreAllStepsCompleted()
+    {
+        return string.IsNullOrEmpty(menuOptions.Names[0]) &&
+               string.IsNullOrEmpty(menuOptions.Names[1]) &&
+               string.IsNullOrEmpty(menuOptions.Names[2]);
+    }
+
+    private static string NormalizeText(string input)
+    {
+        if (string.IsNullOrEmpty(input)) return "";
+        string text = new string(input.Where(c => !char.IsControl(c)).ToArray());
+        return Regex.Replace(text.ToLower().Trim(), "\\s+", "");
+    }
+
+    private static bool SelectMenuByName(string nameIndex, string subName = "", string subName2 = "")
+    {
+        if (GameCanvas.menu.menuItems == null || GameCanvas.menu.menuItems.size() == 0)
+            return false;
+
+        string value = NormalizeText(nameIndex);
+        string value2 = NormalizeText(subName);
+        string value3 = NormalizeText(subName2);
+
+        for (int i = 0; i < GameCanvas.menu.menuItems.size(); i++)
+        {
+            try
+            {
+                object obj = GameCanvas.menu.menuItems.elementAt(i);
+                if (obj == null) continue;
+
+                string text = NormalizeText(((Command)obj).caption ?? "");
+                if (text.Equals(value) ||
+                    (!string.IsNullOrEmpty(value2) && text.Equals(value2)) ||
+                    (!string.IsNullOrEmpty(value3) && text.Equals(value3)))
+                {
+                    GameCanvas.menu.menuSelectedItem = i;
+                    GameCanvas.menu.performSelect();
+                    GameCanvas.menu.doCloseMenu();
+                    return true;
+                }
+            }
+            catch { }
+        }
+        return false;
+    }
+    #endregion
 }

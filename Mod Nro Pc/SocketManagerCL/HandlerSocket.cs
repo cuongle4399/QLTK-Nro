@@ -339,8 +339,37 @@ internal class HandlerSocket
 			});
 		}
 	}
+    public static void handlerListVutON(string message)
+    {
+        if (message.StartsWith("ONlistvut|"))
+        {
+            SafeExecute(delegate
+            {
+                AutoVutDoCL.listVutDo.Clear();
+                string[] s =message.Split('|')[1].Split(',');
+				for(int i = 0; i < s.Length; i++)
+				{
+					AutoVutDoCL.listVutDo.Add(int.Parse(s[i]));
+                }
+                AutoVutDoCL.autoVut = true;
+                GameScr.info1.addInfo("Auto vứt item: " + (AutoVutDoCL.autoVut ? "Bật" : "Tắt"));
+            });
+        }
+    }
+    public static void handlerListVutOFF(string message)
+    {
+        if (message.StartsWith("OFFlistvut|"))
+        {
+            SafeExecute(delegate
+            {
+                AutoVutDoCL.listVutDo.Clear();
+                AutoVutDoCL.autoVut = false;
+                GameScr.info1.addInfo("Auto vứt item: " + (AutoVutDoCL.autoVut ? "Bật" : "Tắt"));
+            });
+        }
+    }
 
-	public static void handlerFarmBossNappa(string message)
+    public static void handlerFarmBossNappa(string message)
 	{
 		foreach (KeyValuePair<string, Action<string>> kv in farmBossNappaActions)
 		{
@@ -432,7 +461,9 @@ internal class HandlerSocket
 		handlerXamp(message);
 		handlerZone(message);
 		handlerTeleNpc(message);
-		handlerAutoBoMong(message);
+        handlerListVutON(message);
+		handlerListVutOFF(message);
+        handlerAutoBoMong(message);
 		handlerAutoPet(message);
 		handlerFarmBossNappa(message);
 		handlerNhapCodeLive(message);

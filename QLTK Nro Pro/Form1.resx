@@ -403,7 +403,7 @@
     <value>1</value>
   </data>
   <data name="cbbServerAPI.Items" xml:space="preserve">
-    <value>https://api.phamgiang.net/captcha/nro?token=</value>
+    <value>http://api.phamgiang.net/captcha/nro?token=</value>
   </data>
   <data name="cbbServerAPI.Items1" xml:space="preserve">
     <value>http://api.tooltvt.com/api?token=</value>
@@ -787,6 +787,108 @@
   <data name="&gt;&gt;PageOther.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="label7.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 30</value>
+  </data>
+  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>146, 20</value>
+  </data>
+  <data name="label7.TabIndex" type="System.Int32, mscorlib">
+    <value>43</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>Text Xmap sự kiện: </value>
+  </data>
+  <data name="&gt;&gt;label7.Name" xml:space="preserve">
+    <value>label7</value>
+  </data>
+  <data name="&gt;&gt;label7.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label7.Parent" xml:space="preserve">
+    <value>groupBox10</value>
+  </data>
+  <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="txtTextXmap.Location" type="System.Drawing.Point, System.Drawing">
+    <value>160, 22</value>
+  </data>
+  <data name="txtTextXmap.Multiline" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="txtTextXmap.PlaceholderText" xml:space="preserve">
+    <value>Ví dụ sk: Npc có menu nhận kẹo thì nhập: từ chối nhận kẹo hay gì đó</value>
+  </data>
+  <data name="txtTextXmap.Size" type="System.Drawing.Size, System.Drawing">
+    <value>498, 29</value>
+  </data>
+  <data name="txtTextXmap.TabIndex" type="System.Int32, mscorlib">
+    <value>41</value>
+  </data>
+  <data name="&gt;&gt;txtTextXmap.Name" xml:space="preserve">
+    <value>txtTextXmap</value>
+  </data>
+  <data name="&gt;&gt;txtTextXmap.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtTextXmap.Parent" xml:space="preserve">
+    <value>groupBox10</value>
+  </data>
+  <data name="&gt;&gt;txtTextXmap.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="btnTextXmap.Location" type="System.Drawing.Point, System.Drawing">
+    <value>664, 21</value>
+  </data>
+  <data name="btnTextXmap.Size" type="System.Drawing.Size, System.Drawing">
+    <value>94, 29</value>
+  </data>
+  <data name="btnTextXmap.TabIndex" type="System.Int32, mscorlib">
+    <value>44</value>
+  </data>
+  <data name="btnTextXmap.Text" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="&gt;&gt;btnTextXmap.Name" xml:space="preserve">
+    <value>btnTextXmap</value>
+  </data>
+  <data name="&gt;&gt;btnTextXmap.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnTextXmap.Parent" xml:space="preserve">
+    <value>groupBox10</value>
+  </data>
+  <data name="&gt;&gt;btnTextXmap.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="groupBox10.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 355</value>
+  </data>
+  <data name="groupBox10.Size" type="System.Drawing.Size, System.Drawing">
+    <value>764, 55</value>
+  </data>
+  <data name="groupBox10.TabIndex" type="System.Int32, mscorlib">
+    <value>45</value>
+  </data>
+  <data name="groupBox10.Text" xml:space="preserve">
+    <value>Xmap</value>
+  </data>
+  <data name="&gt;&gt;groupBox10.Name" xml:space="preserve">
+    <value>groupBox10</value>
+  </data>
+  <data name="&gt;&gt;groupBox10.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox10.Parent" xml:space="preserve">
+    <value>PageHome</value>
+  </data>
+  <data name="&gt;&gt;groupBox10.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="materialLabel7.Font" type="System.Drawing.Font, System.Drawing">
     <value>Roboto, 14px</value>
   </data>
@@ -794,10 +896,10 @@
     <value>NoControl</value>
   </data>
   <data name="materialLabel7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>309, 381</value>
+    <value>275, 304</value>
   </data>
   <data name="materialLabel7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>474, 31</value>
+    <value>224, 48</value>
   </data>
   <data name="materialLabel7.TabIndex" type="System.Int32, mscorlib">
     <value>40</value>
@@ -815,16 +917,16 @@
     <value>PageHome</value>
   </data>
   <data name="&gt;&gt;materialLabel7.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="btnAdminDev.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Bahnschrift, 13.8pt</value>
+    <value>Bahnschrift, 12pt</value>
   </data>
   <data name="btnAdminDev.Location" type="System.Drawing.Point, System.Drawing">
-    <value>373, 300</value>
+    <value>505, 294</value>
   </data>
   <data name="btnAdminDev.Size" type="System.Drawing.Size, System.Drawing">
-    <value>306, 78</value>
+    <value>272, 59</value>
   </data>
   <data name="btnAdminDev.TabIndex" type="System.Int32, mscorlib">
     <value>39</value>
@@ -842,7 +944,7 @@
     <value>PageHome</value>
   </data>
   <data name="&gt;&gt;btnAdminDev.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="materialLabel11.Font" type="System.Drawing.Font, System.Drawing">
     <value>Roboto, 14px</value>
@@ -938,7 +1040,7 @@
     <value>12, 242</value>
   </data>
   <data name="groupBox8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>250, 125</value>
+    <value>250, 107</value>
   </data>
   <data name="groupBox8.TabIndex" type="System.Int32, mscorlib">
     <value>38</value>
@@ -956,7 +1058,7 @@
     <value>PageHome</value>
   </data>
   <data name="&gt;&gt;groupBox8.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="txtIdNpc.Location" type="System.Drawing.Point, System.Drawing">
     <value>366, 30</value>
@@ -1040,7 +1142,7 @@
     <value>PageHome</value>
   </data>
   <data name="&gt;&gt;gbNpc.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="txtChat.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 22</value>
@@ -1124,7 +1226,7 @@
     <value>PageHome</value>
   </data>
   <data name="&gt;&gt;gbChat.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="txtIdItem.Location" type="System.Drawing.Point, System.Drawing">
     <value>679, 31</value>
@@ -1809,7 +1911,7 @@
     <value>PageHome</value>
   </data>
   <data name="&gt;&gt;gbItem.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="button1.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -1887,7 +1989,7 @@
     <value>PageHome</value>
   </data>
   <data name="&gt;&gt;gbZone.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="materialLabel6.Font" type="System.Drawing.Font, System.Drawing">
     <value>Roboto, 14px</value>
@@ -1899,7 +2001,7 @@
     <value>275, 238</value>
   </data>
   <data name="materialLabel6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>511, 59</value>
+    <value>508, 53</value>
   </data>
   <data name="materialLabel6.TabIndex" type="System.Int32, mscorlib">
     <value>31</value>
@@ -1917,7 +2019,7 @@
     <value>PageHome</value>
   </data>
   <data name="&gt;&gt;materialLabel6.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="txtChatGame.Location" type="System.Drawing.Point, System.Drawing">
     <value>98, 26</value>
@@ -2004,7 +2106,7 @@
     <value>PageHome</value>
   </data>
   <data name="&gt;&gt;gbChatGame.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="PageHome.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 29</value>
@@ -6995,6 +7097,114 @@
   <data name="&gt;&gt;PageBoss.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="btnSaveListThrow.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnSaveListThrow.Location" type="System.Drawing.Point, System.Drawing">
+    <value>627, 26</value>
+  </data>
+  <data name="btnSaveListThrow.Size" type="System.Drawing.Size, System.Drawing">
+    <value>118, 50</value>
+  </data>
+  <data name="btnSaveListThrow.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="btnSaveListThrow.Text" xml:space="preserve">
+    <value>Lưu</value>
+  </data>
+  <data name="&gt;&gt;btnSaveListThrow.Name" xml:space="preserve">
+    <value>btnSaveListThrow</value>
+  </data>
+  <data name="&gt;&gt;btnSaveListThrow.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnSaveListThrow.Parent" xml:space="preserve">
+    <value>groupBox11</value>
+  </data>
+  <data name="&gt;&gt;btnSaveListThrow.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="btnApDungVut.Location" type="System.Drawing.Point, System.Drawing">
+    <value>478, 26</value>
+  </data>
+  <data name="btnApDungVut.Size" type="System.Drawing.Size, System.Drawing">
+    <value>128, 50</value>
+  </data>
+  <data name="btnApDungVut.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="btnApDungVut.Text" xml:space="preserve">
+    <value>Vứt: OFF</value>
+  </data>
+  <data name="&gt;&gt;btnApDungVut.Name" xml:space="preserve">
+    <value>btnApDungVut</value>
+  </data>
+  <data name="&gt;&gt;btnApDungVut.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnApDungVut.Parent" xml:space="preserve">
+    <value>groupBox11</value>
+  </data>
+  <data name="&gt;&gt;btnApDungVut.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="txtVut.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Roboto, 16px</value>
+  </data>
+  <data name="txtVut.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 26</value>
+  </data>
+  <data name="txtVut.MaxLength" type="System.Int32, mscorlib">
+    <value>50</value>
+  </data>
+  <data name="txtVut.Multiline" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="txtVut.Size" type="System.Drawing.Size, System.Drawing">
+    <value>454, 50</value>
+  </data>
+  <data name="txtVut.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="txtVut.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;txtVut.Name" xml:space="preserve">
+    <value>txtVut</value>
+  </data>
+  <data name="&gt;&gt;txtVut.Type" xml:space="preserve">
+    <value>MaterialSkin.Controls.MaterialTextBox, MaterialSkin, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;txtVut.Parent" xml:space="preserve">
+    <value>groupBox11</value>
+  </data>
+  <data name="&gt;&gt;txtVut.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="groupBox11.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 195</value>
+  </data>
+  <data name="groupBox11.Size" type="System.Drawing.Size, System.Drawing">
+    <value>765, 97</value>
+  </data>
+  <data name="groupBox11.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="groupBox11.Text" xml:space="preserve">
+    <value>Vứt ID item</value>
+  </data>
+  <data name="&gt;&gt;groupBox11.Name" xml:space="preserve">
+    <value>groupBox11</value>
+  </data>
+  <data name="&gt;&gt;groupBox11.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox11.Parent" xml:space="preserve">
+    <value>PageTrain</value>
+  </data>
+  <data name="&gt;&gt;groupBox11.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="btnNeSieuQuai.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
@@ -7023,7 +7233,7 @@
     <value>PageTrain</value>
   </data>
   <data name="&gt;&gt;btnNeSieuQuai.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="btnAkDame.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -7053,7 +7263,7 @@
     <value>PageTrain</value>
   </data>
   <data name="&gt;&gt;btnAkDame.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="btnAutoNhat.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -7083,7 +7293,7 @@
     <value>PageTrain</value>
   </data>
   <data name="&gt;&gt;btnAutoNhat.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="btnNeBoss.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -7113,7 +7323,7 @@
     <value>PageTrain</value>
   </data>
   <data name="&gt;&gt;btnNeBoss.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="btnAutoHopThe.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -7143,7 +7353,7 @@
     <value>PageTrain</value>
   </data>
   <data name="&gt;&gt;btnAutoHopThe.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="btnSpamZoneIt.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -7173,7 +7383,7 @@
     <value>PageTrain</value>
   </data>
   <data name="&gt;&gt;btnSpamZoneIt.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="btnAutoZoneIt.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -7203,7 +7413,7 @@
     <value>PageTrain</value>
   </data>
   <data name="&gt;&gt;btnAutoZoneIt.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="button17.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -7233,7 +7443,7 @@
     <value>PageTrain</value>
   </data>
   <data name="&gt;&gt;button17.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="button16.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -7263,7 +7473,7 @@
     <value>PageTrain</value>
   </data>
   <data name="&gt;&gt;button16.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="button6.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -7293,7 +7503,7 @@
     <value>PageTrain</value>
   </data>
   <data name="&gt;&gt;button6.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="PageTrain.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 29</value>
@@ -8162,6 +8372,57 @@
   <data name="&gt;&gt;PageChucNang.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="btnThuMucTool.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 10.2pt, style=Bold</value>
+  </data>
+  <data name="btnThuMucTool.Location" type="System.Drawing.Point, System.Drawing">
+    <value>700, 326</value>
+  </data>
+  <data name="btnThuMucTool.Size" type="System.Drawing.Size, System.Drawing">
+    <value>97, 60</value>
+  </data>
+  <data name="btnThuMucTool.TabIndex" type="System.Int32, mscorlib">
+    <value>22</value>
+  </data>
+  <data name="btnThuMucTool.Text" xml:space="preserve">
+    <value>Thư mục Mod</value>
+  </data>
+  <data name="&gt;&gt;btnThuMucTool.Name" xml:space="preserve">
+    <value>btnThuMucTool</value>
+  </data>
+  <data name="&gt;&gt;btnThuMucTool.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnThuMucTool.Parent" xml:space="preserve">
+    <value>PageQLTK</value>
+  </data>
+  <data name="&gt;&gt;btnThuMucTool.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="btnAutoOpenTab.Location" type="System.Drawing.Point, System.Drawing">
+    <value>703, 392</value>
+  </data>
+  <data name="btnAutoOpenTab.Size" type="System.Drawing.Size, System.Drawing">
+    <value>94, 62</value>
+  </data>
+  <data name="btnAutoOpenTab.TabIndex" type="System.Int32, mscorlib">
+    <value>41</value>
+  </data>
+  <data name="btnAutoOpenTab.Text" xml:space="preserve">
+    <value>Auto mở tab: OFF</value>
+  </data>
+  <data name="&gt;&gt;btnAutoOpenTab.Name" xml:space="preserve">
+    <value>btnAutoOpenTab</value>
+  </data>
+  <data name="&gt;&gt;btnAutoOpenTab.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnAutoOpenTab.Parent" xml:space="preserve">
+    <value>PageQLTK</value>
+  </data>
+  <data name="&gt;&gt;btnAutoOpenTab.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="btnBoxZalo.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
@@ -8196,25 +8457,25 @@
     <value>PageQLTK</value>
   </data>
   <data name="&gt;&gt;btnBoxZalo.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>2</value>
   </data>
   <data name="btnImportDataNick.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Arial, 10.8pt</value>
+    <value>Arial, 9pt</value>
   </data>
   <data name="btnImportDataNick.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="btnImportDataNick.Location" type="System.Drawing.Point, System.Drawing">
-    <value>698, 334</value>
+    <value>700, 279</value>
   </data>
   <data name="btnImportDataNick.Size" type="System.Drawing.Size, System.Drawing">
-    <value>99, 58</value>
+    <value>97, 41</value>
   </data>
   <data name="btnImportDataNick.TabIndex" type="System.Int32, mscorlib">
     <value>39</value>
   </data>
   <data name="btnImportDataNick.Text" xml:space="preserve">
-    <value>Import Data Nick</value>
+    <value>Import Data</value>
   </data>
   <data name="&gt;&gt;btnImportDataNick.Name" xml:space="preserve">
     <value>btnImportDataNick</value>
@@ -8226,81 +8487,6 @@
     <value>PageQLTK</value>
   </data>
   <data name="&gt;&gt;btnImportDataNick.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="btnCountClient.AutoSize" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="btnCountClient.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
-    <value>GrowAndShrink</value>
-  </data>
-  <data name="btnCountClient.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="btnCountClient.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnCountClient.Location" type="System.Drawing.Point, System.Drawing">
-    <value>706, 408</value>
-  </data>
-  <data name="btnCountClient.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 6, 4, 6</value>
-  </data>
-  <data name="btnCountClient.Size" type="System.Drawing.Size, System.Drawing">
-    <value>91, 36</value>
-  </data>
-  <data name="btnCountClient.TabIndex" type="System.Int32, mscorlib">
-    <value>38</value>
-  </data>
-  <data name="btnCountClient.Text" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;btnCountClient.Name" xml:space="preserve">
-    <value>btnCountClient</value>
-  </data>
-  <data name="&gt;&gt;btnCountClient.Type" xml:space="preserve">
-    <value>MaterialSkin.Controls.MaterialButton, MaterialSkin, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;btnCountClient.Parent" xml:space="preserve">
-    <value>PageQLTK</value>
-  </data>
-  <data name="&gt;&gt;btnCountClient.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="materialButton128.AutoSize" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="materialButton128.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
-    <value>GrowAndShrink</value>
-  </data>
-  <data name="materialButton128.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="materialButton128.Location" type="System.Drawing.Point, System.Drawing">
-    <value>690, 284</value>
-  </data>
-  <data name="materialButton128.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 6, 4, 6</value>
-  </data>
-  <data name="materialButton128.Size" type="System.Drawing.Size, System.Drawing">
-    <value>108, 36</value>
-  </data>
-  <data name="materialButton128.TabIndex" type="System.Int32, mscorlib">
-    <value>36</value>
-  </data>
-  <data name="materialButton128.Text" xml:space="preserve">
-    <value>thư mục QLTK</value>
-  </data>
-  <data name="&gt;&gt;materialButton128.Name" xml:space="preserve">
-    <value>materialButton128</value>
-  </data>
-  <data name="&gt;&gt;materialButton128.Type" xml:space="preserve">
-    <value>MaterialSkin.Controls.MaterialButton, MaterialSkin, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;materialButton128.Parent" xml:space="preserve">
-    <value>PageQLTK</value>
-  </data>
-  <data name="&gt;&gt;materialButton128.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
   <data name="txt_server.Font" type="System.Drawing.Font, System.Drawing">
@@ -8412,7 +8598,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnDelete.Location" type="System.Drawing.Point, System.Drawing">
-    <value>525, 284</value>
+    <value>532, 284</value>
   </data>
   <data name="btnDelete.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 6, 4, 6</value>
@@ -8553,7 +8739,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnFix.Location" type="System.Drawing.Point, System.Drawing">
-    <value>461, 284</value>
+    <value>468, 284</value>
   </data>
   <data name="btnFix.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 6, 4, 6</value>
@@ -8589,7 +8775,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnAdd.Location" type="System.Drawing.Point, System.Drawing">
-    <value>396, 284</value>
+    <value>403, 284</value>
   </data>
   <data name="btnAdd.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 6, 4, 6</value>
@@ -8625,7 +8811,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnClose.Location" type="System.Drawing.Point, System.Drawing">
-    <value>589, 284</value>
+    <value>596, 284</value>
   </data>
   <data name="btnClose.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 6, 4, 6</value>
@@ -8908,6 +9094,15 @@
   </data>
   <data name="TypeProxy.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
+  </data>
+  <metadata name="Tick.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="Tick.HeaderText" xml:space="preserve">
+    <value>✔️</value>
+  </data>
+  <data name="Tick.MinimumWidth" type="System.Int32, mscorlib">
+    <value>6</value>
   </data>
   <data name="dataGridView1.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 6</value>
@@ -16814,6 +17009,12 @@
   </data>
   <data name="&gt;&gt;TypeProxy.Type" xml:space="preserve">
     <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Tick.Name" xml:space="preserve">
+    <value>Tick</value>
+  </data>
+  <data name="&gt;&gt;Tick.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewCheckBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>Form1</value>

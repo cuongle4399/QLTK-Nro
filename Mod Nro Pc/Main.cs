@@ -168,7 +168,7 @@ public class Main : MonoBehaviour
 	{
 		if (!isRun)
 		{
-			Screen.orientation = ScreenOrientation.LandscapeLeft;
+            Screen.orientation = ScreenOrientation.LandscapeLeft;
 			Application.runInBackground = true;
 			base.useGUILayout = false;
 			isCompactDevice = detectCompactDevice();

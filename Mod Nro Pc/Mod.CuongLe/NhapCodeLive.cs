@@ -52,7 +52,7 @@ internal class NhapCodeLive
 		case 1:
 			if (num - lastActionTime >= 300)
 			{
-				ModProCL.startComfirmNpc(39, "Nhập mã quà tặng");
+				NextMap.startComfirmNpc(39, "Nhập mã quà tặng");
 				lastActionTime = num;
 				step = 2;
 			}

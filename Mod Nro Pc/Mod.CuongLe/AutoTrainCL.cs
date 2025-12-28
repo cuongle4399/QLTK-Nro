@@ -262,7 +262,7 @@ namespace Mod.CuongLe
                 Service.gI().returnTownFromDead();
             }
 
-            if (isMeOutOfMpOR1HP())
+            if (isMeOutOfMpOR1HP() && MainXmapCL.isEatChicken)
             {
                 int homeMapId = 21 + me.cgender;
                 if (TileMap.mapID != homeMapId)
@@ -358,16 +358,14 @@ namespace Mod.CuongLe
             }
             else
             {
+                Service.gI().chat(text);
                 ChatTextField.gI().isShow = false;
             }
         }
 
         public void onCancelChat()
         {
-            ChatTextField.gI().strChat = "Chat";
-            ChatTextField.gI().tfChat.name = "chat";
-            ChatTextField.gI().tfChat.setIputType(TField.INPUT_TYPE_ANY);
-            ChatTextField.gI().isShow = false;
+            ResetChatTextField();
         }
 
         public void perform(int idAction, object p)
@@ -561,16 +559,6 @@ namespace Mod.CuongLe
             ChatTextField.gI().tfChat.setIputType(type);
             ChatTextField.gI().startChat2(getInstance(), string.Empty);
         }
-
-        public static void ShowMenu()
-        {
-            MyVector myVector = new MyVector();
-            myVector.addElement(new Command("Mở Menu Train", getInstance(), 17, null));
-            myVector.addElement(new Command("SEND DAME TRAIN: " + (TYPEAK ? "Ak [Không phụ thuộc FPS]" : "Mặc định"), getInstance(), 16, null));
-            myVector.addElement(new Command("Cấu hình HP train Quái", getInstance(), 20, null));
-            GameCanvas.menu.startAt(myVector, 3);
-        }
-
         public static void ShowMenuKhuIt()
         {
             MyVector myVector = new MyVector();
@@ -610,6 +598,13 @@ namespace Mod.CuongLe
         private static void TeleportTo(int x, int y)
         {
             var me = Char.myCharz();
+            if (GameScr.canAutoPlay)
+            {
+                me.cx = x;
+                me.cy = y;
+                Service.gI().charMove();
+                return;
+            }
             me.cx = x;
             me.cy = y;
             Service.gI().charMove();

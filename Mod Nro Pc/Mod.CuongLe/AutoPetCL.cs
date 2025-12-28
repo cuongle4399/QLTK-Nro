@@ -425,7 +425,7 @@ public class AutoPetCL : IActionListener, IChatable
 		int cy = Char.myCharz().cy;
 		if (mob != null)
 		{
-			AutoboMongCL.selectSkill();
+			YardatCL.selectSkill();
 			MainXmapCL.TeleportTo(mob.x, mob.y);
 			myVector.addElement(mob);
 			Service.gI().sendPlayerAttack(myVector, new MyVector(), 1);

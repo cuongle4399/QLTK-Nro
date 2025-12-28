@@ -56,6 +56,10 @@
             PageChucNang = new TabPage();
             tabThapCam = new TabControl();
             PageHome = new TabPage();
+            groupBox10 = new GroupBox();
+            label7 = new Label();
+            txtTextXmap = new TextBox();
+            btnTextXmap = new Button();
             materialLabel7 = new MaterialSkin.Controls.MaterialLabel();
             btnAdminDev = new Button();
             groupBox8 = new GroupBox();
@@ -237,6 +241,10 @@
             button4 = new Button();
             button5 = new Button();
             PageTrain = new TabPage();
+            groupBox11 = new GroupBox();
+            btnSaveListThrow = new Button();
+            btnApDungVut = new Button();
+            txtVut = new MaterialSkin.Controls.MaterialTextBox();
             btnNeSieuQuai = new Button();
             btnAkDame = new Button();
             btnAutoNhat = new Button();
@@ -274,10 +282,10 @@
             txtCodeLive = new MaterialSkin.Controls.MaterialTextBox();
             btnNhapCodeLive = new MaterialSkin.Controls.MaterialButton();
             PageQLTK = new TabPage();
+            btnThuMucTool = new Button();
+            btnAutoOpenTab = new Button();
             btnBoxZalo = new MaterialSkin.Controls.MaterialButton();
             btnImportDataNick = new Button();
-            btnCountClient = new MaterialSkin.Controls.MaterialButton();
-            materialButton128 = new MaterialSkin.Controls.MaterialButton();
             txt_server = new MaterialSkin.Controls.MaterialComboBox();
             btnDelete = new MaterialSkin.Controls.MaterialButton();
             txt_user = new MaterialSkin.Controls.MaterialTextBox();
@@ -299,6 +307,7 @@
             ghiChu = new DataGridViewTextBoxColumn();
             Column1 = new DataGridViewButtonColumn();
             TypeProxy = new DataGridViewTextBoxColumn();
+            Tick = new DataGridViewCheckBoxColumn();
             checkProxy = new MaterialSkin.Controls.MaterialCheckbox();
             txtProxy = new MaterialSkin.Controls.MaterialTextBox2();
             groupBox2 = new GroupBox();
@@ -327,6 +336,7 @@
             PageChucNang.SuspendLayout();
             tabThapCam.SuspendLayout();
             PageHome.SuspendLayout();
+            groupBox10.SuspendLayout();
             groupBox8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)txtFps).BeginInit();
             gbNpc.SuspendLayout();
@@ -368,6 +378,7 @@
             groupBox9.SuspendLayout();
             groupBox5.SuspendLayout();
             PageTrain.SuspendLayout();
+            groupBox11.SuspendLayout();
             PageBoMong.SuspendLayout();
             PagePet.SuspendLayout();
             groupBox7.SuspendLayout();
@@ -596,6 +607,7 @@
             // PageHome
             // 
             PageHome.BackColor = Color.Silver;
+            PageHome.Controls.Add(groupBox10);
             PageHome.Controls.Add(materialLabel7);
             PageHome.Controls.Add(btnAdminDev);
             PageHome.Controls.Add(groupBox8);
@@ -607,6 +619,32 @@
             PageHome.Controls.Add(gbChatGame);
             resources.ApplyResources(PageHome, "PageHome");
             PageHome.Name = "PageHome";
+            // 
+            // groupBox10
+            // 
+            groupBox10.Controls.Add(label7);
+            groupBox10.Controls.Add(txtTextXmap);
+            groupBox10.Controls.Add(btnTextXmap);
+            resources.ApplyResources(groupBox10, "groupBox10");
+            groupBox10.Name = "groupBox10";
+            groupBox10.TabStop = false;
+            // 
+            // label7
+            // 
+            resources.ApplyResources(label7, "label7");
+            label7.Name = "label7";
+            // 
+            // txtTextXmap
+            // 
+            resources.ApplyResources(txtTextXmap, "txtTextXmap");
+            txtTextXmap.Name = "txtTextXmap";
+            // 
+            // btnTextXmap
+            // 
+            resources.ApplyResources(btnTextXmap, "btnTextXmap");
+            btnTextXmap.Name = "btnTextXmap";
+            btnTextXmap.UseVisualStyleBackColor = true;
+            btnTextXmap.Click += btnTextXmap_Click;
             // 
             // materialLabel7
             // 
@@ -2968,6 +3006,7 @@
             // PageTrain
             // 
             PageTrain.BackColor = Color.DarkGray;
+            PageTrain.Controls.Add(groupBox11);
             PageTrain.Controls.Add(btnNeSieuQuai);
             PageTrain.Controls.Add(btnAkDame);
             PageTrain.Controls.Add(btnAutoNhat);
@@ -2981,6 +3020,40 @@
             PageTrain.Cursor = Cursors.Hand;
             resources.ApplyResources(PageTrain, "PageTrain");
             PageTrain.Name = "PageTrain";
+            // 
+            // groupBox11
+            // 
+            groupBox11.Controls.Add(btnSaveListThrow);
+            groupBox11.Controls.Add(btnApDungVut);
+            groupBox11.Controls.Add(txtVut);
+            resources.ApplyResources(groupBox11, "groupBox11");
+            groupBox11.Name = "groupBox11";
+            groupBox11.TabStop = false;
+            // 
+            // btnSaveListThrow
+            // 
+            resources.ApplyResources(btnSaveListThrow, "btnSaveListThrow");
+            btnSaveListThrow.Name = "btnSaveListThrow";
+            btnSaveListThrow.UseVisualStyleBackColor = true;
+            btnSaveListThrow.Click += btnSaveListThrow_Click;
+            // 
+            // btnApDungVut
+            // 
+            resources.ApplyResources(btnApDungVut, "btnApDungVut");
+            btnApDungVut.Name = "btnApDungVut";
+            btnApDungVut.UseVisualStyleBackColor = true;
+            btnApDungVut.Click += btnApDungVut_Click;
+            // 
+            // txtVut
+            // 
+            txtVut.AnimateReadOnly = false;
+            txtVut.BorderStyle = BorderStyle.None;
+            txtVut.Depth = 0;
+            resources.ApplyResources(txtVut, "txtVut");
+            txtVut.LeadingIcon = null;
+            txtVut.MouseState = MaterialSkin.MouseState.OUT;
+            txtVut.Name = "txtVut";
+            txtVut.TrailingIcon = null;
             // 
             // btnNeSieuQuai
             // 
@@ -3363,10 +3436,10 @@
             // 
             // PageQLTK
             // 
+            PageQLTK.Controls.Add(btnThuMucTool);
+            PageQLTK.Controls.Add(btnAutoOpenTab);
             PageQLTK.Controls.Add(btnBoxZalo);
             PageQLTK.Controls.Add(btnImportDataNick);
-            PageQLTK.Controls.Add(btnCountClient);
-            PageQLTK.Controls.Add(materialButton128);
             PageQLTK.Controls.Add(txt_server);
             PageQLTK.Controls.Add(btnDelete);
             PageQLTK.Controls.Add(txt_user);
@@ -3393,6 +3466,22 @@
             PageQLTK.Name = "PageQLTK";
             PageQLTK.UseVisualStyleBackColor = true;
             // 
+            // btnThuMucTool
+            // 
+            btnThuMucTool.BackColor = Color.Tan;
+            resources.ApplyResources(btnThuMucTool, "btnThuMucTool");
+            btnThuMucTool.Name = "btnThuMucTool";
+            btnThuMucTool.UseVisualStyleBackColor = false;
+            btnThuMucTool.Click += btnThuMucTool_Click;
+            // 
+            // btnAutoOpenTab
+            // 
+            btnAutoOpenTab.BackColor = Color.CadetBlue;
+            resources.ApplyResources(btnAutoOpenTab, "btnAutoOpenTab");
+            btnAutoOpenTab.Name = "btnAutoOpenTab";
+            btnAutoOpenTab.UseVisualStyleBackColor = false;
+            btnAutoOpenTab.Click += btnAutoOpenTab_Click;
+            // 
             // btnBoxZalo
             // 
             resources.ApplyResources(btnBoxZalo, "btnBoxZalo");
@@ -3414,36 +3503,6 @@
             btnImportDataNick.Name = "btnImportDataNick";
             btnImportDataNick.UseVisualStyleBackColor = true;
             btnImportDataNick.Click += btnImportDataNick_Click;
-            // 
-            // btnCountClient
-            // 
-            resources.ApplyResources(btnCountClient, "btnCountClient");
-            btnCountClient.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            btnCountClient.Depth = 0;
-            btnCountClient.ForeColor = Color.Red;
-            btnCountClient.HighEmphasis = true;
-            btnCountClient.Icon = null;
-            btnCountClient.MouseState = MaterialSkin.MouseState.HOVER;
-            btnCountClient.Name = "btnCountClient";
-            btnCountClient.NoAccentTextColor = Color.Empty;
-            btnCountClient.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            btnCountClient.UseAccentColor = false;
-            btnCountClient.UseVisualStyleBackColor = true;
-            // 
-            // materialButton128
-            // 
-            resources.ApplyResources(materialButton128, "materialButton128");
-            materialButton128.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            materialButton128.Depth = 0;
-            materialButton128.HighEmphasis = true;
-            materialButton128.Icon = null;
-            materialButton128.MouseState = MaterialSkin.MouseState.HOVER;
-            materialButton128.Name = "materialButton128";
-            materialButton128.NoAccentTextColor = Color.Empty;
-            materialButton128.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            materialButton128.UseAccentColor = false;
-            materialButton128.UseVisualStyleBackColor = true;
-            materialButton128.Click += materialButton128_Click;
             // 
             // txt_server
             // 
@@ -3642,8 +3701,9 @@
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { ID, TaiKhoan, mayChu, Password, ghiChu, Column1, TypeProxy });
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { ID, TaiKhoan, mayChu, Password, ghiChu, Column1, TypeProxy, Tick });
             dataGridView1.Cursor = Cursors.Hand;
+            dataGridView1.EditMode = DataGridViewEditMode.EditOnEnter;
             resources.ApplyResources(dataGridView1, "dataGridView1");
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
@@ -3652,6 +3712,7 @@
             dataGridViewCellStyle1.Font = new Font("Microsoft Sans Serif", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView1.CellClick += dataGridView1_CellClick;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
             dataGridView1.CellPainting += dataGridView1_CellPainting;
             // 
@@ -3664,7 +3725,7 @@
             // 
             // TaiKhoan
             // 
-            TaiKhoan.FillWeight = 107.855629F;
+            TaiKhoan.FillWeight = 80.85563F;
             resources.ApplyResources(TaiKhoan, "TaiKhoan");
             TaiKhoan.Name = "TaiKhoan";
             TaiKhoan.ReadOnly = true;
@@ -3704,6 +3765,13 @@
             resources.ApplyResources(TypeProxy, "TypeProxy");
             TypeProxy.Name = "TypeProxy";
             TypeProxy.ReadOnly = true;
+            // 
+            // Tick
+            // 
+            Tick.FillWeight = 30F;
+            resources.ApplyResources(Tick, "Tick");
+            Tick.Name = "Tick";
+            Tick.ReadOnly = true;
             // 
             // checkProxy
             // 
@@ -3955,6 +4023,8 @@
             PageChucNang.ResumeLayout(false);
             tabThapCam.ResumeLayout(false);
             PageHome.ResumeLayout(false);
+            groupBox10.ResumeLayout(false);
+            groupBox10.PerformLayout();
             groupBox8.ResumeLayout(false);
             groupBox8.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)txtFps).EndInit();
@@ -3999,6 +4069,7 @@
             groupBox9.ResumeLayout(false);
             groupBox5.ResumeLayout(false);
             PageTrain.ResumeLayout(false);
+            groupBox11.ResumeLayout(false);
             PageBoMong.ResumeLayout(false);
             PageBoMong.PerformLayout();
             PagePet.ResumeLayout(false);
@@ -4037,7 +4108,7 @@
         private MaterialSkin.Controls.MaterialButton materialButton130;
         private MaterialSkin.Controls.MaterialButton materialButton129;
         private PictureBox pBAPI;
-        private Button button12;
+        public Button button12;
         private Label lblAPICapcha;
         private Button btnSave;
         private TextBox txtAPICapcha;
@@ -4047,88 +4118,86 @@
         private TabPage PageHome;
         private GroupBox groupBox8;
         private MaterialSkin.Controls.MaterialLabel materialLabel11;
-        private NumericUpDown txtFps;
+        public NumericUpDown txtFps;
         private MaterialSkin.Controls.MaterialButton btnReduceCPU;
         private GroupBox gbNpc;
-        private NumericUpDown txtIdNpc;
+        public NumericUpDown txtIdNpc;
         private MaterialSkin.Controls.MaterialButton btnTeleNPC;
         private GroupBox gbChat;
-        private TextBox txtChat;
+        public TextBox txtChat;
         private MaterialSkin.Controls.MaterialButton btnUpdateChat;
         private GroupBox gbItem;
-        private NumericUpDown txtIdItem;
-        private PictureBox pictureBox11;
-        private PictureBox pictureBox15;
-        private PictureBox pictureBox13;
-        private PictureBox pictureBox10;
-        private Button button2;
-        private PictureBox pictureBox14;
-        private PictureBox pictureBox9;
-        private PictureBox pictureBox8;
-        private PictureBox pictureBox7;
-        private PictureBox pictureBox6;
-        private PictureBox pictureBox5;
-        private PictureBox pictureBox4;
-        private PictureBox pictureBox3;
-        private PictureBox pictureBox2;
-        private PictureBox pictureBox1;
+        public NumericUpDown txtIdItem;
+        public PictureBox pictureBox11;
+        public PictureBox pictureBox15;
+        public PictureBox pictureBox13;
+        public PictureBox pictureBox10;
+        public Button button2;
+        public PictureBox pictureBox14;
+        public PictureBox pictureBox9;
+        public PictureBox pictureBox8;
+        public PictureBox pictureBox7;
+        public PictureBox pictureBox6;
+        public PictureBox pictureBox5;
+        public PictureBox pictureBox4;
+        public PictureBox pictureBox3;
+        public PictureBox pictureBox2;
+        public PictureBox pictureBox1;
         private GroupBox gbZone;
-        private Button button1;
-        private NumericUpDown txtKHU;
+        public Button button1;
+        public NumericUpDown txtKHU;
         private MaterialSkin.Controls.MaterialLabel materialLabel6;
         private GroupBox gbChatGame;
-        private TextBox txtChatGame;
-        private MaterialSkin.Controls.MaterialButton btnChat;
+        public TextBox txtChatGame;
+        public MaterialSkin.Controls.MaterialButton btnChat;
         private TabPage PageMap;
         private TabPage PageBoss;
         private GroupBox groupBox9;
         private Button btnshow;
-        private MaterialSkin.Controls.MaterialMultiLineTextBox2 txtTagNameBoss;
+        public MaterialSkin.Controls.MaterialMultiLineTextBox2 txtTagNameBoss;
         private MaterialSkin.Controls.MaterialButton materialButton77;
-        private Button button14;
-        private Button button13;
+        public Button button14;
+        public Button button13;
         private GroupBox groupBox5;
-        private Button button9;
-        private MaterialSkin.Controls.MaterialComboBox cbbBossNappa;
-        private Button button8;
-        private Button button3;
-        private Button button7;
-        private Button button4;
-        private Button button5;
+        public Button button9;
+        public MaterialSkin.Controls.MaterialComboBox cbbBossNappa;
+        public Button button8;
+        public Button button3;
+        public Button button7;
+        public Button button4;
+        public Button button5;
         private TabPage PageTrain;
-        private Button button17;
-        private Button button16;
-        private Button button6;
+        public Button button17;
+        public Button button16;
+        public Button button6;
         private TabPage PageBoMong;
         private MaterialSkin.Controls.MaterialButton materialButton20;
         private MaterialSkin.Controls.MaterialLabel materialLabel2;
-        private MaterialSkin.Controls.MaterialComboBox cbbTypeNVGold;
-        private MaterialSkin.Controls.MaterialSwitch chkNextHuman;
-        private MaterialSkin.Controls.MaterialSwitch chkNextMob;
-        private MaterialSkin.Controls.MaterialSwitch chkNextGold;
+        public MaterialSkin.Controls.MaterialComboBox cbbTypeNVGold;
+        public MaterialSkin.Controls.MaterialSwitch chkNextHuman;
+        public MaterialSkin.Controls.MaterialSwitch chkNextMob;
+        public MaterialSkin.Controls.MaterialSwitch chkNextGold;
         private MaterialSkin.Controls.MaterialLabel materialLabel1;
-        private MaterialSkin.Controls.MaterialComboBox TypeNV;
+        public MaterialSkin.Controls.MaterialComboBox TypeNV;
         private TabPage PagePet;
         private GroupBox groupBox7;
         private MaterialSkin.Controls.MaterialButton materialButton133;
         private MaterialSkin.Controls.MaterialButton materialButton132;
         private MaterialSkin.Controls.MaterialButton materialButton131;
         private GroupBox groupBox6;
-        private NumericUpDown txtPercenHP;
-        private Button button23;
-        private Button button22;
-        private Button button21;
-        private Button button20;
-        private Button button19;
-        private Button button18;
+        public NumericUpDown txtPercenHP;
+        public Button button23;
+        public Button button22;
+        public Button button21;
+        public Button button20;
+        public Button button19;
+        public Button button18;
         private TabPage CodeLive;
         private MaterialSkin.Controls.MaterialLabel materialLabel3;
-        private MaterialSkin.Controls.MaterialTextBox txtCodeLive;
+        public MaterialSkin.Controls.MaterialTextBox txtCodeLive;
         private MaterialSkin.Controls.MaterialButton btnNhapCodeLive;
         private TabPage PageQLTK;
         private Button btnImportDataNick;
-        private MaterialSkin.Controls.MaterialButton btnCountClient;
-        private MaterialSkin.Controls.MaterialButton materialButton128;
         private MaterialSkin.Controls.MaterialComboBox txt_server;
         private MaterialSkin.Controls.MaterialButton btnDelete;
         private MaterialSkin.Controls.MaterialTextBox txt_user;
@@ -4143,17 +4212,10 @@
         private MaterialSkin.Controls.MaterialButton btnReport;
         private MaterialSkin.Controls.MaterialButton materialButton38;
         private DataGridView dataGridView1;
-        private DataGridViewTextBoxColumn ID;
-        private DataGridViewTextBoxColumn TaiKhoan;
-        private DataGridViewTextBoxColumn mayChu;
-        private DataGridViewTextBoxColumn Password;
-        private DataGridViewTextBoxColumn ghiChu;
-        private DataGridViewButtonColumn Column1;
-        private DataGridViewTextBoxColumn TypeProxy;
         private MaterialSkin.Controls.MaterialCheckbox checkProxy;
         private MaterialSkin.Controls.MaterialTextBox2 txtProxy;
         private GroupBox groupBox2;
-        private Button button11;
+        public Button button11;
         private MaterialSkin.Controls.MaterialRadioButton rdoHTTPS;
         private MaterialSkin.Controls.MaterialRadioButton rdoHTTP;
         private MaterialSkin.Controls.MaterialRadioButton rdoSOCK5S;
@@ -4314,5 +4376,23 @@
         private Label label5;
         private Button btnAdminDev;
         private MaterialSkin.Controls.MaterialLabel materialLabel7;
+        private TextBox txtTextXmap;
+        private Label label7;
+        private GroupBox groupBox10;
+        private Button btnTextXmap;
+        public MaterialSkin.Controls.MaterialTextBox txtVut;
+        private GroupBox groupBox11;
+        private Button btnApDungVut;
+        private Button btnSaveListThrow;
+        private DataGridViewTextBoxColumn ID;
+        private DataGridViewTextBoxColumn TaiKhoan;
+        private DataGridViewTextBoxColumn mayChu;
+        private DataGridViewTextBoxColumn Password;
+        private DataGridViewTextBoxColumn ghiChu;
+        private DataGridViewButtonColumn Column1;
+        private DataGridViewTextBoxColumn TypeProxy;
+        private DataGridViewCheckBoxColumn Tick;
+        private Button btnAutoOpenTab;
+        private Button btnThuMucTool;
     }
 }

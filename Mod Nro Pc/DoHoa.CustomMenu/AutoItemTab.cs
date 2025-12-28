@@ -12,7 +12,7 @@ public static class AutoItemTab
 
 	static AutoItemTab()
 	{
-		AutoItems = new AutoItemRef[19]
+		AutoItems = new AutoItemRef[20]
 		{
 			new AutoItemRef
 			{
@@ -127,8 +127,15 @@ public static class AutoItemTab
 				Name = "Tôm tẩm bột chiên xù",
 				IdCon = 8062,
 				Id = 882
-			}
-		};
+			},
+
+            new AutoItemRef
+            {
+                Name = "Máy dò capsun",
+                IdCon = 2758,
+                Id = 379
+            }
+        };
 		ScrollOffset = 0;
 	}
 

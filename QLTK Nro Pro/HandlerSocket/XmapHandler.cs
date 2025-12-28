@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 
-namespace QLTK_Nro_Pro.Handlers
+namespace QLTK_Nro_Pro.HandlerSocket
 {
     internal class XmapHandler
     {

@@ -11,13 +11,11 @@ namespace QLTK_Nro_Pro.Presenter
     internal class LoadData
     {
         #region Load/Save data
-        public static string PathFolderData = Path.Combine(Path.GetTempPath(), "cuongle4399", "mod 244");
-        public static string PathData = Path.Combine(PathFolderData, "data");
         public static void ghifile(DataGridView gridView)
         {
             if (gridView.RowCount == 0)
             {
-                File.WriteAllText(PathData, string.Empty); 
+                File.WriteAllText(AppConstants.PathData, string.Empty); 
                 return;
             }
 
@@ -48,23 +46,23 @@ namespace QLTK_Nro_Pro.Presenter
                 lines.Add(line);
             }
 
-            File.WriteAllLines(PathData, lines);
+            File.WriteAllLines(AppConstants.PathData, lines);
         }
 
 
 
         public static void docFile(ref int indexSTT, DataGridView data)
         {
-            if (!File.Exists(PathData))
+            if (!File.Exists(AppConstants.PathData))
             {
-                File.Create(PathData).Close();
+                File.Create(AppConstants.PathData).Close();
             }
 
             try
             {
                 data.Rows.Clear();
                 indexSTT = 0;
-                string[] a = File.ReadAllLines(PathData);
+                string[] a = File.ReadAllLines(AppConstants.PathData);
 
                 foreach (string line in a)
                 {
@@ -99,7 +97,7 @@ namespace QLTK_Nro_Pro.Presenter
                                     MessageBoxButtons.YesNo,
                                     MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    File.Delete(PathData);
+                    File.Delete(AppConstants.PathData);
                     data.Rows.Clear();
                 }
                 else
@@ -225,37 +223,35 @@ namespace QLTK_Nro_Pro.Presenter
         }
         #endregion
         #region createFolderData
-        public static string PathAPI = Path.Combine("Data", "keyAPI.ini");
-        public static string PathServerAPI = Path.Combine("Data", "serverAPI.ini");
         public static void createFolderData()
         {
             if (!Directory.Exists(Path.Combine(Path.GetTempPath(), "cuongle4399", "mod 244")))
             {
                 Directory.CreateDirectory((Path.Combine(Path.GetTempPath(), "cuongle4399", "mod 244")));
-                if (!File.Exists(PathData))
+                if (!File.Exists(AppConstants.PathData))
                 {
-                    File.Create(PathData).Close();
+                    File.Create(AppConstants.PathData).Close();
                 }
             }
-            string folderPath = Path.GetDirectoryName(PathAPI);
+            string folderPath = Path.GetDirectoryName(AppConstants.PathAPI);
             if (!Directory.Exists(folderPath))
             {
                 Directory.CreateDirectory(folderPath);
             }
 
-            if (!File.Exists(PathServerAPI))
+            if (!File.Exists(AppConstants.PathServerAPI))
             {
-                File.WriteAllText(PathAPI, "");
+                File.WriteAllText(AppConstants.PathAPI, "");
             }
-            string folderPathServerAPI = Path.GetDirectoryName(PathServerAPI);
+            string folderPathServerAPI = Path.GetDirectoryName(AppConstants.PathServerAPI);
             if (!Directory.Exists(folderPathServerAPI))
             {
                 Directory.CreateDirectory(folderPathServerAPI);
             }
 
-            if (!File.Exists(PathServerAPI))
+            if (!File.Exists(AppConstants.PathServerAPI))
             {
-                File.WriteAllText(PathServerAPI, "");
+                File.WriteAllText(AppConstants.PathServerAPI, "");
             }
         }
         #endregion

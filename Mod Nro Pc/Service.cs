@@ -680,7 +680,8 @@ public class Service
 
 	public void getItem(sbyte type, sbyte id)
 	{
-		Message message = null;
+		Res.outz("get item type= " + type + " id= " + id);
+        Message message = null;
 		try
 		{
 			message = new Message((sbyte)(-40));
@@ -865,7 +866,7 @@ public class Service
 		try
 		{
 			Message message = messageNotLogin(0);
-			if (!string.IsNullOrEmpty(AutoLoginCL.Account) && AutoLoginCL.Account.Trim() != "" && !string.IsNullOrEmpty(AutoLoginCL.Password) && AutoLoginCL.Password.Trim() != "")
+			if (!string.IsNullOrEmpty(AutoLoginCL.Account) && !string.IsNullOrEmpty(AutoLoginCL.Password))
 			{
 				message.writer().writeUTF(AutoLoginCL.Account);
 				message.writer().writeUTF(AutoLoginCL.Password);

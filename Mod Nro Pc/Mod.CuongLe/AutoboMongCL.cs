@@ -159,11 +159,11 @@ public class AutoboMongCL : IActionListener, IChatable
 			break;
 		case AutoState.TeleConfirmNV:
 			ModProCL.teleNPC(17);
-			ModProCL.startComfirmNpc(17, "nhiệm vụ hàng ngày", level, "", "", "chi tiết nhiệm vụ", "", "", "nhận thưởng");
+			NextMap.startComfirmNpc(17, "nhiệm vụ hàng ngày", level, "", "", "chi tiết nhiệm vụ", "", "", "nhận thưởng");
 			TransitionTo(AutoState.TeleConfirmNV_Wait, 0.15f);
 			break;
 		case AutoState.TeleConfirmNV_Wait:
-			if (!ModProCL.confirming)
+			if (!NextMap.confirming)
 			{
 				TransitionTo(AutoState.WaitForSignal, 1f);
 			}
@@ -172,12 +172,12 @@ public class AutoboMongCL : IActionListener, IChatable
 			if (!InfoMe.NhanTinHieu && !trainning && !killCharing && !trainVang)
 			{
 				ModProCL.teleNPC(17);
-				ModProCL.startComfirmNpc(17, "nhiệm vụ hàng ngày", level, "", "", "chi tiết nhiệm vụ", "", "", "nhận thưởng");
+				NextMap.startComfirmNpc(17, "nhiệm vụ hàng ngày", level, "", "", "chi tiết nhiệm vụ", "", "", "nhận thưởng");
 				TransitionTo(AutoState.WaitForSignal_retry, 0.2f);
 			}
 			break;
 		case AutoState.WaitForSignal_retry:
-			if (!ModProCL.confirming)
+			if (!NextMap.confirming)
 			{
 				TransitionTo(AutoState.WaitForSignal, 1.7f);
 			}
@@ -187,11 +187,11 @@ public class AutoboMongCL : IActionListener, IChatable
 			TransitionTo(AutoState.DoneNV_Navigate, 0f);
 			break;
 		case AutoState.HuyNV_Confirm:
-			ModProCL.startComfirmNpc(17, "nhiệm vụ hàng ngày", "hủy nhiệm vụ");
+			NextMap.startComfirmNpc(17, "nhiệm vụ hàng ngày", "hủy nhiệm vụ");
 			TransitionTo(AutoState.HuyNV_Wait, 1.7f);
 			break;
 		case AutoState.HuyNV_Wait:
-			if (!ModProCL.confirming)
+			if (!NextMap.confirming)
 			{
 				cancekTasks++;
 				TransitionTo(AutoState.NavigateToMap, 0f);
@@ -214,12 +214,12 @@ public class AutoboMongCL : IActionListener, IChatable
 			else if (!MainXmapCL.isXmaping)
 			{
 				ModProCL.teleNPC(17);
-				ModProCL.startComfirmNpc(17, "nhiệm vụ hàng ngày", "nhận thưởng");
+				NextMap.startComfirmNpc(17, "nhiệm vụ hàng ngày", "nhận thưởng");
 				TransitionTo(AutoState.DoneNV_Wait, 0.15f);
 			}
 			break;
 		case AutoState.DoneNV_Wait:
-			if (!ModProCL.confirming)
+			if (!NextMap.confirming)
 			{
 				trainVang = false;
 				killCharing = false;
@@ -617,7 +617,8 @@ public class AutoboMongCL : IActionListener, IChatable
 		myVector.addElement(new Command("Auto Kẹp nv Pem người: " + (nickKepBoMong ? "ON" : "OFF"), getInstance(), 12, null));
 		myVector.addElement(new Command("Lưu cài đặt", getInstance(), 7, null));
 		GameCanvas.menu.startAt(myVector, 3);
-	}
+        GameCanvas.menu.setMenuHeaderText("Mặc định bỏ qua nhiệm vụ ăn trộm \n Nhớ nhiệm vụ pem người phải lấy nick kẹp");
+    }
 
 	private static int GetDefaultTrainVangMapId()
 	{

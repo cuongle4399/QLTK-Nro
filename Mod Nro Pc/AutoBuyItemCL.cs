@@ -232,7 +232,7 @@ public class AutoBuyItemCL : IActionListener, IChatable
 
 	public static void UpdateBuyItem()
 	{
-		if (MainXmapCL.isXmaping || GameScr.gI().mobCapcha != null || ModProCL.confirming || listItemBuy.Count == 0 || GameCanvas.gameTick % 5 != 0 || HandleReturnDelay() || (retryDelayCounter > 0 && --retryDelayCounter >= 0) || HandleRetry())
+		if (MainXmapCL.isXmaping || GameScr.gI().mobCapcha != null || NextMap.confirming || listItemBuy.Count == 0 || GameCanvas.gameTick % 5 != 0 || HandleReturnDelay() || (retryDelayCounter > 0 && --retryDelayCounter >= 0) || HandleRetry())
 		{
 			return;
 		}
@@ -374,15 +374,15 @@ public class AutoBuyItemCL : IActionListener, IChatable
 		{
 		case 1:
 			ModProCL.teleNPC(item.idNpcBuyItem);
-			ModProCL.startComfirmNpc(item.idNpcBuyItem, item.nameCofirm);
+			NextMap.startComfirmNpc(item.idNpcBuyItem, item.nameCofirm);
 			waitConfirm = (string.IsNullOrEmpty(item.nameConfirm2) ? (-1) : 2);
 			break;
 		case 2:
-			ModProCL.startComfirmNpc(item.idNpcBuyItem, item.nameConfirm2);
+			NextMap.startComfirmNpc(item.idNpcBuyItem, item.nameConfirm2);
 			waitConfirm = (string.IsNullOrEmpty(item.nameConfirm3) ? (-1) : 3);
 			break;
 		case 3:
-			ModProCL.startComfirmNpc(item.idNpcBuyItem, item.nameConfirm3);
+                NextMap.startComfirmNpc(item.idNpcBuyItem, item.nameConfirm3);
 			waitConfirm = -1;
 			break;
 		}
@@ -509,17 +509,21 @@ public class AutoBuyItemCL : IActionListener, IChatable
 		return 0;
 	}
 
-	public static void showMenu()
-	{
-		MyVector myVector = new MyVector();
-		myVector.addElement(new Command("Auto Mua TDLT: " + (AutoMuaTDLT ? "ON" : "OFF"), getInstance(), 3, null));
-		myVector.addElement(new Command("Auto Mua Cỏ: " + (AutoMuaCo ? "ON" : "OFF"), getInstance(), 4, null));
-		myVector.addElement(new Command("Auto Mua Khẩu Trang: " + (AutoMuaKhauTrang ? "ON" : "OFF"), getInstance(), 5, null));
-		myVector.addElement(new Command("Auto Mua Bùa x2 tnsm đệ: " + (AutoMuaBuaX2Detu ? "ON" : "OFF"), getInstance(), 6, null));
-		GameCanvas.menu.startAt(myVector, 3);
-	}
+    public static void showMenu()
+    {
+        MyVector myVector = new MyVector();
+        myVector.addElement(new Command("Auto Mua TDLT: " + (AutoMuaTDLT ? "ON" : "OFF"), getInstance(), 3, null));
+        myVector.addElement(new Command("Auto Mua Cỏ: " + (AutoMuaCo ? "ON" : "OFF"), getInstance(), 4, null));
+        myVector.addElement(new Command("Auto Mua Khẩu Trang: " + (AutoMuaKhauTrang ? "ON" : "OFF"), getInstance(), 5, null));
+        myVector.addElement(new Command("Auto Mua Bùa x2 tnsm đệ: " + (AutoMuaBuaX2Detu ? "ON" : "OFF"), getInstance(), 6, null));
 
-	public static void Paint(mGraphics g, ref int y, int spaceY, int x = 10)
+        // Hiển thị menu trước
+        GameCanvas.menu.startAt(myVector, 3);
+        GameCanvas.menu.setMenuHeaderText("Vui lòng bật GoBack để sử dụng chức năng này");
+
+    }
+
+    public static void Paint(mGraphics g, ref int y, int spaceY, int x = 10)
 	{
 		if (AutoMuaTDLT)
 		{

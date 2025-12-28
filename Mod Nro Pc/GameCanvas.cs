@@ -619,7 +619,6 @@ public class GameCanvas : IActionListener
 				}
 				gameTick = 0;
 			}
-			AutoLoginCL.Update();
 			if (currentScreen != null)
 			{
 				if (ChatPopup.serverChatPopUp != null)
@@ -779,7 +778,8 @@ public class GameCanvas : IActionListener
 				}
 				Controller.isConnectionFail = false;
 			}
-			if (Main.isResume)
+            AutoLoginCL.Update();
+            if (Main.isResume)
 			{
 				Main.isResume = false;
 				if (currentDialog != null && currentDialog.left != null && currentDialog.left.actionListener != null)
@@ -853,7 +853,6 @@ public class GameCanvas : IActionListener
 			ServerListScreen.testConnect = 0;
 		}
 		mSystem.endKey();
-        AutoLoginCL.OnDisconnected();
     }
 
 	public void onConnectionFail()
@@ -2419,22 +2418,53 @@ public class GameCanvas : IActionListener
 		}
 	}
 
-	public void paintChangeMap(mGraphics g)
-	{
-		string empty = string.Empty;
-		resetTrans(g);
-		g.setColor(0);
-		g.fillRect(0, 0, w, h);
-		if (Session_ME.gI().useProxy)
-		{
-			mFont.tahoma_7b_green.drawString(g, "Proxy Đang hoạt động", w / 2, h / 2 + 48, 2);
-		}
-		g.drawImage(MainMod.logoServerListScreen, w / 2, h / 2 - 8, StaticObj.BOTTOM_HCENTER);
-		paintShukiren(hw, h / 2 + 24, g);
-		mFont.tahoma_7b_white.drawString(g, mResources.PLEASEWAIT + ((LoginScr.timeLogin <= 0) ? empty : (" " + LoginScr.timeLogin + "s")), w / 2, h / 2, 2);
-	}
+    public void paintChangeMap(mGraphics g)
+    {
+        string empty = string.Empty;
+        resetTrans(g);
 
-	public void paint(mGraphics gx)
+        g.setColor(0);
+        g.fillRect(0, 0, w, h);
+
+        int y = h / 2 + 48;
+
+        if (Session_ME.gI().useProxy)
+        {
+            mFont.tahoma_7b_green.drawString(
+                g,
+                "Proxy Đang hoạt động",
+                w / 2,
+                y,
+                mFont.CENTER
+            );
+            y += 12;
+        }
+        if (!string.IsNullOrEmpty(Session_ME.ConnectedIP))
+        {
+            mFont.tahoma_7b_white.drawString(
+                g,
+                "IP: " + Session_ME.ConnectedIP,
+                w / 2,
+                y,
+                mFont.CENTER
+            );
+        }
+
+        g.drawImage(MainMod.logoServerListScreen, w / 2, h / 2 - 8, StaticObj.BOTTOM_HCENTER);
+        paintShukiren(hw, h / 2 + 24, g);
+
+        mFont.tahoma_7b_white.drawString(
+            g,
+            mResources.PLEASEWAIT +
+            ((LoginScr.timeLogin <= 0) ? empty : (" " + LoginScr.timeLogin + "s")),
+            w / 2,
+            h / 2,
+            mFont.CENTER
+        );
+    }
+
+
+    public void paint(mGraphics gx)
 	{
 		try
 		{

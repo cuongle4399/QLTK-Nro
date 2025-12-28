@@ -105,7 +105,7 @@ public class GraphicsManagement : IActionListener
 		isHuntingBoss = Rms.loadRMSInt("sanboss") != 0;
 		isShowCharsInMap = Rms.loadRMSInt("showchar") != 0;
 		MapLuoi = Rms.loadRMSInt("mapLuoi") == 1;
-		NextMap.nextSuKienHalloween = Rms.loadRMSInt("nextMapHalloween") == 1;
+		NextMap.nextSuKien = Rms.loadRMSInt("nextMapTextSuKien") == 1;
 		DrawFont = mFont.tahoma_7;
 		if (mGraphics.zoomLevel == 4)
 		{

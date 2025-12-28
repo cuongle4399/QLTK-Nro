@@ -1,6 +1,7 @@
-using System.Collections.Generic;
 using Mod.community;
 using Mod.CuongLe;
+using System.Collections.Generic;
+using System.Linq;
 
 public class YardatCL : IActionListener
 {
@@ -178,14 +179,38 @@ public class YardatCL : IActionListener
 	public static void loadData()
 	{
 	}
-
-	private static void AutoChangeFocus()
+    public static void selectSkill()
+    {
+        int[] source = new int[4] { 0, 2, 4, 17 };
+        Skill selectedSkill = null;
+        Skill[] keySkill = GameScr.keySkill;
+        foreach (Skill s in keySkill)
+        {
+            if (s != null && source.Contains(s.template.id))
+            {
+                if (s.template.id == 17)
+                {
+                    selectedSkill = s;
+                    break;
+                }
+                if (selectedSkill == null)
+                {
+                    selectedSkill = s;
+                }
+            }
+        }
+        if (selectedSkill != null && selectedSkill != Char.myCharz().myskill)
+        {
+            GameScr.gI().doSelectSkill(selectedSkill, isShortcut: true);
+        }
+    }
+    private static void AutoChangeFocus()
 	{
 		if (!isAutoChangeFocus || Char.myCharz().isCharge)
 		{
 			return;
 		}
-		AutoboMongCL.selectSkill();
+		selectSkill();
 		if (Char.myCharz().meDead || Char.myCharz().statusMe == 14 || Char.myCharz().statusMe == 5 || Char.myCharz().myskill.template.type == 3 || Char.myCharz().myskill.template.id == 10 || Char.myCharz().myskill.template.id == 11 || Char.myCharz().myskill.paintCanNotUseSkill)
 		{
 			return;

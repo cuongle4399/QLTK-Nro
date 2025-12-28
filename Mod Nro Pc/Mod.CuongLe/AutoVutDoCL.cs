@@ -10,7 +10,7 @@ public class AutoVutDoCL : IActionListener, IChatable
 
 	private static string[] titleInput;
 
-	private static bool autoVut;
+	public static bool autoVut;
 
 	private static int vutIndex;
 

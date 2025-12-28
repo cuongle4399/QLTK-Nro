@@ -555,7 +555,7 @@ internal class Controller2
 			{
 				short timeLogin = msg.reader().readShort();
 				Res.outz("second login = " + timeLogin);
-				LoginScr.timeLogin = timeLogin;
+                        LoginScr.timeLogin = timeLogin;
 				LoginScr.currTimeLogin = (LoginScr.lastTimeLogin = mSystem.currentTimeMillis());
 				GameCanvas.endDlg();
 				break;

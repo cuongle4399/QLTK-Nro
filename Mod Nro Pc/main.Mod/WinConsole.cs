@@ -12,6 +12,10 @@ namespace ModCak.main.Mod
         private static extern IntPtr GetStdHandle(int nStdHandle);
 
         [DllImport("kernel32.dll", CharSet = CharSet.Unicode)]
+        private static extern bool SetConsoleTitle(string lpConsoleTitle);
+
+
+        [DllImport("kernel32.dll", CharSet = CharSet.Unicode)]
         private static extern bool WriteConsoleW(
             IntPtr hConsoleOutput,
             string lpBuffer,
@@ -34,15 +38,18 @@ namespace ModCak.main.Mod
             if (!AllocConsole())
                 return false;
 
+            SetConsoleTitle("Debug Client Nro - Cuong Le");
+
             _handle = GetStdHandle(STD_OUTPUT_HANDLE);
 
             if (_handle == IntPtr.Zero || _handle == new IntPtr(-1))
                 return false;
 
             _initialized = true;
-            WriteLine("=== UNITY DEV CONSOLE ===");
+            WriteLine("Debug Client Nro - Cuong Le");
             return true;
         }
+
 
         public static void WriteLine(string text)
         {

@@ -8690,9 +8690,9 @@ public class Panel : IActionListener, IChatable
 			GameScr.info1.addInfo("Paint Hành trang nhẹ: " + (GraphicsManagement.paintInventoryReduceCPU ? "[STATUS: ON]" : "[STATUS: OFF]"));
 			break;
 		case 11:
-			NextMap.nextSuKienHalloween = !NextMap.nextSuKienHalloween;
-			Rms.saveRMSInt("nextMapHalloween", NextMap.nextSuKienHalloween ? 1 : 0);
-			GameScr.info1.addInfo("Xmap chế độ Halloween: " + (NextMap.nextSuKienHalloween ? "[STATUS: ON]" : "[STATUS: OFF]"));
+			NextMap.nextSuKien = !NextMap.nextSuKien;
+			Rms.saveRMSInt("nextMapTextSuKien", NextMap.nextSuKien ? 1 : 0);
+			GameScr.info1.addInfo("Xmap Next Menu sự kiện: " + (NextMap.nextSuKien ? "[STATUS: ON]" : "[STATUS: OFF]"));
 			break;
 		}
 	}

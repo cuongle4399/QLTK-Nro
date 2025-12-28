@@ -483,74 +483,66 @@ public class ServerListScreen : mScreen, IActionListener
 		isAutoConect = true;
 	}
 
-	public override void update()
-	{
-		if (waitToLogin)
-		{
-			tWaitToLogin++;
-			if (tWaitToLogin == 50)
-			{
-				GameCanvas.serverScreen.selectServer();
-				waitToLogin = false;
-			}
-			if (tWaitToLogin == 100)
-			{
-				if (GameCanvas.loginScr == null)
-				{
-					GameCanvas.loginScr = new LoginScr();
-				}
-				GameCanvas.loginScr.doLogin();
-				Service.gI().finishUpdate();
-				waitToLogin = false;
-			}
-		}
-		for (int i = 0; i < cmd.Length; i++)
-		{
-			if (i == selected)
-			{
-				cmd[i].isFocus = true;
-			}
-			else
-			{
-				cmd[i].isFocus = false;
-			}
-		}
-		GameScr.cmx++;
-		if (!loadScreen && (bigOk || percent == 100))
-		{
-			cmdDownload = null;
-		}
-		base.update();
-		if (Char.isLoadingMap || !loadScreen || !isAutoConect || GameCanvas.currentScreen != this || testConnect == 2)
-		{
-			return;
-		}
-		if (countDieConnect < ((mSystem.clientType != 1) ? 4 : 2))
-		{
-			if (flagServer <= 0)
-			{
-				flagServer = 30;
-				GameCanvas.startWaitDlg(mResources.PLEASEWAIT);
-				GameCanvas.connect();
-			}
-		}
-		else if (!Session_ME.gI().isConnected())
-		{
-			if (flagServer <= 0)
-			{
-				Command cmdYes = new Command(mResources.YES, GameCanvas.serverScreen, 18, null);
-				Command cmdNo = new Command(mResources.NO, GameCanvas.serverScreen, 19, null);
-				GameCanvas.startYesNoDlg(mResources.maychutathoacmatsong + "." + mResources.confirmChangeServer, cmdYes, cmdNo);
-				flagServer = 30;
-			}
-		}
-		else if (flagServer <= 0)
-		{
-			countDieConnect = 0;
-		}
-	}
+    public override void update()
+    {
+        if (waitToLogin)
+        {
+            tWaitToLogin++;
+            if (tWaitToLogin == 50)
+            {
+                GameCanvas.serverScreen.selectServer();
+                waitToLogin = false;
+            }
+            if (tWaitToLogin == 100)
+            {
+                if (GameCanvas.loginScr == null)
+                {
+                    GameCanvas.loginScr = new LoginScr();
+                }
+                GameCanvas.loginScr.doLogin();
+                Service.gI().finishUpdate();
+                waitToLogin = false;
+            }
+        }
+        for (int i = 0; i < cmd.Length; i++)
+        {
+            if (i == selected)
+            {
+                cmd[i].isFocus = true;
+            }
+            else
+            {
+                cmd[i].isFocus = false;
+            }
+        }
+        GameScr.cmx++;
+        if (!loadScreen && (bigOk || percent == 100))
+        {
+            cmdDownload = null;
+        }
+        base.update();
+        if (Char.isLoadingMap || !loadScreen || !isAutoConect || GameCanvas.currentScreen != this)
+        {
+            return;
+        }
+        if (!Session_ME.gI().isConnected())
+        {
+            if (mSystem.currentTimeMillis() > count_reConnect)
+            {
+                SetIpSelect(ipSelect, issave: true);
+                Session_ME.gI().close();
+                ConnectIP();
+                count_reConnect = mSystem.currentTimeMillis() + 5000;
+            }
+        }
+        else
+        {
+            count_reConnect = mSystem.currentTimeMillis() + (AutoLoginCL.isFirstLogin? 2000 : 15000);
+        }
+    }
 
-	private void processInput()
+
+    private void processInput()
 	{
 		if (loadScreen)
 		{
@@ -1068,8 +1060,8 @@ public class ServerListScreen : mScreen, IActionListener
 		}
 		if (!bigOk)
 		{
-			perform(2, null);
-		}
+            perform(2, null);
+        }
 	}
 
 	public void show2()
