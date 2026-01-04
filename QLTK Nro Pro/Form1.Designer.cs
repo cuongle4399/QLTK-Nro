@@ -32,6 +32,8 @@
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             materialDrawer1 = new MaterialSkin.Controls.MaterialDrawer();
             PageOther = new TabPage();
+            groupBox12 = new GroupBox();
+            lblConfigPC = new Label();
             groupBox3 = new GroupBox();
             label2 = new Label();
             label1 = new Label();
@@ -330,6 +332,7 @@
             switchSize = new MaterialSkin.Controls.MaterialSwitch();
             tabControl2 = new TabControl();
             PageOther.SuspendLayout();
+            groupBox12.SuspendLayout();
             groupBox3.SuspendLayout();
             groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pBAPI).BeginInit();
@@ -413,11 +416,24 @@
             // 
             // PageOther
             // 
+            PageOther.Controls.Add(groupBox12);
             PageOther.Controls.Add(groupBox3);
             PageOther.Controls.Add(groupBox4);
             resources.ApplyResources(PageOther, "PageOther");
             PageOther.Name = "PageOther";
             PageOther.UseVisualStyleBackColor = true;
+            // 
+            // groupBox12
+            // 
+            groupBox12.Controls.Add(lblConfigPC);
+            resources.ApplyResources(groupBox12, "groupBox12");
+            groupBox12.Name = "groupBox12";
+            groupBox12.TabStop = false;
+            // 
+            // lblConfigPC
+            // 
+            resources.ApplyResources(lblConfigPC, "lblConfigPC");
+            lblConfigPC.Name = "lblConfigPC";
             // 
             // groupBox3
             // 
@@ -4015,6 +4031,7 @@
             Tag = "Cường Lê";
             Load += Form1_Load;
             PageOther.ResumeLayout(false);
+            groupBox12.ResumeLayout(false);
             groupBox3.ResumeLayout(false);
             groupBox3.PerformLayout();
             groupBox4.ResumeLayout(false);
@@ -4394,5 +4411,7 @@
         private DataGridViewCheckBoxColumn Tick;
         private Button btnAutoOpenTab;
         private Button btnThuMucTool;
+        private GroupBox groupBox12;
+        private Label lblConfigPC;
     }
 }

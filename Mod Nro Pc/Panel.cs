@@ -7792,7 +7792,9 @@ public class Panel : IActionListener, IChatable
 						{
 							myVector.addElement(new Command("Xóa trong\ndanh sách vứt", AutoVutDoCL.getInstance(), 8, (int)currItem.template.id));
 						}
-					}
+						
+						
+                    }
 				}
 				if (GameCanvas.panel.type != 12 && GameCanvas.panel.type != 13 && GameCanvas.panel.type != 21)
 				{

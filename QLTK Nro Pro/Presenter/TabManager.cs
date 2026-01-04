@@ -592,7 +592,13 @@ namespace QLTK_Nro_Pro.Presenter
 
             Console.WriteLine($"📊 Tổng cộng {openedTabProcesses.Count} tab đang chạy");
         }
-
+        public static Dictionary<int, int> GetOpenedTabProcesses()
+        {
+            lock (_lockObj)
+            {
+                return new Dictionary<int, int>(openedTabProcesses);
+            }
+        }
         public static void ClearOpenedTabs()
         {
             lock (_lockObj)

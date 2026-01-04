@@ -306,19 +306,20 @@
                 GameCanvas.panel.cp.updateKey();
             }
         }
-        if (!disableClose && GameCanvas.isPointerJustRelease && !GameCanvas.isPointer(menuX, menuY, w, menuH) && !pointerIsDowning && !GameScr.gI().isRongThanMenu() && flag2)
+        if (!disableClose && GameCanvas.isPointerJustRelease && !pointerIsDowning && !GameScr.gI().isRongThanMenu() && flag2)
         {
-            if (!isScrolling())
+            // Kiểm tra click bên ngoài menu
+            if (!GameCanvas.isPointer(menuX, menuY, w, menuH))
             {
                 pointerDownTime = (pointerDownFirstX = 0);
                 pointerIsDowning = false;
                 GameCanvas.clearAllPointerEvent();
-                Res.outz("menu select= " + menuSelectedItem);
+                Res.outz("Click outside menu - closing");
                 isClose = true;
                 close = true;
                 SoundMn.gI().buttonClose();
+                return;
             }
-            return;
         }
         if (GameCanvas.isPointerDown)
         {

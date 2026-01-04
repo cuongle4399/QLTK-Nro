@@ -3,6 +3,22 @@
   "WorkspaceRootPath": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\Mod Nro Pc\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{4029F0BD-FA1B-2065-FFFB-F7B4A3A42087}|ModCak.csproj|c:\\users\\cuong le\\desktop\\c# winform\\qltk-nro pro\\mod nro pc\\controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4029F0BD-FA1B-2065-FFFB-F7B4A3A42087}|ModCak.csproj|solutionrelative:controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4029F0BD-FA1B-2065-FFFB-F7B4A3A42087}|ModCak.csproj|c:\\users\\cuong le\\desktop\\c# winform\\qltk-nro pro\\mod nro pc\\image.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4029F0BD-FA1B-2065-FFFB-F7B4A3A42087}|ModCak.csproj|solutionrelative:image.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4029F0BD-FA1B-2065-FFFB-F7B4A3A42087}|ModCak.csproj|c:\\users\\cuong le\\desktop\\c# winform\\qltk-nro pro\\mod nro pc\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4029F0BD-FA1B-2065-FFFB-F7B4A3A42087}|ModCak.csproj|solutionrelative:menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4029F0BD-FA1B-2065-FFFB-F7B4A3A42087}|ModCak.csproj|c:\\users\\cuong le\\desktop\\c# winform\\qltk-nro pro\\mod nro pc\\serverlistscreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4029F0BD-FA1B-2065-FFFB-F7B4A3A42087}|ModCak.csproj|solutionrelative:serverlistscreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{4029F0BD-FA1B-2065-FFFB-F7B4A3A42087}|ModCak.csproj|c:\\users\\cuong le\\desktop\\c# winform\\qltk-nro pro\\mod nro pc\\dohoa.custommenu\\autoitemtab.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4029F0BD-FA1B-2065-FFFB-F7B4A3A42087}|ModCak.csproj|solutionrelative:dohoa.custommenu\\autoitemtab.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -66,7 +82,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -90,7 +106,58 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Image.cs",
+              "DocumentMoniker": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\Mod Nro Pc\\Image.cs",
+              "RelativeDocumentMoniker": "Image.cs",
+              "ToolTip": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\Mod Nro Pc\\Image.cs",
+              "RelativeToolTip": "Image.cs",
+              "ViewState": "AgIAAKwBAAAAAAAAAAAcwMsBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-31T06:34:04.034Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Menu.cs",
+              "DocumentMoniker": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\Mod Nro Pc\\Menu.cs",
+              "RelativeDocumentMoniker": "Menu.cs",
+              "ToolTip": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\Mod Nro Pc\\Menu.cs",
+              "RelativeToolTip": "Menu.cs",
+              "ViewState": "AgIAACQBAAAAAAAAAAAnwDQBAAA8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-30T16:45:16.944Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Controller.cs",
+              "DocumentMoniker": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\Mod Nro Pc\\Controller.cs",
+              "RelativeDocumentMoniker": "Controller.cs",
+              "ToolTip": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\Mod Nro Pc\\Controller.cs",
+              "RelativeToolTip": "Controller.cs",
+              "ViewState": "AgIAAAUbAAAAAAAAAAAcwCQbAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-29T05:55:52.295Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ServerListScreen.cs",
+              "DocumentMoniker": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\Mod Nro Pc\\ServerListScreen.cs",
+              "RelativeDocumentMoniker": "ServerListScreen.cs",
+              "ToolTip": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\Mod Nro Pc\\ServerListScreen.cs",
+              "RelativeToolTip": "ServerListScreen.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAAAAAGcBAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-29T05:52:21.083Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "AutoItemTab.cs",
               "DocumentMoniker": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\Mod Nro Pc\\DoHoa.CustomMenu\\AutoItemTab.cs",
               "RelativeDocumentMoniker": "DoHoa.CustomMenu\\AutoItemTab.cs",
@@ -98,12 +165,11 @@
               "RelativeToolTip": "DoHoa.CustomMenu\\AutoItemTab.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-28T09:51:14.154Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-28T09:51:14.154Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "AutoItemRef.cs",
               "DocumentMoniker": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\Mod Nro Pc\\DoHoa.CustomMenu\\AutoItemRef.cs",
               "RelativeDocumentMoniker": "DoHoa.CustomMenu\\AutoItemRef.cs",
@@ -111,12 +177,11 @@
               "RelativeToolTip": "DoHoa.CustomMenu\\AutoItemRef.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-28T09:51:13.382Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-28T09:51:13.382Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 7,
               "Title": "mResources.cs",
               "DocumentMoniker": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\Mod Nro Pc\\mResources.cs",
               "RelativeDocumentMoniker": "mResources.cs",
@@ -128,7 +193,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 9,
               "Title": "AutoSkill.cs",
               "DocumentMoniker": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\Mod Nro Pc\\Mod.community\\AutoSkill.cs",
               "RelativeDocumentMoniker": "Mod.community\\AutoSkill.cs",
@@ -140,7 +205,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 13,
               "Title": "AutoPetCL.cs",
               "DocumentMoniker": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\Mod Nro Pc\\Mod.CuongLe\\AutoPetCL.cs",
               "RelativeDocumentMoniker": "Mod.CuongLe\\AutoPetCL.cs",
@@ -152,7 +217,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 11,
               "Title": "HandlerSocket.cs",
               "DocumentMoniker": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\Mod Nro Pc\\SocketManagerCL\\HandlerSocket.cs",
               "RelativeDocumentMoniker": "SocketManagerCL\\HandlerSocket.cs",
@@ -164,7 +229,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 15,
               "Title": "YardatCL.cs",
               "DocumentMoniker": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\Mod Nro Pc\\YardatCL.cs",
               "RelativeDocumentMoniker": "YardatCL.cs",
@@ -176,7 +241,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "MainMod.cs",
               "DocumentMoniker": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\Mod Nro Pc\\main.Mod\\MainMod.cs",
               "RelativeDocumentMoniker": "main.Mod\\MainMod.cs",
@@ -184,12 +249,11 @@
               "RelativeToolTip": "main.Mod\\MainMod.cs",
               "ViewState": "AgIAADECAAAAAAAAAAAnwDcCAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-25T16:56:07.708Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-25T16:56:07.708Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 12,
               "Title": "AutoVutDoCL.cs",
               "DocumentMoniker": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\Mod Nro Pc\\Mod.CuongLe\\AutoVutDoCL.cs",
               "RelativeDocumentMoniker": "Mod.CuongLe\\AutoVutDoCL.cs",
@@ -201,7 +265,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 8,
               "Title": "AutoTrainCL.cs",
               "DocumentMoniker": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\Mod Nro Pc\\Mod.CuongLe\\AutoTrainCL.cs",
               "RelativeDocumentMoniker": "Mod.CuongLe\\AutoTrainCL.cs",
@@ -213,7 +277,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 10,
               "Title": "Hotkeys.cs",
               "DocumentMoniker": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\Mod Nro Pc\\Mod.community\\Hotkeys.cs",
               "RelativeDocumentMoniker": "Mod.community\\Hotkeys.cs",
@@ -225,7 +289,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 14,
               "Title": "AutoboMongCL.cs",
               "DocumentMoniker": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\Mod Nro Pc\\Mod.CuongLe\\AutoboMongCL.cs",
               "RelativeDocumentMoniker": "Mod.CuongLe\\AutoboMongCL.cs",
@@ -237,7 +301,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 16,
               "Title": "InfoMe.cs",
               "DocumentMoniker": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\Mod Nro Pc\\InfoMe.cs",
               "RelativeDocumentMoniker": "InfoMe.cs",
@@ -249,7 +313,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 17,
               "Title": "ShowSetKH.cs",
               "DocumentMoniker": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\Mod Nro Pc\\Mod.CuongLe\\ShowSetKH.cs",
               "RelativeDocumentMoniker": "Mod.CuongLe\\ShowSetKH.cs",

@@ -358,7 +358,7 @@ public static class MobTrainTab
                 break;
 
             case 1:
-                if (hasMob && (selectedMobIds.Count > 0 || AutoTrainCL.isAutoTrain))
+                if ((hasMob && selectedMobIds.Count > 0 )|| AutoTrainCL.isAutoTrain)
                 {
                     AutoTrainCL.isAutoTrain = !AutoTrainCL.isAutoTrain;
                     GameScr.info1.addInfo(AutoTrainCL.isAutoTrain ? "Auto Train: Đã Bật" : "Auto Train: Đã Dừng");

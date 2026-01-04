@@ -264,6 +264,8 @@ public class NextMap
             if (Options.IndexNpcs[2] != -1)
                 service.confirmMenu((short)NpcID, (sbyte)Options.IndexNpcs[2]);
         }
+
+        MainXmapCL.SetNpcIndexActionTime(Time.realtimeSinceStartup);
     }
 
     private void HandleNpcMenuInteraction()

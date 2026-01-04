@@ -243,8 +243,8 @@ public static class DataXmap
         AddNPCLinkMapsXmap(52, 181, 44, "Bình hút năng lượng", "OK");
         AddNPCLinkMapsXmap(181, 52, 44, "Về nhà");
         // sự kiện
-        AddNPCLinkMapsXmap(Char.myCharz().cgender *7, 173, 81, "", "", "", walk: false, -1, -1, "", "", "", "", "", "", 0);
-        AddNPCLinkMapsXmap(173,Char.myCharz().cgender * 7, 81, "", "", "", walk: false, -1, -1, "", "", "", "", "", "", 0);
+        AddNPCLinkMapsXmap(Char.myCharz().cgender *7, 173, 81, "", "", "", walk: false, -1, -1, "", "", "", "", "", "", 2);
+        AddNPCLinkMapsXmap(173,Char.myCharz().cgender * 7, 81, "", "", "", walk: false, -1, -1, "", "", "", "", "", "", 2);
 
 
         // Item usage links

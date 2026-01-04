@@ -537,7 +537,7 @@ public class ServerListScreen : mScreen, IActionListener
         }
         else
         {
-            count_reConnect = mSystem.currentTimeMillis() + (AutoLoginCL.isFirstLogin? 2000 : 15000);
+            count_reConnect = mSystem.currentTimeMillis() + (AutoLoginCL.isFirstLogin? 2000 : 20000);
         }
     }
 

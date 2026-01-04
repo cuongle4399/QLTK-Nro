@@ -4,6 +4,7 @@ using QLTK_Nro_Pro.HandlerSocket;
 using QLTK_Nro_Pro.Presenter;
 using QLTK_Nro_Pro.Presenter.ProxyManager;
 using QLTK_Nro_Pro.Presenter.Socket;
+using QLTK_Nro_Pro.Service;
 using System.Diagnostics;
 using System.Text.Json;
 using File = System.IO.File;
@@ -18,7 +19,8 @@ namespace QLTK_Nro_Pro
         public static int CountClient = 0;
         private readonly MaterialSkinManager materialSkinManager;
         private SocketClientUpdater socketClientUpdater;
-
+        private ProcessResourceMonitor _processMonitor;
+        private System.Windows.Forms.Timer _pcTimer;
         public Form1()
         {
             this.AutoScaleMode = AutoScaleMode.Dpi;
@@ -74,6 +76,25 @@ namespace QLTK_Nro_Pro
             }
             catch { }
             #endregion
+            #region Hardware Monitor (RUN BACKGROUND)
+            Task.Run(async () =>
+            {
+                await Task.Delay(1000); // cho form load xong
+
+                _processMonitor = new ProcessResourceMonitor();
+
+                this.BeginInvoke((Action)(() =>
+                {
+                    _pcTimer = new System.Windows.Forms.Timer
+                    {
+                        Interval = 800
+                    };
+                    _pcTimer.Tick += PcTimer_Tick;
+                    _pcTimer.Start();
+                }));
+            });
+            #endregion
+
             #region Chat
             try
             {
@@ -145,7 +166,10 @@ namespace QLTK_Nro_Pro
         {
             TabManager.closeGame();
         }
-
+        private void PcTimer_Tick(object sender, EventArgs e)
+        {
+            lblConfigPC.Text = _processMonitor.GetProcessUsage(TabManager.GetOpenedTabProcesses());
+        }
         private void btnSort_Click(object sender, EventArgs e)
         {
             try

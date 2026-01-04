@@ -879,7 +879,7 @@ public class MainMod : IActionListener, IChatable
         }
         if (GameCanvas.keyAsciiPress == Hotkeys.SHIFT_D)
         {
-            GameScr.info1.addInfo("test paitn skill");
+            Controller.gI().loadCurrMap((sbyte)ModProCL.GetClosestGroundY(Char.myCharz().cx, Char.myCharz().cy));
 
             return true;
         }

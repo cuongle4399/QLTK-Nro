@@ -50,6 +50,7 @@ public class MainXmapCL : IActionListener, IChatable
     private static bool isProcessingMapChange;
     private static float lastMapChangeTime;
     private static float lastErrorTime;
+    private static float lastNpcIndexActionTime;
     #endregion
 
     #region Fields - Settings
@@ -90,6 +91,10 @@ public class MainXmapCL : IActionListener, IChatable
         if (HandleDeathState(me, now)) return;
         if (HandleDestinationReached(currentMap)) return;
         if (!ShouldContinueUpdate(now)) return;
+
+        // Check delay cho NPC index action
+        if (IsWaitingForNpcIndexDelay(now))
+            return;
 
         HandleMapChange(currentMap, now);
 
@@ -146,6 +151,23 @@ public class MainXmapCL : IActionListener, IChatable
 
         int mod = GameScr.canAutoPlay ? 15 : 25;
         return GameCanvas.gameTick % mod == 0;
+    }
+
+    private static bool IsWaitingForNpcIndexDelay(float now)
+    {
+        if (lastNpcIndexActionTime > 0)
+        {
+            if (now - lastNpcIndexActionTime < customMapDelay + 0.7f)
+            {
+                return true;
+            }
+            else
+            {
+                // Reset sau khi delay đã qua
+                lastNpcIndexActionTime = 0;
+            }
+        }
+        return false;
     }
     #endregion
 
@@ -457,6 +479,12 @@ public class MainXmapCL : IActionListener, IChatable
         xmapErrr = false;
         lastProcessedMap = -1;
         isProcessingMapChange = false;
+        lastNpcIndexActionTime = 0;
+    }
+
+    public static void SetNpcIndexActionTime(float time)
+    {
+        lastNpcIndexActionTime = time;
     }
     #endregion
 

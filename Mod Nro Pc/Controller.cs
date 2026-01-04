@@ -5287,6 +5287,7 @@ public class Controller : IMessageHandler
             }
             TileMap.bgType = msg.reader().readByte();
             sbyte teleport = msg.reader().readByte();
+            Res.err(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> LoadmapMap tele:" + teleport.ToString());
             loadCurrMap(teleport);
             GameCanvas.debug("SA75x8", 2);
             Resources.UnloadUnusedAssets();

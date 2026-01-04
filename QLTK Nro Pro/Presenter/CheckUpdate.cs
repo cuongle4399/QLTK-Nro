@@ -9,7 +9,7 @@ namespace QLTK_Nro_Pro.Presenter
 {
     internal class CheckUpdate
     {
-        public static string version = "3.4.5";
+        public static string version = "3.4.7";
         private static bool updating = false;
         private static readonly HttpClient httpClient = new HttpClient();
         public static async Task CheckForUpdates()
@@ -29,7 +29,7 @@ namespace QLTK_Nro_Pro.Presenter
                     {
                         try
                         {
-                            string exePath = Path.Combine(Application.StartupPath, "UpdateMod.exe");
+                            string exePath = Path.Combine(Application.StartupPath, "Update.exe");
 
                             if (File.Exists(exePath))
                             {
@@ -41,7 +41,7 @@ namespace QLTK_Nro_Pro.Presenter
                             }
                             else
                             {
-                                MessageBox.Show("Không tìm thấy file cập nhật (UpdateMod.exe).", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                MessageBox.Show("Không tìm thấy file cập nhật (Update.exe).", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                         }
                         catch (Exception ex)

@@ -143,6 +143,54 @@
   <data name="&gt;&gt;materialDrawer1.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="lblConfigPC.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 23</value>
+  </data>
+  <data name="lblConfigPC.Size" type="System.Drawing.Size, System.Drawing">
+    <value>370, 250</value>
+  </data>
+  <data name="lblConfigPC.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="lblConfigPC.Text" xml:space="preserve">
+    <value>Loadding....</value>
+  </data>
+  <data name="&gt;&gt;lblConfigPC.Name" xml:space="preserve">
+    <value>lblConfigPC</value>
+  </data>
+  <data name="&gt;&gt;lblConfigPC.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblConfigPC.Parent" xml:space="preserve">
+    <value>groupBox12</value>
+  </data>
+  <data name="&gt;&gt;lblConfigPC.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="groupBox12.Location" type="System.Drawing.Point, System.Drawing">
+    <value>414, 168</value>
+  </data>
+  <data name="groupBox12.Size" type="System.Drawing.Size, System.Drawing">
+    <value>386, 286</value>
+  </data>
+  <data name="groupBox12.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="groupBox12.Text" xml:space="preserve">
+    <value>Cấu hình máy</value>
+  </data>
+  <data name="&gt;&gt;groupBox12.Name" xml:space="preserve">
+    <value>groupBox12</value>
+  </data>
+  <data name="&gt;&gt;groupBox12.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox12.Parent" xml:space="preserve">
+    <value>PageOther</value>
+  </data>
+  <data name="&gt;&gt;groupBox12.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="label2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -349,7 +397,7 @@
     <value>PageOther</value>
   </data>
   <data name="&gt;&gt;groupBox3.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="label6.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -758,7 +806,7 @@
     <value>PageOther</value>
   </data>
   <data name="&gt;&gt;groupBox4.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="PageOther.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 29</value>
