@@ -17,7 +17,9 @@ public class AutoChat : IActionListener, IChatable
 
 	private static bool isAutoChatGlobal;
 
-	private static long delayAutoChatGlobal;
+    private static bool isAutoSpamChatGlobal;
+
+    private static long delayAutoChatGlobal;
 
 	private static long lastTimeChatGlobal;
 
@@ -27,7 +29,7 @@ public class AutoChat : IActionListener, IChatable
 
 	private static int gems;
 
-	private static bool isAutoSpamChatGlobal;
+	private static bool zon;
 
 	private static int spammedChatGlobalTimes;
 

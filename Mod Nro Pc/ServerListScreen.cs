@@ -532,7 +532,7 @@ public class ServerListScreen : mScreen, IActionListener
                 SetIpSelect(ipSelect, issave: true);
                 Session_ME.gI().close();
                 ConnectIP();
-                count_reConnect = mSystem.currentTimeMillis() + 5000;
+                count_reConnect = mSystem.currentTimeMillis() + 15000;
             }
         }
         else

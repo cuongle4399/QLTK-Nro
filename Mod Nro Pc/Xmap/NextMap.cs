@@ -28,6 +28,7 @@ public class NextMap
     private const int WALK_THRESHOLD = 20;
     private const int CONFIRM_TIMEOUT = 3500;
     private const int STEP_DELAY = 500;
+    private const int NPC_CONFIRM_INIT_DELAY = 500; // Delay 500ms trước khi bắt đầu confirm
     #endregion
 
     #region Static Fields - NPC Confirmation System
@@ -40,6 +41,7 @@ public class NextMap
 
     private static long confirmStartTime;
     private static long lastStepTime;
+    private static long npcConfirmBeginTime; // Thời gian bắt đầu confirm NPC
     private static bool NextInfoSuKien;
     private static string InfoSuKien;
     #endregion
@@ -539,12 +541,12 @@ public class NextMap
 
     #region Static NPC Confirmation System
     public static void startComfirmNpc(
-    short idnpc,
-    string s1 = "", string s2 = "", string s3 = "",
-    string s1Sub = "", string s2Sub = "", string s3Sub = "",
-    string s1Sub2 = "", string s2Sub2 = "", string s3Sub2 = "",
-    bool nextInfoSuKien = true,
-    string infoSuKien = "")
+        short idnpc,
+        string s1 = "", string s2 = "", string s3 = "",
+        string s1Sub = "", string s2Sub = "", string s3Sub = "",
+        string s1Sub2 = "", string s2Sub2 = "", string s3Sub2 = "",
+        bool nextInfoSuKien = true,
+        string infoSuKien = "")
     {
         if (string.IsNullOrEmpty(infoSuKien))
             infoSuKien = NextMap.InfoTextMenuXmap;
@@ -556,6 +558,7 @@ public class NextMap
         currentStep = 0;
         confirmStartTime = Environment.TickCount;
         lastStepTime = 0L;
+        npcConfirmBeginTime = Environment.TickCount; // Ghi nhận thời gian bắt đầu confirm
         NextInfoSuKien = nextInfoSuKien;
         InfoSuKien = infoSuKien;
     }
@@ -569,6 +572,10 @@ public class NextMap
             CancelConfirmation();
             return;
         }
+
+        // Chờ 500ms trước khi bắt đầu xử lý confirm steps
+        if (Environment.TickCount - npcConfirmBeginTime < NPC_CONFIRM_INIT_DELAY)
+            return;
 
         if (!GameCanvas.menu.showMenu && !runningopennpc)
         {

@@ -157,7 +157,7 @@ public class MainXmapCL : IActionListener, IChatable
     {
         if (lastNpcIndexActionTime > 0)
         {
-            if (now - lastNpcIndexActionTime < customMapDelay + 0.7f)
+            if (now - lastNpcIndexActionTime < customMapDelay + 1f)
             {
                 return true;
             }

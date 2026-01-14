@@ -380,8 +380,9 @@ public class MainMod : IActionListener, IChatable
         }
         if (AutoboMongCL.autoboMong)
         {
-            string text2 = char.ToUpper(AutoboMongCL.level[0]) + AutoboMongCL.level.Substring(1);
-            GraphicsManagement.DrawFont.drawString(g, "Bò Mộng: " + text2 + "-" + AutoboMongCL.StatusBoMong + " [Hoàn thành: " + AutoboMongCL.completedTasks + " | Hủy: " + AutoboMongCL.cancekTasks + "]", 10, num2, 0);
+            string difficulty = char.ToUpper(AutoboMongCL.Settings.Difficulty[0]) + AutoboMongCL.Settings.Difficulty.Substring(1);
+            string statusText = "Bò Mộng: " + difficulty + "-" + AutoboMongCL.StatusBoMong + " [Hoàn thành: " + AutoboMongCL.completedTasks + " | Hủy: " + AutoboMongCL.cancekTasks + "]";
+            GraphicsManagement.DrawFont.drawString(g, statusText, 10, num2, 0);
             num2 += num;
         }
         if (isLockFocus)
@@ -704,7 +705,6 @@ public class MainMod : IActionListener, IChatable
                 AutoChat.ShowMenu();
                 break;
             case 7:
-                AutoPoint.ShowMenu();
                 break;
             case 8:
                 ShowMenuMore();
@@ -1089,15 +1089,7 @@ public class MainMod : IActionListener, IChatable
             }
             if (AutoboMongCL.autoboMong)
             {
-                AutoboMongCL.autoboMong = false;
-                AutoboMongCL.trainVang = false;
-                AutoboMongCL.killCharing = false;
-                AutoboMongCL.trainning = false;
-                AutoTrainCL.isGoBack = false;
-                InfoMe.FinishBoMong = false;
-                MainXmapCL.isEatChicken = true;
-                AutoPick.isAutoPick = false;
-                AutoPick.pickByList = 0;
+                AutoboMongCL.getInstance().StopAuto();
             }
             return true;
         }
@@ -1146,7 +1138,6 @@ public class MainMod : IActionListener, IChatable
     public static void ShowMenuMore()
     {
         MyVector myVector = new MyVector();
-        myVector.addElement(new Command("Auto Point", getInstance(), 7, null));
         myVector.addElement(new Command("Auto Chat", getInstance(), 6, null));
         myVector.addElement(new Command("Auto Skill", getInstance(), 2, null));
         myVector.addElement(new Command("Auto Pean", getInstance(), 3, null));
@@ -1353,15 +1344,7 @@ public class MainMod : IActionListener, IChatable
                 }
                 if (AutoboMongCL.autoboMong)
                 {
-                    AutoboMongCL.autoboMong = false;
-                    AutoboMongCL.trainVang = false;
-                    AutoboMongCL.killCharing = false;
-                    AutoboMongCL.trainning = false;
-                    AutoTrainCL.isGoBack = false;
-                    InfoMe.FinishBoMong = false;
-                    MainXmapCL.isEatChicken = true;
-                    AutoPick.isAutoPick = false;
-                    AutoPick.pickByList = 0;
+                    AutoboMongCL.getInstance().StopAuto();
                 }
                 if (AutoTrainCL.isAutoTrain)
                 {

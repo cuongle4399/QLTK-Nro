@@ -6,638 +6,835 @@ namespace Mod.CuongLe;
 
 public class AutoFarmBossNappa
 {
-	private static AutoFarmBossNappa _Instance;
+    #region Enums
+    private enum BossType
+    {
+        Kuku = 0,
+        MapDauDinh = 1,
+        Rambo = 2
+    }
 
-	public static bool DoSatBossNapa;
+    private enum FarmState
+    {
+        Initialize = 0,
+        WaitingForMapLoad = 1,
+        XmapToMap = 2,
+        InitializeZones = 3,
+        RequestingZoneChange = 4,
+        WaitingForZoneLoad = 41,
+        CheckingForBoss = 5,
+        MonitoringBossHealth = 51,
+        FightingBoss = 6,
+        PickingUpItems = 61,
+        WaitingBeforeNextZone = 7
+    }
 
-	public static int typeBoss;
+    private enum MapRange
+    {
+        KukuStart = 68,
+        KukuEnd = 72,
+        MapDauDinhStart = 64,
+        MapDauDinhEnd = 67,
+        RamboStart = 73,
+        RamboEnd = 77
+    }
+    #endregion
 
-	public static string statusBossNappa;
+    #region Constants
+    private const long BOSS_NO_DAMAGE_TIMEOUT_MS = 10000L;
+    private const int MAX_PICK_ATTEMPTS = 5;
+    private const long PICK_ITEM_DELAY_MS = 800L;
+    private const long ZONE_CHANGE_DELAY_MS = 1200L;
+    private const long MAP_LOAD_DELAY_MS = 1500L;
+    private const long BOSS_FIGHT_CHECK_DELAY_MS = 2000L;
+    private const long HP_CHECK_INTERVAL_MS = 2000L;
+    private const long HP_STUCK_CHECK_INTERVAL_MS = 3000L;
+    private const int MAX_CONSECUTIVE_NO_DAMAGE = 5;
+    private const int MAX_CONSECUTIVE_NO_DAMAGE_IN_FIGHT = 3;
+    private const int DEFAULT_START_ZONE = 2;
+    private const int GANG_THIEN_SU_ITEM_ID = 1070;
 
-	private static int napaState;
+    private static readonly string[] BOSS_NAMES = { "Kuku", "Mập đầu đinh", "Rambo" };
+    #endregion
 
-	private static long napaTimer;
+    #region Singleton
+    private static AutoFarmBossNappa _instance;
 
-	private static int startMapNapa;
+    public static AutoFarmBossNappa getInstance()
+    {
+        if (_instance == null)
+        {
+            _instance = new AutoFarmBossNappa();
+        }
+        return _instance;
+    }
+    #endregion
 
-	private static int targetZoneNapa;
+    #region Public Fields
+    public static bool DoSatBossNapa;
+    public static int typeBoss;
+    public static string statusBossNappa;
+    #endregion
 
-	private static long bossEntryTime;
+    #region Private State Fields
+    private static FarmState currentState;
+    private static long stateTimer;
+    private static int currentMapId;
+    private static int targetZone;
+    #endregion
 
-	private static bool bossDamaged;
+    #region Boss Tracking Fields
+    private static long bossEntryTime;
+    private static bool bossDamaged;
+    private static long lastBossHp;
+    private static long lastBossHpCheckTime;
+    private static int consecutiveNoDamageCount;
+    #endregion
 
-	private const long BOSS_NO_DAMAGE_TIMEOUT_MS = 10000L;
+    #region Item Pickup Fields
+    private static long lastPickItemTime;
+    private static int pickItemAttempts;
+    #endregion
 
-	private static bool napaMapInitialized;
+    #region Flags
+    private static bool mapInitialized;
+    private static bool resumeFromDeathOrDisconnect;
+    #endregion
 
-	private static bool resumeFromDeathOrLac;
+    #region Initialization
+    static AutoFarmBossNappa()
+    {
+        ResetAllState();
+    }
 
-	private static long lastBossHp;
+    private static void ResetAllState()
+    {
+        statusBossNappa = "";
+        currentState = FarmState.Initialize;
+        stateTimer = 0L;
+        currentMapId = (int)MapRange.KukuStart;
+        targetZone = DEFAULT_START_ZONE;
+        typeBoss = 0;
+        DoSatBossNapa = false;
 
-	private static long lastBossHpCheckTime;
+        ResetBossTracking();
+        ResetItemPickup();
+        ResetFlags();
+    }
 
-	private static int consecutiveNoDamageCount;
+    private static void ResetBossTracking()
+    {
+        bossEntryTime = 0L;
+        bossDamaged = false;
+        lastBossHp = -1L;
+        lastBossHpCheckTime = 0L;
+        consecutiveNoDamageCount = 0;
+    }
 
-	private static long lastPickItemTime;
+    private static void ResetItemPickup()
+    {
+        lastPickItemTime = 0L;
+        pickItemAttempts = 0;
+    }
 
-	private static int pickItemAttempts;
+    private static void ResetFlags()
+    {
+        mapInitialized = false;
+        resumeFromDeathOrDisconnect = false;
+    }
+    #endregion
 
-	private const int MAX_PICK_ATTEMPTS = 5;
+    #region Main Update Loop
+    public static void Update()
+    {
+        try
+        {
+            if (!DoSatBossNapa) return;
 
-	private const long PICK_ITEM_DELAY = 800L;
+            if (HandlePlayerDeath()) return;
+            if (HandlePlayerLost()) return;
 
-	public static AutoFarmBossNappa getInstance()
-	{
-		if (_Instance == null)
-		{
-			_Instance = new AutoFarmBossNappa();
-		}
-		return _Instance;
-	}
+            ProcessCurrentState();
+        }
+        catch
+        {
+            Stop();
+            statusBossNappa = "Lỗi hệ thống - Đã dừng";
+            GameScr.info1.addInfo("Lỗi update auto farm boss nappa");
+        }
+    }
 
-	static AutoFarmBossNappa()
-	{
-		statusBossNappa = "";
-		napaMapInitialized = false;
-		resumeFromDeathOrLac = false;
-		bossEntryTime = 0L;
-		bossDamaged = false;
-		lastBossHp = -1L;
-		lastBossHpCheckTime = 0L;
-		napaState = 0;
-		napaTimer = 0L;
-		startMapNapa = 68;
-		targetZoneNapa = 2;
-		typeBoss = 0;
-		DoSatBossNapa = false;
-		consecutiveNoDamageCount = 0;
-		lastPickItemTime = 0L;
-		pickItemAttempts = 0;
-	}
+    private static bool HandlePlayerDeath()
+    {
+        if (!Char.myCharz().meDead) return false;
 
-	public static void Update()
-	{
-		try
-		{
-			if (!DoSatBossNapa)
-			{
-				return;
-			}
-			if (Char.myCharz().meDead)
-			{
-				if (GameCanvas.gameTick % 40 == 0)
-				{
-					statusBossNappa = "Đang hồi sinh...";
-					Service.gI().returnTownFromDead();
-					napaTimer = mSystem.currentTimeMillis() + 1500;
-					if (startMapNapa > 0)
-					{
-						GoToStartMap();
-						resumeFromDeathOrLac = true;
-					}
-				}
-				return;
-			}
-			if (napaState > 0 && TileMap.mapID != startMapNapa && !MainXmapCL.isXmaping)
-			{
-				statusBossNappa = "Quay lại map boss (lạc đường)";
-				GoToStartMap();
-				resumeFromDeathOrLac = true;
-				return;
-			}
-			switch (napaState)
-			{
-			case 0:
-				statusBossNappa = "Khởi tạo hệ thống";
-				InitStartMap();
-				break;
-			case 1:
-				if (TileMap.mapID != startMapNapa)
-				{
-					statusBossNappa = "Đang di chuyển đến map boss";
-					GoToStartMap();
-				}
-				else if (!AutoBossCL.offPaintZone)
-				{
-					statusBossNappa = "Khởi tạo danh sách khu";
-					InitZones();
-					napaState = 3;
-				}
-				break;
-			case 2:
-				if (!MainXmapCL.isXmaping)
-				{
-					statusBossNappa = "Mở UI Zone";
-					AutoBossCL.offPaintZone = true;
-					Service.gI().openUIZone();
-					napaState = 1;
-				}
-				else
-				{
-					statusBossNappa = "Đang Xmap đến map boss";
-				}
-				break;
-			case 3:
-				if (targetZoneNapa <= AutoBossCL.CountZoneMap && !Char.myCharz().meDead)
-				{
-					statusBossNappa = $"Chuẩn bị đổi khu {targetZoneNapa}";
-					RequestZone(targetZoneNapa);
-					napaState = 4;
-				}
-				else
-				{
-					statusBossNappa = "Hết khu, chuyển map tiếp theo";
-					NextMap();
-				}
-				break;
-			case 4:
-				if (mSystem.currentTimeMillis() >= napaTimer)
-				{
-					if (TileMap.zoneID == targetZoneNapa)
-					{
-						statusBossNappa = $"Đã vào khu {targetZoneNapa}";
-						napaTimer = mSystem.currentTimeMillis() + 1500;
-						napaState = 41;
-					}
-					else
-					{
-						statusBossNappa = $"Đang chờ vào khu {targetZoneNapa}";
-						RequestZone(targetZoneNapa);
-					}
-				}
-				else
-				{
-					statusBossNappa = $"Đang đổi khu {targetZoneNapa}...";
-				}
-				break;
-			case 41:
-				if (mSystem.currentTimeMillis() >= napaTimer)
-				{
-					statusBossNappa = "Map đã load, bắt đầu kiểm tra boss";
-					napaState = 5;
-				}
-				else
-				{
-					statusBossNappa = $"Đang đợi map load (Khu {targetZoneNapa})...";
-				}
-				break;
-			case 5:
-				statusBossNappa = "Kiểm tra boss trong khu";
-				if (checkBossNappa())
-				{
-					HandleBossFound();
-					break;
-				}
-				lastBossHp = -1L;
-				bossEntryTime = 0L;
-				bossDamaged = false;
-				consecutiveNoDamageCount = 0;
-				napaTimer = mSystem.currentTimeMillis() + (GameScr.canAutoPlay ? 5200 : 10500);
-				statusBossNappa = "Không có boss, chờ chuyển khu tiếp theo";
-				napaState = 7;
-				break;
-			case 51:
-				statusBossNappa = $"Đang theo dõi HP boss (Khu {TileMap.zoneID})";
-				HandleBossMonitor();
-				break;
-			case 6:
-				statusBossNappa = $"Đang đánh boss (Khu {TileMap.zoneID})";
-				HandleBossFight();
-				break;
-			case 61:
-				statusBossNappa = "Đang nhặt mảnh găng thiên sứ";
-				HandlePickItems();
-				break;
-			case 7:
-				if (mSystem.currentTimeMillis() >= napaTimer)
-				{
-					if (targetZoneNapa < AutoBossCL.CountZoneMap)
-					{
-						targetZoneNapa++;
-						statusBossNappa = $"Chuyển sang khu {targetZoneNapa}";
-						napaState = 3;
-					}
-					else
-					{
-						statusBossNappa = "Hết khu, chuyển map";
-						NextMap();
-					}
-				}
-				else
-				{
-					statusBossNappa = $"Đang chờ... (Khu {targetZoneNapa})";
-				}
-				break;
-			}
-		}
-		catch
-		{
-			Stop();
-			statusBossNappa = "Lỗi hệ thống - Đã dừng";
-			GameScr.info1.addInfo("Lỗi update auto farm boss nappa");
-		}
-	}
+        if (GameCanvas.gameTick % 40 == 0)
+        {
+            statusBossNappa = "Đang hồi sinh...";
+            Service.gI().returnTownFromDead();
+            stateTimer = mSystem.currentTimeMillis() + MAP_LOAD_DELAY_MS;
 
-	private static void GoToStartMap()
-	{
-		MainXmapCL.StartGoToMap(startMapNapa);
-		statusBossNappa = $"Đang Xmap đến map {startMapNapa}";
-		napaState = 2;
-		napaMapInitialized = false;
-	}
+            if (currentMapId > 0)
+            {
+                GoToStartMap();
+                resumeFromDeathOrDisconnect = true;
+            }
+        }
+        return true;
+    }
 
-	private static void InitStartMap()
-	{
-		switch (typeBoss)
-		{
-		case 0:
-			startMapNapa = UnityEngine.Random.Range(68, 73);
-			statusBossNappa = $"Chọn map Kuku ({startMapNapa})";
-			break;
-		case 1:
-			startMapNapa = UnityEngine.Random.Range(64, 68);
-			statusBossNappa = $"Chọn map Mập đầu đinh ({startMapNapa})";
-			break;
-		case 2:
-			startMapNapa = UnityEngine.Random.Range(73, 78);
-			statusBossNappa = $"Chọn map Rambo ({startMapNapa})";
-			break;
-		default:
-			startMapNapa = 68;
-			statusBossNappa = "Chọn map mặc định (68)";
-			break;
-		}
-		AutoTrainCL.TuMoTDLT();
-		AutoBossCL.aGimBoss = (AutoBossCL.AutoteleBoss = (AutoBossCL.tanCongBoss = true));
-		ModProCL.tieuDietNguoiBatCo = false;
-		napaMapInitialized = false;
-		resumeFromDeathOrLac = false;
-		consecutiveNoDamageCount = 0;
-		napaState = 1;
-	}
+    private static bool HandlePlayerLost()
+    {
+        if (currentState == FarmState.Initialize) return false;
+        if (TileMap.mapID == currentMapId || MainXmapCL.isXmaping) return false;
 
-	private static void InitZones()
-	{
-		AutoBossCL.CountZoneMap = ((GameScr.gI().zones != null) ? (GameScr.gI().zones.Length - 1) : 0);
-		statusBossNappa = $"Khởi tạo: {AutoBossCL.CountZoneMap} khu";
-		if (napaMapInitialized)
-		{
-			return;
-		}
-		if (resumeFromDeathOrLac)
-		{
-			if (targetZoneNapa < 2 || targetZoneNapa > AutoBossCL.CountZoneMap)
-			{
-				targetZoneNapa = 2;
-			}
-			statusBossNappa = $"Tiếp tục từ khu {targetZoneNapa}";
-			resumeFromDeathOrLac = false;
-		}
-		else
-		{
-			targetZoneNapa = 2;
-			statusBossNappa = "Bắt đầu từ khu 2";
-		}
-		napaMapInitialized = true;
-	}
+        statusBossNappa = "Quay lại map boss (lạc đường)";
+        GoToStartMap();
+        resumeFromDeathOrDisconnect = true;
+        return true;
+    }
 
-	private static void RequestZone(int zone)
-	{
-		Service.gI().requestChangeZone(zone, -1);
-		napaTimer = mSystem.currentTimeMillis() + 1200;
-		statusBossNappa = $"Request đổi khu {zone}";
-	}
+    private static void ProcessCurrentState()
+    {
+        switch (currentState)
+        {
+            case FarmState.Initialize:
+                HandleInitialize();
+                break;
+            case FarmState.WaitingForMapLoad:
+                HandleWaitingForMapLoad();
+                break;
+            case FarmState.XmapToMap:
+                HandleXmapToMap();
+                break;
+            case FarmState.InitializeZones:
+                HandleInitializeZones();
+                break;
+            case FarmState.RequestingZoneChange:
+                HandleRequestingZoneChange();
+                break;
+            case FarmState.WaitingForZoneLoad:
+                HandleWaitingForZoneLoad();
+                break;
+            case FarmState.CheckingForBoss:
+                HandleCheckingForBoss();
+                break;
+            case FarmState.MonitoringBossHealth:
+                HandleMonitoringBossHealth();
+                break;
+            case FarmState.FightingBoss:
+                HandleFightingBoss();
+                break;
+            case FarmState.PickingUpItems:
+                HandlePickingUpItems();
+                break;
+            case FarmState.WaitingBeforeNextZone:
+                HandleWaitingBeforeNextZone();
+                break;
+        }
+    }
+    #endregion
 
-	private static void HandleBossFound()
-	{
-		long num = mSystem.currentTimeMillis();
-		Char firstBossInMap = getFirstBossInMap();
-		if (firstBossInMap == null)
-		{
-			lastBossHp = -1L;
-			bossEntryTime = 0L;
-			bossDamaged = false;
-			consecutiveNoDamageCount = 0;
-			napaTimer = num + (GameScr.canAutoPlay ? 5500 : 10500);
-			statusBossNappa = "Boss biến mất, chờ chuyển khu";
-			napaState = 7;
-		}
-		else
-		{
-			lastBossHp = firstBossInMap.cHP;
-			lastBossHpCheckTime = num;
-			bossEntryTime = num;
-			bossDamaged = false;
-			consecutiveNoDamageCount = 0;
-			Char.myCharz().mobFocus = null;
-			Char.myCharz().itemFocus = null;
-			Char.myCharz().npcFocus = null;
-			statusBossNappa = $"Tìm thấy boss {firstBossInMap.cName} (HP: {firstBossInMap.cHP})";
-			napaState = 51;
-		}
-	}
+    #region State Handlers
+    private static void HandleInitialize()
+    {
+        statusBossNappa = "Khởi tạo hệ thống";
+        InitializeStartMap();
+    }
 
-	private static void HandleBossMonitor()
-	{
-		long num = mSystem.currentTimeMillis();
-		Char firstBossInMap = getFirstBossInMap();
-		if (firstBossInMap == null)
-		{
-			statusBossNappa = "Boss biến mất khi theo dõi";
-			lastBossHp = -1L;
-			bossEntryTime = 0L;
-			bossDamaged = false;
-			consecutiveNoDamageCount = 0;
-			if (targetZoneNapa < AutoBossCL.CountZoneMap)
-			{
-				targetZoneNapa++;
-				napaState = 3;
-			}
-			else
-			{
-				NextMap();
-			}
-			return;
-		}
-		if (num - lastBossHpCheckTime >= 2000)
-		{
-			if (firstBossInMap.cHP < lastBossHp)
-			{
-				bossDamaged = true;
-				consecutiveNoDamageCount = 0;
-				lastBossHp = firstBossInMap.cHP;
-				lastBossHpCheckTime = num;
-				napaTimer = num + 2500;
-				statusBossNappa = $"Boss đang bị đánh (HP: {firstBossInMap.cHP})";
-				napaState = 6;
-			}
-			else if (firstBossInMap.cHP == lastBossHp)
-			{
-				consecutiveNoDamageCount++;
-				lastBossHpCheckTime = num;
-				statusBossNappa = $"Theo dõi boss - HP không đổi lần {consecutiveNoDamageCount} (HP: {firstBossInMap.cHP})";
-			}
-			else
-			{
-				lastBossHp = firstBossInMap.cHP;
-				lastBossHpCheckTime = num;
-				consecutiveNoDamageCount = 0;
-			}
-		}
-		else
-		{
-			statusBossNappa = $"Đang theo dõi boss (HP: {firstBossInMap.cHP})";
-		}
-		if ((num - bossEntryTime >= 10000 || consecutiveNoDamageCount >= 5) && !bossDamaged)
-		{
-			statusBossNappa = "Boss ảo hoặc không thể đánh, bỏ qua khu";
-			lastBossHp = -1L;
-			bossEntryTime = 0L;
-			bossDamaged = false;
-			consecutiveNoDamageCount = 0;
-			if (targetZoneNapa < AutoBossCL.CountZoneMap)
-			{
-				targetZoneNapa++;
-				napaState = 3;
-			}
-			else
-			{
-				NextMap();
-			}
-		}
-	}
+    private static void HandleWaitingForMapLoad()
+    {
+        if (TileMap.mapID != currentMapId)
+        {
+            statusBossNappa = "Đang di chuyển đến map boss";
+            GoToStartMap();
+        }
+        else if (!AutoBossCL.offPaintZone)
+        {
+            statusBossNappa = "Khởi tạo danh sách khu";
+            InitializeZones();
+            currentState = FarmState.InitializeZones;
+        }
+    }
 
-	private static void HandleBossFight()
-	{
-		if (mSystem.currentTimeMillis() < napaTimer)
-		{
-			statusBossNappa = $"Đang đánh boss (Khu {TileMap.zoneID})";
-		}
-		else if (checkBossNappa())
-		{
-			Char firstBossInMap = getFirstBossInMap();
-			if (firstBossInMap != null)
-			{
-				long num = mSystem.currentTimeMillis();
-				if (num - lastBossHpCheckTime >= 3000)
-				{
-					if (firstBossInMap.cHP < lastBossHp)
-					{
-						consecutiveNoDamageCount = 0;
-						lastBossHp = firstBossInMap.cHP;
-						lastBossHpCheckTime = num;
-					}
-					else if (firstBossInMap.cHP == lastBossHp)
-					{
-						consecutiveNoDamageCount++;
-						lastBossHpCheckTime = num;
-						if (consecutiveNoDamageCount >= 3)
-						{
-							statusBossNappa = "Boss kẹt/ảo khi đánh, chuyển khu";
-							ResetBossState();
-							MoveToNextZone();
-							return;
-						}
-					}
-					else
-					{
-						lastBossHp = firstBossInMap.cHP;
-						lastBossHpCheckTime = num;
-						consecutiveNoDamageCount = 0;
-					}
-				}
-			}
-			napaTimer = mSystem.currentTimeMillis() + 2000;
-			statusBossNappa = "Boss còn sống, tiếp tục đánh";
-		}
-		else
-		{
-			statusBossNappa = "Boss đã chết, kiểm tra item";
-			pickItemAttempts = 0;
-			lastPickItemTime = 0L;
-			napaState = 61;
-		}
-	}
+    private static void HandleXmapToMap()
+    {
+        if (!MainXmapCL.isXmaping)
+        {
+            statusBossNappa = "Mở UI Zone";
+            AutoBossCL.offPaintZone = true;
+            Service.gI().openUIZone();
+            currentState = FarmState.WaitingForMapLoad;
+        }
+        else
+        {
+            statusBossNappa = "Đang Xmap đến map boss";
+        }
+    }
 
-	private static void HandlePickItems()
-	{
-		long num = mSystem.currentTimeMillis();
-		if (!HasGangThienSuItems())
-		{
-			statusBossNappa = "Không còn mảnh găng, chuyển khu";
-			ResetBossState();
-			MoveToNextZone();
-		}
-		else if (num - lastPickItemTime < 800)
-		{
-			statusBossNappa = $"Đang nhặt mảnh găng ({pickItemAttempts}/{5})";
-		}
-		else if (PickAllItemsGangThienSu())
-		{
-			lastPickItemTime = num;
-			pickItemAttempts++;
-			statusBossNappa = $"Đã nhặt mảnh găng ({pickItemAttempts})";
-			if (pickItemAttempts >= 5)
-			{
-				statusBossNappa = "Đã nhặt đủ số lần, chuyển khu";
-				ResetBossState();
-				MoveToNextZone();
-			}
-		}
-		else
-		{
-			statusBossNappa = "Đã nhặt hết mảnh găng, chuyển khu";
-			ResetBossState();
-			MoveToNextZone();
-		}
-	}
+    private static void HandleInitializeZones()
+    {
+        if (targetZone <= AutoBossCL.CountZoneMap && !Char.myCharz().meDead)
+        {
+            statusBossNappa = $"Chuẩn bị đổi khu {targetZone}";
+            RequestZoneChange(targetZone);
+            currentState = FarmState.RequestingZoneChange;
+        }
+        else
+        {
+            statusBossNappa = "Hết khu, chuyển map tiếp theo";
+            MoveToNextMap();
+        }
+    }
 
-	private static void ResetBossState()
-	{
-		lastBossHp = -1L;
-		bossEntryTime = 0L;
-		bossDamaged = false;
-		consecutiveNoDamageCount = 0;
-		AutoBossCL.listBossTrongKhu.Clear();
-	}
+    private static void HandleRequestingZoneChange()
+    {
+        long currentTime = mSystem.currentTimeMillis();
 
-	private static void MoveToNextZone()
-	{
-		if (TileMap.zoneID < AutoBossCL.CountZoneMap)
-		{
-			targetZoneNapa = TileMap.zoneID + 1;
-			napaState = 3;
-		}
-		else
-		{
-			NextMap();
-		}
-	}
+        if (currentTime < stateTimer)
+        {
+            statusBossNappa = $"Đang đổi khu {targetZone}...";
+            return;
+        }
 
-	private static bool HasGangThienSuItems()
-	{
-		for (int i = 0; i < GameScr.vItemMap.size(); i++)
-		{
-			ItemMap itemMap = (ItemMap)GameScr.vItemMap.elementAt(i);
-			if (itemMap != null && (itemMap.playerId == Char.myCharz().charID || itemMap.template.id == 1070))
-			{
-				return true;
-			}
-		}
-		return false;
-	}
+        if (TileMap.zoneID == targetZone)
+        {
+            statusBossNappa = $"Đã vào khu {targetZone}";
+            stateTimer = currentTime + MAP_LOAD_DELAY_MS;
+            currentState = FarmState.WaitingForZoneLoad;
+        }
+        else
+        {
+            statusBossNappa = $"Đang chờ vào khu {targetZone}";
+            RequestZoneChange(targetZone);
+        }
+    }
 
-	private static void NextMap()
-	{
-		switch (typeBoss)
-		{
-		case 0:
-			startMapNapa = ((startMapNapa >= 72) ? 68 : (startMapNapa + 1));
-			statusBossNappa = $"Chuyển map Kuku tiếp theo ({startMapNapa})";
-			break;
-		case 1:
-			startMapNapa = ((startMapNapa >= 67) ? 64 : (startMapNapa + 1));
-			statusBossNappa = $"Chuyển map Mập đầu đinh tiếp theo ({startMapNapa})";
-			break;
-		case 2:
-			startMapNapa = ((startMapNapa >= 77) ? 73 : (startMapNapa + 1));
-			statusBossNappa = $"Chuyển map Rambo tiếp theo ({startMapNapa})";
-			break;
-		}
-		targetZoneNapa = 2;
-		napaMapInitialized = false;
-		resumeFromDeathOrLac = false;
-		napaState = 1;
-	}
+    private static void HandleWaitingForZoneLoad()
+    {
+        if (mSystem.currentTimeMillis() >= stateTimer)
+        {
+            statusBossNappa = "Map đã load, bắt đầu kiểm tra boss";
+            currentState = FarmState.CheckingForBoss;
+        }
+        else
+        {
+            statusBossNappa = $"Đang đợi map load (Khu {targetZone})...";
+        }
+    }
 
-	private static Char getFirstBossInMap()
-	{
-		string[] array = new string[3] { "Kuku", "Mập đầu đinh", "Rambo" };
-		for (int i = 0; i < GameScr.vCharInMap.size(); i++)
-		{
-			Char obj = (Char)GameScr.vCharInMap.elementAt(i);
-			if (obj == null || obj.cName == null || string.IsNullOrEmpty(obj.cName) || obj.cHP <= 0 || obj.isPet || obj.isMiniPet)
-			{
-				continue;
-			}
-			string[] array2 = array;
-			string[] array3 = array2;
-			string[] array4 = array3;
-			string[] array5 = array4;
-			string[] array6 = array5;
-			string[] array7 = array6;
-			foreach (string value in array7)
-			{
-				if (obj.cName.StartsWith(value, StringComparison.OrdinalIgnoreCase))
-				{
-					return obj;
-				}
-			}
-		}
-		return null;
-	}
+    private static void HandleCheckingForBoss()
+    {
+        statusBossNappa = "Kiểm tra boss trong khu";
 
-	public static bool checkBossNappa()
-	{
-		string[] array = new string[3] { "Kuku", "Mập đầu đinh", "Rambo" };
-		for (int i = 0; i < GameScr.vCharInMap.size(); i++)
-		{
-			Char obj = (Char)GameScr.vCharInMap.elementAt(i);
-			if (obj == null || obj.cName == null || string.IsNullOrEmpty(obj.cName) || obj.isPet || obj.isMiniPet || obj.cHP <= 0 || obj.cx > TileMap.GetMapEndX() - 10 || obj.cy > TileMap.GetMapEndY() - 10 || !char.IsUpper(obj.cName[0]))
-			{
-				continue;
-			}
-			string[] array2 = array;
-			string[] array3 = array2;
-			string[] array4 = array3;
-			string[] array5 = array4;
-			string[] array6 = array5;
-			string[] array7 = array6;
-			foreach (string value in array7)
-			{
-				if (obj.cName.StartsWith(value, StringComparison.OrdinalIgnoreCase))
-				{
-					return true;
-				}
-			}
-		}
-		return false;
-	}
+        if (IsBossPresent())
+        {
+            OnBossFound();
+        }
+        else
+        {
+            OnBossNotFound();
+        }
+    }
 
-	private static bool PickAllItemsGangThienSu()
-	{
-		for (int i = 0; i < GameScr.vItemMap.size(); i++)
-		{
-			ItemMap itemMap = (ItemMap)GameScr.vItemMap.elementAt(i);
-			if (itemMap != null && (itemMap.playerId == Char.myCharz().charID || itemMap.template.id == 1070))
-			{
-				MainXmapCL.TeleportTo(itemMap.x, itemMap.y);
-				Service.gI().pickItem(itemMap.itemMapID);
-				return true;
-			}
-		}
-		return false;
-	}
+    private static void HandleMonitoringBossHealth()
+    {
+        statusBossNappa = $"Đang theo dõi HP boss (Khu {TileMap.zoneID})";
 
-	public static bool IsBossNappa(string name)
-	{
-		if (string.IsNullOrEmpty(name))
-		{
-			return false;
-		}
-		return name.StartsWith("Kuku", StringComparison.OrdinalIgnoreCase) || name.StartsWith("Mập đầu đinh", StringComparison.OrdinalIgnoreCase) || name.StartsWith("Rambo", StringComparison.OrdinalIgnoreCase);
-	}
+        Char boss = GetFirstBossInMap();
+        if (boss == null)
+        {
+            OnBossDisappeared();
+            return;
+        }
 
-	public static void Stop()
-	{
-		MainXmapCL.FinishXmap();
-		DoSatBossNapa = false;
-		AutoBossCL.tanCongBoss = false;
-		AutoBossCL.aGimBoss = false;
-		AutoBossCL.AutoteleBoss = false;
-		napaState = 0;
-		targetZoneNapa = 2;
-		consecutiveNoDamageCount = 0;
-		statusBossNappa = "Đã dừng auto farm boss Napa";
-	}
+        long currentTime = mSystem.currentTimeMillis();
+        if (currentTime - lastBossHpCheckTime < HP_CHECK_INTERVAL_MS)
+        {
+            statusBossNappa = $"Đang theo dõi boss (HP: {boss.cHP})";
+            return;
+        }
+
+        CheckBossHealthChange(boss, currentTime);
+        CheckForPhantomBoss(currentTime);
+    }
+
+    private static void HandleFightingBoss()
+    {
+        long currentTime = mSystem.currentTimeMillis();
+
+        if (currentTime < stateTimer)
+        {
+            statusBossNappa = $"Đang đánh boss (Khu {TileMap.zoneID})";
+            return;
+        }
+
+        if (IsBossPresent())
+        {
+            CheckBossFightProgress(currentTime);
+            stateTimer = currentTime + BOSS_FIGHT_CHECK_DELAY_MS;
+            statusBossNappa = "Boss còn sống, tiếp tục đánh";
+        }
+        else
+        {
+            statusBossNappa = "Boss đã chết, kiểm tra item";
+            ResetItemPickup();
+            currentState = FarmState.PickingUpItems;
+        }
+    }
+
+    private static void HandlePickingUpItems()
+    {
+        long currentTime = mSystem.currentTimeMillis();
+
+        if (!HasGangThienSuItems())
+        {
+            statusBossNappa = "Không còn mảnh găng, chuyển khu";
+            OnItemPickupComplete();
+            return;
+        }
+
+        if (currentTime - lastPickItemTime < PICK_ITEM_DELAY_MS)
+        {
+            statusBossNappa = $"Đang nhặt mảnh găng ({pickItemAttempts}/{MAX_PICK_ATTEMPTS})";
+            return;
+        }
+
+        if (PickAllGangThienSuItems())
+        {
+            lastPickItemTime = currentTime;
+            pickItemAttempts++;
+            statusBossNappa = $"Đã nhặt mảnh găng ({pickItemAttempts})";
+
+            if (pickItemAttempts >= MAX_PICK_ATTEMPTS)
+            {
+                statusBossNappa = "Đã nhặt đủ số lần, chuyển khu";
+                OnItemPickupComplete();
+            }
+        }
+        else
+        {
+            statusBossNappa = "Đã nhặt hết mảnh găng, chuyển khu";
+            OnItemPickupComplete();
+        }
+    }
+
+    private static void HandleWaitingBeforeNextZone()
+    {
+        if (mSystem.currentTimeMillis() >= stateTimer)
+        {
+            if (targetZone < AutoBossCL.CountZoneMap)
+            {
+                targetZone++;
+                statusBossNappa = $"Chuyển sang khu {targetZone}";
+                currentState = FarmState.InitializeZones;
+            }
+            else
+            {
+                statusBossNappa = "Hết khu, chuyển map";
+                MoveToNextMap();
+            }
+        }
+        else
+        {
+            statusBossNappa = $"Đang chờ... (Khu {targetZone})";
+        }
+    }
+    #endregion
+
+    #region Boss Detection & Tracking
+    private static Char GetFirstBossInMap()
+    {
+        for (int i = 0; i < GameScr.vCharInMap.size(); i++)
+        {
+            Char character = (Char)GameScr.vCharInMap.elementAt(i);
+            if (IsValidBoss(character))
+            {
+                return character;
+            }
+        }
+        return null;
+    }
+
+    private static bool IsBossPresent()
+    {
+        for (int i = 0; i < GameScr.vCharInMap.size(); i++)
+        {
+            Char character = (Char)GameScr.vCharInMap.elementAt(i);
+            if (IsValidBossInBounds(character))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static bool IsValidBoss(Char character)
+    {
+        if (character == null || string.IsNullOrEmpty(character.cName)) return false;
+        if (character.cHP <= 0 || character.isPet || character.isMiniPet) return false;
+
+        return StartsWithBossName(character.cName);
+    }
+
+    private static bool IsValidBossInBounds(Char character)
+    {
+        if (!IsValidBoss(character)) return false;
+        if (!char.IsUpper(character.cName[0])) return false;
+        if (character.cx > TileMap.GetMapEndX() - 10) return false;
+        if (character.cy > TileMap.GetMapEndY() - 10) return false;
+
+        return true;
+    }
+
+    private static bool StartsWithBossName(string name)
+    {
+        foreach (string bossName in BOSS_NAMES)
+        {
+            if (name.StartsWith(bossName, StringComparison.OrdinalIgnoreCase))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static bool IsBossNappa(string name)
+    {
+        if (string.IsNullOrEmpty(name)) return false;
+        return StartsWithBossName(name);
+    }
+
+    public static bool checkBossNappa() => IsBossPresent();
+    #endregion
+
+    #region Boss Events
+    private static void OnBossFound()
+    {
+        Char boss = GetFirstBossInMap();
+        if (boss == null)
+        {
+            OnBossNotFound();
+            return;
+        }
+
+        long currentTime = mSystem.currentTimeMillis();
+        lastBossHp = boss.cHP;
+        lastBossHpCheckTime = currentTime;
+        bossEntryTime = currentTime;
+        bossDamaged = false;
+        consecutiveNoDamageCount = 0;
+
+        ClearPlayerFocus();
+
+        statusBossNappa = $"Tìm thấy boss {boss.cName} (HP: {boss.cHP})";
+        currentState = FarmState.MonitoringBossHealth;
+    }
+
+    private static void OnBossNotFound()
+    {
+        ResetBossTracking();
+        long delay = GameScr.canAutoPlay ? 5200 : 10500;
+        stateTimer = mSystem.currentTimeMillis() + delay;
+        statusBossNappa = "Không có boss, chờ chuyển khu tiếp theo";
+        currentState = FarmState.WaitingBeforeNextZone;
+    }
+
+    private static void OnBossDisappeared()
+    {
+        statusBossNappa = "Boss biến mất khi theo dõi";
+        ResetBossTracking();
+        MoveToNextZoneOrMap();
+    }
+
+    private static void OnItemPickupComplete()
+    {
+        ResetBossTracking();
+        AutoBossCL.listBossTrongKhu.Clear();
+        MoveToNextZoneOrMap();
+    }
+    #endregion
+
+    #region Boss Health Monitoring
+    private static void CheckBossHealthChange(Char boss, long currentTime)
+    {
+        if (boss.cHP < lastBossHp)
+        {
+            OnBossTakingDamage(boss, currentTime);
+        }
+        else if (boss.cHP == lastBossHp)
+        {
+            OnBossHealthStagnant(boss, currentTime);
+        }
+        else
+        {
+            OnBossHealthIncreased(boss, currentTime);
+        }
+    }
+
+    private static void OnBossTakingDamage(Char boss, long currentTime)
+    {
+        bossDamaged = true;
+        consecutiveNoDamageCount = 0;
+        lastBossHp = boss.cHP;
+        lastBossHpCheckTime = currentTime;
+        stateTimer = currentTime + 2500;
+        statusBossNappa = $"Boss đang bị đánh (HP: {boss.cHP})";
+        currentState = FarmState.FightingBoss;
+    }
+
+    private static void OnBossHealthStagnant(Char boss, long currentTime)
+    {
+        consecutiveNoDamageCount++;
+        lastBossHpCheckTime = currentTime;
+        statusBossNappa = $"Theo dõi boss - HP không đổi lần {consecutiveNoDamageCount} (HP: {boss.cHP})";
+    }
+
+    private static void OnBossHealthIncreased(Char boss, long currentTime)
+    {
+        lastBossHp = boss.cHP;
+        lastBossHpCheckTime = currentTime;
+        consecutiveNoDamageCount = 0;
+    }
+
+    private static void CheckForPhantomBoss(long currentTime)
+    {
+        bool timeoutReached = currentTime - bossEntryTime >= BOSS_NO_DAMAGE_TIMEOUT_MS;
+        bool tooManyNoDamageChecks = consecutiveNoDamageCount >= MAX_CONSECUTIVE_NO_DAMAGE;
+
+        if ((timeoutReached || tooManyNoDamageChecks) && !bossDamaged)
+        {
+            statusBossNappa = "Boss ảo hoặc không thể đánh, bỏ qua khu";
+            ResetBossTracking();
+            MoveToNextZoneOrMap();
+        }
+    }
+
+    private static void CheckBossFightProgress(long currentTime)
+    {
+        Char boss = GetFirstBossInMap();
+        if (boss == null) return;
+
+        if (currentTime - lastBossHpCheckTime < HP_STUCK_CHECK_INTERVAL_MS) return;
+
+        if (boss.cHP < lastBossHp)
+        {
+            consecutiveNoDamageCount = 0;
+            lastBossHp = boss.cHP;
+            lastBossHpCheckTime = currentTime;
+        }
+        else if (boss.cHP == lastBossHp)
+        {
+            consecutiveNoDamageCount++;
+            lastBossHpCheckTime = currentTime;
+
+            if (consecutiveNoDamageCount >= MAX_CONSECUTIVE_NO_DAMAGE_IN_FIGHT)
+            {
+                statusBossNappa = "Boss kẹt/ảo khi đánh, chuyển khu";
+                ResetBossTracking();
+                MoveToNextZoneOrMap();
+            }
+        }
+        else
+        {
+            lastBossHp = boss.cHP;
+            lastBossHpCheckTime = currentTime;
+            consecutiveNoDamageCount = 0;
+        }
+    }
+    #endregion
+
+    #region Item Management
+    private static bool HasGangThienSuItems()
+    {
+        for (int i = 0; i < GameScr.vItemMap.size(); i++)
+        {
+            ItemMap item = (ItemMap)GameScr.vItemMap.elementAt(i);
+            if (IsGangThienSuItem(item))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static bool PickAllGangThienSuItems()
+    {
+        for (int i = 0; i < GameScr.vItemMap.size(); i++)
+        {
+            ItemMap item = (ItemMap)GameScr.vItemMap.elementAt(i);
+            if (IsGangThienSuItem(item))
+            {
+                TeleportAndPickItem(item);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static bool IsGangThienSuItem(ItemMap item)
+    {
+        if (item == null) return false;
+        return item.playerId == Char.myCharz().charID ||
+               item.template.id == GANG_THIEN_SU_ITEM_ID;
+    }
+
+    private static void TeleportAndPickItem(ItemMap item)
+    {
+        MainXmapCL.TeleportTo(item.x, item.y);
+        Service.gI().pickItem(item.itemMapID);
+    }
+    #endregion
+
+    #region Map & Zone Navigation
+    private static void InitializeStartMap()
+    {
+        BossType bossType = (BossType)typeBoss;
+
+        switch (bossType)
+        {
+            case BossType.Kuku:
+                currentMapId = UnityEngine.Random.Range((int)MapRange.KukuStart, (int)MapRange.KukuEnd + 1);
+                statusBossNappa = $"Chọn map Kuku ({currentMapId})";
+                break;
+            case BossType.MapDauDinh:
+                currentMapId = UnityEngine.Random.Range((int)MapRange.MapDauDinhStart, (int)MapRange.MapDauDinhEnd + 1);
+                statusBossNappa = $"Chọn map Mập đầu đinh ({currentMapId})";
+                break;
+            case BossType.Rambo:
+                currentMapId = UnityEngine.Random.Range((int)MapRange.RamboStart, (int)MapRange.RamboEnd + 1);
+                statusBossNappa = $"Chọn map Rambo ({currentMapId})";
+                break;
+            default:
+                currentMapId = (int)MapRange.KukuStart;
+                statusBossNappa = "Chọn map mặc định (68)";
+                break;
+        }
+
+        ConfigureAutoSettings();
+        ResetFlags();
+        consecutiveNoDamageCount = 0;
+        currentState = FarmState.WaitingForMapLoad;
+    }
+
+    private static void ConfigureAutoSettings()
+    {
+        AutoTrainCL.TuMoTDLT();
+        AutoBossCL.aGimBoss = true;
+        AutoBossCL.AutoteleBoss = true;
+        AutoBossCL.tanCongBoss = true;
+        ModProCL.tieuDietNguoiBatCo = false;
+    }
+
+    private static void InitializeZones()
+    {
+        AutoBossCL.CountZoneMap = (GameScr.gI().zones != null)
+            ? GameScr.gI().zones.Length - 1
+            : 0;
+
+        statusBossNappa = $"Khởi tạo: {AutoBossCL.CountZoneMap} khu";
+
+        if (mapInitialized) return;
+
+        if (resumeFromDeathOrDisconnect)
+        {
+            if (targetZone < DEFAULT_START_ZONE || targetZone > AutoBossCL.CountZoneMap)
+            {
+                targetZone = DEFAULT_START_ZONE;
+            }
+            statusBossNappa = $"Tiếp tục từ khu {targetZone}";
+            resumeFromDeathOrDisconnect = false;
+        }
+        else
+        {
+            targetZone = DEFAULT_START_ZONE;
+            statusBossNappa = "Bắt đầu từ khu 2";
+        }
+
+        mapInitialized = true;
+    }
+
+    private static void GoToStartMap()
+    {
+        MainXmapCL.StartGoToMap(currentMapId);
+        statusBossNappa = $"Đang Xmap đến map {currentMapId}";
+        currentState = FarmState.XmapToMap;
+        mapInitialized = false;
+    }
+
+    private static void RequestZoneChange(int zone)
+    {
+        Service.gI().requestChangeZone(zone, -1);
+        stateTimer = mSystem.currentTimeMillis() + ZONE_CHANGE_DELAY_MS;
+        statusBossNappa = $"Request đổi khu {zone}";
+    }
+
+    private static void MoveToNextZoneOrMap()
+    {
+        if (TileMap.zoneID < AutoBossCL.CountZoneMap)
+        {
+            targetZone = TileMap.zoneID + 1;
+            currentState = FarmState.InitializeZones;
+        }
+        else
+        {
+            MoveToNextMap();
+        }
+    }
+
+    private static void MoveToNextMap()
+    {
+        BossType bossType = (BossType)typeBoss;
+
+        switch (bossType)
+        {
+            case BossType.Kuku:
+                currentMapId = (currentMapId >= (int)MapRange.KukuEnd)
+                    ? (int)MapRange.KukuStart
+                    : currentMapId + 1;
+                statusBossNappa = $"Chuyển map Kuku tiếp theo ({currentMapId})";
+                break;
+            case BossType.MapDauDinh:
+                currentMapId = (currentMapId >= (int)MapRange.MapDauDinhEnd)
+                    ? (int)MapRange.MapDauDinhStart
+                    : currentMapId + 1;
+                statusBossNappa = $"Chuyển map Mập đầu đinh tiếp theo ({currentMapId})";
+                break;
+            case BossType.Rambo:
+                currentMapId = (currentMapId >= (int)MapRange.RamboEnd)
+                    ? (int)MapRange.RamboStart
+                    : currentMapId + 1;
+                statusBossNappa = $"Chuyển map Rambo tiếp theo ({currentMapId})";
+                break;
+        }
+
+        targetZone = DEFAULT_START_ZONE;
+        ResetFlags();
+        currentState = FarmState.WaitingForMapLoad;
+    }
+    #endregion
+
+    #region Utility Methods
+    private static void ClearPlayerFocus()
+    {
+        Char.myCharz().mobFocus = null;
+        Char.myCharz().itemFocus = null;
+        Char.myCharz().npcFocus = null;
+    }
+    #endregion
+
+    #region Public Control Methods
+    public static void Stop()
+    {
+        MainXmapCL.FinishXmap();
+        DoSatBossNapa = false;
+        AutoBossCL.tanCongBoss = false;
+        AutoBossCL.aGimBoss = false;
+        AutoBossCL.AutoteleBoss = false;
+        currentState = FarmState.Initialize;
+        targetZone = DEFAULT_START_ZONE;
+        consecutiveNoDamageCount = 0;
+        statusBossNappa = "Đã dừng auto farm boss Napa";
+    }
+    #endregion
 }
