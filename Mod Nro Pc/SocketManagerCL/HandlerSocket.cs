@@ -1,11 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Threading;
-using Xmap;
 using main.Mod;
 using Mod.community;
 using Mod.CuongLe;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Threading;
 using UnityEngine;
+using Xmap;
 
 namespace SocketManagerCL;
 
@@ -368,12 +369,63 @@ internal class HandlerSocket
                     AutoBossCL.StopAutoDoBoss();
                     GameScr.info1.addInfo("Dò boss: OFF");
                     break;
+                case "ONautocapcha":
+                    {
+                        if (mGraphics.zoomLevel != 1)
+                        {
+                            GameScr.info1.addInfo("Chỉ sử dụng ở size game pixel!");
+                            MainMod.AutoCapCha = false;
+                            break;
+                        }
+                        string text = "Data";
+                        string path = Path.Combine(text, "keyAPI.ini");
+                        bool flag = true;
+                        if (!Directory.Exists(text))
+                        {
+                            Directory.CreateDirectory(text);
+                            flag = false;
+                        }
+                        if (!File.Exists(path))
+                        {
+                            File.WriteAllText(path, "");
+                            flag = false;
+                        }
+                        string value = File.ReadAllText(path).Trim();
+                        if (string.IsNullOrEmpty(value))
+                        {
+                            flag = false;
+                        }
+                        if (!flag)
+                        {
+                            GameScr.info1.addInfo("Vui lòng nhập key API ở QLTK mục khác!");
+                            MainMod.AutoCapCha = false;
+                        }
+                        else
+                        {
+                            MainMod.AutoCapCha = true;
+                            MainMod.countCaptchaSolved = 0;
+                            GameScr.info1.addInfo("Auto Giải Capcha: Bật!");
+                        }
+                    }
+                    break;
+                case "OFFautocapcha":
+                MainMod.AutoCapCha = false;
+                GameScr.info1.addInfo("Auto Giải Capcha: Tắt!");
+                break;
                 case "ONautoWhis":
                     AutoBossCL.aWhis = true;
                     break;
                 case "OFFautoWhis":
                     AutoBossCL.aWhis = false;
                     AutoBossCL.StopAutoWhis();
+                    break;
+                case "ONautochecklag":
+                    AutoTrainCL.checkLag = true;
+                    GameScr.info1.addInfo("Auto check lag: Bật");
+                    break;
+                case "OFFautochecklag":
+                    AutoTrainCL.checkLag = false;
+                    GameScr.info1.addInfo("Auto check lag: Tắt");
                     break;
                 case "ONfindBossTrungMabu":
                     AutoBossCL.findBossMod = true;

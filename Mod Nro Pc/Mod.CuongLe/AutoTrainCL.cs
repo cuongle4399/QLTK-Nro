@@ -60,6 +60,9 @@ namespace Mod.CuongLe
         public static long OnlyHitWhenAboveHP = 0L;
         public static long OnlyHitWhenBelowHP = long.MaxValue;
 
+        public static bool checkLag;
+        private static long lastCheckLagTime;
+        private static long lastRecordedCPower;
         // --- Core Logic ---
 
         public static void LoadData()
@@ -227,6 +230,7 @@ namespace Mod.CuongLe
 
             if (ReturnedGoback && !MainXmapCL.isXmaping)
             {
+                UpdateCheckLag();
                 updateNeBoss();
                 UpdateAutoChangeZoneItNguoi();
                 UpdateSpamChangeZoneItNguoi();
@@ -704,6 +708,7 @@ namespace Mod.CuongLe
             {
                 GameScr.info1.addInfo("Danh Sách Tàn Sát Trống!");
                 isAutoTrain = false;
+                lastCheckLagTime = 0;
             }
             else
             {
@@ -1072,6 +1077,37 @@ namespace Mod.CuongLe
                     AutoItem.useSet(1);
                     Thread.Sleep(2000);
                 }
+            }
+        }
+        public static void UpdateCheckLag()
+        {
+            if (!checkLag || MainXmapCL.isXmaping)
+                return;
+
+            var me = Char.myCharz();
+            long now = mSystem.currentTimeMillis();
+
+            // Lần đầu tiên check lag
+            if (lastCheckLagTime == 0)
+            {
+                lastCheckLagTime = now;
+                lastRecordedCPower = me.cPower;
+                return;
+            }
+
+            // Kiểm tra mỗi 5 phút (300000 ms)
+            if (now - lastCheckLagTime >= 300000)
+            {
+                // Nếu cPower không thay đổi trong 5 phút => lag
+                if (me.cPower == lastRecordedCPower)
+                {
+                    GameCanvas.gI().onDisconnected();
+                    GameScr.info1.addInfo("Phát hiện lag! Ngắt kết nối.");
+                }
+
+                // Reset cho lần kiểm tra tiếp theo
+                lastCheckLagTime = now;
+                lastRecordedCPower = me.cPower;
             }
         }
     }

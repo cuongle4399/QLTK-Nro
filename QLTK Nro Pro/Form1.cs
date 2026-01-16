@@ -809,6 +809,8 @@ namespace QLTK_Nro_Pro
         private void btnAutoHopThe_Click(object sender, EventArgs e) => socketClientUpdater.SendAutoHopTheCommand((Button)sender);
         private void btnSpamZoneIt_Click(object sender, EventArgs e) => socketClientUpdater.SendSpamZoneItCommand((Button)sender);
         private void btnAutoZoneIt_Click(object sender, EventArgs e) => socketClientUpdater.SendAutoZoneItCommand((Button)sender);
+        private void btnCheckLagTnsm_Click(object sender, EventArgs e) => socketClientUpdater.SendAutoCheckLagCommand((Button)sender);
+        private void btnGiaiCapcha_Click(object sender, EventArgs e) => socketClientUpdater.SendAutoCapchaCommand((Button)sender);
 
         private void cbbServerAPI_SelectedIndexChanged(object sender, EventArgs e)
         {

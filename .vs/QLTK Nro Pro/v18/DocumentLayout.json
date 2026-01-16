@@ -3,76 +3,36 @@
   "WorkspaceRootPath": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{2655425B-2837-4131-AA99-F1D53428A50A}|QLTK Nro Pro\\QLTK Nro Pro.csproj|c:\\users\\cuong le\\desktop\\c# winform\\qltk-nro pro\\qltk nro pro\\presenter\\loaddata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2655425B-2837-4131-AA99-F1D53428A50A}|QLTK Nro Pro\\QLTK Nro Pro.csproj|solutionrelative:qltk nro pro\\presenter\\loaddata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2655425B-2837-4131-AA99-F1D53428A50A}|QLTK Nro Pro\\QLTK Nro Pro.csproj|c:\\users\\cuong le\\desktop\\c# winform\\qltk-nro pro\\qltk nro pro\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2655425B-2837-4131-AA99-F1D53428A50A}|QLTK Nro Pro\\QLTK Nro Pro.csproj|solutionrelative:qltk nro pro\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2655425B-2837-4131-AA99-F1D53428A50A}|QLTK Nro Pro\\QLTK Nro Pro.csproj|c:\\users\\cuong le\\desktop\\c# winform\\qltk-nro pro\\qltk nro pro\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2655425B-2837-4131-AA99-F1D53428A50A}|QLTK Nro Pro\\QLTK Nro Pro.csproj|solutionrelative:qltk nro pro\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2655425B-2837-4131-AA99-F1D53428A50A}|QLTK Nro Pro\\QLTK Nro Pro.csproj|c:\\users\\cuong le\\desktop\\c# winform\\qltk-nro pro\\qltk nro pro\\presenter\\captchaapimanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2655425B-2837-4131-AA99-F1D53428A50A}|QLTK Nro Pro\\QLTK Nro Pro.csproj|solutionrelative:qltk nro pro\\presenter\\captchaapimanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2655425B-2837-4131-AA99-F1D53428A50A}|QLTK Nro Pro\\QLTK Nro Pro.csproj|C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\qltk nro pro\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{2655425B-2837-4131-AA99-F1D53428A50A}|QLTK Nro Pro\\QLTK Nro Pro.csproj|solutionrelative:qltk nro pro\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2655425B-2837-4131-AA99-F1D53428A50A}|QLTK Nro Pro\\QLTK Nro Pro.csproj|c:\\users\\cuong le\\desktop\\c# winform\\qltk-nro pro\\qltk nro pro\\presenter\\appconstants.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2655425B-2837-4131-AA99-F1D53428A50A}|QLTK Nro Pro\\QLTK Nro Pro.csproj|solutionrelative:qltk nro pro\\presenter\\appconstants.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{2655425B-2837-4131-AA99-F1D53428A50A}|QLTK Nro Pro\\QLTK Nro Pro.csproj|c:\\users\\cuong le\\desktop\\c# winform\\qltk-nro pro\\qltk nro pro\\presenter\\checkupdate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2655425B-2837-4131-AA99-F1D53428A50A}|QLTK Nro Pro\\QLTK Nro Pro.csproj|solutionrelative:qltk nro pro\\presenter\\checkupdate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2655425B-2837-4131-AA99-F1D53428A50A}|QLTK Nro Pro\\QLTK Nro Pro.csproj|c:\\users\\cuong le\\desktop\\c# winform\\qltk-nro pro\\qltk nro pro\\service\\hardwareinforeader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2655425B-2837-4131-AA99-F1D53428A50A}|QLTK Nro Pro\\QLTK Nro Pro.csproj|solutionrelative:qltk nro pro\\service\\hardwareinforeader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2655425B-2837-4131-AA99-F1D53428A50A}|QLTK Nro Pro\\QLTK Nro Pro.csproj|c:\\users\\cuong le\\desktop\\c# winform\\qltk-nro pro\\qltk nro pro\\presenter\\tabmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2655425B-2837-4131-AA99-F1D53428A50A}|QLTK Nro Pro\\QLTK Nro Pro.csproj|solutionrelative:qltk nro pro\\presenter\\tabmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2655425B-2837-4131-AA99-F1D53428A50A}|QLTK Nro Pro\\QLTK Nro Pro.csproj|c:\\users\\cuong le\\desktop\\c# winform\\qltk-nro pro\\qltk nro pro\\presenter\\cryptomanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2655425B-2837-4131-AA99-F1D53428A50A}|QLTK Nro Pro\\QLTK Nro Pro.csproj|solutionrelative:qltk nro pro\\presenter\\cryptomanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{2655425B-2837-4131-AA99-F1D53428A50A}|QLTK Nro Pro\\QLTK Nro Pro.csproj|c:\\users\\cuong le\\desktop\\c# winform\\qltk-nro pro\\qltk nro pro\\presenter\\captchaapimanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2655425B-2837-4131-AA99-F1D53428A50A}|QLTK Nro Pro\\QLTK Nro Pro.csproj|solutionrelative:qltk nro pro\\presenter\\captchaapimanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2655425B-2837-4131-AA99-F1D53428A50A}|QLTK Nro Pro\\QLTK Nro Pro.csproj|c:\\users\\cuong le\\desktop\\c# winform\\qltk-nro pro\\qltk nro pro\\presenter\\appconstants.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2655425B-2837-4131-AA99-F1D53428A50A}|QLTK Nro Pro\\QLTK Nro Pro.csproj|solutionrelative:qltk nro pro\\presenter\\appconstants.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2655425B-2837-4131-AA99-F1D53428A50A}|QLTK Nro Pro\\QLTK Nro Pro.csproj|c:\\users\\cuong le\\desktop\\c# winform\\qltk-nro pro\\qltk nro pro\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2655425B-2837-4131-AA99-F1D53428A50A}|QLTK Nro Pro\\QLTK Nro Pro.csproj|solutionrelative:qltk nro pro\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2655425B-2837-4131-AA99-F1D53428A50A}|QLTK Nro Pro\\QLTK Nro Pro.csproj|c:\\users\\cuong le\\desktop\\c# winform\\qltk-nro pro\\qltk nro pro\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{2655425B-2837-4131-AA99-F1D53428A50A}|QLTK Nro Pro\\QLTK Nro Pro.csproj|solutionrelative:qltk nro pro\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2655425B-2837-4131-AA99-F1D53428A50A}|QLTK Nro Pro\\QLTK Nro Pro.csproj|c:\\users\\cuong le\\desktop\\c# winform\\qltk-nro pro\\qltk nro pro\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2655425B-2837-4131-AA99-F1D53428A50A}|QLTK Nro Pro\\QLTK Nro Pro.csproj|solutionrelative:qltk nro pro\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{2655425B-2837-4131-AA99-F1D53428A50A}|QLTK Nro Pro\\QLTK Nro Pro.csproj|c:\\users\\cuong le\\desktop\\c# winform\\qltk-nro pro\\qltk nro pro\\handlersocket\\socketclientupdater.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2655425B-2837-4131-AA99-F1D53428A50A}|QLTK Nro Pro\\QLTK Nro Pro.csproj|solutionrelative:qltk nro pro\\handlersocket\\socketclientupdater.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2655425B-2837-4131-AA99-F1D53428A50A}|QLTK Nro Pro\\QLTK Nro Pro.csproj|c:\\users\\cuong le\\desktop\\c# winform\\qltk-nro pro\\qltk nro pro\\form2.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2655425B-2837-4131-AA99-F1D53428A50A}|QLTK Nro Pro\\QLTK Nro Pro.csproj|solutionrelative:qltk nro pro\\form2.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2655425B-2837-4131-AA99-F1D53428A50A}|QLTK Nro Pro\\QLTK Nro Pro.csproj|c:\\users\\cuong le\\desktop\\c# winform\\qltk-nro pro\\qltk nro pro\\handlersocket\\xmaphandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2655425B-2837-4131-AA99-F1D53428A50A}|QLTK Nro Pro\\QLTK Nro Pro.csproj|solutionrelative:qltk nro pro\\handlersocket\\xmaphandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2655425B-2837-4131-AA99-F1D53428A50A}|QLTK Nro Pro\\QLTK Nro Pro.csproj|c:\\users\\cuong le\\desktop\\c# winform\\qltk-nro pro\\qltk nro pro\\presenter\\socket\\tcpsocket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2655425B-2837-4131-AA99-F1D53428A50A}|QLTK Nro Pro\\QLTK Nro Pro.csproj|solutionrelative:qltk nro pro\\presenter\\socket\\tcpsocket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2655425B-2837-4131-AA99-F1D53428A50A}|QLTK Nro Pro\\QLTK Nro Pro.csproj|c:\\users\\cuong le\\desktop\\c# winform\\qltk-nro pro\\qltk nro pro\\presenter\\socket\\receivedataclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2655425B-2837-4131-AA99-F1D53428A50A}|QLTK Nro Pro\\QLTK Nro Pro.csproj|solutionrelative:qltk nro pro\\presenter\\socket\\receivedataclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2655425B-2837-4131-AA99-F1D53428A50A}|QLTK Nro Pro\\QLTK Nro Pro.csproj|c:\\users\\cuong le\\desktop\\c# winform\\qltk-nro pro\\qltk nro pro\\presenter\\proxymanager\\proxyvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2655425B-2837-4131-AA99-F1D53428A50A}|QLTK Nro Pro\\QLTK Nro Pro.csproj|solutionrelative:qltk nro pro\\presenter\\proxymanager\\proxyvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2655425B-2837-4131-AA99-F1D53428A50A}|QLTK Nro Pro\\QLTK Nro Pro.csproj|c:\\users\\cuong le\\desktop\\c# winform\\qltk-nro pro\\qltk nro pro\\importdatanickflash.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2655425B-2837-4131-AA99-F1D53428A50A}|QLTK Nro Pro\\QLTK Nro Pro.csproj|solutionrelative:qltk nro pro\\importdatanickflash.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2655425B-2837-4131-AA99-F1D53428A50A}|QLTK Nro Pro\\QLTK Nro Pro.csproj|C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\qltk nro pro\\importdatanickflash.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{2655425B-2837-4131-AA99-F1D53428A50A}|QLTK Nro Pro\\QLTK Nro Pro.csproj|solutionrelative:qltk nro pro\\importdatanickflash.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -82,8 +42,86 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 11,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CheckUpdate.cs",
+              "DocumentMoniker": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\QLTK Nro Pro\\Presenter\\CheckUpdate.cs",
+              "RelativeDocumentMoniker": "QLTK Nro Pro\\Presenter\\CheckUpdate.cs",
+              "ToolTip": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\QLTK Nro Pro\\Presenter\\CheckUpdate.cs",
+              "RelativeToolTip": "QLTK Nro Pro\\Presenter\\CheckUpdate.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-16T17:53:15.938Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CryptoManager.cs",
+              "DocumentMoniker": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\QLTK Nro Pro\\Presenter\\CryptoManager.cs",
+              "RelativeDocumentMoniker": "QLTK Nro Pro\\Presenter\\CryptoManager.cs",
+              "ToolTip": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\QLTK Nro Pro\\Presenter\\CryptoManager.cs",
+              "RelativeToolTip": "QLTK Nro Pro\\Presenter\\CryptoManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-16T17:53:15.331Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CaptchaApiManager.cs",
+              "DocumentMoniker": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\QLTK Nro Pro\\Presenter\\CaptchaApiManager.cs",
+              "RelativeDocumentMoniker": "QLTK Nro Pro\\Presenter\\CaptchaApiManager.cs",
+              "ToolTip": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\QLTK Nro Pro\\Presenter\\CaptchaApiManager.cs",
+              "RelativeToolTip": "QLTK Nro Pro\\Presenter\\CaptchaApiManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-16T17:53:14.707Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AppConstants.cs",
+              "DocumentMoniker": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\QLTK Nro Pro\\Presenter\\AppConstants.cs",
+              "RelativeDocumentMoniker": "QLTK Nro Pro\\Presenter\\AppConstants.cs",
+              "ToolTip": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\QLTK Nro Pro\\Presenter\\AppConstants.cs",
+              "RelativeToolTip": "QLTK Nro Pro\\Presenter\\AppConstants.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-16T17:53:14.155Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Form1.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\QLTK Nro Pro\\Form1.Designer.cs",
+              "RelativeDocumentMoniker": "QLTK Nro Pro\\Form1.Designer.cs",
+              "ToolTip": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\QLTK Nro Pro\\Form1.Designer.cs",
+              "RelativeToolTip": "QLTK Nro Pro\\Form1.Designer.cs",
+              "ViewState": "AgIAAKkPAAAAAAAAAAAawLEPAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-16T17:29:56.027Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\QLTK Nro Pro\\Form1.cs",
+              "RelativeDocumentMoniker": "QLTK Nro Pro\\Form1.cs",
+              "ToolTip": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\QLTK Nro Pro\\Form1.cs",
+              "RelativeToolTip": "QLTK Nro Pro\\Form1.cs",
+              "ViewState": "AgIAABsDAAAAAAAAAAAAACQDAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-16T17:27:56.93Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
@@ -106,218 +144,28 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "CheckUpdate.cs",
-              "DocumentMoniker": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\QLTK Nro Pro\\Presenter\\CheckUpdate.cs",
-              "RelativeDocumentMoniker": "QLTK Nro Pro\\Presenter\\CheckUpdate.cs",
-              "ToolTip": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\QLTK Nro Pro\\Presenter\\CheckUpdate.cs",
-              "RelativeToolTip": "QLTK Nro Pro\\Presenter\\CheckUpdate.cs",
-              "ViewState": "AgIAABcAAAAAAAAAAAAAACAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 7,
+              "Title": "SocketClientUpdater.cs",
+              "DocumentMoniker": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\QLTK Nro Pro\\HandlerSocket\\SocketClientUpdater.cs",
+              "RelativeDocumentMoniker": "QLTK Nro Pro\\HandlerSocket\\SocketClientUpdater.cs",
+              "ToolTip": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\QLTK Nro Pro\\HandlerSocket\\SocketClientUpdater.cs",
+              "RelativeToolTip": "QLTK Nro Pro\\HandlerSocket\\SocketClientUpdater.cs",
+              "ViewState": "AgIAABUBAAAAAAAAAIA6wB8BAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-19T08:03:42.026Z"
+              "WhenOpened": "2026-01-16T17:16:09.325Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "CaptchaApiManager.cs",
-              "DocumentMoniker": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\QLTK Nro Pro\\Presenter\\CaptchaApiManager.cs",
-              "RelativeDocumentMoniker": "QLTK Nro Pro\\Presenter\\CaptchaApiManager.cs",
-              "ToolTip": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\QLTK Nro Pro\\Presenter\\CaptchaApiManager.cs",
-              "RelativeToolTip": "QLTK Nro Pro\\Presenter\\CaptchaApiManager.cs",
-              "ViewState": "AgIAAMgAAAAAAAAAAAAYwNAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-28T04:16:44.457Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "Form1.cs [Design]",
               "DocumentMoniker": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\QLTK Nro Pro\\Form1.cs",
               "RelativeDocumentMoniker": "QLTK Nro Pro\\Form1.cs",
               "ToolTip": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\QLTK Nro Pro\\Form1.cs [Design]",
               "RelativeToolTip": "QLTK Nro Pro\\Form1.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T07:09:50.924Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Form1.cs",
-              "DocumentMoniker": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\QLTK Nro Pro\\Form1.cs",
-              "RelativeDocumentMoniker": "QLTK Nro Pro\\Form1.cs",
-              "ToolTip": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\QLTK Nro Pro\\Form1.cs",
-              "RelativeToolTip": "QLTK Nro Pro\\Form1.cs",
-              "ViewState": "AgIAAMUBAAAAAAAAAAAkwNEBAAAVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T07:10:02.433Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "AppConstants.cs",
-              "DocumentMoniker": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\QLTK Nro Pro\\Presenter\\AppConstants.cs",
-              "RelativeDocumentMoniker": "QLTK Nro Pro\\Presenter\\AppConstants.cs",
-              "ToolTip": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\QLTK Nro Pro\\Presenter\\AppConstants.cs",
-              "RelativeToolTip": "QLTK Nro Pro\\Presenter\\AppConstants.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAABHAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-28T04:18:20.465Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Form1.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\QLTK Nro Pro\\Form1.Designer.cs",
-              "RelativeDocumentMoniker": "QLTK Nro Pro\\Form1.Designer.cs",
-              "ToolTip": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\QLTK Nro Pro\\Form1.Designer.cs",
-              "RelativeToolTip": "QLTK Nro Pro\\Form1.Designer.cs",
-              "ViewState": "AgIAAPoNAAAAAAAAAAAMwAcOAAAmAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-20T15:35:30.964Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "LoadData.cs",
-              "DocumentMoniker": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\QLTK Nro Pro\\Presenter\\LoadData.cs",
-              "RelativeDocumentMoniker": "QLTK Nro Pro\\Presenter\\LoadData.cs",
-              "ToolTip": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\QLTK Nro Pro\\Presenter\\LoadData.cs",
-              "RelativeToolTip": "QLTK Nro Pro\\Presenter\\LoadData.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHQAAAAPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-25T09:02:58.185Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "TabManager.cs",
-              "DocumentMoniker": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\QLTK Nro Pro\\Presenter\\TabManager.cs",
-              "RelativeDocumentMoniker": "QLTK Nro Pro\\Presenter\\TabManager.cs",
-              "ToolTip": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\QLTK Nro Pro\\Presenter\\TabManager.cs",
-              "RelativeToolTip": "QLTK Nro Pro\\Presenter\\TabManager.cs",
-              "ViewState": "AgIAAEMCAAAAAAAAAAAmwFICAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-18T15:30:17.142Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "HardwareInfoReader.cs",
-              "DocumentMoniker": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\QLTK Nro Pro\\Service\\HardwareInfoReader.cs",
-              "RelativeDocumentMoniker": "QLTK Nro Pro\\Service\\HardwareInfoReader.cs",
-              "ToolTip": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\QLTK Nro Pro\\Service\\HardwareInfoReader.cs",
-              "RelativeToolTip": "QLTK Nro Pro\\Service\\HardwareInfoReader.cs",
-              "ViewState": "AgIAAC8AAAAAAAAAAAAqwEkAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-01T18:16:15.919Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "CryptoManager.cs",
-              "DocumentMoniker": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\QLTK Nro Pro\\Presenter\\CryptoManager.cs",
-              "RelativeDocumentMoniker": "QLTK Nro Pro\\Presenter\\CryptoManager.cs",
-              "ToolTip": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\QLTK Nro Pro\\Presenter\\CryptoManager.cs",
-              "RelativeToolTip": "QLTK Nro Pro\\Presenter\\CryptoManager.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-25T19:22:46.42Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "Form2.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\QLTK Nro Pro\\Form2.Designer.cs",
-              "RelativeDocumentMoniker": "QLTK Nro Pro\\Form2.Designer.cs",
-              "ToolTip": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\QLTK Nro Pro\\Form2.Designer.cs",
-              "RelativeToolTip": "QLTK Nro Pro\\Form2.Designer.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-28T03:58:00.263Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "XmapHandler.cs",
-              "DocumentMoniker": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\QLTK Nro Pro\\HandlerSocket\\XmapHandler.cs",
-              "RelativeDocumentMoniker": "QLTK Nro Pro\\HandlerSocket\\XmapHandler.cs",
-              "ToolTip": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\QLTK Nro Pro\\HandlerSocket\\XmapHandler.cs",
-              "RelativeToolTip": "QLTK Nro Pro\\HandlerSocket\\XmapHandler.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-18T13:32:51.944Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "SocketClientUpdater.cs",
-              "DocumentMoniker": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\QLTK Nro Pro\\HandlerSocket\\SocketClientUpdater.cs",
-              "RelativeDocumentMoniker": "QLTK Nro Pro\\HandlerSocket\\SocketClientUpdater.cs",
-              "ToolTip": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\QLTK Nro Pro\\HandlerSocket\\SocketClientUpdater.cs",
-              "RelativeToolTip": "QLTK Nro Pro\\HandlerSocket\\SocketClientUpdater.cs",
-              "ViewState": "AgIAAAICAAAAAAAAAAAYwCECAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-25T18:54:44.373Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "TCPSocket.cs",
-              "DocumentMoniker": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\QLTK Nro Pro\\Presenter\\Socket\\TCPSocket.cs",
-              "RelativeDocumentMoniker": "QLTK Nro Pro\\Presenter\\Socket\\TCPSocket.cs",
-              "ToolTip": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\QLTK Nro Pro\\Presenter\\Socket\\TCPSocket.cs",
-              "RelativeToolTip": "QLTK Nro Pro\\Presenter\\Socket\\TCPSocket.cs",
-              "ViewState": "AgIAAGoAAAAAAAAAAAAYwHgAAAAnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-16T07:05:17.762Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "ReceiveDataClient.cs",
-              "DocumentMoniker": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\QLTK Nro Pro\\Presenter\\Socket\\ReceiveDataClient.cs",
-              "RelativeDocumentMoniker": "QLTK Nro Pro\\Presenter\\Socket\\ReceiveDataClient.cs",
-              "ToolTip": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\QLTK Nro Pro\\Presenter\\Socket\\ReceiveDataClient.cs",
-              "RelativeToolTip": "QLTK Nro Pro\\Presenter\\Socket\\ReceiveDataClient.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAACAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-18T14:46:04.821Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "ProxyValidator.cs",
-              "DocumentMoniker": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\QLTK Nro Pro\\Presenter\\ProxyManager\\ProxyValidator.cs",
-              "RelativeDocumentMoniker": "QLTK Nro Pro\\Presenter\\ProxyManager\\ProxyValidator.cs",
-              "ToolTip": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\QLTK Nro Pro\\Presenter\\ProxyManager\\ProxyValidator.cs",
-              "RelativeToolTip": "QLTK Nro Pro\\Presenter\\ProxyManager\\ProxyValidator.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-03T01:34:13.621Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "ImportDataNickFlash.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\QLTK Nro Pro\\ImportDataNickFlash.cs",
-              "RelativeDocumentMoniker": "QLTK Nro Pro\\ImportDataNickFlash.cs",
-              "ToolTip": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\QLTK Nro Pro\\ImportDataNickFlash.cs [Design]",
-              "RelativeToolTip": "QLTK Nro Pro\\ImportDataNickFlash.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-06T06:16:18.924Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "ImportDataNickFlash.cs",
-              "DocumentMoniker": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\QLTK Nro Pro\\ImportDataNickFlash.cs",
-              "RelativeDocumentMoniker": "QLTK Nro Pro\\ImportDataNickFlash.cs",
-              "ToolTip": "C:\\Users\\Cuong Le\\Desktop\\C# winform\\QLTK-Nro Pro\\QLTK Nro Pro\\ImportDataNickFlash.cs",
-              "RelativeToolTip": "QLTK Nro Pro\\ImportDataNickFlash.cs",
-              "ViewState": "AgIAAKUAAAAAAAAAAAAawLgAAAAYAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-06T06:30:45.057Z"
+              "WhenOpened": "2026-01-16T17:08:58.801Z",
+              "EditorCaption": " [Design]"
             }
           ]
         },

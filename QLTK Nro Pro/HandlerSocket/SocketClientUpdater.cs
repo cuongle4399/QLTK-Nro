@@ -69,6 +69,8 @@ namespace QLTK_Nro_Pro.HandlerSocket
 
             // Train Commands
             BindButtonEvent(form, "btnNeSieuQuai", (s, e) => OnBtnNeSieuQuaiClick());
+            BindButtonEvent(form, "btnCheckLagTnsm", (s, e) => OnBtnCheckLagClick());
+            BindButtonEvent(form, "btnGiaiCapcha", (s, e) => OnBtnCapchaClick());
             BindButtonEvent(form, "btnAkDame", (s, e) => OnBtnAkDameClick());
             BindButtonEvent(form, "btnAutoNhat", (s, e) => OnBtnAutoNhatClick());
             BindButtonEvent(form, "btnNeBoss", (s, e) => OnBtnNeBossClick());
@@ -282,6 +284,9 @@ namespace QLTK_Nro_Pro.HandlerSocket
         public void SendTatCoCommand() { TCPSocket.send("TatCo"); Thread.Sleep(delaySocket); }
 
         public void SendAutoNeSieuQuaiCommand(Button btn) => SendCommand(btn, "autoNeSieuQuai");
+        public void SendAutoCapchaCommand(Button btn) => SendCommand(btn, "autocapcha");
+        public void SendAutoCheckLagCommand(Button btn) => SendCommand(btn, "autochecklag");
+
         public void SendTrainAkDameCommand(Button btn) => SendCommand(btn, "trainAkDame");
         public void SendAutoNhatCommand(Button btn) => SendCommand(btn, "AutoNhat");
         public void SendAutoNeBossCommand(Button btn) => SendCommand(btn, "autoNeBoss");
@@ -493,6 +498,14 @@ namespace QLTK_Nro_Pro.HandlerSocket
         private void OnBtnNeSieuQuaiClick()
         {
             SendAutoNeSieuQuaiCommand(GetButtonFromForm("btnNeSieuQuai"));
+        }
+        private void OnBtnCapchaClick()
+        {
+            SendAutoCapchaCommand(GetButtonFromForm("btnGiaiCapcha"));
+        }
+        private void OnBtnCheckLagClick()
+        {
+            SendAutoCheckLagCommand(GetButtonFromForm("btnCheckLagTnsm"));
         }
 
         private void OnBtnAkDameClick()

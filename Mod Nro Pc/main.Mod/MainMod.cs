@@ -965,20 +965,7 @@ public class MainMod : IActionListener, IChatable
             GameScr.info1.addInfo("Auto Vào NRD\n" + (isAutoEnterNRDMap ? "[STATUS: ON]" : "[STATUS: OFF]"));
             return true;
         }
-        if (GameCanvas.keyAsciiPress == Hotkeys.SHIFT_O)
-        {
-            string text2 = "";
-            for (int k = 0; k < Char.myCharz().vSkill.size(); k++)
-            {
-                if (Char.myCharz().vSkill.elementAt(k) != null)
-                {
-                    Skill skill = (Skill)Char.myCharz().vSkill.elementAt(k);
-                    text2 = text2 + skill.template.name + "|";
-                }
-            }
-            ChatPopup.addChatPopupMultiLineGameline(text2);
-            return true;
-        }
+
         if (GameCanvas.keyAsciiPress == Hotkeys.P)
         {
             if (!SocketGame.IsRunning)
@@ -1011,6 +998,19 @@ public class MainMod : IActionListener, IChatable
         if (GameCanvas.keyAsciiPress == Hotkeys.T)
         {
             UseItem(521);
+            return true;
+        }
+        if (GameCanvas.keyAsciiPress == Hotkeys.SHIFT_T)
+        {
+            for (int i = 0; i < Char.myCharz().arrItemBody.Length; i++)
+            {
+                Item item = Char.myCharz().arrItemBody[i];
+                if (item != null && (item.template.id >= 529 && item.template.id <= 531) ||
+                    (item.template.id >= 534 && item.template.id <= 536))
+                {
+                    Service.gI().getItem(5, (sbyte)i);
+                }
+            }
             return true;
         }
         if (GameCanvas.keyAsciiPress == Hotkeys.X)
@@ -1228,7 +1228,7 @@ public class MainMod : IActionListener, IChatable
         GoldCurrent = 0L;
         GoldUpdate = 0L;
         GoldUpdateRealTime = 0L;
-        VersionMod = "3.4.4";
+        VersionMod = "3.4.8";
         listBosses = new List<Boss>();
         listBackgroundImages = new List<Image>();
         limitHPChar = -1;

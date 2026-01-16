@@ -12,7 +12,7 @@ namespace Xmap
         #endregion
 
         #region Constants - Map Ranges
-        private const int SPECIAL_MAP_MIN = 153;
+        private const int SPECIAL_MAP_MIN = 156;
         private const int SPECIAL_MAP_MAX = 159;
         private const int COLD_MAP_MIN = 105;
         private const int COLD_MAP_MAX = 110;
@@ -155,8 +155,7 @@ namespace Xmap
         private bool IsMediumPowerMap(int mapID)
         {
             return mapID >= SPECIAL_MAP_MIN &&
-                   mapID <= SPECIAL_MAP_MAX &&
-                   mapID != 155;
+                   mapID <= SPECIAL_MAP_MAX;
         }
         #endregion
 

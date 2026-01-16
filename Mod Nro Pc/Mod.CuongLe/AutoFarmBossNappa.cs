@@ -49,6 +49,7 @@ public class AutoFarmBossNappa
     private const long BOSS_FIGHT_CHECK_DELAY_MS = 2000L;
     private const long HP_CHECK_INTERVAL_MS = 2000L;
     private const long HP_STUCK_CHECK_INTERVAL_MS = 3000L;
+    private const long WAIT_AFTER_BOSS_DEATH_MS = 2000L;
     private const int MAX_CONSECUTIVE_NO_DAMAGE = 5;
     private const int MAX_CONSECUTIVE_NO_DAMAGE_IN_FIGHT = 3;
     private const int DEFAULT_START_ZONE = 2;
@@ -94,6 +95,7 @@ public class AutoFarmBossNappa
     #region Item Pickup Fields
     private static long lastPickItemTime;
     private static int pickItemAttempts;
+    private static long bossDeathTime;
     #endregion
 
     #region Flags
@@ -129,6 +131,7 @@ public class AutoFarmBossNappa
         lastBossHp = -1L;
         lastBossHpCheckTime = 0L;
         consecutiveNoDamageCount = 0;
+        bossDeathTime = 0L;
     }
 
     private static void ResetItemPickup()
@@ -377,7 +380,8 @@ public class AutoFarmBossNappa
         }
         else
         {
-            statusBossNappa = "Boss đã chết, kiểm tra item";
+            statusBossNappa = "Boss đã chết, chờ 2 giây rồi kiểm tra item";
+            bossDeathTime = currentTime;
             ResetItemPickup();
             currentState = FarmState.PickingUpItems;
         }
@@ -387,16 +391,23 @@ public class AutoFarmBossNappa
     {
         long currentTime = mSystem.currentTimeMillis();
 
+        // Chờ 2 giây sau khi boss chết trước khi bắt đầu nhặt item
+        if (currentTime - bossDeathTime < WAIT_AFTER_BOSS_DEATH_MS)
+        {
+            statusBossNappa = $"Chờ boss respawn/tải item ({currentTime - bossDeathTime}ms)";
+            return;
+        }
+
         if (!HasGangThienSuItems())
         {
-            statusBossNappa = "Không còn mảnh găng, chuyển khu";
+            statusBossNappa = "Không có mảnh thiên sứ, chuyển khu";
             OnItemPickupComplete();
             return;
         }
 
         if (currentTime - lastPickItemTime < PICK_ITEM_DELAY_MS)
         {
-            statusBossNappa = $"Đang nhặt mảnh găng ({pickItemAttempts}/{MAX_PICK_ATTEMPTS})";
+            statusBossNappa = $"Đang nhặt mảnh thiên sứ ({pickItemAttempts}/{MAX_PICK_ATTEMPTS})";
             return;
         }
 
@@ -404,7 +415,7 @@ public class AutoFarmBossNappa
         {
             lastPickItemTime = currentTime;
             pickItemAttempts++;
-            statusBossNappa = $"Đã nhặt mảnh găng ({pickItemAttempts})";
+            statusBossNappa = $"Đã nhặt mảnh thiên sứ (lần {pickItemAttempts}/{MAX_PICK_ATTEMPTS})";
 
             if (pickItemAttempts >= MAX_PICK_ATTEMPTS)
             {
@@ -414,7 +425,7 @@ public class AutoFarmBossNappa
         }
         else
         {
-            statusBossNappa = "Đã nhặt hết mảnh găng, chuyển khu";
+            statusBossNappa = "Đã nhặt hết mảnh thiên sứ, chuyển khu";
             OnItemPickupComplete();
         }
     }

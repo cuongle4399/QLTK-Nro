@@ -331,6 +331,8 @@
             txtidBegin = new NumericUpDown();
             switchSize = new MaterialSkin.Controls.MaterialSwitch();
             tabControl2 = new TabControl();
+            btnGiaiCapcha = new Button();
+            btnCheckLagTnsm = new Button();
             PageOther.SuspendLayout();
             groupBox12.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -3022,6 +3024,8 @@
             // PageTrain
             // 
             PageTrain.BackColor = Color.DarkGray;
+            PageTrain.Controls.Add(btnCheckLagTnsm);
+            PageTrain.Controls.Add(btnGiaiCapcha);
             PageTrain.Controls.Add(groupBox11);
             PageTrain.Controls.Add(btnNeSieuQuai);
             PageTrain.Controls.Add(btnAkDame);
@@ -4016,6 +4020,24 @@
             tabControl2.Name = "tabControl2";
             tabControl2.SelectedIndex = 0;
             // 
+            // btnGiaiCapcha
+            // 
+            btnGiaiCapcha.Cursor = Cursors.Hand;
+            resources.ApplyResources(btnGiaiCapcha, "btnGiaiCapcha");
+            btnGiaiCapcha.ForeColor = Color.DarkViolet;
+            btnGiaiCapcha.Name = "btnGiaiCapcha";
+            btnGiaiCapcha.UseVisualStyleBackColor = true;
+            btnGiaiCapcha.Click += btnGiaiCapcha_Click;
+            // 
+            // btnCheckLagTnsm
+            // 
+            btnCheckLagTnsm.Cursor = Cursors.Hand;
+            resources.ApplyResources(btnCheckLagTnsm, "btnCheckLagTnsm");
+            btnCheckLagTnsm.ForeColor = Color.DarkViolet;
+            btnCheckLagTnsm.Name = "btnCheckLagTnsm";
+            btnCheckLagTnsm.UseVisualStyleBackColor = true;
+            btnCheckLagTnsm.Click += btnCheckLagTnsm_Click;
+            // 
             // Form1
             // 
             resources.ApplyResources(this, "$this");
@@ -4413,5 +4435,7 @@
         private Button btnThuMucTool;
         private GroupBox groupBox12;
         private Label lblConfigPC;
+        private Button btnCheckLagTnsm;
+        private Button btnGiaiCapcha;
     }
 }

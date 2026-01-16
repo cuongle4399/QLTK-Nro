@@ -28,7 +28,7 @@ public class NextMap
     private const int WALK_THRESHOLD = 20;
     private const int CONFIRM_TIMEOUT = 3500;
     private const int STEP_DELAY = 500;
-    private const int NPC_CONFIRM_INIT_DELAY = 500; // Delay 500ms trước khi bắt đầu confirm
+    private const int NPC_CONFIRM_INIT_DELAY = 700; // Delay 500ms trước khi bắt đầu confirm
     #endregion
 
     #region Static Fields - NPC Confirmation System

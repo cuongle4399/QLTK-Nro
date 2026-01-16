@@ -124,7 +124,7 @@ public static class MobTrainTab
         List<ButtonPos> enabledPositions = new List<ButtonPos>();
 
         int posIndex = 0;
-        int[] allButtonIds = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+        int[] allButtonIds = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 , 10};
 
         for (int i = 0; i < allButtonIds.Length; i++)
         {
@@ -358,7 +358,7 @@ public static class MobTrainTab
                 break;
 
             case 1:
-                if ((hasMob && selectedMobIds.Count > 0 )|| AutoTrainCL.isAutoTrain)
+                if ((hasMob && selectedMobIds.Count > 0) || AutoTrainCL.isAutoTrain)
                 {
                     AutoTrainCL.isAutoTrain = !AutoTrainCL.isAutoTrain;
                     GameScr.info1.addInfo(AutoTrainCL.isAutoTrain ? "Auto Train: Đã Bật" : "Auto Train: Đã Dừng");
@@ -418,6 +418,11 @@ public static class MobTrainTab
             case 9:
                 AutoTrainCL.ShowMenuGoback();
                 break;
+
+            case 10:
+                AutoTrainCL.checkLag = !AutoTrainCL.checkLag;
+                GameScr.info1.addInfo(AutoTrainCL.checkLag ? "Check Lag bằng tnsm [5 phút/ 1 lần]: Đã Bật" : "Check Lag bằng tnsm [5 phút/ 1 lần]: Đã Tắt");
+                break;
         }
     }
 
@@ -458,23 +463,24 @@ public static class MobTrainTab
     private static List<ButtonDef> GetButtonDefinitions(bool hasMob)
     {
         List<ButtonDef> buttons = new List<ButtonDef>
-        {
-            new ButtonDef(0, "Chọn hết", hasMob),
-            new ButtonDef(1, () => AutoTrainCL.isAutoTrain ? "DỪNG" : "TRAIN", true, AutoTrainCL.isAutoTrain),
-            new ButtonDef(2, "NÉ BOSS", true, AutoTrainCL.autoNeBoss),
-            new ButtonDef(3, "Né SQuai", hasMob, AutoTrainCL.isAvoidSuperMob),
-            new ButtonDef(4, "Khu ít ?", hasMob, (AutoTrainCL.autoChangeZone || AutoTrainCL.SpamChangeZone)),
-            new ButtonDef(5, "LOẠI", hasMob),
-            new ButtonDef(6, "H.THỂ", true, AutoTrainCL.autoHopThe),
-            new ButtonDef(7, "HP Quái", hasMob),
-            new ButtonDef(
-                8,
-                () => AutoTrainCL.TYPEAK ? "AK" : "DEFAULT",
-                true,
-                AutoTrainCL.TYPEAK
-            ),
-            new ButtonDef(9, () => (!AutoTrainCL.isGoBack) ? "Goback" : (AutoTrainCL.isGobackCoordinate ? "GB TĐ" : "GB MAP"), true, AutoTrainCL.isGoBack)
-        };
+    {
+        new ButtonDef(0, "Chọn hết", hasMob),
+        new ButtonDef(1, () => AutoTrainCL.isAutoTrain ? "DỪNG" : "TRAIN", true, AutoTrainCL.isAutoTrain),
+        new ButtonDef(2, "NÉ BOSS", true, AutoTrainCL.autoNeBoss),
+        new ButtonDef(3, "Né SQuai", hasMob, !AutoTrainCL.isAvoidSuperMob),
+        new ButtonDef(4, "Khu ít ?", hasMob, (AutoTrainCL.autoChangeZone || AutoTrainCL.SpamChangeZone)),
+        new ButtonDef(5, "LOẠI", hasMob),
+        new ButtonDef(6, "H.THỂ", true, AutoTrainCL.autoHopThe),
+        new ButtonDef(7, "HP Quái", hasMob),
+        new ButtonDef(
+            8,
+            () => AutoTrainCL.TYPEAK ? "AK" : "DEFAULT",
+            true,
+            AutoTrainCL.TYPEAK
+        ),
+        new ButtonDef(9, () => (!AutoTrainCL.isGoBack) ? "Goback" : (AutoTrainCL.isGobackCoordinate ? "GB TĐ" : "GB MAP"), true, AutoTrainCL.isGoBack),
+        new ButtonDef(10, "Anti Lag", true, AutoTrainCL.checkLag)  // Nút Check Lag mới
+    };
 
         return buttons;
     }
@@ -548,6 +554,7 @@ public static class MobTrainTab
             myVector.addElement(new Command(caption, AutoTrainCL.getInstance(), 1, mobTrain3.TemplateId));
         }
         GameCanvas.menu.startAt(myVector, 3);
+
     }
 
     private static List<int> GetSelectedMobIds()

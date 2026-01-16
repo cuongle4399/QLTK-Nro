@@ -7145,6 +7145,66 @@
   <data name="&gt;&gt;PageBoss.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="btnCheckLagTnsm.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="btnCheckLagTnsm.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnCheckLagTnsm.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 216</value>
+  </data>
+  <data name="btnCheckLagTnsm.Size" type="System.Drawing.Size, System.Drawing">
+    <value>370, 49</value>
+  </data>
+  <data name="btnCheckLagTnsm.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="btnCheckLagTnsm.Text" xml:space="preserve">
+    <value>Auto check Lag bằng tnsm 5 phút 1 lần: OFF</value>
+  </data>
+  <data name="&gt;&gt;btnCheckLagTnsm.Name" xml:space="preserve">
+    <value>btnCheckLagTnsm</value>
+  </data>
+  <data name="&gt;&gt;btnCheckLagTnsm.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnCheckLagTnsm.Parent" xml:space="preserve">
+    <value>PageTrain</value>
+  </data>
+  <data name="&gt;&gt;btnCheckLagTnsm.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="btnGiaiCapcha.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="btnGiaiCapcha.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnGiaiCapcha.Location" type="System.Drawing.Point, System.Drawing">
+    <value>590, 140</value>
+  </data>
+  <data name="btnGiaiCapcha.Size" type="System.Drawing.Size, System.Drawing">
+    <value>183, 49</value>
+  </data>
+  <data name="btnGiaiCapcha.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="btnGiaiCapcha.Text" xml:space="preserve">
+    <value>Auto Giải Capcha: OFF</value>
+  </data>
+  <data name="&gt;&gt;btnGiaiCapcha.Name" xml:space="preserve">
+    <value>btnGiaiCapcha</value>
+  </data>
+  <data name="&gt;&gt;btnGiaiCapcha.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnGiaiCapcha.Parent" xml:space="preserve">
+    <value>PageTrain</value>
+  </data>
+  <data name="&gt;&gt;btnGiaiCapcha.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="btnSaveListThrow.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -7230,7 +7290,7 @@
     <value>2</value>
   </data>
   <data name="groupBox11.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 195</value>
+    <value>6, 313</value>
   </data>
   <data name="groupBox11.Size" type="System.Drawing.Size, System.Drawing">
     <value>765, 97</value>
@@ -7251,7 +7311,7 @@
     <value>PageTrain</value>
   </data>
   <data name="&gt;&gt;groupBox11.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>2</value>
   </data>
   <data name="btnNeSieuQuai.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -7281,7 +7341,7 @@
     <value>PageTrain</value>
   </data>
   <data name="&gt;&gt;btnNeSieuQuai.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="btnAkDame.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -7311,7 +7371,7 @@
     <value>PageTrain</value>
   </data>
   <data name="&gt;&gt;btnAkDame.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
   </data>
   <data name="btnAutoNhat.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -7341,7 +7401,7 @@
     <value>PageTrain</value>
   </data>
   <data name="&gt;&gt;btnAutoNhat.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>5</value>
   </data>
   <data name="btnNeBoss.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -7371,7 +7431,7 @@
     <value>PageTrain</value>
   </data>
   <data name="&gt;&gt;btnNeBoss.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>6</value>
   </data>
   <data name="btnAutoHopThe.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -7401,7 +7461,7 @@
     <value>PageTrain</value>
   </data>
   <data name="&gt;&gt;btnAutoHopThe.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>7</value>
   </data>
   <data name="btnSpamZoneIt.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -7431,7 +7491,7 @@
     <value>PageTrain</value>
   </data>
   <data name="&gt;&gt;btnSpamZoneIt.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>8</value>
   </data>
   <data name="btnAutoZoneIt.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -7461,7 +7521,7 @@
     <value>PageTrain</value>
   </data>
   <data name="&gt;&gt;btnAutoZoneIt.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>9</value>
   </data>
   <data name="button17.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -7491,7 +7551,7 @@
     <value>PageTrain</value>
   </data>
   <data name="&gt;&gt;button17.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>10</value>
   </data>
   <data name="button16.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -7521,7 +7581,7 @@
     <value>PageTrain</value>
   </data>
   <data name="&gt;&gt;button16.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>11</value>
   </data>
   <data name="button6.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -7551,7 +7611,7 @@
     <value>PageTrain</value>
   </data>
   <data name="&gt;&gt;button6.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>12</value>
   </data>
   <data name="PageTrain.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 29</value>
