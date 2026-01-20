@@ -5,6 +5,7 @@ using DoHoa.CustomMenu.Shared;
 using Mod.community;
 using Mod.CuongLe;
 using Mod_nro.MenuDataGame;
+using ModCak.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -116,7 +117,6 @@ public class MainMod : IActionListener, IChatable
 
     public static string APIServer;
 
-    public static bool isSlovingCapcha;
 
     public static bool isAutoT77;
 
@@ -150,9 +150,7 @@ public class MainMod : IActionListener, IChatable
 
     private static bool checkSkill;
 
-    private static string statusCapcha;
-
-    public static int countCaptchaSolved;
+    public static bool blockAutoGame;
 
     public static bool AutoCapCha;
 
@@ -186,28 +184,29 @@ public class MainMod : IActionListener, IChatable
         AutoPean.Update();
         ModProCL.update();
         MainXmapCL.Update();
-        NhapCodeLive.getInstance().update();
-        AutoboMongCL.update();
-        AutoTrainCL.Update();
+        if (!blockAutoGame)
+        {
+            AutoboMongCL.update();
+            AutoTrainCL.Update();
+            AutoBossCL.Update();
+            AutoBuyItemCL.update();
+            YardatCL.update();
+            AutoPetCL.update();
+            NhapCodeLive.getInstance().update();
+        }
         ShowSetKH.update();
         AutoVutDoCL.update();
-        YardatCL.update();
-        AutoPetCL.update();
-        AutoBuyItemCL.update();
-        AutoBossCL.Update();
         if (thongBao && GameCanvas.gameTick % 700 == 0)
         {
             GameScr.gI().chatVip(thongbaoVIPne);
             thongBao = false;
         }
-        if ((!MobCapcha.isAttack || !MobCapcha.explode) && GameScr.gI().mobCapcha != null && AutoCapCha)
+
+        if (AutoCapCha)
         {
-            if (GameCanvas.gameTick % 170 == 0 && !isSlovingCapcha)
-            {
-                new Thread(SolveCapcha).Start();
-            }
-            return;
+            CaptchaSolver.Update();
         }
+
         if (GraphicsManagement.isShowCharsInMap)
         {
             listCharsInMap.Clear();
@@ -340,13 +339,16 @@ public class MainMod : IActionListener, IChatable
             GraphicsManagement.DrawFont.drawString(g, $"Số item nhặt từ đệ: {AutoPetCL.SoItemNhatTuPet}", 10, num2, 0);
             num2 += num;
         }
-        if (isSlovingCapcha)
+
+        // ✅ THAY THẾ PHẦN HIỂN THỊ CAPTCHA
+        if (CaptchaSolver.IsSolving())
         {
-            GraphicsManagement.DrawFont.drawString(g, statusCapcha, 10, num2, 0);
+            GraphicsManagement.DrawFont.drawString(g, CaptchaSolver.GetStatus(), 10, num2, 0);
             num2 += num;
-            GraphicsManagement.DrawFont.drawString(g, "Số lần giải Capcha thành công: " + countCaptchaSolved, 10, num2, 0);
+            GraphicsManagement.DrawFont.drawString(g, "Số lần giải Capcha thành công: " + CaptchaSolver.GetSolvedCount(), 10, num2, 0);
             num2 += num;
         }
+
         if (AutoFarmBossNappa.DoSatBossNapa)
         {
             string text = ((AutoFarmBossNappa.typeBoss == 0) ? "Kuku" : ((AutoFarmBossNappa.typeBoss == 1) ? "Mập" : "Rambo"));
@@ -424,7 +426,6 @@ public class MainMod : IActionListener, IChatable
             GraphicsManagement.DrawFont.drawString(g, sellStatus, 10, num2, 0);
             num2 += num;
         }
-
         if (ModProCL.catDoVIP)
         {
             string storeStatus;
@@ -1120,6 +1121,7 @@ public class MainMod : IActionListener, IChatable
         GameCanvas.menu.startAt(myVector, 3);
     }
 
+
     public static void ShowMenuCak()
     {
         MyVector myVector = new MyVector();
@@ -1129,10 +1131,11 @@ public class MainMod : IActionListener, IChatable
         myVector.addElement(new Command("Tiêu diệt all người bật cờ: " + (ModProCL.tieuDietNguoiBatCo ? "Bật" : "Tắt"), ModProCL.getInstance(), 22, null));
         myVector.addElement(new Command("Tự đấm bản thân đến chết", ModProCL.getInstance(), 25, null));
         myVector.addElement(new Command("Bán đồ rác khi full ht: " + (ModProCL.banDo ? "Bật" : "Tắt"), ModProCL.getInstance(), 27, null));
+        myVector.addElement(new Command("Áp dụng bán/cất cooler: " + (ShowSetKH.applyDooCooler ? "ON" : "OFF"), ModProCL.getInstance(), 29, null));
         myVector.addElement(new Command("Cất đồ sao,kh,TL khi full ht: " + (ModProCL.catDoVIP ? "Bật" : "Tắt"), ModProCL.getInstance(), 28, null));
         GameCanvas.menu.startAt(myVector, 3);
-        GameCanvas.menu.setMenuHeaderText("Đồ rác là đồ có id dưới 200 và không phải đồ sao pha lê, đồ kích hoạt, đồ thần linh" +
-            "\n Cất đồ sẽ cất đồ kích hoạt , đồ sao pha lê, đồ thần linh");
+        GameCanvas.menu.setMenuHeaderText("Đồ rác là đồ có id dưới 200 và không phải đồ sao pha lê, đồ kích hoạt, đồ thần linh\n" +
+            "Đồ cooler cũng như đồ rác nhưng là đồ có id dưới 300 ví dụ: kaio,lưỡng long,rada 11,... ");
     }
 
     public static void ShowMenuMore()
@@ -1220,7 +1223,6 @@ public class MainMod : IActionListener, IChatable
         fps = 0;
         stopMap = 0;
         checkSkill = false;
-        countCaptchaSolved = 0;
         listFlagColor = new List<Color>();
         listCharsInMap = new List<Char>();
         linkFb = "https://www.facebook.com/cuongle1002/";
@@ -1404,6 +1406,7 @@ public class MainMod : IActionListener, IChatable
         MainXmapCL.LoadData();
         AutoTrainCL.LoadData();
         LoadFlagColor();
+        CaptchaSolver.Initialize();
         if (mGraphics.zoomLevel == 2)
         {
             try
@@ -1462,193 +1465,6 @@ public class MainMod : IActionListener, IChatable
             File.AppendAllText(logPath, logMessage + Environment.NewLine);
         }
         catch { }
-    }
-
-    public static void SolveCapcha()
-    {
-        isSlovingCapcha = true;
-        statusCapcha = "Đang giải Captcha...";
-        LogCapchaError("=== BẮT ĐẦU GIẢI CAPTCHA ===");
-        Thread.Sleep(1000);
-
-        try
-        {
-            // ====== CONFIG CONNECTION ======
-            ServicePointManager.DefaultConnectionLimit = 10;
-            ServicePointManager.Expect100Continue = false;
-            ServicePointManager.MaxServicePointIdleTime = 100000;
-            LogCapchaError("INFO: Config connection OK");
-
-            // ====== CHECK FILE keyAPI.ini ======
-            string pathKey = Path.Combine("Data", "keyAPI.ini");
-            if (!File.Exists(pathKey))
-            {
-                statusCapcha = "Không tìm thấy file keyAPI.ini!";
-                LogCapchaError("ERR: File keyAPI.ini không tồn tại");
-                return;
-            }
-
-            string key = File.ReadAllText(pathKey)
-                .Replace("\r", "")
-                .Replace("\n", "")
-                .Trim();
-
-            if (string.IsNullOrEmpty(key))
-            {
-                statusCapcha = "File keyAPI.ini rỗng hoặc sai định dạng!";
-                LogCapchaError("ERR: File keyAPI.ini rỗng");
-                return;
-            }
-            LogCapchaError($"INFO: Key = {key}");
-
-            // ====== CHECK FILE serverAPI.ini ======
-            string pathServer = Path.Combine("Data", "serverAPI.ini");
-            if (!File.Exists(pathServer))
-            {
-                statusCapcha = "Không tìm thấy file serverAPI.ini!";
-                LogCapchaError("ERR: File serverAPI.ini không tồn tại");
-                return;
-            }
-
-            string Server = File.ReadAllText(pathServer)
-                .Replace("\r", "")
-                .Replace("\n", "")
-                .Trim();
-
-            if (string.IsNullOrEmpty(Server))
-            {
-                statusCapcha = "File serverAPI.ini rỗng hoặc sai định dạng!";
-                LogCapchaError("ERR: File serverAPI.ini rỗng");
-                return;
-            }
-
-            if (!Server.Contains("token="))
-            {
-                statusCapcha = "serverAPI.ini phải chứa token=";
-                LogCapchaError("ERR: serverAPI.ini không chứa token=");
-                return;
-            }
-            LogCapchaError($"INFO: Server = {Server}");
-
-            // ====== CHECK CAPTCHA IMAGE ======
-            if (GameScr.imgCapcha == null || GameScr.imgCapcha.texture == null)
-            {
-                statusCapcha = "Không có ảnh Captcha!";
-                LogCapchaError("ERR: Không có ảnh Captcha");
-                return;
-            }
-
-            // ====== ENCODE IMAGE ======
-            statusCapcha = "Đang mã hóa ảnh Captcha...";
-            LogCapchaError("INFO: Bắt đầu mã hóa ảnh");
-            string imageBase64 = Convert.ToBase64String(
-                GameScr.imgCapcha.texture.EncodeToPNG()
-            );
-            LogCapchaError($"INFO: Ảnh mã hóa xong, size: {imageBase64.Length}");
-
-            // ====== BUILD API ADDRESS ======
-            string address = Server + key;
-            LogCapchaError($"INFO: API URL = {address}");
-
-            // ====== SEND REQUEST ======
-            using (WebClient webClient = new WebClient())
-            {
-                webClient.Headers.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64)");
-                webClient.Headers.Add("Accept", "application/json");
-                webClient.Encoding = Encoding.UTF8;
-
-                NameValueCollection data = new NameValueCollection
-                {
-                    ["image"] = imageBase64
-                };
-
-                statusCapcha = "Đang gửi yêu cầu giải Captcha...";
-                LogCapchaError("INFO: Gửi request tới API");
-
-                byte[] responseBytes = webClient.UploadValues(address, "POST", data);
-                string responseText = Encoding.UTF8.GetString(responseBytes);
-
-                LogCapchaError($"INFO: API Response = {responseText}");
-
-                Match matchCaptcha = Regex.Match(responseText, "\"captcha\"\\s*:\\s*\"(\\d+)\"");
-                Match matchStatus = Regex.Match(responseText, "\"status\"\\s*:\\s*(\\d+)");
-
-                if (matchCaptcha.Success &&
-                    matchStatus.Success &&
-                    matchStatus.Groups[1].Value == "0")
-                {
-                    string captcha = matchCaptcha.Groups[1].Value;
-                    LogCapchaError($"INFO: Nhận được Captcha = {captcha}");
-
-                    if (captcha.Length >= 4 && captcha.Length <= 7)
-                    {
-                        statusCapcha = "Nhập Captcha: " + captcha;
-                        LogCapchaError($"INFO: Bắt đầu nhập Captcha: {captcha}");
-                        Thread.Sleep(500);
-
-                        foreach (char c in captcha)
-                        {
-                            if (Service.gI() != null)
-                            {
-                                Service.gI().mobCapcha(c);
-                                LogCapchaError($"INFO: Nhập ký tự '{c}'");
-                                Thread.Sleep(Res.random(200, 400));
-                            }
-                            else
-                            {
-                                statusCapcha = "Lỗi: Service không sẵn sàng!";
-                                LogCapchaError("ERR: Service.gI() == null");
-                                return;
-                            }
-                        }
-
-                        Thread.Sleep(500);
-                        if (Service.gI() != null)
-                        {
-                            Service.gI().mobCapcha((char)13); // Enter key
-                            LogCapchaError("INFO: Gửi Enter key");
-                        }
-
-                        countCaptchaSolved++;
-                        statusCapcha = "Giải Captcha thành công!";
-                        LogCapchaError("SUCCESS: Giải Captcha thành công!");
-                    }
-                    else
-                    {
-                        statusCapcha = "Captcha không hợp lệ: " + captcha;
-                        LogCapchaError($"ERR: Captcha không hợp lệ (length={captcha.Length}): {captcha}");
-                    }
-                }
-                else
-                {
-                    statusCapcha = "API lỗi hoặc Captcha sai: " + responseText;
-                    LogCapchaError($"ERR: API lỗi hoặc sai response: {responseText}");
-                }
-            }
-        }
-        catch (WebException ex)
-        {
-            try
-            {
-                string err = new StreamReader(ex.Response.GetResponseStream()).ReadToEnd();
-                statusCapcha = "Lỗi mạng/API: " + err;
-                LogCapchaError($"ERR: WebException = {err}");
-            }
-            catch (Exception exLog)
-            {
-                statusCapcha = "Lỗi mạng/API: " + ex.Message;
-                LogCapchaError($"ERR: WebException = {ex.Message}");
-            }
-        }
-        catch (Exception ex)
-        {
-            statusCapcha = "Lỗi: " + ex.Message;
-            LogCapchaError($"ERR: Exception = {ex.Message} | StackTrace: {ex.StackTrace}");
-        }
-        finally
-        {
-            isSlovingCapcha = false;
-        }
     }
 
 

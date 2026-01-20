@@ -24,7 +24,7 @@ public class MainXmapCL : IActionListener, IChatable
     #endregion
 
     #region Constants
-    private const float UPDATE_INTERVAL = 0.3f;
+    private const float UPDATE_INTERVAL = 0.4f;
     private const float ERROR_COOLDOWN = 1f;
     private const float ITEM_USE_DELAY = 0.5f;
     private const float CHICKEN_PICKUP_DELAY = 0.6f;
@@ -149,7 +149,7 @@ public class MainXmapCL : IActionListener, IChatable
         if (now - lastWaitTime <= UPDATE_INTERVAL) return false;
         if (Char.ischangingMap || Controller.isStopReadMessage) return false;
 
-        int mod = GameScr.canAutoPlay ? 15 : 25;
+        int mod = GameScr.canAutoPlay ? 15 : 35;
         return GameCanvas.gameTick % mod == 0;
     }
 

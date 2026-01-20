@@ -28,7 +28,7 @@ public class NextMap
     private const int WALK_THRESHOLD = 20;
     private const int CONFIRM_TIMEOUT = 3500;
     private const int STEP_DELAY = 500;
-    private const int NPC_CONFIRM_INIT_DELAY = 700; // Delay 500ms trước khi bắt đầu confirm
+    private const int NPC_CONFIRM_INIT_DELAY = 1100; // Delay 500ms trước khi bắt đầu confirm
     #endregion
 
     #region Static Fields - NPC Confirmation System
@@ -256,8 +256,8 @@ public class NextMap
     private void HandleNpcIndexInteraction()
     {
         Service service = Service.gI();
-        service.openMenu(NpcID);
         ModProCL.teleNPC(NpcID);
+        service.openMenu(NpcID);
         service.confirmMenu((short)NpcID, (sbyte)Options.IndexNpcs[0]);
 
         if (Options.IndexNpcs[1] != -1)
@@ -272,6 +272,7 @@ public class NextMap
 
     private void HandleNpcMenuInteraction()
     {
+        ModProCL.teleNPC(NpcID);
         startComfirmNpc(
             (short)NpcID,
             Options.Names[0], Options.Names[1], Options.Names[2],
@@ -656,7 +657,7 @@ public class NextMap
                string.IsNullOrEmpty(menuOptions.Names[2]);
     }
 
-    private static string NormalizeText(string input)
+    public static string NormalizeText(string input)
     {
         if (string.IsNullOrEmpty(input)) return "";
         string text = new string(input.Where(c => !char.IsControl(c)).ToArray());

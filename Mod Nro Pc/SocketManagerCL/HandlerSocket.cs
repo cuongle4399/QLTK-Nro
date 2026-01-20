@@ -1,6 +1,7 @@
 using main.Mod;
 using Mod.community;
 using Mod.CuongLe;
+using ModCak.Services;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -403,7 +404,7 @@ internal class HandlerSocket
                         else
                         {
                             MainMod.AutoCapCha = true;
-                            MainMod.countCaptchaSolved = 0;
+                            CaptchaSolver.countCaptchaSolved = 0;
                             GameScr.info1.addInfo("Auto Giải Capcha: Bật!");
                         }
                     }

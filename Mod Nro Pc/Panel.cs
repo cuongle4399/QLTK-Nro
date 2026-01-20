@@ -10,6 +10,8 @@ using Mod.community;
 using Mod.CuongLe;
 using UnityEngine;
 using Xmap;
+using ModCak.Services;
+using System.Diagnostics.Eventing.Reader;
 
 public class Panel : IActionListener, IChatable
 {
@@ -8740,7 +8742,7 @@ public class Panel : IActionListener, IChatable
 				else
 				{
 					MainMod.AutoCapCha = true;
-					MainMod.countCaptchaSolved = 0;
+					CaptchaSolver.countCaptchaSolved = 0;
 					GameScr.info1.addInfo("Auto Giải Capcha: Bật!");
 				}
 			}
@@ -11263,23 +11265,32 @@ public class Panel : IActionListener, IChatable
 		return false;
 	}
 
-	private int checkCurrentListLength(int arrLength)
-	{
-		int num = 20;
-		int num2 = arrLength / 20 + ((arrLength % 20 > 0) ? 1 : 0);
-		size_tab = (sbyte)num2;
-		if (newSelected > num2 - 1)
+    private int checkCurrentListLength(int arrLength)
+    {
+		if (mGraphics.zoomLevel == 1)
 		{
-			newSelected = num2 - 1;
-		}
-		if (arrLength % 20 > 0 && newSelected == num2 - 1)
+            size_tab = 1;
+            return arrLength;
+        }
+		else
 		{
-			num = arrLength % 20;
-		}
-		return num + 1;
+            int num = 20;
+            int num2 = arrLength / 20 + ((arrLength % 20 > 0) ? 1 : 0);
+            size_tab = (sbyte)num2;
+            if (newSelected > num2 - 1)
+            {
+                newSelected = num2 - 1;
+            }
+            if (arrLength % 20 > 0 && newSelected == num2 - 1)
+            {
+                num = arrLength % 20;
+            }
+            return num + 1;
+        }
+			
 	}
 
-	private void setNewSelected(int arrLength, bool resetSelect)
+    private void setNewSelected(int arrLength, bool resetSelect)
 	{
 		int num = arrLength / 20 + ((arrLength % 20 > 0) ? 1 : 0);
 		int num2 = xScroll;

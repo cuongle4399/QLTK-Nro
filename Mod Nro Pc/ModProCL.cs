@@ -123,6 +123,8 @@ public class ModProCL : IActionListener
                 }
                 break;
             case 29:
+                ShowSetKH.applyDooCooler = !ShowSetKH.applyDooCooler;
+                GameScr.info1.addInfo("Áp dụng đồ cooler: " + (ShowSetKH.applyDooCooler ? "BẬT (id<300)" : "TẮT (id<200)"));
                 break;
             case 30:
                 MainMod.infoTrainGold = !MainMod.infoTrainGold;

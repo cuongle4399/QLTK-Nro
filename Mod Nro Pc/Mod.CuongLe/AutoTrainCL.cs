@@ -1,10 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Threading;
-using UnityEngine;
-using Xmap;
 using DoHoa.CustomMenu;
 using Mod.community;
+using System.Collections.Generic;
+using System.Threading;
+using Xmap;
 
 namespace Mod.CuongLe
 {
@@ -13,7 +11,6 @@ namespace Mod.CuongLe
         private static AutoTrainCL _Instance;
         public static AutoTrainCL getInstance() => _Instance ??= new AutoTrainCL();
 
-        // --- Configuration Fields ---
         public static bool isAvoidSuperMob;
         public static bool isGoBack;
         public static bool isGobackCoordinate;
@@ -24,12 +21,10 @@ namespace Mod.CuongLe
         public static bool isAutoTrain;
         public static int minimumMPGoHome = 5;
 
-        // --- Input configs ---
         private static readonly string[] inputMPPercentGoHome = { "Nhập %MP", "%MP" };
         private static readonly string[] inputHPAboveMobTRain = { "Nhập hp quái chỉ đánh khi mục tiêu trên", "hp" };
         private static readonly string[] inputHPBelowMobTRain = { "Nhập hp quái chỉ đánh khi mục tiêu dưới", "hp" };
 
-        // --- Runtime Fields ---
         public static Dictionary<int, List<int>> listMobIds = new Dictionary<int, List<int>>();
         public static long lastTimeAddNewMob;
         private static long lastTimeTeleportToMob;
@@ -63,7 +58,6 @@ namespace Mod.CuongLe
         public static bool checkLag;
         private static long lastCheckLagTime;
         private static long lastRecordedCPower;
-        // --- Core Logic ---
 
         public static void LoadData()
         {
@@ -149,7 +143,6 @@ namespace Mod.CuongLe
             int currentZone = TileMap.zoneID;
             int currentNumPlayer = GameScr.gI().numPlayer[currentZone];
 
-            // Logic cũ: Auto thường check nếu <= 1 người thì thôi, Spam thì chạy luôn
             if (!isSpam && currentNumPlayer <= 1) return;
 
             int bestZone = -1;
@@ -157,7 +150,6 @@ namespace Mod.CuongLe
 
             if (isSpam)
             {
-                // Logic Spam: Duyệt ngược
                 for (int i = GameScr.gI().zones.Length - 1; i >= 0; i--)
                 {
                     if (GameScr.gI().zones[i] == currentZone) continue;
@@ -182,7 +174,6 @@ namespace Mod.CuongLe
             }
             else
             {
-                // Logic Auto thường: Duyệt xuôi
                 for (int i = 0; i < GameScr.gI().zones.Length; i++)
                 {
                     if (i == currentZone) continue;
@@ -207,7 +198,6 @@ namespace Mod.CuongLe
                 }
             }
 
-            // Điều kiện đổi khu
             bool shouldChange = bestZone != -1;
             if (!isSpam) shouldChange = shouldChange && (minPlayer + 1 < currentNumPlayer);
 
@@ -224,7 +214,6 @@ namespace Mod.CuongLe
 
         public static void Update()
         {
-            // if (Char.myCharz().mobFocus != null) GameScr.gI().doDoubleClickToObj(Char.myCharz().mobFocus);
 
             var me = Char.myCharz();
 
@@ -288,7 +277,7 @@ namespace Mod.CuongLe
                 GameScr.isAutoPlay = false;
                 MainXmapCL.StartGoToMap(gobackMapID);
             }
-            else // Đang ở đúng map goback
+            else
             {
                 if (!isGobackCoordinate && GameCanvas.gameTick % 140 == 0)
                 {
@@ -555,7 +544,6 @@ namespace Mod.CuongLe
             }
         }
 
-        // Helper to reduce repetitive chat open code
         private void OpenChat(string[] config, int type)
         {
             ChatTextField.gI().strChat = config[0];
@@ -726,7 +714,6 @@ namespace Mod.CuongLe
                 return;
             }
 
-            // Clean up invalid mob focus
             if (me.mobFocus != null && !me.mobFocus.isMobMe)
             {
                 if (me.mobFocus.hp <= 0 || me.mobFocus.status == 1 || me.mobFocus.status == 0 ||
@@ -749,7 +736,6 @@ namespace Mod.CuongLe
                 return;
             }
 
-            // Logic pick item or find mob
             if (me.mobFocus == null)
             {
                 if (!GameScr.canAutoPlay && AutoPick.isAutoPick)
@@ -809,9 +795,8 @@ namespace Mod.CuongLe
                 return;
             }
 
-            // Move to mob
             if (me.mobFocus != null && GameScr.canAutoPlay && mSystem.currentTimeMillis() - lastTimeTeleportToMob > 100 &&
-                Res.distance(me.cx, me.cy, me.mobFocus.x, me.mobFocus.y) > 50)
+    Res.distance(me.cx, me.cy, me.mobFocus.x, me.mobFocus.y) > 50)
             {
                 lastTimeTeleportToMob = mSystem.currentTimeMillis();
                 me.cx = me.mobFocus.x;
@@ -819,7 +804,6 @@ namespace Mod.CuongLe
                 Service.gI().charMove();
             }
 
-            // Attack Logic
             if (!GameScr.canAutoPlay && me.mobFocus != null)
             {
                 bool isFlyingMob = me.mobFocus.getTemplate().type == 4;
@@ -914,7 +898,6 @@ namespace Mod.CuongLe
             HashSet<int> allowedSkills = new HashSet<int>();
             bool hasSpecial = false;
 
-            // Collect allowed skills
             foreach (var st in SkillTrainTab.SkillTrains)
             {
                 if (st != null && st.AutoFlag)
@@ -1087,7 +1070,6 @@ namespace Mod.CuongLe
             var me = Char.myCharz();
             long now = mSystem.currentTimeMillis();
 
-            // Lần đầu tiên check lag
             if (lastCheckLagTime == 0)
             {
                 lastCheckLagTime = now;
@@ -1095,17 +1077,14 @@ namespace Mod.CuongLe
                 return;
             }
 
-            // Kiểm tra mỗi 5 phút (300000 ms)
             if (now - lastCheckLagTime >= 300000)
             {
-                // Nếu cPower không thay đổi trong 5 phút => lag
                 if (me.cPower == lastRecordedCPower)
                 {
                     GameCanvas.gI().onDisconnected();
                     GameScr.info1.addInfo("Phát hiện lag! Ngắt kết nối.");
                 }
 
-                // Reset cho lần kiểm tra tiếp theo
                 lastCheckLagTime = now;
                 lastRecordedCPower = me.cPower;
             }

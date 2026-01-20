@@ -38,6 +38,9 @@ public class ShowSetKH
 
     private static int itemsStoredCount = 0;
 
+    // Biến kiểm soát áp dụng đồ cooler
+    public static bool applyDooCooler = false;
+
     public static void update()
     {
         UpdateSellTrashItem();
@@ -592,12 +595,18 @@ public class ShowSetKH
         if (item == null)
             return false;
 
-        // Loại trừ: đồ KH, đồ sao, đồ TL, item ID >= 300
-        if (itemKH(item) || itemStar(item) || itemTL(item) || item.template.id >= 300)
+        // Loại trừ: đồ KH, đồ sao, đồ TL
+        if (itemKH(item) || itemStar(item) || itemTL(item))
             return false;
 
         // Chỉ xét loại đồ từ 0-4 (áo, vũ khí, gang, dây, vòng)
         if (item.template.type < 0 || item.template.type > 4)
+            return false;
+
+        // Nếu applyDooCooler = true: bán đồ có ID < 300
+        // Nếu applyDooCooler = false: bán đồ có ID < 200
+        int idThreshold = applyDooCooler ? 300 : 200;
+        if (item.template.id >= idThreshold)
             return false;
 
         return true;
@@ -616,7 +625,7 @@ public class ShowSetKH
         return false;
     }
 
-    // Kiểm tra xem item có phải đồ cần cất không (đồ KH, đồ sao, đồ TL, item ID > 200)
+    // Kiểm tra xem item có phải đồ cần cất không
     private static bool CanStoreItem(Item item)
     {
         if (item == null)
@@ -626,8 +635,12 @@ public class ShowSetKH
         if (item.template.type < 0 || item.template.type > 4)
             return false;
 
-        // Cất những loại đồ này
-        if (itemKH(item) || itemStar(item) || itemTL(item) || item.template.id > 200)
+        // Cất KH, sao, TL
+        if (itemKH(item) || itemStar(item) || itemTL(item))
+            return true;
+
+        // Nếu applyDooCooler = true: cất thêm đồ color (ID 200-299)
+        if (applyDooCooler && item.template.id >= 200 && item.template.id < 300)
             return true;
 
         return false;
@@ -660,8 +673,13 @@ public class ShowSetKH
         if (itemTL(item) || itemKH(item))
             return true;
 
+        // Nếu applyDooCooler = true: cất thêm đồ color
+        if (applyDooCooler && item.template.id >= 200 && item.template.id < 300)
+            return true;
+
         return false;
     }
+
     public static int GetSellCount()
     {
         return itemsSoldCount;
