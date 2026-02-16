@@ -849,6 +849,12 @@ public class MainMod : IActionListener, IChatable
             Service.gI().friend(0, -1);
             return true;
         }
+        if (GameCanvas.keyAsciiPress == Hotkeys.SHIFT_K)
+        {
+            Service.gI().petStatus(2);
+            GameScr.info1.addInfo("Đệ Thức Tỉnh!");
+            return true;
+        }
         if (GameCanvas.keyAsciiPress == Hotkeys.SHIFT_B)
         {
             string text = "";

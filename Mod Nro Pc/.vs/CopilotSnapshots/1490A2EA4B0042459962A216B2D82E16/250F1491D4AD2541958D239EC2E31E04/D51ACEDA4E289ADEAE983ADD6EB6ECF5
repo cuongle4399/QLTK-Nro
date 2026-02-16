@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Xmap;
 
@@ -275,18 +275,10 @@ public static class DataXmap
             EnsureMapExists(link[i]);
 
             if (i > 0)
-            {
-                NextMap nm = new NextMap(link[i - 1], -1, "");
-                nm.WaypointPosition = -1; // map trước = waypoint bên trái
-                linkMaps[link[i]].Add(nm);
-            }
+                linkMaps[link[i]].Add(new NextMap(link[i - 1], -1, ""));
 
             if (i < link.Length - 1)
-            {
-                NextMap nm = new NextMap(link[i + 1], -1, "");
-                nm.WaypointPosition = 1; // map sau = waypoint bên phải
-                linkMaps[link[i]].Add(nm);
-            }
+                linkMaps[link[i]].Add(new NextMap(link[i + 1], -1, ""));
         }
     }
 

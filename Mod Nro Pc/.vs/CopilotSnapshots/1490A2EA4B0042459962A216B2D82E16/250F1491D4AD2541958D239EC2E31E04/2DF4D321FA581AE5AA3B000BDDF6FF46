@@ -64,7 +64,6 @@ public class NextMap
     public int ItemID { get; private set; }
     public MenuOptions Options { get; private set; }
     public MoveType Type { get; private set; }
-    public int WaypointPosition { get; set; }
 
     [Obsolete("Use Type property instead")]
     public bool walk; public int x;
@@ -508,43 +507,14 @@ public class NextMap
     {
         string targetName = GetMapName();
         int size = TileMap.vGo.size();
-        List<Waypoint> matched = new List<Waypoint>();
 
         for (int i = 0; i < size; i++)
         {
             Waypoint wp = (Waypoint)TileMap.vGo.elementAt(i);
             if (GetMapName(wp.popup) == targetName)
-                matched.Add(wp);
+                return wp;
         }
-
-        if (matched.Count == 0) return null;
-        if (matched.Count == 1 || WaypointPosition == 0) return matched[0];
-
-        // Khi có nhiều waypoint trùng tên, chọn theo vị trí
-        if (WaypointPosition == -1)
-        {
-            // Chọn waypoint bên trái nhất
-            Waypoint leftmost = matched[0];
-            for (int i = 1; i < matched.Count; i++)
-            {
-                if (matched[i].minX < leftmost.minX)
-                    leftmost = matched[i];
-            }
-            return leftmost;
-        }
-        else if (WaypointPosition == 1)
-        {
-            // Chọn waypoint bên phải nhất
-            Waypoint rightmost = matched[0];
-            for (int i = 1; i < matched.Count; i++)
-            {
-                if (matched[i].minX > rightmost.minX)
-                    rightmost = matched[i];
-            }
-            return rightmost;
-        }
-
-        return matched[0];
+        return null;
     }
 
     public string GetMapName() => TileMap.mapNames[MapID];

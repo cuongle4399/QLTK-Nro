@@ -9,7 +9,7 @@ namespace QLTK_Nro_Pro.Presenter
 {
     internal class CheckUpdate
     {
-        public static string version = "3.4.9";
+        public static string version = "3.5.0";
         private static bool updating = false;
         private static readonly HttpClient httpClient = new HttpClient();
         public static async Task CheckForUpdates()
