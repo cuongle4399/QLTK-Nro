@@ -1239,7 +1239,7 @@ public class Service
 
 	public void confirmMenu(short npcID, sbyte select)
 	{
-		Res.outz("confirme menu" + select);
+		Res.outz("confirme menu ID: "  + npcID + "index select" + select);
 		Message message = null;
 		try
 		{
