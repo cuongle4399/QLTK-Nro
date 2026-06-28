@@ -14,3 +14,9 @@ DocumentLayout.backup.json
 .dtbcache.v2
 CodeChunks.db
 SemanticSymbols.db
+
+# VS Code settings
+.vscode/
+
+# Local data & configuration
+Data/

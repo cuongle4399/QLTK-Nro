@@ -1,4 +1,5 @@
-﻿using QLTK_Nro_Pro.Presenter.Socket;
+using QLTK_Nro_Pro.Presenter.Socket;
+using QLTK_Nro_Pro.Presenter;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -20,19 +21,7 @@ namespace QLTK_Nro_Pro.HandlerSocket
         {
             TCPSocket.send("xmap|" + mapId);
         }
-        private static Control FindControlRecursive(Control parent, string name)
-        {
-            foreach (Control ctrl in parent.Controls)
-            {
-                if (ctrl.Name == name)
-                    return ctrl;
 
-                var found = FindControlRecursive(ctrl, name);
-                if (found != null)
-                    return found;
-            }
-            return null;
-        }
 
         public static void BindMapButtons(Form form)
         {
@@ -158,7 +147,7 @@ namespace QLTK_Nro_Pro.HandlerSocket
 
             foreach (var kv in mapConfig)
             {
-                var btn = FindControlRecursive(form, kv.Key) as Button;
+                var btn = FormUtils.FindControlRecursive(form, kv.Key) as Button;
                 if (btn != null)
                 {
                     btn.Tag = kv.Value;

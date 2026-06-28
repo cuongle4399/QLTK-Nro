@@ -1,4 +1,4 @@
-﻿using MaterialSkin;
+using MaterialSkin;
 using MaterialSkin.Controls;
 using QLTK_Nro_Pro.HandlerSocket;
 using QLTK_Nro_Pro.Presenter;
@@ -11,7 +11,7 @@ using File = System.IO.File;
 
 namespace QLTK_Nro_Pro
 {
-    public partial class Form1 : MaterialForm
+    public partial class Form1 : MaterialForm, IAccountStatusView
     {
         public static DataGridView DatagridViewQLTK;
         private CaptchaApiManager _captchaApiManager;
@@ -65,16 +65,18 @@ namespace QLTK_Nro_Pro
             CheckUpdate.CheckForUpdates();
             _captchaApiManager = new CaptchaApiManager(lblAPICapcha, pBAPI, cbbServerAPI, txtServerAPI);
             _captchaApiManager.ShowImage(AppConstants.ImageTestAPI);
-            txtAPICapcha.Text = File.ReadAllText(AppConstants.PathAPI);
-            Directory.CreateDirectory("Data");
+            txtAPICapcha.Text = ConfigManager.LoadText(AppConstants.PathAPI);
             #region LoadSize
-            try
+            string sizeContent = ConfigManager.LoadText(TabManager.filePath);
+            if (!string.IsNullOrEmpty(sizeContent))
             {
-                string[] a = File.ReadAllText(TabManager.filePath).Split('|');
-                txtX.Text = a[0];
-                txtY.Text = a[1];
+                string[] a = sizeContent.Split('|');
+                if (a.Length >= 2)
+                {
+                    txtX.Text = a[0];
+                    txtY.Text = a[1];
+                }
             }
-            catch { }
             #endregion
             #region Hardware Monitor (RUN BACKGROUND)
             Task.Run(async () =>
@@ -96,11 +98,7 @@ namespace QLTK_Nro_Pro
             #endregion
 
             #region Chat
-            try
-            {
-                txtChat.Text = File.ReadAllText(AppConstants.ChatPublic);
-            }
-            catch { }
+            txtChat.Text = ConfigManager.LoadText(AppConstants.ChatPublic);
             #endregion
             #region LoadData
             foreach (DataGridViewColumn column in dataGridView1.Columns)
@@ -112,6 +110,7 @@ namespace QLTK_Nro_Pro
             #region startSocket
             TCPSocket.startServer();
             socketClientUpdater = new SocketClientUpdater(this, btnAutoOpenTab);
+            ReceiveDataClient.StatusView = this;
 
             Task.Run(() =>
             {
@@ -137,20 +136,10 @@ namespace QLTK_Nro_Pro
             }
             #endregion
             #region LoadTextXmapNpc
-            try
-            {
-                string ssss = File.ReadAllText(TabManager.ListVutItem);
-                txtVut.Text = ssss;
-            }
-            catch { }
+            txtVut.Text = ConfigManager.LoadText(TabManager.ListVutItem);
             #endregion
             #region LoadListVutItem
-            try
-            {
-                string sss = File.ReadAllText(TabManager.TextNpcXmap);
-                txtTextXmap.Text = sss;
-            }
-            catch { }
+            txtTextXmap.Text = ConfigManager.LoadText(TabManager.TextNpcXmap);
             #endregion
         }
 
@@ -260,7 +249,7 @@ namespace QLTK_Nro_Pro
                     MessageBox.Show("Nhập đầy đủ kích thước theo chiều ngang và chiều dọc", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                File.WriteAllText(TabManager.filePath, txtX.Text + '|' + txtY.Text + '|' + '0');
+                ConfigManager.SaveText(TabManager.filePath, txtX.Text + '|' + txtY.Text + '|' + '0');
                 MessageBox.Show("Đã cập nhập kích thước game thành công", "Thông báo");
             }
             catch
@@ -271,9 +260,7 @@ namespace QLTK_Nro_Pro
 
         private void btnUpdateChat_Click(object sender, EventArgs e)
         {
-            File.WriteAllText(AppConstants.ChatGlobal, txtChat.Text);
-            File.WriteAllText(AppConstants.ChatPublic, txtChat.Text);
-            File.WriteAllText(AppConstants.ChatInbox, txtChat.Text);
+            ConfigManager.SaveChat(txtChat.Text);
             MessageBox.Show("Đã cập nhập nội dung chat thành công", "Thông báo");
         }
 
@@ -384,7 +371,7 @@ namespace QLTK_Nro_Pro
 
         private void materialButton20_Click(object sender, EventArgs e)
         {
-            File.WriteAllText("Data/LoadMap.ini", "F|-1");
+            ConfigManager.SaveText("Data/LoadMap.ini", "F|-1");
             MessageBox.Show("Đã Khôi phục NextMap khắc phục lỗi", "Thông báo");
         }
 
@@ -410,7 +397,7 @@ namespace QLTK_Nro_Pro
 
         private void materialButton39_Click(object sender, EventArgs e)
         {
-            File.WriteAllText(TabManager.filePath, 1068.ToString() + '|' + 600.ToString() + '|' + '0');
+            ConfigManager.SaveText(TabManager.filePath, 1068.ToString() + '|' + 600.ToString() + '|' + '0');
             gbSize.Enabled = true;
             txtX.Text = "1068";
             txtY.Text = "600";
@@ -421,7 +408,7 @@ namespace QLTK_Nro_Pro
 
         private void materialButton40_Click(object sender, EventArgs e)
         {
-            File.WriteAllText(TabManager.filePath, 350.ToString() + '|' + 400.ToString() + '|' + '0');
+            ConfigManager.SaveText(TabManager.filePath, 350.ToString() + '|' + 400.ToString() + '|' + '0');
             gbSize.Enabled = true;
             txtX.Text = "350";
             txtY.Text = "400";
@@ -631,8 +618,8 @@ namespace QLTK_Nro_Pro
                 MessageBox.Show("Vui lòng nhập Server key API Capcha");
                 return;
             }
-            File.WriteAllText(AppConstants.PathAPI, txtAPICapcha.Text.Trim());
-            File.WriteAllText(AppConstants.PathServerAPI, txtServerAPI.Text.Trim());
+            ConfigManager.SaveText(AppConstants.PathAPI, txtAPICapcha.Text.Trim());
+            ConfigManager.SaveText(AppConstants.PathServerAPI, txtServerAPI.Text.Trim());
             MessageBox.Show("Đã Lưu key và server API thành công");
         }
 
@@ -727,20 +714,20 @@ namespace QLTK_Nro_Pro
         }
 
         #region Socket Auto Boss
-        private void button3_Click(object sender, EventArgs e) => socketClientUpdater.SendBoomCommand((Button)sender);
-        private void button4_Click(object sender, EventArgs e) => socketClientUpdater.SendFindBossCommand((Button)sender);
-        private void button5_Click(object sender, EventArgs e) => socketClientUpdater.SendTeleBossCommand((Button)sender);
-        private void button7_Click(object sender, EventArgs e) => socketClientUpdater.SendAttackBossCommand((Button)sender);
-        private void button8_Click(object sender, EventArgs e) => socketClientUpdater.SendDoBossCommand((Button)sender);
-        private void button13_Click(object sender, EventArgs e) => socketClientUpdater.SendAutoWhisCommand((Button)sender);
+        private void button3_Click(object sender, EventArgs e) => socketClientUpdater.SendCommand((Button)sender, "Boom");
+        private void button4_Click(object sender, EventArgs e) => socketClientUpdater.SendCommand((Button)sender, "findBoss");
+        private void button5_Click(object sender, EventArgs e) => socketClientUpdater.SendCommand((Button)sender, "teleBoss");
+        private void button7_Click(object sender, EventArgs e) => socketClientUpdater.SendCommand((Button)sender, "acttackBoss");
+        private void button8_Click(object sender, EventArgs e) => socketClientUpdater.SendCommand((Button)sender, "doBoss");
+        private void button13_Click(object sender, EventArgs e) => socketClientUpdater.SendCommand((Button)sender, "autoWhis");
         private void button9_Click(object sender, EventArgs e) => socketClientUpdater.SendFarmNappaCommand((Button)sender, cbbBossNappa.SelectedIndex);
-        private void button14_Click(object sender, EventArgs e) => socketClientUpdater.SendFindBossTrungMabuCommand((Button)sender);
+        private void button14_Click(object sender, EventArgs e) => socketClientUpdater.SendCommand((Button)sender, "findBossTrungMabu");
         #endregion
 
         #region TrainMob
-        private void button6_Click(object sender, EventArgs e) => socketClientUpdater.SendTrainMobCommand((Button)sender);
-        private void button16_Click(object sender, EventArgs e) => socketClientUpdater.SendGoBackCommand((Button)sender);
-        private void button17_Click(object sender, EventArgs e) => socketClientUpdater.SendGoBackToDo((Button)sender);
+        private void button6_Click(object sender, EventArgs e) => socketClientUpdater.SendCommand((Button)sender, "trainMob");
+        private void button16_Click(object sender, EventArgs e) => socketClientUpdater.SendCommand((Button)sender, "goBack");
+        private void button17_Click(object sender, EventArgs e) => socketClientUpdater.SendCommand((Button)sender, "goBackToaDo");
         #endregion
 
         #region Auto Bo Mong
@@ -751,15 +738,15 @@ namespace QLTK_Nro_Pro
         #endregion
 
         #region Auto Pet
-        private void button18_Click(object sender, EventArgs e) => socketClientUpdater.SendPetCommand((Button)sender, "deSua");
-        private void button19_Click(object sender, EventArgs e) => socketClientUpdater.SendPetCommand((Button)sender, "deKOK");
-        private void button20_Click(object sender, EventArgs e) => socketClientUpdater.SendPetCommand((Button)sender, "deCoDen");
-        private void button21_Click(object sender, EventArgs e) => socketClientUpdater.SendPetCommand((Button)sender, "deAutoNhat");
-        private void button22_Click(object sender, EventArgs e) => socketClientUpdater.SendPetCommand((Button)sender, "deGim");
+        private void button18_Click(object sender, EventArgs e) => socketClientUpdater.SendCommand((Button)sender, "deSua");
+        private void button19_Click(object sender, EventArgs e) => socketClientUpdater.SendCommand((Button)sender, "deKOK");
+        private void button20_Click(object sender, EventArgs e) => socketClientUpdater.SendCommand((Button)sender, "deCoDen");
+        private void button21_Click(object sender, EventArgs e) => socketClientUpdater.SendCommand((Button)sender, "deAutoNhat");
+        private void button22_Click(object sender, EventArgs e) => socketClientUpdater.SendCommand((Button)sender, "deGim");
         private void button23_Click(object sender, EventArgs e) => socketClientUpdater.SendTTNLCommand((Button)sender, (int)txtPercenHP.Value);
-        private void materialButton131_Click(object sender, EventArgs e) => socketClientUpdater.SendXinDauCommand((Button)sender);
-        private void materialButton132_Click(object sender, EventArgs e) => socketClientUpdater.SendThuDauCommand((Button)sender);
-        private void materialButton133_Click(object sender, EventArgs e) => socketClientUpdater.SendChoDauCommand((Button)sender);
+        private void materialButton131_Click(object sender, EventArgs e) => socketClientUpdater.SendCommand((Button)sender, "xinDau");
+        private void materialButton132_Click(object sender, EventArgs e) => socketClientUpdater.SendCommand((Button)sender, "ThuDau");
+        private void materialButton133_Click(object sender, EventArgs e) => socketClientUpdater.SendCommand((Button)sender, "ChoDau");
         #endregion
 
         private void btnReduceCPU_Click(object sender, EventArgs e) => socketClientUpdater.SendReduceCPUCommand((Button)sender, (int)txtFps.Value);
@@ -802,15 +789,15 @@ namespace QLTK_Nro_Pro
             }
         }
 
-        private void btnNeSieuQuai_Click(object sender, EventArgs e) => socketClientUpdater.SendAutoNeSieuQuaiCommand((Button)sender);
-        private void btnAkDame_Click(object sender, EventArgs e) => socketClientUpdater.SendTrainAkDameCommand((Button)sender);
-        private void btnAutoNhat_Click(object sender, EventArgs e) => socketClientUpdater.SendAutoNhatCommand((Button)sender);
-        private void btnNeBoss_Click(object sender, EventArgs e) => socketClientUpdater.SendAutoNeBossCommand((Button)sender);
-        private void btnAutoHopThe_Click(object sender, EventArgs e) => socketClientUpdater.SendAutoHopTheCommand((Button)sender);
-        private void btnSpamZoneIt_Click(object sender, EventArgs e) => socketClientUpdater.SendSpamZoneItCommand((Button)sender);
-        private void btnAutoZoneIt_Click(object sender, EventArgs e) => socketClientUpdater.SendAutoZoneItCommand((Button)sender);
-        private void btnCheckLagTnsm_Click(object sender, EventArgs e) => socketClientUpdater.SendAutoCheckLagCommand((Button)sender);
-        private void btnGiaiCapcha_Click(object sender, EventArgs e) => socketClientUpdater.SendAutoCapchaCommand((Button)sender);
+        private void btnNeSieuQuai_Click(object sender, EventArgs e) => socketClientUpdater.SendCommand((Button)sender, "autoNeSieuQuai");
+        private void btnAkDame_Click(object sender, EventArgs e) => socketClientUpdater.SendCommand((Button)sender, "trainAkDame");
+        private void btnAutoNhat_Click(object sender, EventArgs e) => socketClientUpdater.SendCommand((Button)sender, "AutoNhat");
+        private void btnNeBoss_Click(object sender, EventArgs e) => socketClientUpdater.SendCommand((Button)sender, "autoNeBoss");
+        private void btnAutoHopThe_Click(object sender, EventArgs e) => socketClientUpdater.SendCommand((Button)sender, "autoHopThe");
+        private void btnSpamZoneIt_Click(object sender, EventArgs e) => socketClientUpdater.SendCommand((Button)sender, "spamZoneIt");
+        private void btnAutoZoneIt_Click(object sender, EventArgs e) => socketClientUpdater.SendCommand((Button)sender, "autoZoneIt");
+        private void btnCheckLagTnsm_Click(object sender, EventArgs e) => socketClientUpdater.SendCommand((Button)sender, "autochecklag");
+        private void btnGiaiCapcha_Click(object sender, EventArgs e) => socketClientUpdater.SendCommand((Button)sender, "autocapcha");
 
         private void cbbServerAPI_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -844,17 +831,17 @@ namespace QLTK_Nro_Pro
             }
         }
 
-        private void btnApDungVut_Click(object sender, EventArgs e) => socketClientUpdater.SendListVutCommand((Button)sender, txtVut.Text);
+        private void btnApDungVut_Click(object sender, EventArgs e) => socketClientUpdater.SendCommand((Button)sender, "listvut|" + txtVut.Text);
 
         private void btnTextXmap_Click(object sender, EventArgs e)
         {
-            File.WriteAllText(Path.Combine("Data", "TextNpcXmap.ini"), txtTextXmap.Text);
+            ConfigManager.SaveText(Path.Combine("Data", "TextNpcXmap.ini"), txtTextXmap.Text);
             MessageBox.Show("Đã lưu text Xmap thành công!", "Thông báo");
         }
 
         private void btnSaveListThrow_Click(object sender, EventArgs e)
         {
-            File.WriteAllText(Path.Combine("Data", "ListVutIdItem.ini"), txtVut.Text);
+            ConfigManager.SaveText(Path.Combine("Data", "ListVutIdItem.ini"), txtVut.Text);
             MessageBox.Show("Đã lưu danh sách item vứt thành công!", "Thông báo");
         }
 
@@ -936,6 +923,110 @@ namespace QLTK_Nro_Pro
                 MessageBox.Show("Thư mục không tồn tại. Bạn không giải nén file à!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        #region IAccountStatusView implementation
+
+        private static readonly Color OnlineBackNormal = Color.LightGreen;
+        private static readonly Color OnlineForeNormal = Color.Black;
+        private static readonly Color OnlineBackSelected = Color.LimeGreen;
+        private static readonly Color OnlineForeSelected = Color.Black;
+
+        public void SetAccountOnline(string accountId, string characterName)
+        {
+            if (this.InvokeRequired)
+            {
+                this.BeginInvoke((Action)(() => SetAccountOnline(accountId, characterName)));
+                return;
+            }
+
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (row.Cells["ID"].Value?.ToString() != accountId)
+                    continue;
+
+                EnsureRowTag(row);
+
+                row.Cells["TaiKhoan"].Value = characterName;
+                row.Cells["GhiChu"].Value = "Đang Online";
+
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    cell.Style.BackColor = OnlineBackNormal;
+                    cell.Style.ForeColor = OnlineForeNormal;
+                    cell.Style.SelectionBackColor = OnlineBackSelected;
+                    cell.Style.SelectionForeColor = OnlineForeSelected;
+                }
+                break;
+            }
+        }
+
+        public void SetAccountOffline(string accountId)
+        {
+            if (this.InvokeRequired)
+            {
+                this.BeginInvoke((Action)(() => SetAccountOffline(accountId)));
+                return;
+            }
+
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (row.Cells["ID"].Value?.ToString() != accountId)
+                    continue;
+
+                EnsureRowTag(row);
+                RestoreOfflineRow(row);
+                break;
+            }
+        }
+
+        public void ResetAllCells()
+        {
+            if (this.InvokeRequired)
+            {
+                this.BeginInvoke((Action)(() => ResetAllCells()));
+                return;
+            }
+
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                EnsureRowTag(row);
+                RestoreOfflineRow(row);
+            }
+        }
+
+        private void EnsureRowTag(DataGridViewRow row)
+        {
+            if (row.Tag != null) return;
+
+            row.Tag = new RowOriginalData
+            {
+                TaiKhoan = row.Cells["TaiKhoan"].Value,
+                GhiChu = row.Cells["GhiChu"].Value,
+                BackColor = row.DefaultCellStyle.BackColor,
+                ForeColor = row.DefaultCellStyle.ForeColor,
+                SelectionBackColor = row.DefaultCellStyle.SelectionBackColor,
+                SelectionForeColor = row.DefaultCellStyle.SelectionForeColor
+            };
+        }
+
+        private void RestoreOfflineRow(DataGridViewRow row)
+        {
+            if (row.Tag is RowOriginalData original)
+            {
+                row.Cells["TaiKhoan"].Value = original.TaiKhoan;
+                row.Cells["GhiChu"].Value = original.GhiChu;
+
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    cell.Style.BackColor = original.BackColor;
+                    cell.Style.ForeColor = original.ForeColor;
+                    cell.Style.SelectionBackColor = original.SelectionBackColor;
+                    cell.Style.SelectionForeColor = original.SelectionForeColor;
+                }
+            }
+        }
+
+        #endregion
     
     }
 }

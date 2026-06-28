@@ -172,15 +172,18 @@ public class Res
 
 	public static void outz(string s)
 	{
-		WinConsole.WriteLine(s);
-
-    }
+		WinConsole.WriteLine(s, LogLevel.Info);
+	}
 
 	public static void outz(string s, int logIndex)
 	{
 		if (mSystem.isTest)
 		{
-            WinConsole.WriteLine(LOG_CAT[logIndex] + s);
+			LogLevel level = LogLevel.Info;
+			if (logIndex == 1 || logIndex == 2) level = LogLevel.Socket;
+			else if (logIndex == 3) level = LogLevel.System;
+
+			WinConsole.WriteLine(LOG_CAT[logIndex] + s, level);
 		}
 	}
 
@@ -188,7 +191,7 @@ public class Res
 	{
 		if (mSystem.isTest)
 		{
-            WinConsole.WriteLine(s);
+			WinConsole.WriteLine(s, LogLevel.Error);
 		}
 	}
 

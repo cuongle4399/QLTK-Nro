@@ -2687,7 +2687,7 @@ public class Service
 
 	public void requestMapSelect(int selected)
 	{
-		Res.outz("request magic tree");
+		Res.outz("request magic tree ", selected);
 		Message message = null;
 		try
 		{

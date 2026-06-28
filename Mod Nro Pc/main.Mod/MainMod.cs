@@ -851,15 +851,9 @@ public class MainMod : IActionListener, IChatable
         }
         if (GameCanvas.keyAsciiPress == Hotkeys.SHIFT_K)
         {
-            for (int i = 0; i < Char.myCharz().arrItemBag.Length; i++)
-            {
-               Item item = Char.myCharz().arrItemBag[i];
-                if (item != null && item.template.id == 993)
-                {
-                    GameScr.info1.addInfo("Đã sử dụng: " + item.itemOption[0].param);
-                    break;
-                }
-            }
+            Service.gI().openMenu(29);
+            Service.gI().confirmMenu(29, 1);
+            Service.gI().requestMapSelect(3);
             return true;
         }
         if (GameCanvas.keyAsciiPress == Hotkeys.SHIFT_B)

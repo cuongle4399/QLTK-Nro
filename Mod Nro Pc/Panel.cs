@@ -12,6 +12,7 @@ using UnityEngine;
 using Xmap;
 using ModCak.Services;
 using System.Diagnostics.Eventing.Reader;
+using System.Xml.Linq;
 
 public class Panel : IActionListener, IChatable
 {
@@ -9463,6 +9464,7 @@ public class Panel : IActionListener, IChatable
 		{
 			Res.outz("xoa do");
 			Service.gI().buyItem(1, selected, 0);
+			GameScr.info1.addInfo("xoa do that ne " + selected);
 		}
 		if (idAction == 30003)
 		{

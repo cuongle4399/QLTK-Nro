@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Drawing;
 using System.Net.Sockets;
 using System.Windows.Forms;
@@ -20,10 +20,7 @@ namespace QLTK_Nro_Pro.Presenter.Socket
 
     internal class ReceiveDataClient
     {
-        private static readonly Color OnlineBackNormal = Color.LightGreen;
-        private static readonly Color OnlineForeNormal = Color.Black;
-        private static readonly Color OnlineBackSelected = Color.LimeGreen;
-        private static readonly Color OnlineForeSelected = Color.Black;
+        public static IAccountStatusView StatusView { get; set; }
 
         /// <summary>
         /// Xử lý dữ liệu client gửi lên
@@ -42,37 +39,19 @@ namespace QLTK_Nro_Pro.Presenter.Socket
                 string idClient = parts[0];
                 string command = parts[1];
 
-                var dgv = Form1.DatagridViewQLTK;
-                if (dgv == null) return;
+                if (StatusView == null) return;
 
-                // đảm bảo thao tác trên UI thread
-                if (dgv.InvokeRequired)
+                switch (command.ToLower())
                 {
-                    dgv.Invoke((MethodInvoker)(() => Process(message, client)));
-                    return;
-                }
+                    case "disconnect":
+                        StatusView.SetAccountOffline(idClient);
+                        System.Diagnostics.Debug.WriteLine($"[SERVER] Client {idClient} đã offline.");
+                        break;
 
-                foreach (DataGridViewRow row in dgv.Rows)
-                {
-                    if (row.Cells["ID"].Value?.ToString() != idClient)
-                        continue;
-
-                    EnsureRowTag(row);
-
-                    switch (command.ToLower())
-                    {
-                        case "disconnect":
-                            SetOfflineRow(row);
-                            System.Diagnostics.Debug.WriteLine($"[SERVER] Client {idClient} đã offline.");
-                            break;
-
-                        default:
-                            SetOnlineRow(row, command);
-                            System.Diagnostics.Debug.WriteLine($"[SERVER] Client {idClient} tên nhân vật: {command}");
-                            break;
-                    }
-
-                    break;
+                    default:
+                        StatusView.SetAccountOnline(idClient, command);
+                        System.Diagnostics.Debug.WriteLine($"[SERVER] Client {idClient} tên nhân vật: {command}");
+                        break;
                 }
             }
             catch (Exception ex)
@@ -86,75 +65,7 @@ namespace QLTK_Nro_Pro.Presenter.Socket
         /// </summary>
         public static void ResetAllCells()
         {
-            var dgv = Form1.DatagridViewQLTK;
-            if (dgv == null) return;
-
-            if (dgv.InvokeRequired)
-            {
-                dgv.Invoke((MethodInvoker)ResetAllCells);
-                return;
-            }
-
-            foreach (DataGridViewRow row in dgv.Rows)
-            {
-                EnsureRowTag(row);
-                SetOfflineRow(row);
-            }
-        }
-
-        /// <summary>
-        /// Đảm bảo row.Tag chứa dữ liệu gốc
-        /// </summary>
-        private static void EnsureRowTag(DataGridViewRow row)
-        {
-            if (row.Tag != null) return;
-
-            row.Tag = new RowOriginalData
-            {
-                TaiKhoan = row.Cells["TaiKhoan"].Value,
-                GhiChu = row.Cells["GhiChu"].Value,
-                BackColor = row.DefaultCellStyle.BackColor,
-                ForeColor = row.DefaultCellStyle.ForeColor,
-                SelectionBackColor = row.DefaultCellStyle.SelectionBackColor,
-                SelectionForeColor = row.DefaultCellStyle.SelectionForeColor
-            };
-        }
-
-        /// <summary>
-        /// Đặt row về trạng thái offline, phục hồi dữ liệu gốc
-        /// </summary>
-        private static void SetOfflineRow(DataGridViewRow row)
-        {
-            if (row.Tag is RowOriginalData original)
-            {
-                row.Cells["TaiKhoan"].Value = original.TaiKhoan;
-                row.Cells["GhiChu"].Value = original.GhiChu;
-
-                foreach (DataGridViewCell cell in row.Cells)
-                {
-                    cell.Style.BackColor = original.BackColor;
-                    cell.Style.ForeColor = original.ForeColor;
-                    cell.Style.SelectionBackColor = original.SelectionBackColor;
-                    cell.Style.SelectionForeColor = original.SelectionForeColor;
-                }
-            }
-        }
-
-        /// <summary>
-        /// Đặt row về trạng thái online
-        /// </summary>
-        private static void SetOnlineRow(DataGridViewRow row, string command)
-        {
-            row.Cells["TaiKhoan"].Value = command;
-            row.Cells["GhiChu"].Value = "Đang Online";
-
-            foreach (DataGridViewCell cell in row.Cells)
-            {
-                cell.Style.BackColor = OnlineBackNormal;
-                cell.Style.ForeColor = OnlineForeNormal;
-                cell.Style.SelectionBackColor = OnlineBackSelected;
-                cell.Style.SelectionForeColor = OnlineForeSelected;
-            }
+            StatusView?.ResetAllCells();
         }
 
         /// <summary>
