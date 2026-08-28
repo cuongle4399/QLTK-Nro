@@ -217,7 +217,7 @@ namespace QLTK_Nro_Pro
             btnSaveAndClose.Name = "btnSaveAndClose";
             btnSaveAndClose.Size = new Size(130, 38);
             btnSaveAndClose.TabIndex = 9;
-            btnSaveAndClose.Text = "💾 Lưu thay đổi";
+            btnSaveAndClose.Text = "Lưu";
             btnSaveAndClose.UseVisualStyleBackColor = false;
             btnSaveAndClose.Click += btnSaveAndClose_Click;
             // 

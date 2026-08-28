@@ -192,6 +192,7 @@ namespace QLTK_Nro_Pro
             if (rdoSOCK5S.Checked) proxyType = "2";
             else if (rdoHTTPS.Checked) proxyType = "3";
 
+            ServerManager.AddOrEnsureServer(txt_server.Text);
             var rowIndex = dataGridView1.Rows.Add(new object[]
             {
                 indexSTT,
@@ -277,6 +278,7 @@ namespace QLTK_Nro_Pro
 
             var row = dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex];
 
+            ServerManager.AddOrEnsureServer(txt_server.Text);
             row.Cells[1].Value = txt_user.Text;
             row.Cells[2].Value = LoadData.server(txt_server.Text);
             row.Cells[3].Value = CryptoManager.Encryptor(pass.Text, "ud");
@@ -773,14 +775,39 @@ namespace QLTK_Nro_Pro
             importDataNickFlash.ShowDialog();
         }
 
-        private void btnManageServer_Click(object sender, EventArgs e)
+        private string _lastSelectedServer = "";
+
+        private void txt_server_SelectedIndexChanged(object sender, EventArgs e)
         {
-            using (FormServerManager form = new FormServerManager())
+            if (txt_server.SelectedItem == null) return;
+
+            string selected = txt_server.SelectedItem.ToString();
+            if (selected == ServerManager.ADD_NEW_SERVER_ITEM)
             {
-                if (form.ShowDialog() == DialogResult.OK)
+                using (FormServerManager form = new FormServerManager())
                 {
-                    ServerManager.PopulateComboBox(txt_server);
+                    if (form.ShowDialog() == DialogResult.OK)
+                    {
+                        ServerManager.PopulateComboBox(txt_server);
+                        if (ServerManager.Servers.Count > 0)
+                        {
+                            txt_server.Text = ServerManager.Servers.Last().Name;
+                            _lastSelectedServer = txt_server.Text;
+                        }
+                    }
+                    else
+                    {
+                        ServerManager.PopulateComboBox(txt_server);
+                        if (!string.IsNullOrEmpty(_lastSelectedServer))
+                        {
+                            txt_server.Text = _lastSelectedServer;
+                        }
+                    }
                 }
+            }
+            else
+            {
+                _lastSelectedServer = selected;
             }
         }
 

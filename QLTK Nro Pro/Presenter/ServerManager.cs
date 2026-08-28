@@ -196,7 +196,7 @@ namespace QLTK_Nro_Pro.Presenter
 
         public static int GetServerId(string x)
         {
-            if (string.IsNullOrWhiteSpace(x))
+            if (string.IsNullOrWhiteSpace(x) || x.StartsWith("+ Thêm") || x.Contains("Thêm Server") || x.Contains("Quản lý"))
                 return 0;
 
             string trimmed = x.Trim();
@@ -235,6 +235,90 @@ namespace QLTK_Nro_Pro.Presenter
             return 0;
         }
 
+        /// <summary>
+        /// Tự động thêm hoặc đảm bảo server tồn tại từ chuỗi nhập (hỗ trợ "id|tên", "Tên [id]", "id")
+        /// </summary>
+        public static ServerItem AddOrEnsureServer(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+                return null;
+
+            string trimmed = input.Trim();
+            int id = 0;
+            string name = string.Empty;
+
+            // 1. Format: "id|name" (vd: 23|Vũ Trụ 16 [23])
+            if (trimmed.Contains('|'))
+            {
+                string[] parts = trimmed.Split('|');
+                if (int.TryParse(parts[0].Trim(), out int parsedId) && parsedId > 0)
+                {
+                    id = parsedId;
+                    name = parts[1].Trim();
+                    if (string.IsNullOrEmpty(name)) name = id.ToString();
+                }
+            }
+            // 2. Format có "[id]" (vd: "Vũ Trụ 16 [23]")
+            else
+            {
+                Match match = Regex.Match(trimmed, @"\[(\d+)\]");
+                if (match.Success && int.TryParse(match.Groups[1].Value, out int extractedId))
+                {
+                    id = extractedId;
+                    name = trimmed;
+                }
+                else
+                {
+                    Match matchParen = Regex.Match(trimmed, @"\((\d+)\)");
+                    if (matchParen.Success && int.TryParse(matchParen.Groups[1].Value, out int extractedParenId))
+                    {
+                        id = extractedParenId;
+                        name = trimmed;
+                    }
+                    else if (int.TryParse(trimmed, out int directId) && directId > 0)
+                    {
+                        id = directId;
+                        name = id.ToString();
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+            }
+
+            if (id <= 0) return null;
+
+            lock (_lock)
+            {
+                if (_servers.Count == 0)
+                    LoadServers();
+
+                var existing = _servers.FirstOrDefault(s => s.Id == id);
+                if (existing == null)
+                {
+                    var newItem = new ServerItem(id, string.IsNullOrEmpty(name) ? id.ToString() : name);
+                    _servers.Add(newItem);
+                    SaveServersInternal();
+                    return newItem;
+                }
+                else
+                {
+                    if (!string.IsNullOrEmpty(name) && !existing.Name.Equals(name, StringComparison.OrdinalIgnoreCase))
+                    {
+                        if (trimmed.Contains('|') || trimmed.Contains('[') || trimmed.Contains('('))
+                        {
+                            existing.Name = name;
+                            SaveServersInternal();
+                        }
+                    }
+                    return existing;
+                }
+            }
+        }
+
+        public const string ADD_NEW_SERVER_ITEM = "+ Thêm Server";
+
         public static void PopulateComboBox(ComboBox comboBox)
         {
             if (comboBox == null) return;
@@ -255,10 +339,12 @@ namespace QLTK_Nro_Pro.Presenter
                     comboBox.Items.Add(server.Name);
                 }
 
+                comboBox.Items.Add(ADD_NEW_SERVER_ITEM);
+
                 comboBox.EndUpdate();
             }
 
-            if (!string.IsNullOrEmpty(previousText))
+            if (!string.IsNullOrEmpty(previousText) && previousText != ADD_NEW_SERVER_ITEM)
             {
                 int index = comboBox.FindStringExact(previousText);
                 if (index >= 0)
@@ -266,11 +352,11 @@ namespace QLTK_Nro_Pro.Presenter
                 else
                     comboBox.Text = previousText;
             }
-            else if (previousIndex >= 0 && previousIndex < comboBox.Items.Count)
+            else if (previousIndex >= 0 && previousIndex < _servers.Count)
             {
                 comboBox.SelectedIndex = previousIndex;
             }
-            else if (comboBox.Items.Count > 0)
+            else if (_servers.Count > 0)
             {
                 comboBox.SelectedIndex = 0;
             }

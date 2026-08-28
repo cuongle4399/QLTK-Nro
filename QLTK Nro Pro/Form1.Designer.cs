@@ -288,7 +288,6 @@ namespace QLTK_Nro_Pro
             btnAutoOpenTab = new Button();
             btnBoxZalo = new MaterialSkin.Controls.MaterialButton();
             btnImportDataNick = new Button();
-            btnManageServer = new Button();
             txt_server = new MaterialSkin.Controls.MaterialComboBox();
             btnDelete = new MaterialSkin.Controls.MaterialButton();
             txt_user = new MaterialSkin.Controls.MaterialTextBox();
@@ -3461,7 +3460,6 @@ namespace QLTK_Nro_Pro
             PageQLTK.Controls.Add(btnAutoOpenTab);
             PageQLTK.Controls.Add(btnBoxZalo);
             PageQLTK.Controls.Add(btnImportDataNick);
-            PageQLTK.Controls.Add(btnManageServer);
             PageQLTK.Controls.Add(txt_server);
             PageQLTK.Controls.Add(btnDelete);
             PageQLTK.Controls.Add(txt_user);
@@ -3526,18 +3524,6 @@ namespace QLTK_Nro_Pro
             btnImportDataNick.UseVisualStyleBackColor = true;
             btnImportDataNick.Click += btnImportDataNick_Click;
             // 
-            // btnManageServer
-            // 
-            btnManageServer.BackColor = Color.FromArgb(240, 240, 240);
-            btnManageServer.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnManageServer.Location = new Point(610, 172);
-            btnManageServer.Name = "btnManageServer";
-            btnManageServer.Size = new Size(82, 49);
-            btnManageServer.TabIndex = 42;
-            btnManageServer.Text = "+ SV";
-            btnManageServer.UseVisualStyleBackColor = true;
-            btnManageServer.Click += btnManageServer_Click;
-            // 
             // txt_server
             // 
             txt_server.AutoResize = true;
@@ -3550,10 +3536,10 @@ namespace QLTK_Nro_Pro
             resources.ApplyResources(txt_server, "txt_server");
             txt_server.ForeColor = Color.FromArgb(222, 0, 0, 0);
             txt_server.FormattingEnabled = true;
-            txt_server.Items.AddRange(new object[] { resources.GetString("txt_server.Items"), resources.GetString("txt_server.Items1"), resources.GetString("txt_server.Items2"), resources.GetString("txt_server.Items3"), resources.GetString("txt_server.Items4"), resources.GetString("txt_server.Items5"), resources.GetString("txt_server.Items6"), resources.GetString("txt_server.Items7"), resources.GetString("txt_server.Items8"), resources.GetString("txt_server.Items9"), resources.GetString("txt_server.Items10"), resources.GetString("txt_server.Items11"), resources.GetString("txt_server.Items12"), resources.GetString("txt_server.Items13"), resources.GetString("txt_server.Items14"), resources.GetString("txt_server.Items15"), resources.GetString("txt_server.Items16"), resources.GetString("txt_server.Items17"), resources.GetString("txt_server.Items18"), resources.GetString("txt_server.Items19"), resources.GetString("txt_server.Items20"), resources.GetString("txt_server.Items21") });
             txt_server.MouseState = MaterialSkin.MouseState.OUT;
             txt_server.Name = "txt_server";
             txt_server.StartIndex = 0;
+            txt_server.SelectedIndexChanged += txt_server_SelectedIndexChanged;
             // 
             // btnDelete
             // 
@@ -4251,7 +4237,6 @@ namespace QLTK_Nro_Pro
         private MaterialSkin.Controls.MaterialButton btnNhapCodeLive;
         private TabPage PageQLTK;
         private Button btnImportDataNick;
-        private Button btnManageServer;
         private MaterialSkin.Controls.MaterialComboBox txt_server;
         private MaterialSkin.Controls.MaterialButton btnDelete;
         private MaterialSkin.Controls.MaterialTextBox txt_user;
