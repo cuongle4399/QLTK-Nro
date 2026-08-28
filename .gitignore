@@ -20,3 +20,5 @@ SemanticSymbols.db
 
 # Local data & configuration
 Data/
+output/
+

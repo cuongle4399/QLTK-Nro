@@ -67,8 +67,8 @@ namespace QLTK_Nro_Pro.Presenter
                 new ServerItem(18, "13 [18]"),
                 new ServerItem(19, "VIP 2 [19]"),
                 new ServerItem(20, "14 [20]"),
-                new ServerItem(21, "Super 3 [21]"),
-                new ServerItem(22, "Vũ Trụ 15 [22]")
+                new ServerItem(21, "15 [21]"),
+                new ServerItem(22, "Super 3 [22]")
             };
         }
 
