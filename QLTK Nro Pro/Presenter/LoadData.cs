@@ -1,4 +1,4 @@
-﻿using QLTK_Nro_Pro.Presenter.Socket;
+using QLTK_Nro_Pro.Presenter.Socket;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -143,83 +143,11 @@ namespace QLTK_Nro_Pro.Presenter
         #region FormatServer
         public static string Reserver(int x)
         {
-            if (x == 13)
-            {
-                return "Võ đài liên vũ trụ[13]";
-            }
-            if (x == 14)
-            {
-                return "Universe1 (14)";
-            }
-            if (x == 15)
-            {
-                return "Naga [15]";
-            }
-            if (x == 16)
-            {
-                return "Super 1 [16]";
-            }
-            if (x == 17)
-            {
-                return "Super 2 [17]";
-            }
-            if (x == 18)
-            {
-                return "13 [18]";
-            }
-            if (x == 19)
-            {
-                return "VIP 2 [19]";
-            }
-            if (x == 20)
-            {
-                return "14 [20]";
-            }
-            if (x == 21)
-            {
-                return "Super 3 [21]";
-            }
-            return x.ToString();
+            return ServerManager.GetServerName(x);
         }
         public static int server(string x)
         {
-            if (x.Equals("Võ đài liên vũ trụ [13]"))
-            {
-                return 13;
-            }
-            if (x.Equals("Universe1 (14)"))
-            {
-                return 14;
-            }
-            if (x.Equals("Naga [15]"))
-            {
-                return 15;
-            }
-            if (x.Equals("Super 1 [16]"))
-            {
-                return 16;
-            }
-            if (x.Equals("Super 2 [17]"))
-            {
-                return 17;
-            }
-            if (x.Equals("13 [18]"))
-            {
-                return 18;
-            }
-            if (x.Equals("VIP 2 [19]"))
-            {
-                return 19;
-            }
-            if (x.Equals("14 [20]"))
-            {
-                return 20;
-            }
-            if (x.Equals("Super 3 [21]"))
-            {
-                return 21;
-            }
-            return int.Parse(x);
+            return ServerManager.GetServerId(x);
         }
         #endregion
         #region createFolderData
@@ -234,17 +162,17 @@ namespace QLTK_Nro_Pro.Presenter
                 }
             }
             string folderPath = Path.GetDirectoryName(AppConstants.PathAPI);
-            if (!Directory.Exists(folderPath))
+            if (!string.IsNullOrEmpty(folderPath) && !Directory.Exists(folderPath))
             {
                 Directory.CreateDirectory(folderPath);
             }
 
-            if (!File.Exists(AppConstants.PathServerAPI))
+            if (!File.Exists(AppConstants.PathAPI))
             {
                 File.WriteAllText(AppConstants.PathAPI, "");
             }
             string folderPathServerAPI = Path.GetDirectoryName(AppConstants.PathServerAPI);
-            if (!Directory.Exists(folderPathServerAPI))
+            if (!string.IsNullOrEmpty(folderPathServerAPI) && !Directory.Exists(folderPathServerAPI))
             {
                 Directory.CreateDirectory(folderPathServerAPI);
             }
@@ -253,6 +181,8 @@ namespace QLTK_Nro_Pro.Presenter
             {
                 File.WriteAllText(AppConstants.PathServerAPI, "");
             }
+
+            ServerManager.Init();
         }
         #endregion
     }

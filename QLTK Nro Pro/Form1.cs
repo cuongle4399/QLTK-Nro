@@ -62,6 +62,7 @@ namespace QLTK_Nro_Pro
             int y = screen.Bottom - this.Height;
             this.Location = new Point(x, y);
             LoadData.createFolderData();
+            ServerManager.PopulateComboBox(txt_server);
             CheckUpdate.CheckForUpdates();
             _captchaApiManager = new CaptchaApiManager(lblAPICapcha, pBAPI, cbbServerAPI, txtServerAPI);
             _captchaApiManager.ShowImage(AppConstants.ImageTestAPI);
@@ -770,6 +771,17 @@ namespace QLTK_Nro_Pro
         {
             ImportDataNickFlash importDataNickFlash = new ImportDataNickFlash(dataGridView1, ref indexSTT);
             importDataNickFlash.ShowDialog();
+        }
+
+        private void btnManageServer_Click(object sender, EventArgs e)
+        {
+            using (FormServerManager form = new FormServerManager())
+            {
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    ServerManager.PopulateComboBox(txt_server);
+                }
+            }
         }
 
         private void btnBoxZalo_Click(object sender, EventArgs e)

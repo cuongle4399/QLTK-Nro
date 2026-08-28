@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,6 +18,7 @@ namespace QLTK_Nro_Pro.Presenter
         public static string CheckOfUpdate = "https://www.dropbox.com/scl/fi/0iacu1ujg30nbl7suncea/checkVersionNro.txt?rlkey=7vcuj3zim83gvviimg8k26ns5&st=2g41ahjg&dl=1";
         public static string PathAPI = Path.Combine("Data", "keyAPI.ini");
         public static string PathServerAPI = Path.Combine("Data", "serverAPI.ini");
+        public static string PathServers = Path.Combine("Data", "servers.ini");
         public static string LinkFBCuongLe = "https://www.facebook.com/profile.php?id=100071743014602";
         public static string LinkWebMod = "https://cuongle4399.github.io/web-mod-nro/#";
         public static string LinkBoxZalo = "https://zalo.me/g/stvcsp741";

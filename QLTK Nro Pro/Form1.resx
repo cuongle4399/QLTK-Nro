@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!--
     Microsoft ResX Schema
@@ -8671,6 +8671,9 @@
   </data>
   <data name="txt_server.Items20" xml:space="preserve">
     <value>Super 3 [21]</value>
+  </data>
+  <data name="txt_server.Items21" xml:space="preserve">
+    <value>Vũ Trụ 15 [22]</value>
   </data>
   <data name="txt_server.Location" type="System.Drawing.Point, System.Drawing">
     <value>394, 172</value>
